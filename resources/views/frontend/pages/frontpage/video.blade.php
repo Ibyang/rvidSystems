@@ -2,7 +2,7 @@
       <div class="container text-center">
           <div class="row">
                 <div class="col">
-                  <h1>What is it?</h1>
+                  <a href="" style="text-decoration:none"><h1>What is it?</h1></a>
                   (Easy and valuable)
                   <a href=""><img src={{ asset('storage/what-is-revid.jpg') }} /></a>
                   <p class="text-justify">It’s "Video" for social media marketing,
@@ -10,14 +10,14 @@
                     email to prospective clients.</p>
                 </div>
                 <div class="col">
-                 <h1 class="c-6600cc">How to join?</h1>
-                 (Get started today)
+                 <a href=" {{ route('get-started') }}" style="text-decoration:none"><h1 class="c-6600cc">How to join?</h1></a>
+                     (Get started today)
                  <a href=""><img src={{ asset('storage/how-to-join.jpg') }} /></a>
                  <p class="text-justify">Free Trial 30 days membership then
                     $33/month and pay for what you use.</p>
                 </div>
                 <div class="col">
-                 <h1 class="c-6600cc">How the system works?</h1>
+                 <a href=" {{ route('how-system-works') }}" style="text-decoration:none"><h1 class="c-6600cc">How the system works?</h1></a>
                  (It’s easy)
                  <a href=""><img src={{ asset('storage/how-system-works.jpg') }} /></a>
                  <p class="text-justify">System is an online service that’s fast,

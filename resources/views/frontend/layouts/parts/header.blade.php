@@ -14,7 +14,7 @@
     <header class="@if (Request::segment(1) == 'account') {{'bg-primary-account'}}  @else {{'bg-primary'}} @endif">
         <div class="container">
           <div class="row">
-            <div class="float-l"><img src={{ asset('storage/revid-icon.png') }} /></div>
+              <div class="float-l"><a href=" {{ route('home') }}"><img src={{ asset('storage/revid-icon.png') }} /></a></div>
             <div class="float-l">
                 @guest
                     <ul class="hdr-i-col">

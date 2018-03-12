@@ -10,32 +10,32 @@
             <li><a href="">
                     <i class="link-icon marketing"></i>
                 </a>
-                <p><a href="/use-revid-marketing">Marketing</a></p>
+                <p><a href="{{ route('use-revid-marketing') }}">Marketing</a></p>
             </li>
             <li><a href="">
                     <i class="link-icon emails"></i>
                 </a>
-                <p><a href="/use-revid-email">Emails</a></p>
+                <p><a href="{{ route('use-revid-email') }}">Emails</a></p>
             </li>
             <li><a href="">
                     <i class="link-icon web"></i>
                 </a>
-                <p><a href="use-revid-website">Website</a></p>
+                <p><a href="{{ route('use-revid-website') }}">Website</a></p>
             </li>
             <li><a href="">
                     <i class="link-icon corporate"></i>
                 </a>
-                <p><a href="/use-revid-corporate">Corporate</a></p>
+                <p><a href="{{ route('use-revid-corporate') }}">Corporate</a></p>
             </li>
             <li><a href="">
                     <i class="link-icon driveby"></i>
                 </a>
-                <p><a href="">DriveBy</a></p>
+                <p><a href="{{ route('driveby') }}">DriveBy</a></p>
             </li>
             <li><a href="">
                     <i class="link-icon lookfirst"></i>
                 </a>
-                <p><a href="">LookFirst</a></p>
+                <p><a href="{{ route('look-first') }}">LookFirst</a></p>
             </li>
         </ul>
     </div>

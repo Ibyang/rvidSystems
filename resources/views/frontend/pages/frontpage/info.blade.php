@@ -7,10 +7,10 @@
             music to a fully edited video production</p>
       </div>
       <div class="col col-md-4">
-        <h3>What is DriveBy?</h3>
+        <a href=" {{ route('driveby') }} " style="text-decoration: none; color: black"><h3>What is DriveBy?</h3>
         <p class="text-justify">DriveBy uses Geolocation to make the
             “drive-by” experience full service – <a href="">see
-            demo</a> – means more buyer engagement.</p>
+            demo</a> – means more buyer engagement.</p></a>
       </div>
       <div class="col col-md"><img src={{ asset('storage/drive-look-img.jpg') }} /></div>
     </div>
@@ -18,8 +18,8 @@
         <div class="col-md-auto">
            <h3 class="c-6600cc">Generic Video <br>$75</h3>
          <div class="d-inline-block">
-            <i class="video-icon url"></i>
-            <p class="text-center">URL<br><b>Details</b></p>
+             <i class="video-icon url"></i>
+             <p class="text-center">URL<br><b>Details</b></p>
          </div>
          <div class="d-inline-block align-top">
             <p><b>We do it<br>for you</b></p>

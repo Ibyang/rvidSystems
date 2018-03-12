@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="custom-control custom-checkbox">
+                        <div class="custom-control custom-checkbox standard">
                           <input type="checkbox" class="custom-control-input" id="customCheck3">
                           <label class="custom-control-label" for="customCheck3"></label>
                         </div>

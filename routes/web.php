@@ -18,87 +18,99 @@
 //USED FOR FRONT END PAGES
 Route::get('/', function () {
     return view('frontend.pages.frontpage');
-});
+})->name('home');
 
 Route::get('/why-use-revid', function () {
     return view('frontend.pages.why-use-revid');
-});
+})->name('why-use-revid');
 
 Route::get('/use-revid-marketing', function () {
     return view('frontend.pages.use-revid-marketing');
-});
+})->name('use-revid-marketing');
 
 Route::get('/use-revid-email', function () {
     return view('frontend.pages.use-revid-email');
-});
+})->name('use-revid-email');
 
 Route::get('/use-revid-website', function () {
     return view('frontend.pages.use-revid-website');
-});
+})->name('use-revid-website');
 
 Route::get('/use-revid-corporate', function () {
     return view('frontend.pages.use-revid-corporate');
-});
+})->name('use-revid-corporate');
 
 Route::get('/use-revid-affordable', function () {
     return view('frontend.pages.use-revid-affordable');
-});
+})->name('use-revid-affordable');
 
 Route::get('/use-revid-easy', function () {
     return view('frontend.pages.use-revid-easy');
-});
+})->name('use-revid-easy');
 
 Route::get('/use-revid-buyers', function () {
     return view('frontend.pages.use-revid-buyers');
-});
+})->name('use-revid-buyers');
 
 Route::get('/contact', function () {
     return view('frontend.pages.contact');
-});
+})->name('contact');
 
 Route::get('/about', function () {
     return view('frontend.pages.about');
-});
+})->name('about');
 
 Route::get('/driveby', function () {
     return view('frontend.pages.driveby');
-});
+})->name('driveby');
 
 Route::get('/look-first', function () {
     return view('frontend.pages.look-first');
-});
+})->name('look-first');
 
 Route::get('/look-first-video', function () {
     return view('frontend.pages.look-first-video');
-});
+})->name('look-first-video');
 
 Route::get('/get-started', function () {
     return view('frontend.pages.get-started');
-});
+})->name('get-started');
 
 Route::get('/how-system-works', function () {
     return view('frontend.pages.system-works');
-});
+})->name('how-system-works');
 
 Route::get('/help', function () {
     return view('frontend.pages.help');
-});
+})->name('help');
 
 Route::get('/make-video-premium', function () {
     return view('frontend.pages.make-video.make-video-premium');
-});
+})->name('make-video-premium');
 
 Route::get('/make-video-standard', function () {
     return view('frontend.pages.make-video.make-video-standard');
-});
+})->name('make-video-standard');
 
 Route::get('/make-video-generic', function () {
     return view('frontend.pages.make-video.make-video-generic');
-});
+})->name('make-video-generic');
 
 Route::get('/pricing', function () {
     return view('frontend.pages.pricing');
-});
+})->name('pricing');
+
+Route::get('/terms-condition', function () {
+    return view('frontend.pages.terms-condition');
+})->name('terms-condition');
+
+Route::get('/copyright', function () {
+    return view('frontend.pages.copyright');
+})->name('copyright');
+
+Route::get('/privacy-terms', function () {
+    return view('frontend.pages.privacy-terms');
+})->name('privacy-terms');
 
 Route::get('/account/home','MyAccountController@index');
 
@@ -110,12 +122,16 @@ Route::get('/account/billing-history', function () {
     return view('frontend.pages.video.billing-history');
 });
 
+Route::get('/account/make-video', function () {
+    return view('frontend.pages.video.make-video');
+});
+
 
 Auth::routes();
 
 //USED FOR ADMIN ROUTES
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'AdminController@index')->name('admin');
 
