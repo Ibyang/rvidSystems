@@ -112,7 +112,7 @@
                   <div class="form-group">
                     <label class="col-md-3 control-label" for="role_title">Role / Title</label>
                     <div class="col-md-7">
-                      <select name="role" class="form-control" >
+                      <select name="role_title" class="form-control" >
                         @foreach($roles as $role)
                           <option value="{{ $role->role_title }}" {{ $agent->role_title === $role->role_title ? 'selected' : '' }}> {{ $role->role_title }} </option>
                         @endforeach
@@ -159,6 +159,7 @@
                 <!-- Form actions -->
                 <div class="form-group">
                   <div class="col-md-12 text-center">
+                    <input type="hidden" id="suburbValue" name="suburbValue" value=" {{ $agent->suburb }} ">
                     <button type="submit" class="btn btn-responsive btn-primary btn-sm">Submit</button>
                   </div>
                 </div>
@@ -180,5 +181,64 @@
   <script src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}" ></script>
   <script src="{{ asset('assets/vendors/iCheck/js/icheck.js') }}"></script>
   <script src="{{ asset('assets/js/pages/form_examples.js') }}"></script>
+
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+
+          var suburbValue = $('#suburbValue').val();
+          if(suburbValue != ''){
+              $('select[name="suburb"]').append('<option value="'+ suburbValue +'">'+ suburbValue +'</option>');
+          }
+
+          //for dynamic populating suburb dropdown when state is selected
+          $('select[name="state"]').on('change', function() {
+              var stateCode = $(this).val();
+              if(stateCode) {
+                  $.ajax({
+                      url: '/agentAjax/' + stateCode,
+                      type: "GET",
+                      dataType: "json",
+                      success:function(data) {
+                          //console.log("the return data is ", data);
+                          $('select[name="suburb"]').empty();
+                          $.each(data, function(key, value) {
+                              $('select[name="suburb"]').append('<option value="'+ value +'">'+ value +'</option>');
+                          });
+                      }
+                  });
+              }else{
+                  $('select[name="suburb"]').empty();
+              }
+          });
+
+
+          //for dynamic populating of postal code when suburb is selected
+          $('select[name="suburb"]').on('change', function() {
+              var suburbValue = $(this).val();
+              var sCode = $('#state').val();
+              console.log("the value of suburbValue is", suburbValue);
+              console.log("the value of sCode is", sCode);
+              if (suburbValue) {
+                  $.ajax({
+                      url: '/agentPostalAjax/' + sCode + '/' + suburbValue,
+                      type: "GET",
+                      dataType: "json",
+                      success: function (data) {
+                          // $('select[name="suburb"]').empty();
+                          // $.each(data, function (key, value) {
+                          $("#postalCode").val(data);
+                          // $('select[name="suburb"]').append('<option value="' + key + '">' + value + '</option>');
+                          // });
+                      }
+                  });
+              } else {
+                  //$('select[name="suburb"]').empty();
+              }
+
+          });
+
+      });
+  </script>
 
 @stop

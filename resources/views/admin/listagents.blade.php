@@ -44,7 +44,7 @@
                                 <th>Email</th>
                                 <th>Mobile</th>
                                 <th>Address</th>
-                                <th>Actions</th>
+                                <th colspan="2">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -57,12 +57,12 @@
                                     <td>{{$agent->email}}</td>
                                     <td>{{$agent->mobile}}</td>
                                     <td>{{$agent->address}}, {{$agent->suburb}} {{$agent->State}}{{$agent->postcode}}</td>
+                                    <td><a href="{{ route('agents.edit', $agent->ID)}}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Agent"></i></a></td>
                                     <td>
-                                        <a href="{{ route('agents.edit', $agent->ID)}}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Agent"></i></a>
                                         <form action="{{action('AgentController@destroy', $agent->ID)}}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?')">
                                             {{csrf_field()}}
                                             <input name="_method" type="hidden" value="DELETE">
-                                            <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                                            <button type="submit" style="border: none;"><i class="livicon" data-name="remove-alt" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Delete Agent"></i><!--span class="glyphicon glyphicon-trash"></span--></button>
                                         </form>
                                         {{--<a href="#" data-toggle="modal" data-target="#delete_confirm">--}}
                                             {{--<i class="livicon" data-name="remove-alt" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="Delete Agent"></i>--}}

@@ -112,7 +112,7 @@
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="role_title">Role / Title</label>
                       <div class="col-md-7">
-                        <select name="role" class="form-control" >
+                        <select name="role_title" class="form-control" >
                           @foreach($roles as $role)
                             <option value="{{ $role->role_title }} "> {{ $role->role_title }} </option>
                           @endforeach

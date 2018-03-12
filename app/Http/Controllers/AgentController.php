@@ -155,8 +155,20 @@ class AgentController extends Controller
         //$agent->fill($input);
         //$agent->save();
 
-        $agent = Agent::where('ID', $id)->update(['firstname' => Input::get('firstname'), 'lastname' => Input::get('lastname'),
-            'email' => Input::get('email'), 'mobile' => Input::get('mobile'), 'passwd' => Input::get('passwd')]);
+        $agent = Agent::where('ID', $id)->update([
+            'firstname' => Input::get('firstname'),
+            'lastname' => Input::get('lastname'),
+            'email' => Input::get('email'),
+            'mobile' => Input::get('mobile'),
+            'passwd' => Input::get('passwd'),
+            'group' => Input::get('group'),
+            'name_agency' => Input::get('name_agency'),
+            'role_title' => Input::get('role_title'),
+            'address' => Input::get('address'),
+            'suburb' => Input::get('suburb'),
+            'postcode' => Input::get('postcode'),
+            'state' => Input::get('state'),
+            ]);
 
 //        $agent->firstname = Input::get('firstname');
 //        $agent->lastname = Input::get('lastname');
