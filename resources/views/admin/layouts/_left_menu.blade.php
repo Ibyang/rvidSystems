@@ -29,7 +29,7 @@
             </li>
         </ul>
     </li>
-    @if($role === 'Administrator')
+    @if($role == 'Administrator')
         <li {!! (Request::is('content') || Request::is('socialmedia') ? 'class="active"' : '') !!}>
             <a href="#">
                 <i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>
@@ -68,7 +68,7 @@
             <span class="title">Video Files</span>
         </a>
     </li>
-    @if($role === 'Administrator')
+    @if($role == 'Administrator')
         <li {!! (Request::is('agents') || Request::is('production') ? 'class="active"' : '') !!}>
             <a href="#">
                 <i class="livicon" data-name="users" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>

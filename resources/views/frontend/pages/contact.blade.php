@@ -31,7 +31,7 @@
                         REVid Systems Terms and Conditions.
                     </div>
                     <div class="col-sm-4 d-flex align-items-end">
-                     <a href="" class="btn btn-primary w-100">Click here for full Terms and Conditions</a>
+                     <a href=" {{ route('terms-condition') }} " class="btn btn-primary w-100">Click here for full Terms and Conditions</a>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                    <br><br><br>
                 </div>
                 <div class="col-sm-4 d-flex align-items-end">
-                 <a href="" class="btn btn-primary w-100">Click here for full Copyright Terms</a>
+                 <a href=" {{ route('copyright') }} " class="btn btn-primary w-100">Click here for full Copyright Terms</a>
                 </div>
             </div>
             </div>
@@ -55,7 +55,7 @@
                        <br><br><br>
                     </div>
                     <div class="col-sm-4 d-flex align-items-end">
-                     <a href="" class="btn btn-primary w-100">Click here for full Privacy Terms</a>
+                     <a href=" {{ route('privacy-terms') }} " class="btn btn-primary w-100">Click here for full Privacy Terms</a>
                     </div>
                 </div>
             </div>

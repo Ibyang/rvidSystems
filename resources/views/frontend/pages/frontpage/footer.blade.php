@@ -19,6 +19,6 @@
             <a href=""><i class="social-icon pin"></i></a>
             <a href=""><i class="social-icon glg"></i></a>
           </div>
-          <p class="m-0 text-center text-white">REVid Systems Pty Ltd 2017 - Terms and Conditions - Copyright - Privacy Policy - Contact</p>
+        <p class="m-0 text-center text-white"><a href=" {{ route('contact') }} " style="color: white">REVid Systems Pty Ltd 2017</a> - <a href=" {{ route('contact') }} " style="color: white">Terms and Conditions</a> - <a href=" {{ route('contact') }} " style="color: white">Copyright</a> - <a href=" {{ route('contact') }} " style="color: white">Privacy Policy</a> - <a href=" {{ route('contact') }} " style="color: white">Contact</a></p>
       </div>
 </footer>

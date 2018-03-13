@@ -113,8 +113,8 @@
                     <label class="col-md-3 control-label" for="role_title">Role / Title</label>
                     <div class="col-md-7">
                       <select name="role_title" class="form-control" >
-                        @foreach($roles as $role)
-                          <option value="{{ $role->role_title }}" {{ $agent->role_title === $role->role_title ? 'selected' : '' }}> {{ $role->role_title }} </option>
+                        @foreach($rols as $rol)
+                          <option value="{{ $rol->role_title }}" {{ $agent->role_title === $rol->role_title ? 'selected' : '' }}> {{ $rol->role_title }} </option>
                         @endforeach
                       </select>
                     </div>

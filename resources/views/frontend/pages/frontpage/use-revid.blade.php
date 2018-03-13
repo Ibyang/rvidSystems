@@ -7,35 +7,29 @@
                 </a>
                 <p><a href="">Social Media</a></p>
             </li>
-            <li><a href="">
+            <li><a href="{{ route('use-revid-marketing') }}">
                     <i class="link-icon marketing"></i>
-                </a>
-                <p><a href="{{ route('use-revid-marketing') }}">Marketing</a></p>
+                <p>Marketing</p></a>
             </li>
-            <li><a href="">
+            <li><a href="{{ route('use-revid-email') }}">
                     <i class="link-icon emails"></i>
-                </a>
-                <p><a href="{{ route('use-revid-email') }}">Emails</a></p>
+                <p>Emails</p></a>
             </li>
-            <li><a href="">
+            <li><a href="{{ route('use-revid-website') }}">
                     <i class="link-icon web"></i>
-                </a>
-                <p><a href="{{ route('use-revid-website') }}">Website</a></p>
+                <p>Website</p></a>
             </li>
-            <li><a href="">
+            <li><a href="{{ route('use-revid-corporate') }}">
                     <i class="link-icon corporate"></i>
-                </a>
-                <p><a href="{{ route('use-revid-corporate') }}">Corporate</a></p>
+                <p>Corporate</p></a>
             </li>
-            <li><a href="">
+            <li><a href="{{ route('driveby') }}">
                     <i class="link-icon driveby"></i>
-                </a>
-                <p><a href="{{ route('driveby') }}">DriveBy</a></p>
+                <p>DriveBy</p></a>
             </li>
-            <li><a href="">
+            <li><a href="{{ route('look-first') }}">
                     <i class="link-icon lookfirst"></i>
-                </a>
-                <p><a href="{{ route('look-first') }}">LookFirst</a></p>
+                <p>LookFirst</p></a>
             </li>
         </ul>
     </div>
@@ -46,35 +40,29 @@
             </a>
             <p><a href="">Fast</a></p>
         </li>
-        <li><a href="">
+        <li><a href=" {{ route('use-revid-affordable') }}">
                 <i class="link-icon affordable"></i>
-            </a>
-            <p><a href="/use-revid-affordable">Affordable</a></p>
+            <p>Affordable</p></a>
         </li>
-        <li><a href="">
+        <li><a href=" {{ route('use-revid-easy') }}">
                 <i class="link-icon easy"></i>
-            </a>
-            <p><a href="/use-revid-easy">Easy to Use</a></p>
+            <p>Easy to Use</p></a>
         </li>
-        <li><a href="">
+        <li><a href=" {{ route('use-revid-buyers') }}">
                 <i class="link-icon buyers"></i>
-            </a>
-            <p><a href="/use-revid-buyers">Engages Buyers</a></p>
+            <p>Engages Buyers</p></a>
         </li>
         <li><a href="">
                 <i class="link-icon sell"></i>
-            </a>
-            <p><a href="">Helps Sell</a></p>
+            <p>Helps Sell</p></a>
         </li>
-        <li><a href="">
+        <li><a href=" {{ route('driveby') }}">
                 <i class="link-icon driveby"></i>
-            </a>
-            <p><a href="">DriveBy</a></p>
+            <p>DriveBy</p></a>
         </li>
-        <li><a href="">
+        <li><a href=" {{ route('look-first') }}">
                 <i class="link-icon lookfirst"></i>
-            </a>
-            <p><a href="">LookFirst</a></p>
+            <p>LookFirst</p></a>
         </li>
     </ul>
 </div>

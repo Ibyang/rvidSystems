@@ -34,39 +34,41 @@
                     </div>
                     <br />
                     <div class="panel-body">
-                        <table class="table table-bordered " id="table">
-                            <thead>
-                            <tr class="filters">
-                                <th>Order ID</th>
-                                <th>Agent Name</th>
-                                <th>Status</th>
-                                <th>Order Date</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td colspan="4">No data available yet...</td></tr>
-                            {{--@foreach($agents as $agent)--}}
-                                {{--<tr>--}}
-                                    {{--<td>{{$agent->group}}</td>--}}
-                                    {{--<td>{{$agent->name_agency}}</td>--}}
-                                    {{--<td>{{$agent->role_title}}</td>--}}
-                                    {{--<td>{{$agent->firstname}} {{$agent->lastname}}</td>--}}
-                                    {{--<td>{{$agent->email}}</td>--}}
-                                    {{--<td>{{$agent->mobile}}</td>--}}
-                                    {{--<td>{{$agent->address}}, {{$agent->suburb}} {{$agent->State}}{{$agent->postcode}}</td>--}}
-                                    {{--<td>--}}
-                                        {{--<a href="{{ route('agents.edit', $agent->ID)}}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Agent"></i></a>--}}
-                                        {{--<form action="{{action('AgentController@destroy', $agent->ID)}}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?')">--}}
-                                            {{--{{csrf_field()}}--}}
-                                            {{--<input name="_method" type="hidden" value="DELETE">--}}
-                                            {{--<button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>--}}
-                                        {{--</form>--}}
-                                    {{--</td>--}}
-                                {{--</tr>--}}
-                            {{--@endforeach--}}
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-bordered " id="table">
+                                <thead>
+                                <tr class="filters">
+                                    <th>Order ID</th>
+                                    <th>Agent Name</th>
+                                    <th>Status</th>
+                                    <th>Order Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="4">No data available yet...</td></tr>
+                                {{--@foreach($agents as $agent)--}}
+                                    {{--<tr>--}}
+                                        {{--<td>{{$agent->group}}</td>--}}
+                                        {{--<td>{{$agent->name_agency}}</td>--}}
+                                        {{--<td>{{$agent->role_title}}</td>--}}
+                                        {{--<td>{{$agent->firstname}} {{$agent->lastname}}</td>--}}
+                                        {{--<td>{{$agent->email}}</td>--}}
+                                        {{--<td>{{$agent->mobile}}</td>--}}
+                                        {{--<td>{{$agent->address}}, {{$agent->suburb}} {{$agent->State}}{{$agent->postcode}}</td>--}}
+                                        {{--<td>--}}
+                                            {{--<a href="{{ route('agents.edit', $agent->ID)}}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Agent"></i></a>--}}
+                                            {{--<form action="{{action('AgentController@destroy', $agent->ID)}}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?')">--}}
+                                                {{--{{csrf_field()}}--}}
+                                                {{--<input name="_method" type="hidden" value="DELETE">--}}
+                                                {{--<button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>--}}
+                                            {{--</form>--}}
+                                        {{--</td>--}}
+                                    {{--</tr>--}}
+                                {{--@endforeach--}}
+                                </tbody>
+                            </table>
+                        </div>
                         <!-- Modal for showing delete confirmation -->
                         <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
                             <div class="modal-dialog">

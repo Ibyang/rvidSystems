@@ -7,8 +7,9 @@ use App\State;
 use App\Suburb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+
 
 class AgentController extends Controller
 {
@@ -35,7 +36,7 @@ class AgentController extends Controller
         $fullname = Auth::user()->name;
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
-        $agents = Agent::orderBy('ID', 'desc')->take(100)->get(); //limit to 10 records the display for agents
+        $agents = Agent::orderBy('ID', 'desc')->take(10)->get(); //limit to 10 records the display for agents
     	return view('admin.listagents', compact('agents', 'fullname', 'role', 'pic'));
     }
 
@@ -50,9 +51,9 @@ class AgentController extends Controller
 	   $fullname = Auth::user()->name;
        $role = Auth::user()->role;
        $pic = Auth::user()->profile_pic;
-       $roles = Agent::distinct()->whereNotNull('role_title')->get(['role_title']);
+       $rols = Agent::distinct()->whereNotNull('role_title')->get(['role_title']);
        $states = State::get(['state_code', 'state_name']);
-	   return view('admin.addagent', compact('roles', 'fullname', 'role', 'pic', 'states'));
+	   return view('admin.addagent', compact('fullname', 'role', 'pic', 'rols', 'states'));
 	}
 
 	public function stateAjax($state)
@@ -126,8 +127,8 @@ class AgentController extends Controller
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
         $states = State::get(['state_code', 'state_name']);
-        $roles = Agent::distinct()->whereNotNull('role_title')->get(['role_title']);
-        return view('admin.editagent',compact('agent', 'fullname', 'roles', 'pic', 'states'));
+        $rols = Agent::distinct()->whereNotNull('role_title')->get(['role_title']);
+        return view('admin.editagent',compact('agent', 'fullname', 'role', 'pic', 'rols', 'states'));
     }
 
 

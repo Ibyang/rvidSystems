@@ -20,22 +20,22 @@
                     <ul class="hdr-i-col">
                       <li>
                         <i class="menu-icon about"></i>
-                        <p><a href="/about">About</a></p>
+                        <p><a href=" {{ route('about') }}">About</a></p>
                       </li>
                       <li>
                         <i class="menu-icon join"></i>
-                        <p><a href="">Join Today</a></p>
+                        <p><a href=" {{ route('get-started') }}">Join Today</a></p>
                       </li>
                       <li>
                         <i class="menu-icon help"></i>
-                        <p><a href="">Need Help?</a></p>
+                        <p><a href=" {{ route('help') }}">Need Help?</a></p>
                       </li>
                     </ul>
                 @else 
                     <ul class="hdr-i-col @if(Auth::check()) account-menu @endif">
                       <li>
                         <i class="menu-icon help"></i>
-                        <p><a href="">Need Help?</a></p>
+                        <p><a href=" {{ route('help') }}">Need Help?</a></p>
                       </li>
                       <li>
                         <i class="menu-icon about"></i>
@@ -100,15 +100,13 @@
                       </div>
                     </div>
                 </form>
-              
-                 
             </div>
             <div class="col-12 col-md-auto">
               <ul class="sub-nav">
-                  <li><a href="" class="main">Home</a></li>
-                  <li><a href="" class="main">Pricing</a></li>
-                  <li><a href="/driveby" class="sub">What is<br>DriveBy?</a></li>
-                  <li><a href="" class="sub">What is<br>LookFirst?</a></li>
+                  <li><a href=" {{ route('home') }} " class="main">Home</a></li>
+                  <li><a href=" {{ route('pricing') }} " class="main">Pricing</a></li>
+                  <li><a href=" {{ route('driveby') }} " class="sub">What is<br>DriveBy?</a></li>
+                  <li><a href="  {{ route('look-first') }} " class="sub">What is<br>LookFirst?</a></li>
               </ul>
             </div>
         </div>

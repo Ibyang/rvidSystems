@@ -31,49 +31,51 @@
                     </div>
                     <br />
                     <div class="panel-body">
-                        <table class="table table-bordered " id="table">
-                            <thead>
-                            <tr class="filters">
-                                <th>Filename</th>
-                                <th>Image</th>
-                                <th>Date Uploaded</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($images as $image)
-                                    <tr>
-                                        <td>{{ $image->filename }}</td>
-                                        <td><img src=" {{ $image->filepath . '/' . $image->filename }}" width="250" height="150"></td>
-                                        <td>{{ $image->created_at }}</td>
-                                        <td>
-                                            <form action="{{action('FileController@deleteImage', $image->ID)}}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?')">
-                                                {{csrf_field()}}
+                        <div class="table-responsive">
+                            <table class="table table-bordered " id="table">
+                                <thead>
+                                <tr class="filters">
+                                    <th>Filename</th>
+                                    <th>Image</th>
+                                    <th>Date Uploaded</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($images as $image)
+                                        <tr>
+                                            <td>{{ $image->filename }}</td>
+                                            <td><img src=" {{ $image->filepath . '/' . $image->filename }}" width="250" height="150"></td>
+                                            <td>{{ $image->created_at }}</td>
+                                            <td>
+                                                <form action="{{action('FileController@deleteImage', $image->ID)}}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?')">
+                                                    {{csrf_field()}}
+                                                    {{--<input name="_method" type="hidden" value="DELETE">--}}
+                                                    <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                @endforeach
+                                {{--@foreach($prods as $prod)--}}
+                                    {{--<tr>--}}
+                                        {{--<td>{{$prod->name}}</td>--}}
+                                        {{--<td>{{$prod->email}}</td>--}}
+                                        {{--<td>{{$prod->address}}</td>--}}
+                                        {{--<td>{{$prod->phone}}</td>--}}
+                                        {{--<td>{{$prod->status}}</td>--}}
+                                        {{--<td>--}}
+                                            {{--<a href="{{ route('production.edit', $prod->id)}}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update User"></i></a>--}}
+                                            {{--<form action="{{action('ProductionController@destroy', $prod->id)}}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?')">--}}
+                                                {{--{{csrf_field()}}--}}
                                                 {{--<input name="_method" type="hidden" value="DELETE">--}}
-                                                <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                            @endforeach
-                            {{--@foreach($prods as $prod)--}}
-                                {{--<tr>--}}
-                                    {{--<td>{{$prod->name}}</td>--}}
-                                    {{--<td>{{$prod->email}}</td>--}}
-                                    {{--<td>{{$prod->address}}</td>--}}
-                                    {{--<td>{{$prod->phone}}</td>--}}
-                                    {{--<td>{{$prod->status}}</td>--}}
-                                    {{--<td>--}}
-                                        {{--<a href="{{ route('production.edit', $prod->id)}}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update User"></i></a>--}}
-                                        {{--<form action="{{action('ProductionController@destroy', $prod->id)}}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?')">--}}
-                                            {{--{{csrf_field()}}--}}
-                                            {{--<input name="_method" type="hidden" value="DELETE">--}}
-                                            {{--<button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>--}}
-                                        {{--</form>--}}
-                                    {{--</td>--}}
-                                {{--</tr>--}}
-                            {{--@endforeach--}}
-                            </tbody>
-                        </table>
+                                                {{--<button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>--}}
+                                            {{--</form>--}}
+                                        {{--</td>--}}
+                                    {{--</tr>--}}
+                                {{--@endforeach--}}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
