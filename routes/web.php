@@ -196,6 +196,8 @@ Route::get('/standard', 'OrderController@indexStandard')->name('standard');
 
 Route::get('/premium', 'OrderController@indexPremium')->name('premium');
 
+//passing values from the Front End pages
+Route::post('/get-started', 'EmailController@index')->name('get-started');
 
 //Route::get('/voice/upload', 'FileController@createVoice')->name('showUploadVideo');
 
