@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\State;
+use App\Suburb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -17,7 +19,7 @@ class EmailController extends Controller
     {
         //
         $email = Input::get('email');
-        $details = Agent::find($email);
+        $details = Agent::where('email', $email)->first();
         return view('frontend.pages.get-started',compact('email', 'details'));
     }
 

@@ -4,8 +4,7 @@
          <h3>Your Details</h3>
          {{ csrf_field() }}
         <div class="row">
-
-            @if(is_array($details))
+            @if(!empty($details))
                 <div class="col-sm">
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <input id="email" type="email" class="form-control" name="email" value="{{ $details->email }}" required>
@@ -16,7 +15,7 @@
                         @endif
                     </div>
                       <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                          <input id="name" type="text" class="form-control" name="firstname" required autofocus value="{{ $details->email }}">
+                          <input id="name" type="text" class="form-control" name="firstname" required autofocus value="{{ $details->firstname }}">
                           @if ($errors->has('name'))
                                <span class="help-block">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -24,7 +23,7 @@
                           @endif
                      </div>
                      <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                          <input id="name" type="text" class="form-control" name="lastname" required autofocus value="{{ $details->email }}">
+                          <input id="name" type="text" class="form-control" name="lastname" required autofocus value="{{ $details->lastname }}">
                           @if ($errors->has('name'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -32,7 +31,7 @@
                           @endif
                     </div>
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <input id="name" type="text" class="form-control" name="mobile" required autofocus value="{{ $details->email }}">
+                        <input id="name" type="text" class="form-control" name="mobile" required autofocus value="{{ $details->mobile }}">
                         @if ($errors->has('name'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -40,7 +39,7 @@
                         @endif
                     </div>
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <textarea id="name" type="text" class="form-control" name="mobile" required autofocus>value="{{ $details->email }}"</textarea>
+                        <textarea id="name" type="text" class="form-control" name="mobile" required autofocus>{{ $details->address }}</textarea>
 
                         @if ($errors->has('name'))
                             <span class="help-block">
@@ -51,7 +50,7 @@
                 </div>
                 <div class="col-sm">
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <input id="password" type="password" class="form-control" name="password" required value="{{ $details->email }}">
+                        <input id="password" type="password" class="form-control" name="password" required value="" Placeholder="Password">
                         @if ($errors->has('password'))
                              <span class="help-block">
                                 <strong>{{ $errors->first('password') }}</strong>
@@ -59,7 +58,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required value="{{ $details->email }}">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required value="" Placeholder="Repeat Password">
                     </div>
                     <h3>Agency Details</h3>
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -68,7 +67,7 @@
                         </select>
                     </div>
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <input id="name" type="text" class="form-control" name="agency" required autofocus value="{{ $details->email }}">
+                        <input id="name" type="text" class="form-control" name="agency" required autofocus value="">
                         @if ($errors->has('name'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
