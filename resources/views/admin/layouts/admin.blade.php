@@ -48,7 +48,7 @@
         <li class="dropdown user user-menu rtl_list">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             @if(!empty($pic))
-              <img src="/uploads/profile_pics/{{ $pic }}" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
+              <img src="uploads/profile_pics/{{ $pic }}" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
             @else
               <img src="{{asset('assets/img/authors/avatar_placeholder_small.png')}}" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
             @endif
@@ -64,7 +64,7 @@
             <!-- User image -->
             <li class="user-header bg-light-blue">
               @if(!empty($pic))
-                <img src="/uploads/profile_pics/{{ $pic }}" width="90" class="img-circle img-responsive" height="90" alt="User Image" />
+                <img src="uploads/profile_pics/{{ $pic }}" width="90" class="img-circle img-responsive" height="90" alt="User Image" />
               @else
                 <img src="{{asset('assets/img/authors/avatar_placeholder_small.png')}}" width="90" class="img-circle img-responsive" height="90" alt="User Image" />
               @endif

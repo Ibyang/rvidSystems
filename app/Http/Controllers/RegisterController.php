@@ -8,7 +8,7 @@ use App\Suburb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
-class EmailController extends Controller
+class RegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -58,6 +58,17 @@ class EmailController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'firstname' => 'required|min:2',
+            'lastname' => 'required',
+            'email' => 'email',
+            'mobile' => 'required',
+            'passwd' => 'min:4|required|confirmed'
+        ]);
+
+        Agent::create($request->all());
+//        return redirect()->route('agents.index')
+//            ->with('success','Agent created successfully');
     }
 
     /**

@@ -175,7 +175,7 @@ class FileController extends Controller
             // Creating the directory, for example, if the date = 18/10/2017, the directory will be 2017/10/
             //$directory = 'images/'. date_format($time, 'Y') . '/' . date_format($time, 'm');
             $directory = 'images/';
-            $filepath = '/uploads/' . $directory;
+            $filepath = 'uploads/' . $directory;
             // Creating the file name: random string followed by the day, random number and the hour
             //$filename = str_random(5).date_format($time,'d').rand(1,9).date_format($time,'h').".".$extension;
             // This is our upload main function, storing the image in the storage that named 'public'
@@ -247,7 +247,7 @@ class FileController extends Controller
             // Creating the directory, for example, if the date = 18/10/2017, the directory will be 2017/10/
             //$directory = 'images/'. date_format($time, 'Y') . '/' . date_format($time, 'm');
             $directory = 'audio/';
-            $filepath = '/uploads/' . $directory;
+            $filepath = 'uploads/' . $directory;
             // Creating the file name: random string followed by the day, random number and the hour
             //$filename = str_random(5).date_format($time,'d').rand(1,9).date_format($time,'h').".".$extension;
             // This is our upload main function, storing the image in the storage that named 'public'
@@ -301,7 +301,7 @@ class FileController extends Controller
             // Creating the directory, for example, if the date = 18/10/2017, the directory will be 2017/10/
             //$directory = 'images/'. date_format($time, 'Y') . '/' . date_format($time, 'm');
             $directory = 'videos/';
-            $filepath = '/uploads/' . $directory;
+            $filepath = 'uploads/' . $directory;
             // Creating the file name: random string followed by the day, random number and the hour
             //$filename = str_random(5).date_format($time,'d').rand(1,9).date_format($time,'h').".".$extension;
             // This is our upload main function, storing the image in the storage that named 'public'
@@ -540,7 +540,6 @@ class FileController extends Controller
                 ->with('success','Video file deleted successfully');
         }
     }
-
 
 
 }

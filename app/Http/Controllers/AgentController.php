@@ -36,7 +36,7 @@ class AgentController extends Controller
         $fullname = Auth::user()->name;
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
-        $agents = Agent::orderBy('ID', 'desc')->take(10)->get(); //limit to 10 records the display for agents
+        $agents = Agent::orderBy('ID', 'desc')->take(1000)->get(); //limit to 10 records the display for agents
     	return view('admin.listagents', compact('agents', 'fullname', 'role', 'pic'));
     }
 

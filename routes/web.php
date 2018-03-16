@@ -126,6 +126,8 @@ Route::get('/account/make-video', function () {
     return view('frontend.pages.video.make-video');
 });
 
+Route::resource('registerAgent','RegisterController');
+
 
 Auth::routes();
 
@@ -163,6 +165,11 @@ Route::get('/agentAjax/{id}', 'AgentController@stateAjax');
 
 Route::get('/agentPostalAjax/{state}/{suburb}', 'AgentController@agentPostalAjax');
 
+//for user portal ajax
+Route::get('/stateAjaxUser/{id}', 'RegisterController@stateAjaxUser');
+
+//Route::get('/agentPostalAjaxUser/{state}/{suburb}', 'EmailController@agentPostalAjax');
+
 //for Files
 Route::get('/audio', 'FileController@indexAudio')->name('audio');
 
@@ -197,7 +204,7 @@ Route::get('/standard', 'OrderController@indexStandard')->name('standard');
 Route::get('/premium', 'OrderController@indexPremium')->name('premium');
 
 //passing values from the Front End pages
-Route::post('/get-started', 'EmailController@index')->name('get-started');
+Route::post('/get-started', 'RegisterController@index')->name('get-started');
 
 //Route::get('/voice/upload', 'FileController@createVoice')->name('showUploadVideo');
 
