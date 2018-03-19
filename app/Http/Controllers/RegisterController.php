@@ -39,6 +39,13 @@ class RegisterController extends Controller
     }
 
 
+    //for checking Emails
+    public function getEmailAjax($email)
+    {
+        $details = Agent::where('email', $email)->first();
+        return json_encode($details);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

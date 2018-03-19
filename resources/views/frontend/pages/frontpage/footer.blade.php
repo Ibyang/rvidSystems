@@ -11,13 +11,13 @@
             <img src={{ asset('storage/revid-icon.png') }} />
           </div>
           <p class="text-center">
-            <a href=""><i class="social-icon fb"></i></a>
-            <a href=""><i class="social-icon twt"></i></a>
-            <a href=""><i class="social-icon in"></i></a>
-            <a href=""><i class="social-icon chk"></i></a>
-            <a href=""><i class="social-icon ytb"></i></a>
-            <a href=""><i class="social-icon pin"></i></a>
-            <a href=""><i class="social-icon glg"></i></a>
+            <a href="{{ $social->facebook }}" target="_blank"><i class="social-icon fb"></i></a>
+            <a href="{{ $social->twitter }}" target="_blank"><i class="social-icon twt"></i></a>
+            <a href="{{ $social->linkedin }}" target="_blank"><i class="social-icon in"></i></a>
+            {{--<a href="{{ $social->facebook }}"><i class="social-icon chk"></i></a>--}}
+            <a href="{{ $social->youtube }}" target="_blank"><i class="social-icon ytb"></i></a>
+            <a href="{{ $social->pinterest }}" target="_blank"><i class="social-icon pin"></i></a>
+            <a href="{{ $social->googleplus }}" target="_blank"><i class="social-icon glg"></i></a>
           </div>
         <p class="m-0 text-center text-white"><a href=" {{ route('contact') }} " style="color: white">REVid Systems Pty Ltd 2017</a> - <a href=" {{ route('contact') }} " style="color: white">Terms and Conditions</a> - <a href=" {{ route('contact') }} " style="color: white">Copyright</a> - <a href=" {{ route('contact') }} " style="color: white">Privacy Policy</a> - <a href=" {{ route('contact') }} " style="color: white">Contact</a></p>
       </div>

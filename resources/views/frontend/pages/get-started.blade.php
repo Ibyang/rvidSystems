@@ -74,6 +74,59 @@
             });
 
 
+            //script to auto-populate the registration when email is entered directly to the registration  form
+
+            $("#emailadd").on('change keyup paste', function () {
+                var email = $(this).val();
+
+                if(email){
+                    $.ajax({
+                        url: '/getEmailAjax/' + email,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            if(data){
+                                console.log("state: ", data.state);
+                                $('#firstname').val(data.firstname);
+                                $('#lastname').val(data.lastname);
+                                $('#mobile').val(data.mobile);
+                                $('#group').val(data.group);
+                                $('#name_agency').val(data.name_agency);
+                                $('#address').val(data.address);
+
+
+                                // $.each(data, function(key, value) {
+                                //     // console.log("the value of key is ", key);
+                                //     console.log("the value is ", va);
+                                //     //$('select[name="state"]').append('<option value="'+ value +'">'+ value +'</option>');
+                                // });
+
+                                // $("#state").val(data.state);
+                                // $("#suburb").val(data.suburb);
+                                // if(state_value === 'QLD')
+                                //     $('select[name="state"]').append('<option value="'+ data.state +'">'+ data.state +'</option>');
+                                // $('select[name="suburb"]').append('<option value="'+ data.suburb +'">'+ suburb_value +'</option>');
+                                // console.log("the value of state is ", data.state);
+                                // console.log("the value of suburb is ", data.suburb);
+                            }
+
+                            // $('select[name="suburb"]').empty();
+                            // $.each(data, function(key, value) {
+                            //     $('select[name="suburb"]').append('<option value="'+ value +'">'+ value +'</option>');
+                            // });
+                            // $.each(data, function(key, value){
+                            //    var ID = key.ID;
+                            //    var firstname = key.firstname;
+                            //    console.log("the value of ID is ", ID);
+                            //    console.log("the value of firstname is ", firstname);
+                            // });
+                        }
+                    });
+                }
+
+            });
+
+
             //for dynamic populating of postal code when suburb is selected
             // $('select[name="suburb"]').on('change', function() {
             //     var suburbValue = $(this).val();

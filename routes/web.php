@@ -15,9 +15,13 @@
 //    return view('welcome');
 //});
 
+use App\State;
+use App\SocialMedia;
+
 //USED FOR FRONT END PAGES
 Route::get('/', function () {
-    return view('frontend.pages.frontpage');
+    $social = SocialMedia::where('ID', 1)->first();
+    return view('frontend.pages.frontpage', compact('social'));
 })->name('home');
 
 Route::get('/why-use-revid', function () {
@@ -73,7 +77,8 @@ Route::get('/look-first-video', function () {
 })->name('look-first-video');
 
 Route::get('/get-started', function () {
-    return view('frontend.pages.get-started');
+    $states = State::get(['state_code', 'state_name']);
+    return view('frontend.pages.get-started', compact('states'));
 })->name('get-started');
 
 Route::get('/how-system-works', function () {
@@ -167,6 +172,9 @@ Route::get('/agentPostalAjax/{state}/{suburb}', 'AgentController@agentPostalAjax
 
 //for user portal ajax
 Route::get('/stateAjaxUser/{id}', 'RegisterController@stateAjaxUser');
+
+//for registration form to capture if email exists in the database
+Route::get('/getEmailAjax/{email}', 'RegisterController@getEmailAjax');
 
 //Route::get('/agentPostalAjaxUser/{state}/{suburb}', 'EmailController@agentPostalAjax');
 

@@ -40,6 +40,8 @@
 
               @foreach($socials as $social)
                 <form class="form-horizontal" method="POST" action="{{ route('socialmedia.update', 1) }}">
+                {{ csrf_field() }}
+                <input name="_method" type="hidden" value="PATCH">
               {{--<form class="form-horizontal" action="#" method="post">--}}
                 <fieldset>
                   <!-- Name input-->
