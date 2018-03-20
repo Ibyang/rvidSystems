@@ -19,6 +19,13 @@ use App\State;
 use App\SocialMedia;
 
 //USED FOR FRONT END PAGES
+
+Route::prefix('agent')->group(function() {
+//    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\AgentLoginController@login')->name('agent.login.submit');
+    Route::get('/dashboard', 'MyAccountController@index')->name('agent.dashboard');
+});
+
 Route::get('/', function () {
     $social = SocialMedia::where('ID', 1)->first();
     return view('frontend.pages.frontpage', compact('social'));

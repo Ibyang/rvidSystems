@@ -73,9 +73,47 @@ class RegisterController extends Controller
             'passwd' => 'min:4|required|confirmed'
         ]);
 
-        Agent::create($request->all());
-//        return redirect()->route('agents.index')
-//            ->with('success','Agent created successfully');
+        $modeAction = request()->input('modeAction');
+        $agentID = request()->input('agentID');
+
+        if($modeAction === 'edit'){
+            $agent = Agent::where('ID', $agentID)->update([
+                'firstname' => Input::get('firstname'),
+                'lastname' => Input::get('lastname'),
+                'email' => Input::get('email'),
+                'mobile' => Input::get('mobile'),
+                'passwd' => bcrypt(Input::get('passwd')),
+                'agent_password' => Input::get('passwd'),
+                'group' => Input::get('group'),
+                'name_agency' => Input::get('name_agency'),
+                //'role_title' => Input::get('role_title'),
+                'address' => Input::get('address'),
+                'suburb' => Input::get('suburb'),
+                //'postcode' => Input::get('postcode'),
+                'state' => Input::get('state'),
+            ]);
+        }
+        else{
+
+            $agent_arr = array(
+                'firstname' => request()->input('firstname'),
+                'lastname' => request()->input('lastname'),
+                'group' => request()->input('group'),
+                'name_agency' => request()->input('name_agency'),
+                'middle_name' => request()->input('mobile'),
+                'email' => request()->input('email'),
+                'passwd' => bcrypt(request()->input('passwd')),
+                'agent_password' => request()->input('passwd'),
+                'address' => request()->input('address'),
+                'state' => request()->input('state'),
+                'suburb' => request()->input('suburb')
+            );
+            Agent::create($agent_arr);
+
+
+
+        }
+        return redirect()->route('home');
     }
 
     /**
@@ -123,7 +161,8 @@ class RegisterController extends Controller
             'lastname' => Input::get('lastname'),
             'email' => Input::get('email'),
             'mobile' => Input::get('mobile'),
-            'passwd' => Input::get('passwd'),
+            'passwd' => bcrypt(Input::get('passwd')),
+            'agent_password' => Input::get('passwd'),
             'group' => Input::get('group'),
             'name_agency' => Input::get('name_agency'),
             //'role_title' => Input::get('role_title'),

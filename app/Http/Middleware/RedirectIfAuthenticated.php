@@ -17,10 +17,29 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+
         if (Auth::guard($guard)->check()) {
             return redirect('/');
         }
 
         return $next($request);
+
+//        switch ($guard) {
+//            case 'userAgent':
+//                if (Auth::guard($guard)->check()) {
+//                    return redirect()->route('agent.dashboard');
+//                }
+//                break;
+//            default:
+//                if (Auth::guard($guard)->check()) {
+//                    return redirect('/');
+//                }
+//                break;
+//        }
+//        return $next($request);
+
+
+
+
     }
 }

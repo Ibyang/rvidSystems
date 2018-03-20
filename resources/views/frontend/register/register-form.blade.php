@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-sm">
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <input id="password" type="password" class="form-control" name="passwd" required value="" Placeholder="Password">
+                                <input id="passwd" type="password" class="form-control" name="passwd" required value="" Placeholder="Password">
                                 @if ($errors->has('password'))
                                      <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -59,7 +59,7 @@
                                 @endif
                         </div>
                         <div class="form-group">
-                                <input id="password-confirm" type="password" class="form-control" name="passwd_confirmation" required value="" Placeholder="Repeat Password">
+                                <input id="passwd_confirmation" type="password" class="form-control" name="passwd_confirmation" required value="" Placeholder="Repeat Password">
                             </div>
                             <h3>Agency Details</h3>
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -160,7 +160,7 @@
                     </div>
                     <div class="col-sm">
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <input id="password" type="password" class="form-control" name="passwd" Placeholder="Password" required>
+                            <input id="passwd" type="password" class="form-control" name="passwd" Placeholder="Password" required>
                             @if ($errors->has('password'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('password') }}</strong>
@@ -168,7 +168,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <input id="password-confirm" type="password" class="form-control" name="passwd_confirmation" Placeholder="Repeat Password" required>
+                            <input id="passwd_confirmation" type="password" class="form-control" name="passwd_confirmation" Placeholder="Repeat Password" required>
                         </div>
                         <h3>Agency Details</h3>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -195,6 +195,9 @@
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <select name="suburb" id="suburb" class="form-control"></select>
                         </div>
+
+                        <input type="hidden" name="modeAction" id="modeAction">
+                        <input type="hidden" name="agentID" id="agentID">
 
                         <div class="form-group">
                             <div class="text-right">
