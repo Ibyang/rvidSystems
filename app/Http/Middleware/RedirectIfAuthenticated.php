@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
     {
 
         if (Auth::guard($guard)->check()) {
-            return redirect('/');
+            return redirect('/account/home');
         }
 
         return $next($request);
@@ -38,8 +38,7 @@ class RedirectIfAuthenticated
 //        }
 //        return $next($request);
 
-
-
-
     }
+
+
 }

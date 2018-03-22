@@ -10,9 +10,8 @@ class userAgent extends Authenticatable
     use Notifiable;
 
     // define name of table used
-    protected $table = "list_agents";
 
-    protected $guard = 'userAgent';
+    //protected $guard = 'userAgent';
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +19,7 @@ class userAgent extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password',
+        'name', 'email', 'password',
     ];
 
     /**

@@ -46,10 +46,10 @@ return [
             'provider' => 'users',
         ],
 
-//        'userAgent' => [
-//            'driver' => 'session',
-//            'provider' => 'agentusers',
-//        ],
+        'web_agent' => [
+            'driver' => 'session',
+            'provider' => 'list_agents',
+        ],
 //
 //        'userAgent-api' => [
 //            'driver' => 'token',
@@ -79,10 +79,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-//        'agentusers' => [
-//            'driver' => 'eloquent',
-//            'model' => App\userAgent::class,
-//        ],
+        'agentusers' => [
+            'driver' => 'eloquent',
+            'model' => App\userAgent::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -106,16 +106,16 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'list_agents' => [
+            'provider' => 'list_agents',
             'table' => 'password_resets',
             'expire' => 60,
         ],
-//        'agentusers' => [
-//            'provider' => 'list_agents',
-//            'table' => 'password_resets',
-//            'expire' => 15,
-//        ],
+        'agentusers' => [
+            'provider' => 'list_agents',
+            'table' => 'password_resets',
+            'expire' => 15,
+        ],
     ],
 
 ];

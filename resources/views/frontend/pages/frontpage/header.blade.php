@@ -6,7 +6,8 @@
               </div>
               <div class="row">
                   <div class="col-sm">
-                      <form class="frontpage-login" method="POST" action="{{ route('agent.login.submit') }}">
+{{--                      <form class="frontpage-login" method="POST" action="{{ route('agent-login') }}">--}}
+                      <form class="frontpage-login" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
                                  <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" Placeholder="Email Login" required autofocus>
@@ -19,11 +20,11 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
-                                        <input id="passwd" type="password" class="form-control" name="passwd" Placeholder="Password"  required>
+                                        <input id="password" type="password" class="form-control" name="password" Placeholder="Password"  required>
 
-                                        @if ($errors->has('passwd'))
+                                        @if ($errors->has('password'))
                                             <span class="help-block">
-                                                <strong>{{ $errors->first('passwd') }}</strong>
+                                                <strong>{{ $errors->first('password') }}</strong>
                                             </span>
                                         @endif
                                 </div>

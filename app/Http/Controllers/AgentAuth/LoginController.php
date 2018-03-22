@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+//namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\AgentAuth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-//use Illuminate\Http\Request;
 
+//Auth facade
+use Auth;
 
 class LoginController extends Controller
 {
@@ -20,6 +22,7 @@ class LoginController extends Controller
     |
     */
 
+    //Trait
     use AuthenticatesUsers;
 
     /**
@@ -28,17 +31,22 @@ class LoginController extends Controller
      * @var string
      */
 
-     protected $redirectTo = '/account/home';
+    protected $redirectTo = '/agent-dashboard';
+
+
+    //Custom guard for seller
+    protected function guard()
+    {
+        return Auth::guard('web_agent');
+    }
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
-
-
+//    public function __construct()
+//    {
+//        $this->middleware('guest')->except('logout');
+//    }
 }

@@ -20,125 +20,138 @@ use App\SocialMedia;
 
 //USED FOR FRONT END PAGES
 
-Route::prefix('agent')->group(function() {
+//Route::prefix('agent')->group(function() {
 //    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
-    Route::post('/login', 'Auth\AgentLoginController@login')->name('agent.login.submit');
-    Route::get('/dashboard', 'MyAccountController@index')->name('agent.dashboard');
-});
+//});
 
-Route::get('/', function () {
-    $social = SocialMedia::where('ID', 1)->first();
-    return view('frontend.pages.frontpage', compact('social'));
-})->name('home');
+//Route::group(['middleware' => 'agent_guest'], function() {
+    Route::post('/agent-login', 'AgentAuth\LoginController@login')->name('agent-login');
+//    Route::post('/agent-login', 'Auth\LoginController@login')->name('agent-login');
 
-Route::get('/why-use-revid', function () {
-    return view('frontend.pages.why-use-revid');
-})->name('why-use-revid');
+    Route::get('/', function () {
+        $social = SocialMedia::where('ID', 1)->first();
+        return view('frontend.pages.frontpage', compact('social'));
+    })->name('home');
 
-Route::get('/use-revid-marketing', function () {
-    return view('frontend.pages.use-revid-marketing');
-})->name('use-revid-marketing');
+    Route::get('/why-use-revid', function () {
+        return view('frontend.pages.why-use-revid');
+    })->name('why-use-revid');
 
-Route::get('/use-revid-email', function () {
-    return view('frontend.pages.use-revid-email');
-})->name('use-revid-email');
+    Route::get('/use-revid-marketing', function () {
+        return view('frontend.pages.use-revid-marketing');
+    })->name('use-revid-marketing');
 
-Route::get('/use-revid-website', function () {
-    return view('frontend.pages.use-revid-website');
-})->name('use-revid-website');
+    Route::get('/use-revid-email', function () {
+        return view('frontend.pages.use-revid-email');
+    })->name('use-revid-email');
 
-Route::get('/use-revid-corporate', function () {
-    return view('frontend.pages.use-revid-corporate');
-})->name('use-revid-corporate');
+    Route::get('/use-revid-website', function () {
+        return view('frontend.pages.use-revid-website');
+    })->name('use-revid-website');
 
-Route::get('/use-revid-affordable', function () {
-    return view('frontend.pages.use-revid-affordable');
-})->name('use-revid-affordable');
+    Route::get('/use-revid-corporate', function () {
+        return view('frontend.pages.use-revid-corporate');
+    })->name('use-revid-corporate');
 
-Route::get('/use-revid-easy', function () {
-    return view('frontend.pages.use-revid-easy');
-})->name('use-revid-easy');
+    Route::get('/use-revid-affordable', function () {
+        return view('frontend.pages.use-revid-affordable');
+    })->name('use-revid-affordable');
 
-Route::get('/use-revid-buyers', function () {
-    return view('frontend.pages.use-revid-buyers');
-})->name('use-revid-buyers');
+    Route::get('/use-revid-easy', function () {
+        return view('frontend.pages.use-revid-easy');
+    })->name('use-revid-easy');
 
-Route::get('/contact', function () {
-    return view('frontend.pages.contact');
-})->name('contact');
+    Route::get('/use-revid-buyers', function () {
+        return view('frontend.pages.use-revid-buyers');
+    })->name('use-revid-buyers');
 
-Route::get('/about', function () {
-    return view('frontend.pages.about');
-})->name('about');
+    Route::get('/contact', function () {
+        return view('frontend.pages.contact');
+    })->name('contact');
 
-Route::get('/driveby', function () {
-    return view('frontend.pages.driveby');
-})->name('driveby');
+    Route::get('/about', function () {
+        return view('frontend.pages.about');
+    })->name('about');
 
-Route::get('/look-first', function () {
-    return view('frontend.pages.look-first');
-})->name('look-first');
+    Route::get('/driveby', function () {
+        return view('frontend.pages.driveby');
+    })->name('driveby');
 
-Route::get('/look-first-video', function () {
-    return view('frontend.pages.look-first-video');
-})->name('look-first-video');
+    Route::get('/look-first', function () {
+        return view('frontend.pages.look-first');
+    })->name('look-first');
 
-Route::get('/get-started', function () {
-    $states = State::get(['state_code', 'state_name']);
-    return view('frontend.pages.get-started', compact('states'));
-})->name('get-started');
+    Route::get('/look-first-video', function () {
+        return view('frontend.pages.look-first-video');
+    })->name('look-first-video');
 
-Route::get('/how-system-works', function () {
-    return view('frontend.pages.system-works');
-})->name('how-system-works');
+    Route::get('/get-started', function () {
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.get-started', compact('states'));
+    })->name('get-started');
 
-Route::get('/help', function () {
-    return view('frontend.pages.help');
-})->name('help');
+    Route::get('/how-system-works', function () {
+        return view('frontend.pages.system-works');
+    })->name('how-system-works');
 
-Route::get('/make-video-premium', function () {
-    return view('frontend.pages.make-video.make-video-premium');
-})->name('make-video-premium');
+    Route::get('/help', function () {
+        return view('frontend.pages.help');
+    })->name('help');
 
-Route::get('/make-video-standard', function () {
-    return view('frontend.pages.make-video.make-video-standard');
-})->name('make-video-standard');
+    Route::get('/make-video-premium', function () {
+        return view('frontend.pages.make-video.make-video-premium');
+    })->name('make-video-premium');
 
-Route::get('/make-video-generic', function () {
-    return view('frontend.pages.make-video.make-video-generic');
-})->name('make-video-generic');
+    Route::get('/make-video-standard', function () {
+        return view('frontend.pages.make-video.make-video-standard');
+    })->name('make-video-standard');
 
-Route::get('/pricing', function () {
-    return view('frontend.pages.pricing');
-})->name('pricing');
+    Route::get('/make-video-generic', function () {
+        return view('frontend.pages.make-video.make-video-generic');
+    })->name('make-video-generic');
 
-Route::get('/terms-condition', function () {
-    return view('frontend.pages.terms-condition');
-})->name('terms-condition');
+    Route::get('/pricing', function () {
+        return view('frontend.pages.pricing');
+    })->name('pricing');
 
-Route::get('/copyright', function () {
-    return view('frontend.pages.copyright');
-})->name('copyright');
+    Route::get('/terms-condition', function () {
+        return view('frontend.pages.terms-condition');
+    })->name('terms-condition');
 
-Route::get('/privacy-terms', function () {
-    return view('frontend.pages.privacy-terms');
-})->name('privacy-terms');
+    Route::get('/copyright', function () {
+        return view('frontend.pages.copyright');
+    })->name('copyright');
 
-Route::get('/account/home','MyAccountController@index');
+    Route::get('/privacy-terms', function () {
+        return view('frontend.pages.privacy-terms');
+    })->name('privacy-terms');
 
-Route::get('/account/my-videos','MyVideoController@index');
+    Route::resource('registerAgent','RegisterController');
 
-Route::get('/account/help','MyHelpController@index');
+//});
 
-Route::get('/account/billing-history', function () {
-    return view('frontend.pages.video.billing-history');
-});
+//Route::group(['middleware' => 'agent_auth'], function(){
+    //Route::post('seller_logout', 'SellerAuth\LoginController@logout');
+    //Route::get('/agent-dashboard', 'MyAccountController@index')->name('agent-dashboard');
+    Route::get('/agent-dashboard', function(){
+        return view('frontend.pages.my-account');
+    });
 
-Route::get('/account/make-video', function () {
-    return view('frontend.pages.video.make-video');
-});
+    Route::get('/account/home','MyAccountController@index');
 
-Route::resource('registerAgent','RegisterController');
+    Route::get('/account/my-videos','MyVideoController@index');
+
+    Route::get('/account/help','MyHelpController@index');
+
+    Route::get('/account/billing-history', function () {
+        return view('frontend.pages.video.billing-history');
+    });
+
+    Route::get('/account/make-video', function () {
+        return view('frontend.pages.video.make-video');
+    });
+
+//});
 
 
 Auth::routes();
