@@ -2,7 +2,8 @@
 <ul class="my-account-side">
     <li>
         <img src="{{ asset('storage/my-account-icon.jpg') }}">
-        {{ Auth::user()->name }}
+        {{ Auth::user()->name }}<br>
+        {{ $agent->name_agency }}
     </li>
     <li>
         <i class="account-icon my-account"></i>

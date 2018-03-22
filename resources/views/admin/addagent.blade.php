@@ -72,7 +72,7 @@
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="password">Password</label>
                       <div class="col-md-7">
-                        <input type="password" name="passwd" class="form-control" id="inputPassword" placeholder="Password" required>
+                        <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" required>
                       </div>
                     </div>
                   </div>
@@ -80,7 +80,7 @@
                     <div class="form-group">
                       <label class="col-md-3 control-label" for="password_confirmation">Retype Password</label>
                       <div class="col-md-7">
-                        <input type="password" name="passwd_confirmation" class="form-control" id="inputPassword2" placeholder="Retype Password">
+                        <input type="password" name="password_confirmation" class="form-control" id="inputPassword2" placeholder="Retype Password">
                       </div>
                     </div>
                   </div>

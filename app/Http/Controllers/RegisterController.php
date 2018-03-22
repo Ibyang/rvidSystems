@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\User;
 use App\State;
 use App\Suburb;
 use Illuminate\Http\Request;
@@ -70,7 +71,7 @@ class RegisterController extends Controller
             'lastname' => 'required',
             'email' => 'email',
             'mobile' => 'required',
-            'passwd' => 'min:4|required|confirmed'
+            'password' => 'min:4|required|confirmed'
         ]);
 
         $modeAction = request()->input('modeAction');
@@ -82,8 +83,7 @@ class RegisterController extends Controller
                 'lastname' => Input::get('lastname'),
                 'email' => Input::get('email'),
                 'mobile' => Input::get('mobile'),
-                'passwd' => bcrypt(Input::get('passwd')),
-                'agent_password' => Input::get('passwd'),
+                'agent_password' => Input::get('password'),
                 'group' => Input::get('group'),
                 'name_agency' => Input::get('name_agency'),
                 //'role_title' => Input::get('role_title'),
@@ -92,6 +92,17 @@ class RegisterController extends Controller
                 //'postcode' => Input::get('postcode'),
                 'state' => Input::get('state'),
             ]);
+
+            $fullname = Input::get('firstname') .  ' ' . Input::get('lastname');
+            $pass_arr = array(
+                'name' => $fullname,
+                'status' => 'Pending',
+                'role' => 'Agent',
+                'email' => Input::get('email'),
+                'password' => bcrypt(Input::get('password')),
+                'passwd' => Input::get('password')
+            );
+            User::create($pass_arr);
         }
         else{
 
@@ -109,6 +120,17 @@ class RegisterController extends Controller
                 'suburb' => request()->input('suburb')
             );
             Agent::create($agent_arr);
+
+            $fullname = Input::get('firstname') .  ' ' . Input::get('lastname');
+            $pass_arr = array(
+                'name' => $fullname,
+                'status' => 'Pending',
+                'role' => 'Agent',
+                'email' => Input::get('email'),
+                'password' => bcrypt(Input::get('password')),
+                'passwd' => Input::get('password')
+            );
+            User::create($pass_arr);
 
 
 

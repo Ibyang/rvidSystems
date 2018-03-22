@@ -84,7 +84,7 @@ class AgentController extends Controller
 	   		'lastname' => 'required',
 	   		'email' => 'email',
 	   		'mobile' => 'required',
-	   		'passwd' => 'min:4|required|confirmed'
+	   		'password' => 'min:4|required|confirmed'
 	   ]);
 
 	   $fullname = Auth::user()->name;
@@ -146,7 +146,7 @@ class AgentController extends Controller
             'lastname' => 'required',
             'email' => 'email',
             'mobile' => 'required',
-            'passwd' => 'min:4|required|confirmed'
+            'password' => 'min:4|required|confirmed'
         ]);
 
 //        $agents = Agent::find($id)->update($request->all());

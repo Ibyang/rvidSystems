@@ -92,6 +92,7 @@
                                 $('#suburb').html('');
 
                                 $('#modeAction').val('edit');
+                                console.log('Mod Action status is: EDIT');
                                 $('#agentID').val(data.ID);
                                 $('#firstname').val(data.firstname);
                                 $('#lastname').val(data.lastname);

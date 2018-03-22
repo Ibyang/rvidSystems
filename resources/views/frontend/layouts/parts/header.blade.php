@@ -43,8 +43,8 @@
                       </li>
                       <li>
                         <i class="menu-icon logout"></i>
-                        <p><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a> 
-                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <p><a href="{{ route('userLogout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
+                          <form id="logout-form" action="{{ route('userLogout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                           </form></p>
                       </li>

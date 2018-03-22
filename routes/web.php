@@ -24,7 +24,8 @@ use App\SocialMedia;
 //    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 //});
 
-//Route::group(['middleware' => 'agent_guest'], function() {
+Route::group(['middleware' => 'guest'], function() {
+
     Route::post('/agent-login', 'AgentAuth\LoginController@login')->name('agent-login');
 //    Route::post('/agent-login', 'Auth\LoginController@login')->name('agent-login');
 
@@ -34,35 +35,43 @@ use App\SocialMedia;
     })->name('home');
 
     Route::get('/why-use-revid', function () {
-        return view('frontend.pages.why-use-revid');
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.why-use-revid' , compact('states'));
     })->name('why-use-revid');
 
     Route::get('/use-revid-marketing', function () {
-        return view('frontend.pages.use-revid-marketing');
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.use-revid-marketing', compact('states'));
     })->name('use-revid-marketing');
 
     Route::get('/use-revid-email', function () {
-        return view('frontend.pages.use-revid-email');
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.use-revid-email' , compact('states'));
     })->name('use-revid-email');
 
     Route::get('/use-revid-website', function () {
-        return view('frontend.pages.use-revid-website');
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.use-revid-website', compact('states'));
     })->name('use-revid-website');
 
     Route::get('/use-revid-corporate', function () {
-        return view('frontend.pages.use-revid-corporate');
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.use-revid-corporate', compact('states'));
     })->name('use-revid-corporate');
 
     Route::get('/use-revid-affordable', function () {
-        return view('frontend.pages.use-revid-affordable');
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.use-revid-affordable', compact('states'));
     })->name('use-revid-affordable');
 
     Route::get('/use-revid-easy', function () {
-        return view('frontend.pages.use-revid-easy');
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.use-revid-easy' , compact('states'));
     })->name('use-revid-easy');
 
     Route::get('/use-revid-buyers', function () {
-        return view('frontend.pages.use-revid-buyers');
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.use-revid-buyers', compact('states'));
     })->name('use-revid-buyers');
 
     Route::get('/contact', function () {
@@ -82,7 +91,8 @@ use App\SocialMedia;
     })->name('look-first');
 
     Route::get('/look-first-video', function () {
-        return view('frontend.pages.look-first-video');
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.look-first-video', compact('states'));
     })->name('look-first-video');
 
     Route::get('/get-started', function () {
@@ -91,7 +101,8 @@ use App\SocialMedia;
     })->name('get-started');
 
     Route::get('/how-system-works', function () {
-        return view('frontend.pages.system-works');
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.system-works', compact('states'));
     })->name('how-system-works');
 
     Route::get('/help', function () {
@@ -111,7 +122,8 @@ use App\SocialMedia;
     })->name('make-video-generic');
 
     Route::get('/pricing', function () {
-        return view('frontend.pages.pricing');
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.pricing', compact('states'));
     })->name('pricing');
 
     Route::get('/terms-condition', function () {
@@ -126,22 +138,22 @@ use App\SocialMedia;
         return view('frontend.pages.privacy-terms');
     })->name('privacy-terms');
 
-    Route::resource('registerAgent','RegisterController');
+    Route::resource('registerAgent', 'RegisterController');
 
-//});
+});
 
 //Route::group(['middleware' => 'agent_auth'], function(){
     //Route::post('seller_logout', 'SellerAuth\LoginController@logout');
     //Route::get('/agent-dashboard', 'MyAccountController@index')->name('agent-dashboard');
-    Route::get('/agent-dashboard', function(){
+    Route::get('/agent-dashboard', function () {
         return view('frontend.pages.my-account');
     });
 
-    Route::get('/account/home','MyAccountController@index');
+    Route::get('/account/home', 'MyAccountController@index');
 
-    Route::get('/account/my-videos','MyVideoController@index');
+    Route::get('/account/my-videos', 'MyVideoController@index');
 
-    Route::get('/account/help','MyHelpController@index');
+    Route::get('/account/help', 'MyHelpController@index');
 
     Route::get('/account/billing-history', function () {
         return view('frontend.pages.video.billing-history');
@@ -151,88 +163,93 @@ use App\SocialMedia;
         return view('frontend.pages.video.make-video');
     });
 
+
+    //routing for the
+    Route::post('/userLogout', 'Auth\LoginController@userLogout')->name('userLogout');
 //});
 
 
-Auth::routes();
+    Auth::routes();
 
-//USED FOR ADMIN ROUTES
+    //USED FOR ADMIN ROUTES
 
-//Route::get('/home', 'HomeController@index')->name('home');
+    //Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+    Route::get('/admin', 'AdminController@index')->name('admin');
 
-//Route::post('agents/update', 'AgentController@update')->name('agents.update');
+    //Route::post('agents/update', 'AgentController@update')->name('agents.update');
 
-Route::resource('agents','AgentController');
+    Route::resource('agents', 'AgentController');
 
-Route::resource('socialmedia','SocialMediaController');
+    Route::resource('socialmedia', 'SocialMediaController');
 
-Route::resource('user','UserController');
+    Route::resource('user', 'UserController');
 
-Route::resource('production','ProductionController');
+    Route::resource('production', 'ProductionController');
 
-Route::resource('content','ContentController');
+    Route::resource('content', 'ContentController');
 
-//Route::resource('file','FileController');
+    //Route::resource('file','FileController');
 
-//for uploading of Image files
-Route::post('/uploadImage', 'FileController@uploadImage')->name('uploadImage');
+    //for uploading of Image files
+    Route::post('/uploadImage', 'FileController@uploadImage')->name('uploadImage');
 
-//for uploading of Image files
-Route::post('/uploadAudio', 'FileController@uploadAudio')->name('uploadAudio');
+    //for uploading of Image files
+    Route::post('/uploadAudio', 'FileController@uploadAudio')->name('uploadAudio');
 
-//for uploading of Image files
-Route::post('/uploadVideo', 'FileController@uploadVideo')->name('uploadVideo');
+    //for uploading of Image files
+    Route::post('/uploadVideo', 'FileController@uploadVideo')->name('uploadVideo');
 
-//for agent ajax
-Route::get('/agentAjax/{id}', 'AgentController@stateAjax');
+    //for agent ajax
+    Route::get('/agentAjax/{id}', 'AgentController@stateAjax');
 
-Route::get('/agentPostalAjax/{state}/{suburb}', 'AgentController@agentPostalAjax');
+    Route::get('/agentPostalAjax/{state}/{suburb}', 'AgentController@agentPostalAjax');
 
-//for user portal ajax
-Route::get('/stateAjaxUser/{id}', 'RegisterController@stateAjaxUser');
+    //for user portal ajax
+    Route::get('/stateAjaxUser/{id}', 'RegisterController@stateAjaxUser');
 
-//for registration form to capture if email exists in the database
-Route::get('/getEmailAjax/{email}', 'RegisterController@getEmailAjax');
+    //for registration form to capture if email exists in the database
+    Route::get('/getEmailAjax/{email}', 'RegisterController@getEmailAjax');
 
-//Route::get('/agentPostalAjaxUser/{state}/{suburb}', 'EmailController@agentPostalAjax');
+    //Route::get('/agentPostalAjaxUser/{state}/{suburb}', 'EmailController@agentPostalAjax');
 
-//for Files
-Route::get('/audio', 'FileController@indexAudio')->name('audio');
+    //for Files
+    Route::get('/audio', 'FileController@indexAudio')->name('audio');
 
-Route::get('/video', 'FileController@indexVideo')->name('video');
+    Route::get('/video', 'FileController@indexVideo')->name('video');
 
-Route::get('/image', 'FileController@index')->name('image');
+    Route::get('/image', 'FileController@index')->name('image');
 
-Route::get('/audio/upload', 'FileController@createAudio')->name('showUploadAudio');
+    Route::get('/audio/upload', 'FileController@createAudio')->name('showUploadAudio');
 
-Route::get('/video/upload', 'FileController@createVideo')->name('showUploadVideo');
+    Route::get('/video/upload', 'FileController@createVideo')->name('showUploadVideo');
 
-Route::get('/image/upload', 'FileController@create')->name('showUploadImage');
+    Route::get('/image/upload', 'FileController@create')->name('showUploadImage');
 
-Route::get('/imageDelete/{id}', 'FileController@deleteImage');
+    Route::get('/imageDelete/{id}', 'FileController@deleteImage');
 
-Route::get('/audioDelete/{id}', 'FileController@deleteAudio');
+    Route::get('/audioDelete/{id}', 'FileController@deleteAudio');
 
-Route::get('/videoDelete/{id}', 'FileController@deleteVideo');
+    Route::get('/videoDelete/{id}', 'FileController@deleteVideo');
 
-//to delete files
-Route::post('/imageDelete/{id}', 'FileController@destroyImage');
+    //to delete files
+    Route::post('/imageDelete/{id}', 'FileController@destroyImage');
 
-Route::post('/audioDelete/{id}', 'FileController@destroyAudio');
+    Route::post('/audioDelete/{id}', 'FileController@destroyAudio');
 
-Route::post('/videoDelete/{id}', 'FileController@destroyVideo');
+    Route::post('/videoDelete/{id}', 'FileController@destroyVideo');
 
-//for orders page
-Route::resource('order','OrderController');
+    //for orders page
+    Route::resource('order', 'OrderController');
 
-Route::get('/standard', 'OrderController@indexStandard')->name('standard');
+    Route::get('/standard', 'OrderController@indexStandard')->name('standard');
 
-Route::get('/premium', 'OrderController@indexPremium')->name('premium');
+    Route::get('/premium', 'OrderController@indexPremium')->name('premium');
 
-//passing values from the Front End pages
-Route::post('/get-started', 'RegisterController@index')->name('get-started');
+    //passing values from the Front End pages
+    Route::post('/get-started', 'RegisterController@index')->name('get-started');
+
+//});
 
 //Route::get('/voice/upload', 'FileController@createVoice')->name('showUploadVideo');
 

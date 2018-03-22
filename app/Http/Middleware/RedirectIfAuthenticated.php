@@ -19,7 +19,19 @@ class RedirectIfAuthenticated
     {
 
         if (Auth::guard($guard)->check()) {
-            return redirect('/account/home');
+            $role = Auth::user()->role;
+
+//            dd($role);
+
+            if($role === 'Administrator')
+                return redirect('/admin');
+            else if($role === 'Production')
+                return redirect('/admin');
+            else if($role === 'Agent')
+                return redirect('/account/home');
+            else
+                return redirect('/');
+
         }
 
         return $next($request);

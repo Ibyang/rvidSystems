@@ -101,6 +101,9 @@
                                 </div>
                         </div>
                         <input type="hidden" id="suburbValue" name="suburbValue" value=" {{ $details->suburb }} ">
+                        <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>" />
+                        <input type="hidden" name="modeAction" id="modeAction">
+                        <input type="hidden" name="agentID" id="agentID">
 
                 </div>
             </div>
@@ -160,7 +163,7 @@
                     </div>
                     <div class="col-sm">
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <input id="passwd" type="password" class="form-control" name="passwd" Placeholder="Password" required>
+                            <input id="password" type="password" class="form-control" name="password" Placeholder="Password" required>
                             @if ($errors->has('password'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('password') }}</strong>
@@ -168,7 +171,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <input id="passwd_confirmation" type="password" class="form-control" name="passwd_confirmation" Placeholder="Repeat Password" required>
+                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" Placeholder="Repeat Password" required>
                         </div>
                         <h3>Agency Details</h3>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -187,15 +190,19 @@
                         </div>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <select name="state" id="state" class="form-control" >
-                                @foreach($states as $state)
-                                    <option value="{{ $state->state_code }} "> {{ $state->state_name }} </option>
-                                @endforeach
+                                @if($states)
+                                    @foreach($states as $state)
+                                        <option value="{{ $state->state_code }} "> {{ $state->state_name }} </option>
+                                    @endforeach
+                                @endif
+
                             </select>
                         </div>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <select name="suburb" id="suburb" class="form-control"></select>
                         </div>
 
+                        <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>" />
                         <input type="hidden" name="modeAction" id="modeAction">
                         <input type="hidden" name="agentID" id="agentID">
 

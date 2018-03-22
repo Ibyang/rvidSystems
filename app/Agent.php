@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Agent extends Model
 {
-    protected $table = "agents";
+    protected $table = "list_agents";
 
     protected $fillable = ['group', 'name_agency', 'role_title', 'firstname', 'lastname', 'email', 'password', 'agent_password', 'mobile', 'address', 'suburb', 'postcode', 'state', 'created_at', 'updated_at'];
 //    protected $fillable = ['firstname', 'lastname', 'email', 'passwd', 'mobile', ];
