@@ -105,10 +105,6 @@ Route::group(['middleware' => 'guest'], function() {
         return view('frontend.pages.system-works', compact('states'));
     })->name('how-system-works');
 
-    Route::get('/help', function () {
-        return view('frontend.pages.help');
-    })->name('help');
-
     Route::get('/make-video-premium', function () {
         return view('frontend.pages.make-video.make-video-premium');
     })->name('make-video-premium');
@@ -145,6 +141,10 @@ Route::group(['middleware' => 'guest'], function() {
 //Route::group(['middleware' => 'agent_auth'], function(){
     //Route::post('seller_logout', 'SellerAuth\LoginController@logout');
     //Route::get('/agent-dashboard', 'MyAccountController@index')->name('agent-dashboard');
+    Route::get('/help', function () {
+        return view('frontend.pages.help');
+    })->name('help');
+
     Route::get('/agent-dashboard', function () {
         return view('frontend.pages.my-account');
     });
