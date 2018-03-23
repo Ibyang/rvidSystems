@@ -1,5 +1,4 @@
-<div class="bg-eae">
-    <div class="container register-form">
+ <div class="container register-form">
         @if(!empty($details))
             <form class="form-horizontal" method="POST" action="{{ route('registerAgent.update', $details->ID) }}">
              <h3>Your Details</h3>
@@ -95,8 +94,8 @@
 
                         <div class="form-group">
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-primary">
-                                        NEXT: Your Template
+                                    <button type="submit" class="btn btn-primary font-weight-bold">
+                                        NEXT: Your Template <i class="arrow-right"></i>
                                     </button>
                                 </div>
                         </div>
@@ -208,8 +207,8 @@
 
                         <div class="form-group">
                             <div class="text-right">
-                                <button type="submit" class="btn btn-primary">
-                                    NEXT: Your Template
+                                <button type="submit" class="btn btn-primary font-weight-bold">
+                                    NEXT: Your Template <i class="arrow-right"></i>
                                 </button>
                             </div>
                         </div>
@@ -217,9 +216,5 @@
                 </div>
             </form>
         @endif
+ </div>
 
-
-
-
-    </div>
-</div>

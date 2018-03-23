@@ -30,8 +30,10 @@
         @include('frontend.register.register-info')
         
     </div>
-    
-    @include('frontend.register.register-form')
+
+    <div class="bg-eae">
+        @include('frontend.register.register-form')
+    </div>
 
 @endsection
 

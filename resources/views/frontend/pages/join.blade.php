@@ -5,15 +5,15 @@
        
         <div class="row">
           <div class="col-8">
-              <h1 class="c-6600cc">What is DriveBy? Video</h1>
-              <img src={{ asset('storage/what-is-driveby2.jpg') }} />
+              <h1 class="c-6600cc">How to Join? Video</h1>
+              <img src="">
           </div>
-          <div class="col-4 text-center">
-              <h1 class="c-6600cc m-0">How to join?</h1>
-              <b>(Get started today)</b><br><br>
-              <img src={{ asset('storage/how-to-join.jpg') }} /><br><br>
-              <h1 class="c-6600cc m-0">How the system works?</h1>
-              <b>(It’s easy)</b><br><br>
+          <div class="col-4">
+              <h1 class="c-6600cc">How to join?</h1>
+              (Get started today)
+              <img src={{ asset('storage/how-to-join.jpg') }} />
+              <h1 class="c-6600cc">How the system works?</h1>
+              (It’s easy)
               <img src={{ asset('storage/how-system-works.jpg') }} />
           </div>
       

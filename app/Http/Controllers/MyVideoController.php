@@ -26,4 +26,9 @@ class MyVideoController extends Controller
     {
         return view('frontend.pages.video.voice-overs');
     }
+
+    public function ExplorePicture()
+    {
+        return view('frontend.pages.explore-picture');
+    }
 }

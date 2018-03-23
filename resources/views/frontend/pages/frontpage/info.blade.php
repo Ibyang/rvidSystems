@@ -2,13 +2,13 @@
     <div class="row f-page-info">
       <div class="col col-md-5">
         <h3>What is REVid?</h3>
-        <p class="text-justify">The REVid system allows you to create photo
+        <p class="text-justify font-weight-bold">The REVid system allows you to create photo
             based real estate recorded voice-over and
             music to a fully edited video production</p>
       </div>
       <div class="col col-md-4">
         <a href=" {{ route('driveby') }} " style="text-decoration: none; color: black"><h3>What is DriveBy?</h3>
-        <p class="text-justify">DriveBy uses Geolocation to make the
+        <p class="text-justify font-weight-bold">DriveBy uses Geolocation to make the
             “drive-by” experience full service – <a href="">see
             demo</a> – means more buyer engagement.</p></a>
       </div>

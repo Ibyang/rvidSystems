@@ -41,38 +41,51 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/use-revid-marketing', function () {
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.use-revid-marketing', compact('states'));
+        return view('frontend.pages.use-revid.use-revid-marketing', compact('states'));
     })->name('use-revid-marketing');
 
     Route::get('/use-revid-email', function () {
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.use-revid-email' , compact('states'));
+        return view('frontend.pages.use-revid.use-revid-email' , compact('states'));
     })->name('use-revid-email');
 
     Route::get('/use-revid-website', function () {
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.use-revid-website', compact('states'));
+        return view('frontend.pages.use-revid.use-revid-website', compact('states'));
     })->name('use-revid-website');
 
     Route::get('/use-revid-corporate', function () {
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.use-revid-corporate', compact('states'));
+        return view('frontend.pages.use-revid.use-revid-corporate', compact('states'));
     })->name('use-revid-corporate');
 
     Route::get('/use-revid-affordable', function () {
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.use-revid-affordable', compact('states'));
+        return view('frontend.pages.use-revid.use-revid-affordable', compact('states'));
     })->name('use-revid-affordable');
 
     Route::get('/use-revid-easy', function () {
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.use-revid-easy' , compact('states'));
+        return view('frontend.pages.use-revid.use-revid-easy' , compact('states'));
     })->name('use-revid-easy');
 
     Route::get('/use-revid-buyers', function () {
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.use-revid-buyers', compact('states'));
+        return view('frontend.pages.use-revid.use-revid-buyers', compact('states'));
     })->name('use-revid-buyers');
+
+    Route::get('/where-use-revid', function () {
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.use-revid.where-use-revid', compact('states'));
+    })->name('where-use-revid');
+
+    Route::get('/revid-video', function () {
+        return view('frontend.pages.revid-video');
+    })->name('revid-video');
+
+    Route::get('/how-to-join', function () {
+        return view('frontend.pages.join');
+    })->name('how-to-join');
 
     Route::get('/contact', function () {
         return view('frontend.pages.contact');
@@ -163,9 +176,12 @@ Route::group(['middleware' => 'guest'], function() {
         return view('frontend.pages.video.make-video');
     });
 
+    //for posting data for editing of My Account details
+    Route::post('/userLogout', 'Auth\LoginController@userLogout')->name('userLogout');
+
 
     //routing for the
-    Route::post('/userLogout', 'Auth\LoginController@userLogout')->name('userLogout');
+    Route::post('/editAccount', 'MyAccountController@editAccount')->name('editAccount');
 //});
 
 

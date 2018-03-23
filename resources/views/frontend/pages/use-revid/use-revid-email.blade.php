@@ -5,17 +5,17 @@
     <div class="container" id="content">
         <h1 class="c-6600cc">Where do I use REVid?</h1>
         <div class="row">
-           <div class="col-12 col-md-auto"><a href=""><img src={{ asset('storage/where-use-revid-website.jpg') }} /></a></div>
+           <div class="col-12 col-md-auto"><a href=""><img src={{ asset('storage/where-use-revid-email.jpg') }} /></a></div>
            <div class="col col-lg-2">
             <ul class="list">
-                <li>Website</li>   
+                <li>Emails</li>   
             </ul>
            </div>
         </div>
     @include('frontend.register.register-info')
         
     </div>
-    
-    @include('frontend.register.register-form')
-
+    <div class="bg-eae">
+        @include('frontend.register.register-form')
+    </div>
 @endsection
