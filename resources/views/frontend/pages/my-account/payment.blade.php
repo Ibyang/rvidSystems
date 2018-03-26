@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-9 pl-0">
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <input id="name" type="text" class="form-control" name="" required autofocus placeholder="Card Number">
+                <input id="card_number" type="text" class="form-control" name="" required autofocus placeholder="Card Number">
                 @if ($errors->has('name'))
                     <span class="help-block">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-md-auto align-self-center">CCV</div>
                 <div class="col-sm pr-0">
-                    <input id="name" type="text" class="form-control">
+                    <input id="ccv" type="text" class="form-control">
                 </div>
             </div>
         </div>

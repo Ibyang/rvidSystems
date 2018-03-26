@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\AgentInvoice;
 use App\User;
 use App\State;
 use App\Suburb;
@@ -79,8 +80,8 @@ class RegisterController extends Controller
 
         if($modeAction === 'edit'){
             $agent = Agent::where('ID', $agentID)->update([
-                'firstname' => Input::get('firstname'),
-                'lastname' => Input::get('lastname'),
+                'firstname' => trim(Input::get('firstname')),
+                'lastname' => trim(Input::get('lastname')),
                 'email' => Input::get('email'),
                 'mobile' => Input::get('mobile'),
                 'agent_password' => Input::get('password'),
@@ -92,23 +93,13 @@ class RegisterController extends Controller
                 //'postcode' => Input::get('postcode'),
                 'state' => Input::get('state'),
             ]);
-
-            $fullname = Input::get('firstname') .  ' ' . Input::get('lastname');
-            $pass_arr = array(
-                'name' => $fullname,
-                'status' => 'Pending',
-                'role' => 'Agent',
-                'email' => Input::get('email'),
-                'password' => bcrypt(Input::get('password')),
-                'passwd' => Input::get('password')
-            );
-            User::create($pass_arr);
         }
-        else{
+        else
+        {
 
             $agent_arr = array(
-                'firstname' => request()->input('firstname'),
-                'lastname' => request()->input('lastname'),
+                'firstname' => trim(request()->input('firstname')),
+                'lastname' => trim(request()->input('lastname')),
                 'group' => request()->input('group'),
                 'name_agency' => request()->input('name_agency'),
                 'middle_name' => request()->input('mobile'),
@@ -120,21 +111,31 @@ class RegisterController extends Controller
                 'suburb' => request()->input('suburb')
             );
             Agent::create($agent_arr);
-
-            $fullname = Input::get('firstname') .  ' ' . Input::get('lastname');
-            $pass_arr = array(
-                'name' => $fullname,
-                'status' => 'Pending',
-                'role' => 'Agent',
-                'email' => Input::get('email'),
-                'password' => bcrypt(Input::get('password')),
-                'passwd' => Input::get('password')
-            );
-            User::create($pass_arr);
-
-
-
         }
+
+        $fullname = Input::get('firstname') .  ' ' . Input::get('lastname');
+        $pass_arr = array(
+            'name' => $fullname,
+            'status' => 'Pending',
+            'role' => 'Agent',
+            'email' => Input::get('email'),
+            'password' => bcrypt(Input::get('password')),
+            'passwd' => Input::get('password')
+        );
+        $user = User::create($pass_arr);
+
+        //for storing values on the Invoice Section
+        $invoice_arr = array(
+            'agent_ID' => $user->ID,
+            'invoice_to' => $fullname,
+            'address' => Input::get('address'),
+            'person_name' => $fullname,
+            'contact_num' => Input::get('mobile'),
+            'email' => Input::get('email'),
+        );
+        AgentInvoice::create($invoice_arr);
+
+
         return redirect()->route('home');
     }
 

@@ -2,10 +2,11 @@
             
 <h3>Your Details</h3>
 
-<form id="form-details" class="border-bot2 pb-3" method="POST" action="{{ route('registerAgent.store') }}">
+<form id="form-details" class="border-bot2 pb-3" method="POST" action="{{ route('editAccount') }}">
     {{ csrf_field() }}
+    <input type="hidden" name="email" value=" {{ $agent->email }}">
     <div class="row">
-        <div class="col-9 pl-0"><input type="text" class="form-control" name="name" Placeholder="" value="{{ $fullname }}" required autofocus></div>
+        <div class="col-9 pl-0"><input type="text" class="form-control" name="name" id="fullname" Placeholder="" value="{{ $fullname }}" required autofocus></div>
         <div class="col-3 align-self-center">Name</div>
     </div>
     <div class="row">
@@ -13,11 +14,11 @@
         <div class="col-3 align-self-center">Title</div>
     </div>
     <div class="row">
-        <div class="col-9 pl-0"><input type="text" class="form-control" name="agency" Placeholder="" value="{{ $agent->group }}" required autofocus></div>
+        <div class="col-9 pl-0"><input type="text" class="form-control" name="agency" id="agency" Placeholder="" value="{{ $agent->group }}" required autofocus></div>
         <div class="col-3 align-self-center">Agency</div>
     </div>
     <div class="row">
-        <div class="col-9 pl-0"><input type="text" class="form-control" name="company" Placeholder="" value="{{ $agent->name_agency }}" required ></div>
+        <div class="col-9 pl-0"><input type="text" class="form-control" name="company" id="company" Placeholder="" value="{{ $agent->name_agency }}" required ></div>
         <div class="col-3 align-self-center">Company (if applicable)</div>
     </div>
     <h3>Password</h3>

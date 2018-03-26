@@ -17,7 +17,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="custom-control custom-checkbox casual">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <input type="checkbox" class="group1 custom-control-input" id="customCheck1" name="group1[]">
                     <label class="custom-control-label" for="customCheck1"></label>
                 </div>
             </div>
@@ -33,7 +33,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="custom-control custom-checkbox basic">
-                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                    <input type="checkbox" class="group1 custom-control-input" id="customCheck2" name="group1[]">
                     <label class="custom-control-label" for="customCheck2"></label>
                 </div>
             </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="custom-control custom-checkbox standard">
-                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                    <input type="checkbox" class="group1 custom-control-input" id="customCheck3" name="group1[]">
                     <label class="custom-control-label" for="customCheck3"></label>
                 </div>
             </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="custom-control custom-checkbox premium">
-                    <input type="checkbox" class="custom-control-input" id="customCheck4">
+                    <input type="checkbox" class="group1 custom-control-input" id="customCheck4" name="group1[]">
                     <label class="custom-control-label" for="customCheck4"></label>
                 </div>
             </div>

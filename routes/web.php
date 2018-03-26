@@ -180,8 +180,11 @@ Route::group(['middleware' => 'guest'], function() {
     Route::post('/userLogout', 'Auth\LoginController@userLogout')->name('userLogout');
 
 
-    //routing for the
+    //routing for editing the User Details under My Account section
     Route::post('/editAccount', 'MyAccountController@editAccount')->name('editAccount');
+
+    //routing for editing the User Details under My Account section
+    Route::post('/editInvoice', 'MyAccountController@editInvoice')->name('editInvoice');
 //});
 
 

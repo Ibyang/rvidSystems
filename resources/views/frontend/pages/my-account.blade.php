@@ -22,3 +22,61 @@
     </div>
 </div>
 @endsection
+
+<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var invoice_to_type = $('#invoice_to').val();
+
+        var agent = $('#fullname').val();
+        var agencyValue = $('#agency').val();
+        var companyValue = $('#company').val();
+
+        console.log("the value of invoice to type is", invoice_to_type);
+
+        console.log("the value of agencyValue is", agencyValue);
+        console.log("the value of companyValue is", companyValue);
+
+        $('select[name="invoice_to"]').on('change', function() {
+            var invoice_to_type = $(this).val();
+
+            if(invoice_to_type === 'Agent')
+            {
+                $("#invoiceTo").val(agent);
+                console.log("Invoice To Selected is Agent....");
+
+                var invoiceTo = $("#invoiceTo").val();
+                console.log("The value of Invoice To is ", invoiceTo);
+            }
+            else if(invoice_to_type === 'Agency')
+            {
+                $("#invoiceTo").val(agencyValue);
+                console.log("Invoice To Selected is Agency....");
+
+                var invoiceTo = $("#invoiceTo").val();
+                console.log("The value of Invoice To is ", invoiceTo);
+            }
+            else if(invoice_to_type === 'Company')
+            {
+                $("#invoiceTo").val(companyValue);
+                console.log("Invoice To Selected is Company....");
+
+                var invoiceTo = $("#invoiceTo").val();
+                console.log("The value of Invoice To is ", invoiceTo);
+            }
+
+        });
+
+        
+        $('input[type="checkbox"]').on('change', function() {
+            $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+        });
+
+
+
+
+    });
+</script>
+
