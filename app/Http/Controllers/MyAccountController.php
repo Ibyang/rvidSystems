@@ -7,6 +7,7 @@ use App\User;
 use App\AgentInvoice;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class MyAccountController extends Controller
 {
@@ -48,12 +49,6 @@ class MyAccountController extends Controller
 
         return redirect('/account/home');
 
-//        $email = Auth::user()->email;
-//        $fullname = Auth::user()->name;
-//        $passwd = Auth::user()->passwd;
-//        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group'])->first();
-//        return view('frontend.pages.my-account', compact('fullname', 'passwd', 'agent'));
-
     }
 
 
@@ -74,13 +69,45 @@ class MyAccountController extends Controller
 
         return redirect('/account/home');
 
-//        $email = Auth::user()->email;
-//        $fullname = Auth::user()->name;
-//        $passwd = Auth::user()->passwd;
-//        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group'])->first();
-//        return view('frontend.pages.my-account', compact('fullname', 'passwd', 'agent'));
-
     }
 
+
+    public function editSubscription()
+    {
+        $subscription = Input::get('subscription1');
+        $storage_plan = '';
+
+        foreach($subscription as $sub){
+            if($sub === 'Casual'){
+                $subscription_arr = array(
+                    'subscription_type' => $sub,
+                    'storage_plan' => '$11'
+                );
+            }
+            else if($sub === 'Basic'){
+                $subscription_arr = array(
+                    'subscription_type' => $sub,
+                    'storage_plan' => '$33'
+                );
+            }
+            else if($sub === 'Standard') {
+                $subscription_arr = array(
+                    'subscription_type' => $sub,
+                    'storage_plan' => '$66'
+                );
+            }
+            else if($sub === 'Premium') {
+                $subscription_arr = array(
+                    'subscription_type' => $sub,
+                    'storage_plan' => '$99'
+                );
+            }
+        }
+
+        $agentID = Input::get('agentID');
+        AgentInvoice::where('agent_ID', $agentID)->update($subscription_arr);
+
+        return redirect('/account/home');
+    }
 
 }

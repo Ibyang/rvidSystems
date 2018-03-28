@@ -162,19 +162,27 @@ Route::group(['middleware' => 'guest'], function() {
         return view('frontend.pages.my-account');
     });
 
-    Route::get('/account/home', 'MyAccountController@index');
+    Route::get('/account/home', 'MyAccountController@index')->name('account-home');
 
-    Route::get('/account/my-videos', 'MyVideoController@index');
+    Route::get('/account/my-videos', 'MyVideoController@index')->name('account-my-videos');
 
-    Route::get('/account/help', 'MyHelpController@index');
+    Route::get('/account/help', 'MyHelpController@index')->name('account-help');
 
     Route::get('/account/billing-history', function () {
         return view('frontend.pages.video.billing-history');
-    });
+    })->name('account-billing-history');
 
     Route::get('/account/make-video', function () {
         return view('frontend.pages.video.make-video');
-    });
+    })->name('account-make-video');
+
+    Route::get('/account/video-tracker','MyVideoController@VideoTracker')->name('account-video-tracker');
+
+    Route::get('/account/explore-voice-overs','MyVideoController@VoiceOvers')->name('account-explore-voice-overs');
+
+    Route::get('/account/explore-pictures','MyVideoController@ExplorePicture')->name('account-explore-pictures');
+
+    Route::get('/account/generic-video-order','MyVideoController@GenericVideoOrder')->name('account-generic-video-order');
 
     //for posting data for editing of My Account details
     Route::post('/userLogout', 'Auth\LoginController@userLogout')->name('userLogout');
@@ -185,6 +193,9 @@ Route::group(['middleware' => 'guest'], function() {
 
     //routing for editing the User Details under My Account section
     Route::post('/editInvoice', 'MyAccountController@editInvoice')->name('editInvoice');
+
+    //route for editing the Subscription section under My Account section
+    Route::post('/editSubscription', 'MyAccountController@editSubscription')->name('editSubscription');
 //});
 
 

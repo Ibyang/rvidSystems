@@ -126,8 +126,9 @@ class RegisterController extends Controller
 
         //for storing values on the Invoice Section
         $invoice_arr = array(
-            'agent_ID' => $user->ID,
+            'agent_ID' => $user->id,
             'invoice_to' => $fullname,
+            'invoice_to_type' => 'Agent',
             'address' => Input::get('address'),
             'person_name' => $fullname,
             'contact_num' => Input::get('mobile'),
