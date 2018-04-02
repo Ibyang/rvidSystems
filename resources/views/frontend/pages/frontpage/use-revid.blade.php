@@ -2,10 +2,9 @@
     <div class="border-bot2">
         <h3 class="text-center c-414 font-weight-bold">Where do I use REVid?</h3>
         <ul class="revid-list">
-            <li><a href="">
+            <li><a href="{{ route('use-revid-social-media') }}">
                     <i class="link-icon media"></i>
-                </a>
-                <p><a href="">Social Media</a></p>
+                <p>Social Media</p></a>
             </li>
             <li><a href="{{ route('use-revid-marketing') }}">
                     <i class="link-icon marketing"></i>
@@ -35,10 +34,9 @@
     </div>
     <h3 class="text-center c-414 font-weight-bold">Why use REVid?</h3>
     <ul class="revid-list">
-        <li><a href="">
+        <li><a href=" {{ route('use-revid-fast') }} ">
                 <i class="link-icon fast"></i>
-            </a>
-            <p><a href="">Fast</a></p>
+            <p>Fast</p></a>
         </li>
         <li><a href=" {{ route('use-revid-affordable') }}">
                 <i class="link-icon affordable"></i>
@@ -52,7 +50,7 @@
                 <i class="link-icon buyers"></i>
             <p>Engages Buyers</p></a>
         </li>
-        <li><a href="">
+        <li><a href=" {{ route('use-revid-helps-sell') }} ">
                 <i class="link-icon sell"></i>
             <p>Helps Sell</p></a>
         </li>

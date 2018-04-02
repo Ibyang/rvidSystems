@@ -204,6 +204,7 @@
                         <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>" />
                         <input type="hidden" name="modeAction" id="modeAction">
                         <input type="hidden" name="agentID" id="agentID">
+                        <input type="hidden" name="subscription" id="subscription">
 
                         <div class="form-group">
                             <div class="text-right">

@@ -41,6 +41,11 @@
               </a>
             </li>
             <li>
+              <a href="">
+                <i class="fa fa-angle-double-right"></i> FAQ Questions
+              </a>
+            </li>
+            <li>
               <a href="{{ route('socialmedia.index') }}">
                 <i class="fa fa-angle-double-right"></i> Social Media Links
               </a>

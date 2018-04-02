@@ -20,7 +20,7 @@
             <div class="float-r guest-pricing-check bg-666666">
                  <div class="my-account-subcription">
                         <div class="custom-control custom-checkbox casual">
-                          <input type="checkbox" class="custom-control-input" id="customCheck1">
+                          <input type="checkbox" class="custom-control-input" id="customCheck1" value="Casual" name="subscription[]">
                           <label class="custom-control-label" for="customCheck1">Join</label>
                         </div>
                  </div>
@@ -64,7 +64,7 @@
             <div class="float-r guest-pricing-check bg-6600cc">
                  <div class="my-account-subcription">
                         <div class="custom-control custom-checkbox basic">
-                          <input type="checkbox" class="custom-control-input" id="customCheck2">
+                          <input type="checkbox" class="custom-control-input" id="customCheck2" value="Basic" name="subscription[]">
                           <label class="custom-control-label" for="customCheck2">Join</label>
                         </div>
                  </div>
@@ -108,7 +108,7 @@
             <div class="float-r guest-pricing-check bg-0066ff">
                  <div class="my-account-subcription">
                         <div class="custom-control custom-checkbox standard">
-                          <input type="checkbox" class="custom-control-input" id="customCheck3">
+                          <input type="checkbox" class="custom-control-input" id="customCheck3" value="Standard" name="subscription[]">
                           <label class="custom-control-label" for="customCheck3">Join</label>
                         </div>
                  </div>
@@ -157,7 +157,7 @@
             <div class="float-r guest-pricing-check bg-ff0033">
                  <div class="my-account-subcription">
                         <div class="custom-control custom-checkbox premium">
-                          <input type="checkbox" class="custom-control-input" id="customCheck4">
+                          <input type="checkbox" class="custom-control-input" id="customCheck4" value="Premium" name="subscription[]">
                           <label class="custom-control-label" for="customCheck4">Join</label>
                         </div>
                  </div>
@@ -239,3 +239,49 @@
     @include('frontend.register.register-form')
 
 @endsection
+
+<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        //for clicking the selected checkbox of the subscription as per selection during the SETUP
+
+        var invoice_to_type = $('#invoice_to').val();
+
+        var agent = $('#fullname').val();
+        var agencyValue = $('#agency').val();
+        var companyValue = $('#company').val();
+
+
+        // $('input[type="checkbox"]:checked').each(function(i,v){
+        //     //values.push($(v).val());
+        //
+        //     $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+        //
+        //     var checkboxvalue = $(v).val();
+        //     console.log('the value of checkbox clicked is ', checkboxvalue);
+        //
+        // });
+
+        $('input[type="checkbox"]').on('change', function() {
+            $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+
+            // var checkboxvalue = $('input[name="' + this.name + '"]').val();
+            // console.log('the value of checkbox clicked is ', checkboxvalue);
+
+            $('input[type="checkbox"]:checked').each(function(i,v){
+                //values.push($(v).val());
+
+                var checkboxvalue = $(v).val();
+                console.log('the value of checkbox clicked is ', checkboxvalue);
+
+            });
+
+
+        });
+
+
+
+    });
+</script>

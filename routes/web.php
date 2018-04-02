@@ -39,6 +39,11 @@ Route::group(['middleware' => 'guest'], function() {
         return view('frontend.pages.why-use-revid' , compact('states'));
     })->name('why-use-revid');
 
+    Route::get('/use-revid-social-media', function () {
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.use-revid.use-revid-social-media', compact('states'));
+    })->name('use-revid-social-media');
+
     Route::get('/use-revid-marketing', function () {
         $states = State::get(['state_code', 'state_name']);
         return view('frontend.pages.use-revid.use-revid-marketing', compact('states'));
@@ -59,6 +64,11 @@ Route::group(['middleware' => 'guest'], function() {
         return view('frontend.pages.use-revid.use-revid-corporate', compact('states'));
     })->name('use-revid-corporate');
 
+    Route::get('/use-revid-fast', function () {
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.use-revid.use-revid-fast', compact('states'));
+    })->name('use-revid-fast');
+
     Route::get('/use-revid-affordable', function () {
         $states = State::get(['state_code', 'state_name']);
         return view('frontend.pages.use-revid.use-revid-affordable', compact('states'));
@@ -73,6 +83,11 @@ Route::group(['middleware' => 'guest'], function() {
         $states = State::get(['state_code', 'state_name']);
         return view('frontend.pages.use-revid.use-revid-buyers', compact('states'));
     })->name('use-revid-buyers');
+
+    Route::get('/use-revid-helps-sell', function () {
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.use-revid.use-revid-helps-sell', compact('states'));
+    })->name('use-revid-helps-sell');
 
     Route::get('/where-use-revid', function () {
         $states = State::get(['state_code', 'state_name']);
@@ -92,11 +107,15 @@ Route::group(['middleware' => 'guest'], function() {
     })->name('contact');
 
     Route::get('/about', function () {
-        return view('frontend.pages.about');
+        $states = State::get(['state_code', 'state_name']);
+        $social = SocialMedia::where('ID', 1)->first();
+        return view('frontend.pages.about', compact('states', 'social'));
     })->name('about');
 
     Route::get('/driveby', function () {
-        return view('frontend.pages.driveby');
+        $states = State::get(['state_code', 'state_name']);
+        $social = SocialMedia::where('ID', 1)->first();
+        return view('frontend.pages.driveby', compact('states', 'social'));
     })->name('driveby');
 
     Route::get('/look-first', function () {
@@ -115,7 +134,8 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/how-system-works', function () {
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.system-works', compact('states'));
+        $social = SocialMedia::where('ID', 1)->first();
+        return view('frontend.pages.system-works', compact('states', 'social'));
     })->name('how-system-works');
 
     Route::get('/make-video-premium', function () {

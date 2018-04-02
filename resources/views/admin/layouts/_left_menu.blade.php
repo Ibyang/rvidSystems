@@ -42,6 +42,11 @@
                         <i class="fa fa-angle-double-right"></i> Content Pages
                     </a>
                 </li>
+                <li {!! (Request::is('content') ? 'class="active"' : '') !!}>
+                    <a href="{{ route('content.index') }}">
+                        <i class="fa fa-angle-double-right"></i> FAQs
+                    </a>
+                </li>
                 <li {!! (Request::is('socialmedia') ? 'class="active"' : '') !!}>
                     <a href="{{ route('socialmedia.index') }}">
                         <i class="fa fa-angle-double-right"></i> Social Media Links
