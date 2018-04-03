@@ -2,10 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\FAQ;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class FAQController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +28,11 @@ class FAQController extends Controller
     public function index()
     {
         //
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+        $faqs = FAQ::orderBy('ID', 'desc')->get(); //limit to 10 records the display for agents
+        return view('admin.listfaqs', compact('faqs', 'fullname', 'role', 'pic'));
     }
 
     /**
@@ -24,6 +43,10 @@ class FAQController extends Controller
     public function create()
     {
         //
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+        return view('admin.addfaq', compact('fullname', 'role', 'pic'));
     }
 
     /**
@@ -35,6 +58,11 @@ class FAQController extends Controller
     public function store(Request $request)
     {
         //
+        $role = Auth::user()->role;
+        FAQ::create($request->all());
+        return redirect()->route('faq.index')
+            ->with('success','FAQ created successfully');
+
     }
 
     /**
@@ -57,6 +85,11 @@ class FAQController extends Controller
     public function edit($id)
     {
         //
+        $faq = FAQ::find($id);
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+        return view('admin.editfaq',compact('faq', 'fullname', 'role', 'pic'));
     }
 
     /**
@@ -69,6 +102,13 @@ class FAQController extends Controller
     public function update(Request $request, $id)
     {
         //
+            $faq = FAQ::where('ID', $id)->update([
+                'question' => Input::get('question'),
+                'answer' => Input::get('answer')
+            ]);
+
+            return redirect()->route('faq.index')
+                ->with('success','FAQ updated successfully');
     }
 
     /**
@@ -80,5 +120,8 @@ class FAQController extends Controller
     public function destroy($id)
     {
         //
+        $faq = FAQ::where('ID', $id)->delete();
+        return redirect()->route('faq.index')
+            ->with('success','FAQ deleted successfully');
     }
 }

@@ -30,7 +30,7 @@
         </ul>
     </li>
     @if($role == 'Administrator')
-        <li {!! (Request::is('content') || Request::is('socialmedia') ? 'class="active"' : '') !!}>
+        <li {!! (Request::is('content') || Request::is('socialmedia') || Request::is('faq') ? 'class="active"' : '') !!}>
             <a href="#">
                 <i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>
                 <span class="title">Content Management</span>
@@ -42,8 +42,8 @@
                         <i class="fa fa-angle-double-right"></i> Content Pages
                     </a>
                 </li>
-                <li {!! (Request::is('content') ? 'class="active"' : '') !!}>
-                    <a href="{{ route('content.index') }}">
+                <li {!! (Request::is('faq') ? 'class="active"' : '') !!}>
+                    <a href="{{ route('faq.index') }}">
                         <i class="fa fa-angle-double-right"></i> FAQs
                     </a>
                 </li>

@@ -31,7 +31,7 @@ class AdminController extends Controller
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
         $email = Auth::user()->email;
-        Mail::to($email)->send(new DemoMail());
+        //Mail::to($email)->send(new DemoMail());
         return view('admin.dashboard')
             ->with('fullname', $fullname)
             ->with('role', $role)

@@ -8,6 +8,7 @@
     <title>REVid Systems</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
   </head>
   <body>
       @include('frontend.pages.frontpage.header')

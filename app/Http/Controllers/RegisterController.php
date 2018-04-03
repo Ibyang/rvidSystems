@@ -7,6 +7,7 @@ use App\AgentInvoice;
 use App\User;
 use App\State;
 use App\Suburb;
+use App\FAQ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -46,6 +47,12 @@ class RegisterController extends Controller
     {
         $details = Agent::where('email', $email)->first();
         return json_encode($details);
+    }
+
+    //for getting the answer when question is selected for FAQ module
+    public function getFAQAjax($question){
+        $faq = FAQ::where('ID', $question)->first();
+        return json_encode($faq);
     }
 
     /**

@@ -17,6 +17,7 @@
 
 use App\State;
 use App\SocialMedia;
+use App\FAQ;
 
 //USED FOR FRONT END PAGES
 
@@ -174,8 +175,10 @@ Route::group(['middleware' => 'guest'], function() {
 //Route::group(['middleware' => 'agent_auth'], function(){
     //Route::post('seller_logout', 'SellerAuth\LoginController@logout');
     //Route::get('/agent-dashboard', 'MyAccountController@index')->name('agent-dashboard');
+
     Route::get('/help', function () {
-        return view('frontend.pages.help');
+        $faqs = FAQ::get(['ID', 'question']);
+        return view('frontend.pages.help', compact('faqs'));
     })->name('help');
 
     Route::get('/agent-dashboard', function () {
@@ -218,6 +221,9 @@ Route::group(['middleware' => 'guest'], function() {
     Route::post('/editSubscription', 'MyAccountController@editSubscription')->name('editSubscription');
 //});
 
+    //for getting the corresponding answer for FAQ
+    Route::get('/getFAQAjax/{question}', 'RegisterController@getFAQAjax');
+
 
     Auth::routes();
 
@@ -238,6 +244,8 @@ Route::group(['middleware' => 'guest'], function() {
     Route::resource('production', 'ProductionController');
 
     Route::resource('content', 'ContentController');
+
+    Route::resource('faq', 'FAQController');
 
     //Route::resource('file','FileController');
 
