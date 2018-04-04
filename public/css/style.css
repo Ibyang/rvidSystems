@@ -233,6 +233,14 @@ i.lf { background-position:-475px 0px; }
 .video-tracker .progress-bar { background:#ffffff; }
 .video-tracker span { color:#fff; font-weight:bold; width:100%; text-align:center; }
 
+/* *** adjustments for removing the right padding on the page when modal is closed */
+.test[style] {
+    padding-right:0 !important;
+}
+.test.modal-open {
+    overflow: auto;
+}
+
 /** end body **/
 
 /**side bar**/

@@ -55,6 +55,11 @@ class RegisterController extends Controller
         return json_encode($faq);
     }
 
+    //for sending FAQ email to help@revid.com.au
+    public function sendFAQEmail($recipient, $message){
+        Mail::to($recipient)->send(new DemoMail());
+    }
+
     /**
      * Show the form for creating a new resource.
      *

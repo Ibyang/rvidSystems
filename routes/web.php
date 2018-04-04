@@ -224,6 +224,12 @@ Route::group(['middleware' => 'guest'], function() {
     //for getting the corresponding answer for FAQ
     Route::get('/getFAQAjax/{question}', 'RegisterController@getFAQAjax');
 
+    //for sending FAQ Email
+    Route::post('/sendFAQEmail', 'SendEmail@sendFAQEmail')->name('sendFAQEmail');
+
+    //for CallMe Email function
+    Route::post('/callmeEmail', 'SendEmail@CallmeEmail')->name('callmeEmail');
+
 
     Auth::routes();
 
@@ -268,8 +274,6 @@ Route::group(['middleware' => 'guest'], function() {
 
     //for registration form to capture if email exists in the database
     Route::get('/getEmailAjax/{email}', 'RegisterController@getEmailAjax');
-
-    //Route::get('/agentPostalAjaxUser/{state}/{suburb}', 'EmailController@agentPostalAjax');
 
     //for Files
     Route::get('/audio', 'FileController@indexAudio')->name('audio');

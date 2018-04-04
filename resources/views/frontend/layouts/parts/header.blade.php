@@ -9,11 +9,10 @@
 
 
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/docs.min.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/docs.min.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/tooltipster/dist/css/tooltipster.bundle.min.css') }}" rel="stylesheet">
 {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />--}}
-
 
   </head>
   <body>
