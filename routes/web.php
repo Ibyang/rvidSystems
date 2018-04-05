@@ -181,9 +181,10 @@ Route::group(['middleware' => 'guest'], function() {
         return view('frontend.pages.help', compact('faqs'));
     })->name('help');
 
+
     Route::get('/agent-dashboard', function () {
         return view('frontend.pages.my-account');
-    });
+    })->name('my-account');
 
     Route::get('/account/home', 'MyAccountController@index')->name('account-home');
 
@@ -227,8 +228,14 @@ Route::group(['middleware' => 'guest'], function() {
     //for sending FAQ Email
     Route::post('/sendFAQEmail', 'SendEmail@sendFAQEmail')->name('sendFAQEmail');
 
-    //for CallMe Email function
-    Route::post('/callmeEmail', 'SendEmail@CallmeEmail')->name('callmeEmail');
+    //for sending FAQ Email in My Account
+    Route::post('account/sendFAQEmail', 'MyHelpController@sendFAQEmailAcct')->name('sendFAQEmailAcct');
+
+    //for CallMe Email function in Front End
+    Route::post('/helpCallMe', 'SendEmail@callmeEmail')->name('callmeEmail');
+
+    //for CallMe Email function in MyAccount
+    Route::post('account/help/callMe', 'MyHelpController@callmeHelp')->name('callmeHelp');
 
 
     Auth::routes();
@@ -311,6 +318,8 @@ Route::group(['middleware' => 'guest'], function() {
     //passing values from the Front End pages
     Route::post('/get-started', 'RegisterController@index')->name('get-started');
 
+    //passing values from the
+    Route::post('/get-started/step1', 'RegisterController@getStep1')->name('get-started-step1');
 //});
 
 //Route::get('/voice/upload', 'FileController@createVoice')->name('showUploadVideo');

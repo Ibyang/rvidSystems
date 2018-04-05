@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Agent;
 use App\User;
 use App\AgentInvoice;
+use App\FAQ;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;

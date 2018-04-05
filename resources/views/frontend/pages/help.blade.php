@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="container help-content">
-        <h3 class="border-title">Need Help?</h3>
+        <br><h3 class="border-title">Need Help?</h3>
         <h3 class="color-6600cc">FAQ’s (Frequently Asked Questions)</h3>
-        Top 10 FAQ’s
+        <br>Top 10 FAQ’s
         {{--<form class="form-horizontal" method="POST" action="">--}}
-          <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-              <form class="form-horizontal" method="POST" action="">
+        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+            <form class="form-horizontal" method="POST" action="">
                 <div class="row">
 
                     <div class="col-sm">
@@ -18,78 +18,94 @@
                         </select>
                     </div>
                     <div class="col-sm">
-                      <div class="text-right">
+                        <div class="text-right">
                             <button type="button" id="btnFAQ" class="btn btn-primary btn-ff0033" data-toggle="modal" data-target="#FAQModal">
-                            {{--<button type="button" id="btnFAQ" class="btn btn-primary btn-ff0033" onclick>--}}
-                               GO
+                                {{--<button type="button" id="btnFAQ" class="btn btn-primary btn-ff0033" onclick>--}}
+                                GO
                             </button>
                         </div>
                     </div>
                 </div>
-              </form>
-              @if (session('success_email'))
-                  <div class="alert alert-success" id="success_email_faq">
-                      <b>{{ session('success_email') }}</b>
-                  </div>
-              @endif
-              <h3 class="color-6600cc">Email</h3>
-              <div class="row">
+            </form>
+            @if (session('success_email'))
+                <div class="alert alert-success" id="success_email_faq">
+                    <b>{{ session('success_email') }}</b>
+                </div>
+            @endif
+            <br><h3 class="color-6600cc">Email</h3>
+            <div class="row">
                 <div class="col-sm">help@revid.com.au</div>
                 <div class="col-sm">
                     <div class="text-right">
                         <button type="button" class="btn btn-primary btn-6600cc" data-toggle="modal" data-target="#EmailModal" data-whatever="help@revid.com.au">
-                           EMAIL
+                            EMAIL
                         </button>
-                    </div>  
+                    </div>
                 </div>
-              </div>
-              <h3 class="color-6600cc">Online Live Chat</h3>
-              <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                    <textarea id="name" type="text" class="form-control" name="" placeholder="" required autofocus></textarea>
-              </div>
-              <div class="row">
-                <div class="col-sm">
-                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">      
-                      <input id="name" type="text" class="form-control" name="name" required autofocus placeholder="Start typing your message...">
-                      @if ($errors->has('name'))
-                           <span class="help-block">
-                                <strong>{{ $errors->first('name') }}</strong>
-                           </span>
-                      @endif
-                   </div>  
-                </div>
-                <div class="col-sm">
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-primary btn-ff0033">
-                           SEND
-                        </button>
-                    </div>  
-                </div>
-              </div>
-              <h3 class="color-6600cc">Please telephone call me!</h3>
-                <form id="frmFAQEmail" class="form-horizontal" method="post" action=" {{ route('callmeEmail') }}">
-                  <div class="row">
+            </div>
+            {{--<br><h3 class="color-6600cc">Online Live Chat</h3>--}}
+                {{--<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">--}}
+                    {{--<textarea id="name" type="text" class="form-control" name="" placeholder="" required autofocus></textarea>--}}
+                {{--</div>--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col-sm">--}}
+                        {{--<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">--}}
+                            {{--<input id="name" type="text" class="form-control" name="name" required autofocus placeholder="Start typing your message...">--}}
+                                {{--@if ($errors->has('name'))--}}
+                                    {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('name') }}</strong>--}}
+                                    {{--</span>--}}
+                                {{--@endif--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-sm">--}}
+                        {{--<div class="text-right">--}}
+                            {{--<button type="submit" class="btn btn-primary btn-ff0033">--}}
+                                {{--SEND--}}
+                            {{--</button>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            <br><h3 class="color-6600cc">Please telephone call me!</h3>
+            <form id="callmeEmail" class="form-horizontal" method="post" action=" {{ route('callmeEmail') }}">
+                {{ csrf_field() }}
+                <div class="row">
                     <div class="col-sm">Please Call</div>
                     <div class="col-sm">
-                        <input id="email" type="text" class="form-control" name="email" required autofocus>
+                        <input id="contact_name" type="text" class="form-control" name="contact_name" required autofocus>
                     </div>
                     {{--<div class="col-sm">Change</div>--}}
-                  </div>
-                  <!--or--><br>
-                  <div class="row">
+                    <div class="col-sm"></div>
+                </div>
+                <!--or--><br>
+                <div class="row">
                     <div class="col-sm">Mobile</div>
                     <div class="col-sm">
-                        <input id="mobile" type="text" class="form-control" name="mobile" required autofocus>
+                        <input id="contact_mobile" type="text" class="form-control" name="contact_mobile" required autofocus>
                     </div>
                     {{--<div class="col-sm">Change</div>--}}
-                  </div>
-                  <div class="text-right">
-                  <button type="submit" class="btn btn-primary btn-6600cc">
-                      CALL
-                  </button>
-                  </div>
-                </form>
-          </div>
+                    <div class="col-sm"></div>
+                </div><br>
+                <div class="row">
+                    <div class="col-sm">Email</div>
+                    <div class="col-sm">
+                        <input id="email" type="email" class="form-control" name="email" required autofocus>
+                    </div>
+                    {{--<div class="col-sm">Change</div>--}}
+                    <div class="col-sm"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm"></div>
+                    <div class="col-sm">
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary btn-6600cc">
+                                CALL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
 
           <!-- FAQ Modal -->
           <div class="modal fade" id="FAQModal"
@@ -208,7 +224,7 @@
 
         setTimeout(function() {
             $('#success_email_faq').fadeOut('fast');
-        }, 500); // <-- time in milliseconds
+        }, 1000); // <-- time in milliseconds
 
         $('select[name="question"]').on('change', function() {
             var question = $('#question').val();

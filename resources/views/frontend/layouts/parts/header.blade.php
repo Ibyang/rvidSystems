@@ -41,11 +41,11 @@
                     <ul class="hdr-i-col @if(Auth::check()) account-menu @endif">
                       <li>
                         <i class="menu-icon help"></i>
-                        <p><a href=" {{ route('help') }}">Need Help?</a></p>
+                        <p><a href=" {{ route('account-help') }}">Need Help?</a></p>
                       </li>
                       <li>
                         <i class="menu-icon about"></i>
-                        <p><a href="/my-account">My Account</a></p>
+                        <p><a href=" {{ route('account-home') }} ">My Account</a></p>
                       </li>
                       <li>
                         <i class="menu-icon logout"></i>

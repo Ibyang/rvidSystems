@@ -27,6 +27,13 @@ class RegisterController extends Controller
         return view('frontend.pages.get-started',compact('email', 'details', 'states'));
     }
 
+    public function getStep1(){
+        $email = Input::get('email');
+        $details = Agent::where('email', $email)->first();
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.register-step1',compact('email', 'details', 'states'));
+    }
+
     public function stateAjaxUser($state)
     {
         $suburbs = Suburb::where('state', $state)->pluck("suburb");
