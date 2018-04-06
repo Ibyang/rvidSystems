@@ -9,7 +9,9 @@ use App\State;
 use App\Suburb;
 use App\FAQ;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
@@ -32,6 +34,55 @@ class RegisterController extends Controller
         $details = Agent::where('email', $email)->first();
         $states = State::get(['state_code', 'state_name']);
         return view('frontend.pages.register-step1',compact('email', 'details', 'states'));
+    }
+
+    public function getStep2(){
+        return view('frontend.pages.register-step2');
+    }
+
+    public function getStep3(){
+        return view('frontend.pages.register-step3');
+    }
+
+    public function getStep4(){
+        return view('frontend.pages.register-step4');
+    }
+
+    //function after going through the registration steps
+    public function processStep4(){
+
+        //return view('frontend.pages.register-step4');
+        $email = Session::get('email_add');
+        $passwrd = Session::get('passwrd');
+
+        $credentials = array(
+          'email' => $email,
+          'password' => $passwrd
+        );
+
+        Auth::login($credentials);
+
+        //dd($credentials);
+
+//        if(Auth::attempt($credentials)) {
+//            dd($credentials);
+//            //return redirect()->route('account-make-video');
+//        }
+//        else{
+//            dd('hello world');
+//            //return redirect()->route('home');
+//        }
+
+        Session::flush();
+
+    }
+
+    public function processStep2(){
+        return redirect()->route('get-started-step3');
+    }
+
+    public function processStep3(){
+        return redirect()->route('get-started-step4');
     }
 
     public function stateAjaxUser($state)
@@ -133,31 +184,36 @@ class RegisterController extends Controller
         }
 
         $fullname = Input::get('firstname') .  ' ' . Input::get('lastname');
+        $passwrd = bcrypt(Input::get('password'));
         $pass_arr = array(
             'name' => $fullname,
             'status' => 'Pending',
             'role' => 'Agent',
             'email' => Input::get('email'),
-            'password' => bcrypt(Input::get('password')),
+            'password' => $passwrd,
             'passwd' => Input::get('password')
         );
         $user = User::create($pass_arr);
 
         //for storing values on the Invoice Section
-        $invoice_arr = array(
-            'agent_ID' => $user->id,
-            'invoice_to' => $fullname,
-            'invoice_to_type' => 'Agent',
-            'address' => Input::get('address'),
-            'person_name' => $fullname,
-            'contact_num' => Input::get('mobile'),
-            'email' => Input::get('email'),
-        );
-        AgentInvoice::create($invoice_arr);
+//        $invoice_arr = array(
+//            'agent_ID' => $user->id,
+//            'invoice_to' => $fullname,
+//            'invoice_to_type' => 'Agent',
+//            'address' => Input::get('address'),
+//            'person_name' => $fullname,
+//            'contact_num' => Input::get('mobile'),
+//            'email' => Input::get('email'),
+//        );
+//        AgentInvoice::create($invoice_arr);
+
+        Session::put('email_add', Input::get('email'));
+        Session::put('passwrd', $passwrd);
 
 
-        return redirect()->route('home');
+        return redirect()->route('get-started-step2');
     }
+
 
     /**
      * Display the specified resource.

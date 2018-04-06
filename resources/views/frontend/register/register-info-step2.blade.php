@@ -3,28 +3,28 @@
             <h4>4 Easy Steps (3 to Go!)</h4>
             <div class="row text-center">
                 <div class="col-md-auto">
-                    <i class="register-icon details"></i><br>
+                    <i class="register-iconstep2 details"></i><br>
                     <p>STEP 1<br><b>Add Your<br>Details</b></p>
                 </div>
                 <div class="col-md-auto">
                     <i class="arrow"></i>
                 </div>
                 <div class="col-md-auto">
-                    <i class="register-icon my-tmpt"></i><br>
+                    <i class="register-iconstep2 my-tmpt"></i><br>
                     <p>STEP 2<br><b>Set-up Your <br>Template</b></p>
                 </div>
                 <div class="col-md-auto">
                     <i class="arrow"></i>
                 </div>
                 <div class="col-md-auto">
-                     <i class="register-icon pref"></i><br>
+                     <i class="register-iconstep2 pref"></i><br>
                     <p>STEP 3<br><b>Set your <br>Preferences</b></p>
                 </div>
                 <div class="col-md-auto">
                     <i class="arrow"></i>
                 </div>
                 <div class="col-md-auto">
-                     <i class="register-icon payment"></i><br>
+                     <i class="register-iconstep2 payment"></i><br>
                      <p>STEP 4<br><b>Add Payment <br>Details</b></p>
                 </div>
             </div>
@@ -33,15 +33,15 @@
                 <h4>All included in your Membership</h4>
                 <div class="row register-col2">
                     <div class="col-sm">
-                        <i class="register-icon rvd"></i><br>
+                        <i class="register-iconstep2 rvd"></i><br>
                         <p>REVid<br><b>Ready<br>To Go</b></p>
                     </div>
                     <div class="col-sm">
-                        <i class="register-icon db"></i><br>
+                        <i class="register-iconstep2 db"></i><br>
                         <p>DriveBy<br><b>Ready<br>To Go</b></p>
                     </div>
                     <div class="col-sm">
-                        <i class="register-icon lf"></i><br>
+                        <i class="register-iconstep2 lf"></i><br>
                         <p>LookFirst<br><b>Ready<br>To Go</b></p>
                     </div>
                </div>

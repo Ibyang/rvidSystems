@@ -186,6 +186,43 @@ Route::group(['middleware' => 'guest'], function() {
         return view('frontend.pages.my-account');
     })->name('my-account');
 
+    //for getting the corresponding answer for FAQ
+    Route::get('/getFAQAjax/{question}', 'RegisterController@getFAQAjax');
+
+    //for sending FAQ Email
+    Route::post('/sendFAQEmail', 'SendEmail@sendFAQEmail')->name('sendFAQEmail');
+
+    //for sending FAQ Email in My Account
+    Route::post('account/sendFAQEmail', 'MyHelpController@sendFAQEmailAcct')->name('sendFAQEmailAcct');
+
+    //for CallMe Email function in Front End
+    Route::post('/helpCallMe', 'SendEmail@callmeEmail')->name('callmeEmail');
+
+    //for CallMe Email function in MyAccount
+    Route::post('account/help/callMe', 'MyHelpController@callmeHelp')->name('callmeHelp');
+
+    //passing values from the Front End pages
+    Route::post('/get-started', 'RegisterController@index')->name('get-started');
+
+    //passing values via enter of Email field
+    Route::post('/get-started/step1', 'RegisterController@getStep1')->name('get-started-step1');
+
+    //redirect to Step 2 of Registration
+    Route::get('/get-started/step2', 'RegisterController@getStep2')->name('get-started-step2');
+
+    //redirect to Step 3 of Registration
+    Route::get('/get-started/step3', 'RegisterController@getStep3')->name('get-started-step3');
+
+    //redirect to Step 4 of Registration
+    Route::get('/get-started/step4', 'RegisterController@getStep4')->name('get-started-step4');
+
+    //modules for processing of the steps in registration
+    Route::post('/processStep2', 'RegisterController@processStep2')->name('processStep2');
+
+    Route::post('/processStep3', 'RegisterController@processStep3')->name('processStep3');
+
+    Route::post('/processStep4', 'RegisterController@processStep4')->name('processStep4');
+
     Route::get('/account/home', 'MyAccountController@index')->name('account-home');
 
     Route::get('/account/my-videos', 'MyVideoController@index')->name('account-my-videos');
@@ -221,21 +258,6 @@ Route::group(['middleware' => 'guest'], function() {
     //route for editing the Subscription section under My Account section
     Route::post('/editSubscription', 'MyAccountController@editSubscription')->name('editSubscription');
 //});
-
-    //for getting the corresponding answer for FAQ
-    Route::get('/getFAQAjax/{question}', 'RegisterController@getFAQAjax');
-
-    //for sending FAQ Email
-    Route::post('/sendFAQEmail', 'SendEmail@sendFAQEmail')->name('sendFAQEmail');
-
-    //for sending FAQ Email in My Account
-    Route::post('account/sendFAQEmail', 'MyHelpController@sendFAQEmailAcct')->name('sendFAQEmailAcct');
-
-    //for CallMe Email function in Front End
-    Route::post('/helpCallMe', 'SendEmail@callmeEmail')->name('callmeEmail');
-
-    //for CallMe Email function in MyAccount
-    Route::post('account/help/callMe', 'MyHelpController@callmeHelp')->name('callmeHelp');
 
 
     Auth::routes();
@@ -315,11 +337,6 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/premium', 'OrderController@indexPremium')->name('premium');
 
-    //passing values from the Front End pages
-    Route::post('/get-started', 'RegisterController@index')->name('get-started');
-
-    //passing values from the
-    Route::post('/get-started/step1', 'RegisterController@getStep1')->name('get-started-step1');
 //});
 
 //Route::get('/voice/upload', 'FileController@createVoice')->name('showUploadVideo');

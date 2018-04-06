@@ -1,5 +1,6 @@
  <div class="container register-form">
-     <form class="form-horizontal" method="POST" action="{{ route('registerAgent.store') }}">
+     <form class="form-horizontal" method="POST" action="{{ route('processStep2') }}">
+         {{ csrf_field() }}
          <h3>Pictures</h3>
          <div class="row">
              <div class="col-sm">

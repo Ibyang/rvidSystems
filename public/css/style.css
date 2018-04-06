@@ -205,6 +205,23 @@ i.register-icon { background:url(backgrounds/register-icons.png);
 			  height:70px; 
 			  width:71px;
               display:inline-block; }
+/** additional styles 04/06/2018 **/
+i.register-iconstep1 { background:url(backgrounds/register-icons-step1.png);
+    height:70px;
+    width:71px;
+    display:inline-block; }
+i.register-iconstep2 { background:url(backgrounds/register-icons-step2.png);
+    height:70px;
+    width:71px;
+    display:inline-block; }
+i.register-iconstep3 { background:url(backgrounds/register-icons-step3.png);
+    height:70px;
+    width:71px;
+    display:inline-block; }
+i.register-iconstep4 { background:url(backgrounds/register-icons-step4.png);
+    height:70px;
+    width:71px;
+    display:inline-block; }
 i.details { background-position:-1px 0px; }
 i.my-tmpt { background-position:-77px 0px; }
 i.pref { background-position:-156px 0px; }

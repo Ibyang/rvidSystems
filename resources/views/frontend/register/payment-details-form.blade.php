@@ -1,5 +1,5 @@
  <div class="container register-form">
-     <form class="form-horizontal" method="POST" action="{{ route('registerAgent.store') }}">
+     <form class="form-horizontal" method="POST" action="{{ route('processStep4') }}">
          <h3>Your Payment Details</h3>
          {{ csrf_field() }}
          <div class="row">
@@ -18,8 +18,7 @@
                  </div>
                  <div class="col-sm-4">
                      <div class="custom-control custom-checkbox casual">
-                         <input type="checkbox" class="group1 custom-control-input" id="customCheck1" value="Casual" name="subscription1[]"
-                                 {{ $invoice->subscription_type  === "Casual" ? 'checked' : '' }}>
+                         <input type="checkbox" class="group1 custom-control-input" id="customCheck1" value="Casual" name="subscription1[]">
                          <label class="custom-control-label" for="customCheck1"></label>
                      </div>
                  </div>
@@ -36,8 +35,7 @@
                  </div>
                  <div class="col-sm-4">
                      <div class="custom-control custom-checkbox standard">
-                         <input type="checkbox" class="group1 custom-control-input" id="customCheck3" value="Standard" name="subscription1[]"
-                                 {{ $invoice->subscription_type  === "Standard" ? 'checked' : '' }}>
+                         <input type="checkbox" class="group1 custom-control-input" id="customCheck3" value="Standard" name="subscription1[]">
                          <label class="custom-control-label" for="customCheck3"></label>
                      </div>
                  </div>
@@ -56,8 +54,7 @@
                  </div>
                  <div class="col-sm-4">
                      <div class="custom-control custom-checkbox basic">
-                         <input type="checkbox" class="group1 custom-control-input" id="customCheck2" value="Basic" name="subscription1[]"
-                                 {{ $invoice->subscription_type  === "Basic" ? 'checked' : '' }}>
+                         <input type="checkbox" class="group1 custom-control-input" id="customCheck2" value="Basic" name="subscription1[]">
                          <label class="custom-control-label" for="customCheck2"></label>
                      </div>
                  </div>
@@ -74,8 +71,7 @@
                  </div>
                  <div class="col-sm-4">
                      <div class="custom-control custom-checkbox premium">
-                         <input type="checkbox" class="group1 custom-control-input" id="customCheck4" value="Premium" name="subscription1[]"
-                                 {{ $invoice->subscription_type  === "Premium" ? 'checked' : '' }}>
+                         <input type="checkbox" class="group1 custom-control-input" id="customCheck4" value="Premium" name="subscription1[]">
                          <label class="custom-control-label" for="customCheck4"></label>
                      </div>
                  </div>
