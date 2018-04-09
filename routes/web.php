@@ -129,8 +129,9 @@ Route::group(['middleware' => 'guest'], function() {
     })->name('look-first-video');
 
     Route::get('/get-started', function () {
+//        $groups
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.get-started', compact('states'));
+        eturn view('frontend.pages.get-started', compact('states'));
     })->name('get-started');
 
     Route::get('/how-system-works', function () {

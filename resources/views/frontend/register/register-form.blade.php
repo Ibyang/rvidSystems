@@ -62,13 +62,20 @@
                             </div>
                             <h3>Agency Details</h3>
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <input id="group" type="text" class="form-control" name="group" required value="{{ $details->group }}">
-                                {{--<select name="group" class="form-control">--}}
-                                        {{--<option>group</option>--}}
-                                {{--</select>--}}
+                                {{--<input id="group" type="text" class="form-control" name="group" required value="{{ $details->group }}">--}}
+                                <select name="group" class="form-control">
+                                    @foreach($groups as $grp)
+                                        <option value="{{ $grp->group }}" {{ $details->group === $grp->group ? 'selected' : '' }}> {{ $group->grp }} </option>
+                                    @endforeach
+                                </select>
                         </div>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <input id="name_agency" type="text" class="form-control" name="name_agency" required value="{{ $details->name_agency }}">
+                                {{--<input id="name_agency" type="text" class="form-control" name="name_agency" required value="{{ $details->name_agency }}">--}}
+                                <select name="name_agency" class="form-control">
+                                    @foreach($agecies as $agency)
+                                        <option value="{{ $agency->name_agency }}" {{ $details->name_agency === $agency->name_agency ? 'selected' : '' }}> {{ $agency->name_agency }} </option>
+                                    @endforeach
+                                </select>
                                 @if ($errors->has('name'))
                                         <span class="help-block">
                                                 <strong>{{ $errors->first('name_agency') }}</strong>
@@ -174,13 +181,20 @@
                         </div>
                         <h3>Agency Details</h3>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <input id="group" type="text" class="form-control" name="group" required autofocus placeholder="Group">
-                            {{--<select name="group" class="form-control">--}}
-                                {{--<option>group</option>--}}
-                            {{--</select>--}}
+                            {{--<input id="group" type="text" class="form-control" name="group" required autofocus placeholder="Group">--}}
+                            <select name="group" class="form-control">
+                                @foreach($groups as $grp)
+                                    <option value="{{ $grp->group }}" {{ $details->group === $grp->group ? 'selected' : '' }}> {{ $group->grp }} </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <input id="name_agency" type="text" class="form-control" name="name_agency" required autofocus placeholder="Name Of Agency">
+                            {{--<input id="name_agency" type="text" class="form-control" name="name_agency" required autofocus placeholder="Name Of Agency">--}}
+                            <select name="name_agency" class="form-control">
+                                @foreach($agecies as $agency)
+                                    <option value="{{ $agency->name_agency }}" {{ $details->name_agency === $agency->name_agency ? 'selected' : '' }}> {{ $agency->name_agency }} </option>
+                                @endforeach
+                            </select>
                             @if ($errors->has('name'))
                                 <span class="help-block">
                                             <strong>{{ $errors->first('name') }}</strong>
