@@ -25,15 +25,19 @@ class RegisterController extends Controller
         //
         $email = Input::get('email');
         $details = Agent::where('email', $email)->first();
+        $groups = Agent::distinct()->get(['group']);
+        $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.get-started',compact('email', 'details', 'states'));
+        return view('frontend.pages.get-started',compact('email', 'details', 'states', 'groups', 'agencies'));
     }
 
     public function getStep1(){
         $email = Input::get('email');
         $details = Agent::where('email', $email)->first();
+        $groups = Agent::distinct()->get(['group']);
+        $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.register-step1',compact('email', 'details', 'states'));
+        return view('frontend.pages.register-step1',compact('email', 'details', 'states', 'groups', 'agencies'));
     }
 
     public function getStep2(){
@@ -41,7 +45,10 @@ class RegisterController extends Controller
     }
 
     public function getStep3(){
-        return view('frontend.pages.register-step3');
+
+        $suburbs = Agent::distinct(['suburb', 'postcode'])->whereNotNull('suburb')->whereNotNull('postcode')->get(['suburb', 'postcode']);
+//        dd($suburbs);
+        return view('frontend.pages.register-step3', compact('suburbs'));
     }
 
     public function getStep4(){
@@ -154,6 +161,7 @@ class RegisterController extends Controller
                 'lastname' => trim(Input::get('lastname')),
                 'email' => Input::get('email'),
                 'mobile' => Input::get('mobile'),
+                'password' => bcrypt(request()->input('password')),
                 'agent_password' => Input::get('password'),
                 'group' => Input::get('group'),
                 'name_agency' => Input::get('name_agency'),
@@ -166,7 +174,6 @@ class RegisterController extends Controller
         }
         else
         {
-
             $agent_arr = array(
                 'firstname' => trim(request()->input('firstname')),
                 'lastname' => trim(request()->input('lastname')),
@@ -174,8 +181,8 @@ class RegisterController extends Controller
                 'name_agency' => request()->input('name_agency'),
                 'middle_name' => request()->input('mobile'),
                 'email' => request()->input('email'),
-                'passwd' => bcrypt(request()->input('passwd')),
-                'agent_password' => request()->input('passwd'),
+                'password' => bcrypt(request()->input('password')),
+                'agent_password' => request()->input('password'),
                 'address' => request()->input('address'),
                 'state' => request()->input('state'),
                 'suburb' => request()->input('suburb')
@@ -252,7 +259,7 @@ class RegisterController extends Controller
             'lastname' => 'required',
             'email' => 'email',
             'mobile' => 'required',
-            'passwd' => 'min:4|required|confirmed'
+            'password' => 'min:4|required|confirmed'
         ]);
 
         $agent = Agent::where('ID', $id)->update([
@@ -260,8 +267,8 @@ class RegisterController extends Controller
             'lastname' => Input::get('lastname'),
             'email' => Input::get('email'),
             'mobile' => Input::get('mobile'),
-            'passwd' => bcrypt(Input::get('passwd')),
-            'agent_password' => Input::get('passwd'),
+            'password' => bcrypt(Input::get('password')),
+            'agent_password' => Input::get('password'),
             'group' => Input::get('group'),
             'name_agency' => Input::get('name_agency'),
             //'role_title' => Input::get('role_title'),
@@ -270,6 +277,23 @@ class RegisterController extends Controller
             //'postcode' => Input::get('postcode'),
             'state' => Input::get('state'),
         ]);
+
+        $fullname = Input::get('firstname') .  ' ' . Input::get('lastname');
+        $passwrd = bcrypt(Input::get('password'));
+        $pass_arr = array(
+            'name' => $fullname,
+            'status' => 'Pending',
+            'role' => 'Agent',
+            'email' => Input::get('email'),
+            'password' => $passwrd,
+            'passwd' => Input::get('password')
+        );
+        $user = User::create($pass_arr);
+
+        Session::put('email_add', Input::get('email'));
+        Session::put('passwrd', $passwrd);
+
+        return redirect()->route('get-started-step2');
 
     }
 

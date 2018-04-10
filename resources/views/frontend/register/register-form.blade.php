@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-sm">
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <input id="passwd" type="password" class="form-control" name="passwd" required value="" Placeholder="Password">
+                                <input id="password" type="password" class="form-control" name="password" required value="" Placeholder="Password">
                                 @if ($errors->has('password'))
                                      <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -58,23 +58,26 @@
                                 @endif
                         </div>
                         <div class="form-group">
-                                <input id="passwd_confirmation" type="password" class="form-control" name="passwd_confirmation" required value="" Placeholder="Repeat Password">
+                                <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required value="" Placeholder="Repeat Password">
                             </div>
                             <h3>Agency Details</h3>
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 {{--<input id="group" type="text" class="form-control" name="group" required value="{{ $details->group }}">--}}
                                 <select name="group" class="form-control">
                                     @foreach($groups as $grp)
-                                        <option value="{{ $grp->group }}" {{ $details->group === $grp->group ? 'selected' : '' }}> {{ $group->grp }} </option>
+                                        <option value="{{ $grp->group }}" {{ $details->group === $grp->group ? 'selected' : '' }}> {{ $grp->group }} </option>
                                     @endforeach
                                 </select>
                         </div>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 {{--<input id="name_agency" type="text" class="form-control" name="name_agency" required value="{{ $details->name_agency }}">--}}
+                                {{--<input list="name_agency" name="name_agency" class="form-control">--}}
+                                  {{--<datalist id="name_agency">--}}
                                 <select name="name_agency" class="form-control">
-                                    @foreach($agecies as $agency)
+                                    @foreach($agencies as $agency)
                                         <option value="{{ $agency->name_agency }}" {{ $details->name_agency === $agency->name_agency ? 'selected' : '' }}> {{ $agency->name_agency }} </option>
                                     @endforeach
+                                  {{--</datalist>--}}
                                 </select>
                                 @if ($errors->has('name'))
                                         <span class="help-block">
@@ -184,15 +187,15 @@
                             {{--<input id="group" type="text" class="form-control" name="group" required autofocus placeholder="Group">--}}
                             <select name="group" class="form-control">
                                 @foreach($groups as $grp)
-                                    <option value="{{ $grp->group }}" {{ $details->group === $grp->group ? 'selected' : '' }}> {{ $group->grp }} </option>
+                                    <option value="{{ $grp->group }}"> {{ $grp->group }} </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             {{--<input id="name_agency" type="text" class="form-control" name="name_agency" required autofocus placeholder="Name Of Agency">--}}
                             <select name="name_agency" class="form-control">
-                                @foreach($agecies as $agency)
-                                    <option value="{{ $agency->name_agency }}" {{ $details->name_agency === $agency->name_agency ? 'selected' : '' }}> {{ $agency->name_agency }} </option>
+                                @foreach($agencies as $agency)
+                                    <option value="{{ $agency->name_agency }}"> {{ $agency->name_agency }} </option>
                                 @endforeach
                             </select>
                             @if ($errors->has('name'))

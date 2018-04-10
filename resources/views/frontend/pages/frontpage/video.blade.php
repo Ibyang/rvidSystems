@@ -4,7 +4,7 @@
                 <div class="col">
                   <a href="" style="text-decoration:none"><h1>What is it?</h1></a>
                   (Easy and valuable)
-                  <a href=""><img src={{ asset('storage/what-is-revid.jpg') }} /></a>
+                  <a href=" {{ route('revid-video') }} "><img src={{ asset('storage/what-is-revid.jpg') }} /></a>
                   <p class="text-justify">It’s "Video" for social media marketing,
                     online marketing, on-site presentations and
                     email to prospective clients.</p>
