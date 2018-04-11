@@ -22,7 +22,10 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-
+            //for selecting only one checkbox at a time
+            $('input[type="checkbox"]').on('change', function() {
+                $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+            });
         });
     </script>
 

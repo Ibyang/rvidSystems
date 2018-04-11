@@ -8,6 +8,9 @@ use App\User;
 use App\State;
 use App\Suburb;
 use App\FAQ;
+use App\AgentEmail;
+use App\AgentBroadcast;
+use App\AgentPreferences;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -46,7 +49,11 @@ class RegisterController extends Controller
 
     public function getStep3(){
 
-        $suburbs = Agent::distinct(['suburb', 'postcode'])->whereNotNull('suburb')->whereNotNull('postcode')->get(['suburb', 'postcode']);
+        $suburbs = Suburb::distinct(['suburb', 'post_code'])
+                        ->whereNotNull('suburb')
+                        ->whereNotNull('post_code')
+                        ->orderBy('suburb', 'ASC')
+                        ->get();
 //        dd($suburbs);
         return view('frontend.pages.register-step3', compact('suburbs'));
     }
@@ -54,6 +61,56 @@ class RegisterController extends Controller
     public function getStep4(){
         return view('frontend.pages.register-step4');
     }
+
+    public function processStep2(){
+        return redirect()->route('get-started-step3');
+    }
+
+    public function processStep3()
+    {
+        $userId = Session::get('userId');
+
+        $surge_offer = Input::get('surgeoffer');
+        $broadcast_status = Input::get('broadcast_status');
+        $email_list = Input::get('emails_arr');
+        $suburb_list = Input::get('areas_arr');
+
+        //for Surge Offer Preferences Section
+        $surge_arr = array(
+            'agent_ID' => $userId,
+            'surge_offer_option' => $surge_offer[0],
+            'broadcast_agent' => $broadcast_status
+        );
+        AgentPreferences::create($surge_arr);
+
+        //for Email Distribution List
+        $emails = explode(',',$email_list);
+        for ($i=0; $i<count($emails); $i++){
+            $email_arr = array(
+                'agent_ID' => $userId,
+                'email' => $emails[$i],
+            );
+            AgentEmail::create($email_arr);
+        }
+
+        $areas = explode(',',$suburb_list);
+        for ($i=0; $i<count($areas); $i++){
+            $broadcast_arr = array(
+                'agent_ID' => $userId,
+                'suburb' => $areas[$i],
+            );
+            AgentBroadcast::create($broadcast_arr);
+        }
+
+        return redirect()->route('get-started-step4');
+    }
+
+    public function stateAjaxUser($state)
+    {
+        $suburbs = Suburb::where('state', $state)->pluck("suburb");
+        return json_encode($suburbs);
+    }
+
 
     //function after going through the registration steps
     public function processStep4(){
@@ -63,8 +120,8 @@ class RegisterController extends Controller
         $passwrd = Session::get('passwrd');
 
         $credentials = array(
-          'email' => $email,
-          'password' => $passwrd
+            'email' => $email,
+            'password' => $passwrd
         );
 
         Auth::login($credentials);
@@ -82,20 +139,6 @@ class RegisterController extends Controller
 
         Session::flush();
 
-    }
-
-    public function processStep2(){
-        return redirect()->route('get-started-step3');
-    }
-
-    public function processStep3(){
-        return redirect()->route('get-started-step4');
-    }
-
-    public function stateAjaxUser($state)
-    {
-        $suburbs = Suburb::where('state', $state)->pluck("suburb");
-        return json_encode($suburbs);
     }
 
     public function agentPostalAjaxUser($state, $suburb)
@@ -201,6 +244,7 @@ class RegisterController extends Controller
             'passwd' => Input::get('password')
         );
         $user = User::create($pass_arr);
+        $userId = $user->id;
 
         //for storing values on the Invoice Section
 //        $invoice_arr = array(
@@ -216,6 +260,7 @@ class RegisterController extends Controller
 
         Session::put('email_add', Input::get('email'));
         Session::put('passwrd', $passwrd);
+        Session::put('userId', $userId);
 
 
         return redirect()->route('get-started-step2');
@@ -289,9 +334,11 @@ class RegisterController extends Controller
             'passwd' => Input::get('password')
         );
         $user = User::create($pass_arr);
+        $userId = $user->id;
 
         Session::put('email_add', Input::get('email'));
         Session::put('passwrd', $passwrd);
+        Session::put('userId', $userId);
 
         return redirect()->route('get-started-step2');
 

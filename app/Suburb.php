@@ -8,4 +8,5 @@ class Suburb extends Model
 {
     //
     protected $table = "suburbs_state_au";
+
 }

@@ -22,24 +22,21 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            // $('#addLink').click(function() {
-            //     var values = $('#emailAdd').filter(function(){ // discard fields with no value
-            //         return this.value != '';
-            //     }).map(function() {
-            //         return $(this).val();       // return the value
-            //     }).get();                         // get the values
-            //
-            //     var $list = $('.email_list').empty();
-            //     for(var i in values) {
-            //         $('<option />').text(values[i]).appendTo($list);   // build and add options
-            //     }
-            // });
+
+            //for selecting only one checkbox at a time
+            $('input[type="checkbox"]').on('change', function() {
+                $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+            });
+
             $('.register-form select').css('background-image', 'none');
             var $list = $('#email_list').empty();
+            var emails = [];
+            var areas = [];
             $('span').on('click', function () {
                 //alert(this.id);
                 var spanId = this.id;
 
+                //process for EMAIL Distribution List
                 if(spanId === 'addEmailLink'){
                     var values = $('#emailAdd').filter(function(){ // discard fields with no value
                         return this.value != '';
@@ -48,9 +45,12 @@
                     }).get();                         // get the values
 
                     for(var i in values) {
-                        // $('#email_list').val(values[i]).text(values[i]).appendTo($list);   // build and add options
                         $('#email_list').append("<option value=" + values[i] + ">" +  values[i] + "</option>");
+                        emails.push(values[i]); //put email values in an array
                     }
+
+                    console.log('the content of array emails is ', emails);
+                    $('#emails_arr').val(emails);
                     $('#emailAdd').val("");
                 }
 
@@ -63,12 +63,58 @@
                             selectedItem.options[i].remove();
                         }
                     }
-                    // selectedItem.remove(selectedItem.selectedIndex);
-
                 }
 
-            });
 
+                //process for Broadcast Message List
+                if(spanId === 'addSuburbLink'){
+                    var values = $('#suburb_area').filter(function(){ // discard fields with no value
+                        return this.value != '';
+                    }).map(function() {
+                        return $(this).val();       // return the value
+                    }).get();                         // get the values
+
+                    for(var i in values) {
+                        $('#suburb_list').append("<option value='" + values[i] + "'>" +  values[i] + "</option>");
+                        areas.push(values[i]); //put areas values in an array
+                    }
+
+                    //remove the item fom the List of Areas if added to list of Suburb Selection to prevent adding of duplicating values
+                    var selectobject = document.getElementById("suburb_area");
+
+                    for (var i = 0; i < selectobject.options.length; i++) {
+                        val = selectobject.options[i].value;
+                        if(values[0] === val){
+                            selectobject.remove(i);
+                        }
+                    }
+
+                    $('#areas_arr').val(areas);
+                }
+
+                if(spanId === 'removeSuburbLink'){
+
+                    var selectedItem = document.getElementById("suburb_list");
+
+                    for (var i = 0; i < selectedItem.options.length; i++) {
+                        if (selectedItem.options[i].selected) {
+                            val = selectedItem.options[i].value;
+                            console.log("the value of value is ", val);
+                            selectedItem.options[i].remove();
+
+                            $('#suburb_area').append("<option value='" + val + "'>" +  val + "</option>");
+                            $("#suburb_area").html($('#suburb_area option').sort(function(x, y) {
+                                return $(x).val() < $(y).val() ? -1 : 1;
+                            }))
+
+                            var myDDL = $('#suburb_area');
+                            myDDL[0].selectedIndex = 0;
+
+                        }
+
+                    }
+                }
+            });
         });
     </script>
 
