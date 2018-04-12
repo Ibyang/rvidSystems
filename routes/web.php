@@ -270,6 +270,9 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/help', 'MyHelpController@index')->name('account-help');
 
+    Route::get('/account/preferences', 'MyPreferencesController@index')->name('account-preferences');
+
+
     Route::get('/account/billing-history', function () {
         return view('frontend.pages.video.billing-history');
     })->name('account-billing-history');

@@ -40,6 +40,6 @@
     </li>
     <li>
         <i class="account-icon my-preferences"></i>
-        <a href="{{ route('account-my-videos') }}">My Preferences</a>
+        <a href="{{ route('account-preferences') }}">My Preferences</a>
     </li>
 </ul>

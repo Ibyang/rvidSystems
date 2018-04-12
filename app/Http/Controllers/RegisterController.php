@@ -59,7 +59,12 @@ class RegisterController extends Controller
     }
 
     public function getStep4(){
-        return view('frontend.pages.register-step4');
+
+        $email = Session::get('email_add');
+        $details = Agent::where('email', $email)->first();
+        $agent = Session::get('agent_arr');
+//        dd($agent);
+        return view('frontend.pages.register-step4', compact('details', 'agent'));
     }
 
     public function processStep2(){
@@ -85,21 +90,25 @@ class RegisterController extends Controller
 
         //for Email Distribution List
         $emails = explode(',',$email_list);
-        for ($i=0; $i<count($emails); $i++){
-            $email_arr = array(
-                'agent_ID' => $userId,
-                'email' => $emails[$i],
-            );
-            AgentEmail::create($email_arr);
+        if($emails == null) {
+            for ($i=0; $i<count($emails); $i++){
+                $email_arr = array(
+                    'agent_ID' => $userId,
+                    'email' => $emails[$i],
+                );
+                AgentEmail::create($email_arr);
+            }
         }
 
         $areas = explode(',',$suburb_list);
-        for ($i=0; $i<count($areas); $i++){
-            $broadcast_arr = array(
-                'agent_ID' => $userId,
-                'suburb' => $areas[$i],
-            );
-            AgentBroadcast::create($broadcast_arr);
+        if($areas == null) {
+            for ($i=0; $i<count($areas); $i++){
+                $broadcast_arr = array(
+                    'agent_ID' => $userId,
+                    'suburb' => $areas[$i],
+                );
+                AgentBroadcast::create($broadcast_arr);
+            }
         }
 
         return redirect()->route('get-started-step4');
@@ -119,12 +128,50 @@ class RegisterController extends Controller
         $email = Session::get('email_add');
         $passwrd = Session::get('passwrd');
 
-        $credentials = array(
-            'email' => $email,
-            'password' => $passwrd
+        $userId = Session::get('userId');
+
+        $subscription1 = Input::get('subscription1');
+
+        foreach($subscription1 as $sub){
+            if($sub === 'Casual'){
+                $subscription_type = $sub;
+                $storage_plan = '$11';
+            }
+            else if($sub === 'Basic'){
+                $subscription_type = $sub;
+                $storage_plan = '$33';
+            }
+            else if($sub === 'Standard') {
+                $subscription_type = $sub;
+                $storage_plan = '$66';
+            }
+            else if($sub === 'Premium') {
+                $subscription_type = $sub;
+                $storage_plan = '$99';
+            }
+        }
+
+        $payment_arr = array(
+          'agent_ID' => $userId,
+          'subscription_type' => $subscription_type,
+          'storage_plan' => $storage_plan,
+          'invoice_to' => Input::get('person_name'),
+          'address' => Input::get('invoice_address'),
+          'person_name' => Input::get('contact_name'),
+          'contact_num' => Input::get('mobile'),
+          'email' => Input::get('email'),
         );
 
-        Auth::login($credentials);
+        AgentInvoice::create($payment_arr);
+
+        return redirect()->route('home');
+
+//        $credentials = array(
+//            'email' => $email,
+//            'password' => $passwrd
+//        );
+//
+//        Auth::login($credentials);
 
         //dd($credentials);
 
@@ -222,7 +269,7 @@ class RegisterController extends Controller
                 'lastname' => trim(request()->input('lastname')),
                 'group' => request()->input('group'),
                 'name_agency' => request()->input('name_agency'),
-                'middle_name' => request()->input('mobile'),
+                'mobile' => request()->input('mobile'),
                 'email' => request()->input('email'),
                 'password' => bcrypt(request()->input('password')),
                 'agent_password' => request()->input('password'),
@@ -261,6 +308,7 @@ class RegisterController extends Controller
         Session::put('email_add', Input::get('email'));
         Session::put('passwrd', $passwrd);
         Session::put('userId', $userId);
+        Session::put('agent_arr', $agent_arr);
 
 
         return redirect()->route('get-started-step2');

@@ -26,6 +26,11 @@
             $('input[type="checkbox"]').on('change', function() {
                 $('input[name="' + this.name + '"]').not(this).prop('checked', false);
             });
+
+            $("#accept_terms").click(function() {
+                $("#btnAccept").attr("disabled", !this.checked);
+            });
+
         });
     </script>
 
