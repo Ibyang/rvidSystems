@@ -8,20 +8,39 @@
             @include('frontend.layouts.parts.sidebar')
         @endauth
         </div>
-        <div class="col-lg-9 my-account-form">
-            <h3>Generic Video Order</h3>
+        <div class="col-lg-9 my-account-form"><br>
+            <h3>Standard Video Order</h3><br>
+            <hr>
             <form>
+                <div class="row">
+                    <div class="col-sm-3 pl-0">Property Address #</div>
+                    <div class="col-sm-9">
+                         <input type="text" class="form-control" name="address" required autofocus>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 pl-0"></div>
+                    <div class="col-sm-3">
+                         <input  type="text" class="form-control" name="suburb" required autofocus>
+                    </div>
+                    <div class="col-sm-3">
+                        <input  type="text" class="form-control" name="state" required autofocus>
+                    </div>
+                    <div class="col-sm-3">
+                        <input  type="text" class="form-control" name="postcode" required autofocus>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-3 pl-0">URL Reference</div>
                     <div class="col-sm-9">
-                         <input type="text" class="form-control" name="url" required autofocus placeholder="www...">
+                        <input type="text" class="form-control" name="url" required autofocus>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3 pl-0">Action Receipt #</div>
                     <div class="col-sm-9">
-                         Your Video Number is<br>
-                         <input  type="text" class="form-control" name="url" required autofocus placeholder="xxx">
+                        Your Video Number is<br>
+                        <input  type="text" class="form-control" name="url" required autofocus placeholder="xxx">
                     </div>
                 </div>
                 <div class="row">
@@ -29,11 +48,11 @@
                     <div class="col-sm-9">
                         <div class="row">
                             <div class="col-sm-9 pl-0">
-                                 <b>Generic Video</b><br>
+                                 <b>Standard Video</b><br>
                                  Estimated completion time is<br>
                             </div>
                             <div class="col-sm-3 text-right my-account-subcription">
-                                  <p class="d-inline-block font-weight-bold">$75</p>
+                                  <p class="d-inline-block font-weight-bold">$105</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
                                       <input type="checkbox" class="custom-control-input" id="customCheck2">
                                       <label class="custom-control-label" for="customCheck2"></label>
@@ -77,7 +96,7 @@
                 <div class="row">
                     <div class="col-sm-3 pl-0">Your Preferences <br>Settings are</div>
                     <div class="col-sm-9">
-                        <div class="row">
+                        <!--div class="row">
                             <div class="col-sm pl-0">Company Website</div>
                             <div class="col-sm"><input  type="text" class="form-control" name="" required autofocus placeholder=""></div>
                             <div class="col-sm">
@@ -164,7 +183,7 @@
                                       <label class="custom-control-label" for="customCheck12"></label>
                                   </div>
                             </div>
-                        </div>
+                        </div-->
                         <b>Email Distribution (on completion)</b>
                         <div class="row">
                             <div class="col-sm pl-0">Your Email List</div>

@@ -25,11 +25,11 @@
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-sm-9"><h3 class="color-6600cc">$75</h3></div>
-                            <div class="col-sm-3"><button type="submit" class="btn btn-primary bg-6600cc ">GO</button></div>
+                            <div class="col-sm-3"><button type="submit" id="btnGeneric" class="btn btn-primary bg-6600cc ">GO</button></div>
                         </div>
                         <h4>URL</h4>
                         <form>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="url" id="url" required>
                         </form>
                     </div>
                 </div>
@@ -119,3 +119,45 @@
     </div>
 </div>
 @endsection
+
+<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('#btnGeneric').on('click', function () {
+
+            var url = $('#url').val();
+            if(url == '')
+                alert("Please Enter URL Address.");
+            else{
+                //pass value and redirect to the generic video order page
+                console.log("the value of url is ", url);
+
+                // $.ajax({
+                //     url: '/stateAjaxUser/' + stateCode,
+                //     type: "GET",
+                //     dataType: "json",
+                //     success:function(data) {
+                //         console.log("the return data is ", data);
+                //         $('select[name="suburb"]').empty();
+                //         $.each(data, function(key, value) {
+                //             $('select[name="suburb"]').append('<option value="'+ value +'">'+ value +'</option>');
+                //         });
+                //     }
+                // });
+                
+            }
+
+
+
+        });
+
+
+
+
+    });
+
+
+</script>
+

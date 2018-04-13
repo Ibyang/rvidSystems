@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -90,7 +91,8 @@ class RegisterController extends Controller
 
         //for Email Distribution List
         $emails = explode(',',$email_list);
-        if($emails == null) {
+
+        if($email_list != null) {
             for ($i=0; $i<count($emails); $i++){
                 $email_arr = array(
                     'agent_ID' => $userId,
@@ -101,7 +103,7 @@ class RegisterController extends Controller
         }
 
         $areas = explode(',',$suburb_list);
-        if($areas == null) {
+        if($suburb_list != null) {
             for ($i=0; $i<count($areas); $i++){
                 $broadcast_arr = array(
                     'agent_ID' => $userId,
@@ -164,26 +166,16 @@ class RegisterController extends Controller
 
         AgentInvoice::create($payment_arr);
 
-        return redirect()->route('home');
+        $credentials = array(
+            'email' => $email,
+            'password' => $passwrd
+        );
 
-//        $credentials = array(
-//            'email' => $email,
-//            'password' => $passwrd
-//        );
-//
-//        Auth::login($credentials);
+        Auth::loginUsingId($userId);
 
-        //dd($credentials);
-
-//        if(Auth::attempt($credentials)) {
-//            dd($credentials);
-//            //return redirect()->route('account-make-video');
-//        }
-//        else{
-//            dd('hello world');
-//            //return redirect()->route('home');
-//        }
-
+        if(Auth::check($credentials)) {
+            return redirect()->route('account-make-video');
+        }
         Session::flush();
 
     }

@@ -272,14 +272,17 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/preferences', 'MyPreferencesController@index')->name('account-preferences');
 
+    Route::post('/account/preferences/process/{id}', 'MyPreferencesController@update')->name('account-preferences-process');
 
     Route::get('/account/billing-history', function () {
         return view('frontend.pages.video.billing-history');
     })->name('account-billing-history');
 
-    Route::get('/account/make-video', function () {
-        return view('frontend.pages.video.make-video');
-    })->name('account-make-video');
+//    Route::get('/account/make-video', function () {
+//        return view('frontend.pages.video.make-video');
+//    })->name('account-make-video');
+
+    Route::get('/account/make-video', 'MyAccountController@makeVideo')->name('account-make-video');
 
     Route::get('/account/video-tracker','MyVideoController@VideoTracker')->name('account-video-tracker');
 
@@ -288,6 +291,10 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/account/explore-pictures','MyVideoController@ExplorePicture')->name('account-explore-pictures');
 
     Route::get('/account/generic-video-order','MyVideoController@GenericVideoOrder')->name('account-generic-video-order');
+
+    Route::get('/account/standard-video-order','MyVideoController@StandardVideoOrder')->name('account-standard-video-order');
+
+    Route::get('/account/premium-video-order','MyVideoController@PremiumVideoOrder')->name('account-premium-video-order');
 
     //for posting data for editing of My Account details
     Route::post('/userLogout', 'Auth\LoginController@userLogout')->name('userLogout');

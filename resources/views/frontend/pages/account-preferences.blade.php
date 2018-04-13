@@ -10,14 +10,14 @@
             </div>
             <div class="col-lg-9 my-account-form">
 
-                <form class="form-horizontal" method="POST" action="{{ route('processStep3') }}">
+                <form class="form-horizontal" method="POST" action="{{ route('account-preferences-process', $preference->agent_ID) }}">
                     {{ csrf_field() }}
                     <h3>My Preferences</h3><br>
                     <h3>SURGE OFFER</h3> What is this?
                     <div class="row">
                         <div class="col-sm">
                             <div class="custom-control custom-checkbox premium">
-                                <input type="checkbox" class="group1 custom-control-input" id="customCheck1" value="Always Surge" name="surgeoffer[]">
+                                <input type="checkbox" class="group1 custom-control-input" id="customCheck1" value="Always Surge" name="surgeoffer[]" {{ $preference->surge_offer_option  === "Always Surge" ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="customCheck1"></label>
                                 Always Surge (24 hours) ($5 fixed)
                             </div>
@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="custom-control custom-checkbox premium">
-                                <input type="checkbox" class="group1 custom-control-input" id="customCheck2" value="Always Rush" name="surgeoffer[]">
+                                <input type="checkbox" class="group1 custom-control-input" id="customCheck2" value="Always Rush" name="surgeoffer[]" {{ $preference->surge_offer_option  === "Always Rush" ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="customCheck2"></label>
                                 Always Rush (2 hours) ($45 fixed)
                             </div>
@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="custom-control custom-checkbox premium">
-                                <input type="checkbox" class="group1 custom-control-input" id="customCheck3" value="Sometimes" name="surgeoffer[]" checked>
+                                <input type="checkbox" class="group1 custom-control-input" id="customCheck3" value="Sometimes" name="surgeoffer[]" {{ $preference->surge_offer_option  === "Sometimes" ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="customCheck3"></label>
                                 Sometimes (Ask Me) (Cost of the Day)
                             </div>
@@ -57,7 +57,18 @@
                     <br>Current List <br>
                     <div class="row">
                         <div class="col-sm">
-                            <select name="email_list" id="email_list" multiple class="form-control"></select>
+{{--                            @if($emails != null)--}}
+                            @if($emails->count() > 0)
+                                {{--<p>There is data</p>--}}
+                                <select name="email_list" id="email_list" multiple class="form-control">
+                                    @foreach($emails as $em)
+                                        <option value="{{$em->email}}">{{$em->email}}</option>
+                                    @endforeach
+                                </select>
+                            @else
+                                {{--<p>There is no data</p>--}}
+                                <select name="email_list" id="email_list" multiple class="form-control" style="width: 340px"></select>
+                            @endif
                         </div>
                         <div class="col-sm">
                             <span id="removeEmailLink" style="float: left; color: red; cursor: pointer">Remove -</span>
@@ -70,7 +81,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="custom-control custom-checkbox premium">
-                                <input type="checkbox" class="group1 custom-control-input" id="customCheck4" value="1" name="broadcast_status" checked>
+                                <input type="checkbox" class="group1 custom-control-input" id="customCheck4" value="1" name="broadcast_status" {{ $preference->broadcast_agent  === "1" ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="customCheck4"></label>
                                 Yes, send weekly New Video Update to REVid member real estate agents in the selected areas listed below.
                             </div>
@@ -98,7 +109,18 @@
                     <br>Suburb Selection <br>
                     <div class="row">
                         <div class="col-sm">
-                            <select name="suburb_list" id="suburb_list" multiple class="form-control"></select>
+                            {{--<select name="suburb_list" id="suburb_list" multiple class="form-control"></select>--}}
+
+{{--                            @if($areas != null)--}}
+                            @if($areas->count() > 0)
+                                <select name="suburb_list" id="suburb_list" multiple class="form-control">
+                                    @foreach($areas as $area)
+                                        <option value="{{$area->suburb}}">{{$area->suburb}}</option>
+                                    @endforeach
+                                </select>
+                            @else
+                                <select name="suburb_list" id="suburb_list" multiple class="form-control" style="width: 290px"></select>
+                            @endif
                         </div>
                         <div class="col-sm">
                             <span id="removeSuburbLink" style="float: left; color: red; cursor: pointer">Remove -</span>
@@ -107,7 +129,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="form-group">
-                                <div class="text-right">
+                                <div class="text-center">
                                     <button type="submit" class="btn btn-primary font-weight-bold">
                                         Update Data
                                     </button>
@@ -134,7 +156,7 @@
         });
 
         $('.register-form select').css('background-image', 'none');
-        var $list = $('#email_list').empty();
+        //var $list = $('#email_list').empty();
         var emails = [];
         var areas = [];
         $('span').on('click', function () {

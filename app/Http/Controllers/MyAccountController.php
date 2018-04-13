@@ -111,4 +111,14 @@ class MyAccountController extends Controller
         return redirect('/account/home');
     }
 
+
+    public function makeVideo(){
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.video.make-video', compact('fullname', 'agent'));
+
+    }
+
 }

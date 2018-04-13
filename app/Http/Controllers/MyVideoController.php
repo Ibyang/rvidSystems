@@ -59,7 +59,26 @@ class MyVideoController extends Controller
         $fullname = Auth::user()->name;
         $passwd = Auth::user()->passwd;
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.generic-video-order', compact('fullname', 'passwd', 'agent'));
+        return view('frontend.pages.video.generic-video-order', compact('fullname', 'passwd', 'agent'));
     }
 
+
+    public function StandardVideoOrder()
+    {
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $passwd = Auth::user()->passwd;
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.video.standard-video-order', compact('fullname', 'passwd', 'agent'));
+    }
+
+
+    public function PremiumVideoOrder()
+    {
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $passwd = Auth::user()->passwd;
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.video.premium-video-order', compact('fullname', 'passwd', 'agent'));
+    }
 }
