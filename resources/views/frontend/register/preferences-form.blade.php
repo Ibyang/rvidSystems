@@ -8,7 +8,7 @@
                  <div class="custom-control custom-checkbox premium">
                      <input type="checkbox" class="group1 custom-control-input" id="customCheck1" value="Always Surge" name="surgeoffer[]">
                      <label class="custom-control-label" for="customCheck1"></label>
-                     Always Surge (24 hours) ($5 fixed)
+                     Always Surge (24 hours) ($15 fixed)
                  </div>
              </div>
          </div>

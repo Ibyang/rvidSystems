@@ -93,6 +93,10 @@ class RegisterController extends Controller
         $emails = explode(',',$email_list);
 
         if($email_list != null) {
+            AgentPreferences::where('agent_ID', $userId)->update([
+                'email_distribution' => 1
+            ]);
+
             for ($i=0; $i<count($emails); $i++){
                 $email_arr = array(
                     'agent_ID' => $userId,

@@ -15,14 +15,14 @@
                 <div class="row">
                     <div class="col-sm-3 pl-0">URL Reference</div>
                     <div class="col-sm-9">
-                         <input type="text" class="form-control" name="url" required autofocus placeholder="www...">
+                         <input type="text" class="form-control" name="url" required autofocus value="{{$urldetail->url_address}}">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3 pl-0">Action Receipt #</div>
                     <div class="col-sm-9">
                          Your Video Number is<br>
-                         <input  type="text" class="form-control" name="url" required autofocus placeholder="xxx">
+                         <input  type="text" class="form-control" name="url" required autofocus value="{{$urldetail->ID}}" style="text-align: right">
                     </div>
                 </div>
                 <div class="row">
@@ -36,7 +36,7 @@
                             <div class="col-sm-3 text-right my-account-subcription">
                                   <p class="d-inline-block font-weight-bold">$75</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                      <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
                                       <label class="custom-control-label" for="customCheck2"></label>
                                   </div>
                             </div>
@@ -57,7 +57,7 @@
                             <div class="col-sm">
                                  <p class="d-inline-block font-weight-bold">Add $45</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                      <input type="checkbox" class="custom-control-input" id="customCheck3" {{$preference->surge_offer_option  === "Always Rush" ? 'checked' : '' }}>
                                       <label class="custom-control-label" for="customCheck3"></label>
                                   </div>
                             </div>
@@ -68,7 +68,7 @@
                             <div class="col-sm">
                                  <p class="d-inline-block font-weight-bold">Add $15</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck4">
+                                      <input type="checkbox" class="custom-control-input" id="customCheck4" {{$preference->surge_offer_option  === "Always Surge" ? 'checked' : '' }}>
                                       <label class="custom-control-label" for="customCheck4"></label>
                                   </div>
                             </div>
@@ -169,11 +169,11 @@
                         <b>Email Distribution (on completion)</b>
                         <div class="row">
                             <div class="col-sm pl-0">Your Email List</div>
-                            <div class="col-sm"><input  type="text" class="form-control" name="" required autofocus placeholder=""></div>
+                            <div class="col-sm"><input  type="text" class="form-control" name="" required autofocus value="{{ $preference->email_distribution  === "1" ? 'On' : 'Off' }}"></div>
                             <div class="col-sm">
                                   <p class="d-inline-block font-weight-bold">$5</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck13">
+                                      <input type="checkbox" class="custom-control-input" id="customCheck13" {{ $preference->email_distribution  === "1" ? 'checked' : '' }}>
                                       <label class="custom-control-label" for="customCheck13"></label>
                                   </div>
                             </div>
@@ -181,11 +181,11 @@
                         <b>Broadcast Distribution</b>
                         <div class="row">
                             <div class="col-sm pl-0">Agents in <br>Your Suburbs</div>
-                            <div class="col-sm"><input  type="text" class="form-control" name="" required autofocus placeholder=""></div>
+                            <div class="col-sm"><input  type="text" class="form-control" name="" required autofocus value="{{ $preference->broadcast_agent  === "1" ? 'On' : 'Off' }}"></div>
                             <div class="col-sm">
                                   <p class="d-inline-block font-weight-bold">$5</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck14">
+                                      <input type="checkbox" class="custom-control-input" id="customCheck14" {{ $preference->broadcast_agent  === "1" ? 'checked' : '' }}>
                                       <label class="custom-control-label" for="customCheck14"></label>
                                   </div>
                             </div>
@@ -201,7 +201,7 @@
                             <div class="col-sm">
                                 <p class="d-inline-block font-weight-bold">$0</p>
                                 <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck15">
+                                      <input type="checkbox" class="custom-control-input" id="customCheck15" checked>
                                       <label class="custom-control-label" for="customCheck15"></label>
                                   </div>
                             </div>
@@ -212,7 +212,7 @@
                             <div class="col-sm">
                                 <p class="d-inline-block font-weight-bold">$0</p>
                                 <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck15">
+                                      <input type="checkbox" class="custom-control-input" id="customCheck15" checked>
                                       <label class="custom-control-label" for="customCheck15"></label>
                                   </div>
                             </div>
@@ -225,31 +225,31 @@
                         <div class="row">
                             <div class="col-sm-3 pl-0">Video</div>
                             <div class="col-sm-9">
-                                 <input type="text" class="form-control" name="" required autofocus placeholder="">
+                                 <input type="text" class="form-control" name="" required autofocus value="${{ number_format($cost_generic_video, 2) }}" style="text-align: right">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0">Surge</div>
                             <div class="col-sm-9">
-                                 <input type="text" class="form-control" name="" required autofocus placeholder="">
+                                 <input type="text" class="form-control" name="" required autofocus value="${{ number_format($cost_surge,2) }}" style="text-align: right">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0">Preferences</div>
                             <div class="col-sm-9">
-                                 <input type="text" class="form-control" name="" required autofocus placeholder="">
+                                 <input type="text" class="form-control" name="" required autofocus value="${{ number_format($cost_total_preference,2) }}" style="text-align: right">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0">Extra's</div>
                             <div class="col-sm-9">
-                                 <input type="text" class="form-control" name="" required autofocus placeholder="">
+                                 <input type="text" class="form-control" name="" required autofocus value="${{ number_format($cost_extra, 2) }}" style="text-align: right">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0">Total</div>
                             <div class="col-sm-9">
-                                 <input type="text" class="form-control" name="" required autofocus placeholder="">
+                                 <input type="text" class="form-control" name="" required autofocus value="${{ number_format($total_cost,2) }}" style="text-align: right">
                             </div>
                         </div>
                     </div>

@@ -116,8 +116,10 @@ class MyAccountController extends Controller
 
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+//        dd($userid);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video.make-video', compact('fullname', 'agent'));
+        return view('frontend.pages.video.make-video', compact('fullname', 'agent', 'userid'));
 
     }
 

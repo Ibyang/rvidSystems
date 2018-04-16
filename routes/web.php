@@ -296,6 +296,15 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/premium-video-order','MyVideoController@PremiumVideoOrder')->name('account-premium-video-order');
 
+    //procoess for Generic Video Order
+    Route::post('/account/getGenericVideo', 'MyVideoController@getGenericVideo')->name('getGenericVideo');
+
+    //procoess for Standard Video Order
+    Route::get('/account/getStandardVideo', 'MyVideoController@getStandardVideo')->name('getStandardVideo');
+
+    //procoess for Standard Video Order
+    Route::post('/account/getPremiumVideo', 'MyVideoController@getPremiumVideo')->name('getPremiumVideo');
+
     //for posting data for editing of My Account details
     Route::post('/userLogout', 'Auth\LoginController@userLogout')->name('userLogout');
 

@@ -25,11 +25,13 @@
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-sm-9"><h3 class="color-6600cc">$75</h3></div>
-                            <div class="col-sm-3"><button type="submit" id="btnGeneric" class="btn btn-primary bg-6600cc ">GO</button></div>
+                            <div class="col-sm-3"><button type="submit" id="btnGeneric" class="btn btn-primary bg-6600cc" onclick="event.preventDefault(); document.getElementById('frmGeneric').submit();">GO</button></div>
                         </div>
                         <h4>URL</h4>
-                        <form>
-                            <input type="text" class="form-control" name="url" id="url" required>
+                        <form id="frmGeneric" action="{{ route('getGenericVideo') }}" method="POST">
+                            {{ csrf_field() }}
+                            <input type="url" class="form-control" name="url_generic" id="url_generic" required>
+                            <input type="hidden" name="user_id" id="user_id" value="{{  $userid }}">
                         </form>
                     </div>
                 </div>
@@ -50,7 +52,10 @@
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-sm-9"><h3 class="color-0066ff">$125</h3></div>
-                            <div class="col-sm-3"><button type="submit" class="btn btn-primary bg-0066ff">Start</button></div>
+                            <div class="col-sm-3">
+                                {{--<button type="submit" class="btn btn-primary bg-0066ff">Start</button>--}}
+                                <a href=" {{ route('getStandardVideo') }} "><button class="btn btn-primary bg-0066ff">Start</button></a>
+                            </div>
                         </div>
                         <div class="row make-video-generic text-center">
                             <div class="col">
@@ -105,11 +110,12 @@
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-sm-9"><h3 class="color-ff0033">$375</h3></div>
-                            <div class="col-sm-3"><button type="submit" class="btn btn-primary bg-ff0033">GO</button></div>
+                            <div class="col-sm-3"><button type="submit" class="btn btn-primary bg-ff0033" onclick="event.preventDefault(); document.getElementById('frmPremium').submit();">GO</button></div>
                         </div>
                         <h4>URL OR ADDRESS</h4>
-                        <form>
-                            <input type="text" class="form-control">
+                        <form id="frmPremium" action="{{ route('getPremiumVideo') }}" method="POST">
+                            {{ csrf_field() }}
+                            <input type="text" class="form-control" name="url_premium" id="url_premium" required>
                         </form>
                     </div>
                 </div>
@@ -125,36 +131,17 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('#btnGeneric').on('click', function () {
-
-            var url = $('#url').val();
-            if(url == '')
-                alert("Please Enter URL Address.");
-            else{
-                //pass value and redirect to the generic video order page
-                console.log("the value of url is ", url);
-
-                // $.ajax({
-                //     url: '/stateAjaxUser/' + stateCode,
-                //     type: "GET",
-                //     dataType: "json",
-                //     success:function(data) {
-                //         console.log("the return data is ", data);
-                //         $('select[name="suburb"]').empty();
-                //         $.each(data, function(key, value) {
-                //             $('select[name="suburb"]').append('<option value="'+ value +'">'+ value +'</option>');
-                //         });
-                //     }
-                // });
-                
+        $('#url_generic').keypress(function(e){
+            if(e.which == 13){
+                alert('You pressed enter after entering URL Address in Generic Option!');
             }
-
-
-
         });
 
-
-
+        $('#url_premium').keypress(function(e){
+            if(e.which == 13){
+                alert('You pressed enter after entering URL Address in Premium Option!');
+            }
+        });
 
     });
 
