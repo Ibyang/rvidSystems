@@ -9,6 +9,7 @@ use App\AgentInvoice;
 use App\AgentGeneric;
 use App\AgentPremium;
 use App\AgentStandard;
+use App\AgentBilling;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -236,5 +237,176 @@ class MyVideoController extends Controller
             'cost_premium_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost'));
 
     }
+
+
+    public function postGenericVideo(){
+
+        $user_id = Auth::user()->id;
+        $url = Input::get('url_generic');
+        $videoid = Input::get('videonumber');
+
+        $status_email_distribution = Input::get('emailist');
+        $status_broadcast = Input::get('broadcast');
+
+        if($status_email_distribution === 'On')
+            $email_status = 1;
+        else
+            $email_status = 0;
+
+        if($status_broadcast === 'On')
+            $broadcast_status = 1;
+        else
+            $broadcast_status = 0;
+
+        $total_cost_video = Input::get('total_cost');
+        $ldate = date('Y-m-d H:i:s');
+
+        AgentGeneric::where('ID', $videoid)->update([
+            'url_address' => $url,
+            'total_cost' => $total_cost_video,
+            'apply_driveby' => Input::get('apply_driveby'),
+            'apply_lookfirst' => Input::get('apply_lookfirst'),
+        ]);
+
+        AgentPreferences::where('agent_ID', $user_id)->update([
+            'surge_offer_option' => Input::get('surgeoffer'),
+            'email_distribution' => $email_status,
+            'broadcast_agent' => Input::get('broadcast')
+        ]);
+
+        $cost_arr = array(
+            'agent_ID' => $user_id,
+            'video_id' => $videoid,
+            'video_type' => 'Standard',
+            'video_cost' => Input::get('cost_generic_video'),
+            'surge_cost' => Input::get('cost_surge'),
+            'preferences_cost' => Input::get('cost_preferences'),
+            'extra_cost' => Input::get('cost_extra'),
+            'total_cost' => $total_cost_video,
+            'to_bill' => 1,
+            'billing_date' => $ldate
+        );
+
+        AgentBilling::create($cost_arr);
+
+        return redirect()->route('account-home');
+
+    }
+
+
+    public function postStandardVideo(){
+
+        $user_id = Auth::user()->id;
+//        $url = Input::get('url_generic');
+        $videoid = Input::get('videonumber');
+
+        $status_email_distribution = Input::get('emailist');
+        $status_broadcast = Input::get('broadcast');
+
+        if($status_email_distribution === 'On')
+            $email_status = 1;
+        else
+            $email_status = 0;
+
+        if($status_broadcast === 'On')
+            $broadcast_status = 1;
+        else
+            $broadcast_status = 0;
+
+        $total_cost_video = Input::get('total_cost');
+        $ldate = date('Y-m-d H:i:s');
+
+        AgentStandard::where('ID', $videoid)->update([
+//            'url_address' => $url,
+            'total_cost' => $total_cost_video,
+            'apply_driveby' => Input::get('apply_driveby'),
+            'apply_lookfirst' => Input::get('apply_lookfirst'),
+        ]);
+
+        AgentPreferences::where('agent_ID', $user_id)->update([
+            'surge_offer_option' => Input::get('surgeoffer'),
+            'email_distribution' => $email_status,
+            'broadcast_agent' => Input::get('broadcast')
+        ]);
+
+        $cost_arr = array(
+            'agent_ID' => $user_id,
+            'video_id' => $videoid,
+            'video_type' => 'Standard',
+            'video_cost' => Input::get('cost_standard_video'),
+            'surge_cost' => Input::get('cost_surge'),
+            'preferences_cost' => Input::get('cost_preferences'),
+            'extra_cost' => Input::get('cost_extra'),
+            'total_cost' => $total_cost_video,
+            'to_bill' => 1,
+            'billing_date' => $ldate
+        );
+
+        AgentBilling::create($cost_arr);
+
+        return redirect()->route('account-home');
+
+        //take note that these should redirect to the AI Page (Standard Video System - Step 1)
+
+    }
+
+
+    public function postPremiumVideo(){
+
+        $user_id = Auth::user()->id;
+        $url = Input::get('url_generic');
+        $videoid = Input::get('videonumber');
+
+        $status_email_distribution = Input::get('emailist');
+        $status_broadcast = Input::get('broadcast');
+
+        if($status_email_distribution === 'On')
+            $email_status = 1;
+        else
+            $email_status = 0;
+
+        if($status_broadcast === 'On')
+            $broadcast_status = 1;
+        else
+            $broadcast_status = 0;
+
+        $total_cost_video = Input::get('total_cost');
+        $ldate = date('Y-m-d H:i:s');
+
+        AgentPremium::where('ID', $videoid)->update([
+            'url_address' => $url,
+            'total_cost' => $total_cost_video,
+            'apply_driveby' => Input::get('apply_driveby'),
+            'apply_lookfirst' => Input::get('apply_lookfirst'),
+        ]);
+
+        AgentPreferences::where('agent_ID', $user_id)->update([
+            'surge_offer_option' => Input::get('surgeoffer'),
+            'email_distribution' => $email_status,
+            'broadcast_agent' => Input::get('broadcast')
+        ]);
+
+        $cost_arr = array(
+            'agent_ID' => $user_id,
+            'video_id' => $videoid,
+            'video_type' => 'Generic',
+            'video_cost' => Input::get('cost_premium_video'),
+            'surge_cost' => Input::get('cost_surge'),
+            'preferences_cost' => Input::get('cost_preferences'),
+            'extra_cost' => Input::get('cost_extra'),
+            'total_cost' => $total_cost_video,
+            'to_bill' => 0,
+            'billing_date' => $ldate
+        );
+
+        AgentBilling::create($cost_arr);
+
+        return redirect()->route('account-home');
+
+        //take note that these should redirect to a different page
+
+    }
+
+
 
 }

@@ -305,9 +305,17 @@ Route::group(['middleware' => 'guest'], function() {
     //procoess for Standard Video Order
     Route::post('/account/getPremiumVideo', 'MyVideoController@getPremiumVideo')->name('getPremiumVideo');
 
+    //process to save Billing History and other edits for Generic Video
+    Route::post('/account/postGenericVideo', 'MyVideoController@postGenericVideo')->name('postGenericVideo');
+
+    //process to save Billing History and other edits for Standard Video
+    Route::post('/account/postStandardVideo', 'MyVideoController@postStandardVideo')->name('postStandardVideo');
+
+    //process to save Billing History and other edits for Premium Video
+    Route::post('/account/postPremiumVideo', 'MyVideoController@postPremiumVideo')->name('postPremiumVideo');
+
     //for posting data for editing of My Account details
     Route::post('/userLogout', 'Auth\LoginController@userLogout')->name('userLogout');
-
 
     //routing for editing the User Details under My Account section
     Route::post('/editAccount', 'MyAccountController@editAccount')->name('editAccount');
@@ -317,6 +325,9 @@ Route::group(['middleware' => 'guest'], function() {
 
     //route for editing the Subscription section under My Account section
     Route::post('/editSubscription', 'MyAccountController@editSubscription')->name('editSubscription');
+
+
+
 //});
 
 

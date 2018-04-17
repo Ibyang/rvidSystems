@@ -11,18 +11,19 @@
         <div class="col-lg-9 my-account-form"><br>
             <h3>Generic Video Order</h3><br>
             <hr>
-            <form>
+            <form method="POST" action=" {{ route('postGenericVideo') }} ">
+                {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm-3 pl-0">URL Reference</div>
                     <div class="col-sm-9">
-                         <input type="text" class="form-control" name="url" required autofocus value="{{$urldetail->url_address}}">
+                         <input type="text" class="form-control" name="url_generic" required autofocus value="{{$urldetail->url_address}}">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3 pl-0">Action Receipt #</div>
                     <div class="col-sm-9">
                          Your Video Number is<br>
-                         <input  type="text" class="form-control" name="url" required autofocus value="{{$urldetail->ID}}" style="text-align: right">
+                         <input  type="text" class="form-control" name="videonumber" required autofocus value="{{$urldetail->ID}}" style="text-align: right" readonly>
                     </div>
                 </div>
                 <div class="row">
@@ -42,8 +43,8 @@
                             </div>
                          </div>
                          <div class="row">
-                                <div class="col-sm p-0"><input  type="text" class="form-control" name="hours" required autofocus placeholder="## hours"></div>
-                                <div class="col-sm p-0"><input  type="text" class="form-control" name="date" required autofocus placeholder="Date Due"></div>
+                                <div class="col-sm p-0"><input  type="text" class="form-control" name="hours" placeholder="## hours"></div>
+                                <div class="col-sm p-0"><input  type="text" class="form-control" name="date" placeholder="Date Due"></div>
                          </div>
                     </div>
                 </div>
@@ -53,23 +54,23 @@
                         <p class="font-weight-bold">Do you want to SURGE?</p>
                         <div class="row">
                             <div class="col-sm pl-0">Rush</div>
-                            <div class="col-sm"><input  type="text" class="form-control" name="" required autofocus placeholder="2 hours"></div>
+                            <div class="col-sm"><input  type="text" class="form-control" name=""  placeholder="2 hours"></div>
                             <div class="col-sm">
                                  <p class="d-inline-block font-weight-bold">Add $45</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck3" {{$preference->surge_offer_option  === "Always Rush" ? 'checked' : '' }}>
-                                      <label class="custom-control-label" for="customCheck3"></label>
+                                      <input type="checkbox" class="custom-control-input" name="surgeoffer[]" value="Always Rush" id="chkRush" {{$preference->surge_offer_option  === "Always Rush" ? 'checked' : '' }}>
+                                      <label class="custom-control-label" for="chkRush"></label>
                                   </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm pl-0">Surge</div>
-                            <div class="col-sm"><input  type="text" class="form-control" name="" required autofocus placeholder="24 hours"></div>
+                            <div class="col-sm"><input  type="text" class="form-control" name="" placeholder="24 hours"></div>
                             <div class="col-sm">
                                  <p class="d-inline-block font-weight-bold">Add $15</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck4" {{$preference->surge_offer_option  === "Always Surge" ? 'checked' : '' }}>
-                                      <label class="custom-control-label" for="customCheck4"></label>
+                                      <input type="checkbox" class="custom-control-input" name="surgeoffer[]" value="Always Surge" id="chkSurge" {{$preference->surge_offer_option  === "Always Surge" ? 'checked' : '' }}>
+                                      <label class="custom-control-label" for="chkSurge"></label>
                                   </div>
                             </div>
                         </div>
@@ -169,24 +170,24 @@
                         <b>Email Distribution (on completion)</b>
                         <div class="row">
                             <div class="col-sm pl-0">Your Email List</div>
-                            <div class="col-sm"><input  type="text" class="form-control" name="" required autofocus value="{{ $preference->email_distribution  === "1" ? 'On' : 'Off' }}"></div>
+                            <div class="col-sm"><input  type="text" class="form-control" name="emailist" id="emailist" required autofocus value="{{ $preference->email_distribution  === "1" ? 'On' : 'Off' }}"></div>
                             <div class="col-sm">
                                   <p class="d-inline-block font-weight-bold">$5</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck13" {{ $preference->email_distribution  === "1" ? 'checked' : '' }}>
-                                      <label class="custom-control-label" for="customCheck13"></label>
+                                      <input type="checkbox" class="custom-control-input" value="1" name="chkEmailList" id="chkEmailList" {{ $preference->email_distribution  === "1" ? 'checked' : '' }}>
+                                      <label class="custom-control-label" for="chkEmailList"></label>
                                   </div>
                             </div>
                         </div>
                         <b>Broadcast Distribution</b>
                         <div class="row">
                             <div class="col-sm pl-0">Agents in <br>Your Suburbs</div>
-                            <div class="col-sm"><input  type="text" class="form-control" name="" required autofocus value="{{ $preference->broadcast_agent  === "1" ? 'On' : 'Off' }}"></div>
+                            <div class="col-sm"><input  type="text" class="form-control" name="broadcast" id="broadcast" required autofocus value="{{ $preference->broadcast_agent  === "1" ? 'On' : 'Off' }}"></div>
                             <div class="col-sm">
                                   <p class="d-inline-block font-weight-bold">$5</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck14" {{ $preference->broadcast_agent  === "1" ? 'checked' : '' }}>
-                                      <label class="custom-control-label" for="customCheck14"></label>
+                                      <input type="checkbox" class="custom-control-input" value="1" name="chkBroadcast" id="chkBroadcast" {{ $preference->broadcast_agent  === "1" ? 'checked' : '' }}>
+                                      <label class="custom-control-label" for="chkBroadcast"></label>
                                   </div>
                             </div>
                         </div>
@@ -201,7 +202,7 @@
                             <div class="col-sm">
                                 <p class="d-inline-block font-weight-bold">$0</p>
                                 <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck15" checked>
+                                      <input type="checkbox" class="custom-control-input" name="apply_driveby" value="1" id="customCheck15" checked>
                                       <label class="custom-control-label" for="customCheck15"></label>
                                   </div>
                             </div>
@@ -212,8 +213,8 @@
                             <div class="col-sm">
                                 <p class="d-inline-block font-weight-bold">$0</p>
                                 <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" id="customCheck15" checked>
-                                      <label class="custom-control-label" for="customCheck15"></label>
+                                      <input type="checkbox" class="custom-control-input" name="apply_lookfirst" value="1" id="customCheck16" checked>
+                                      <label class="custom-control-label" for="customCheck16"></label>
                                   </div>
                             </div>
                         </div>
@@ -225,38 +226,41 @@
                         <div class="row">
                             <div class="col-sm-3 pl-0">Video</div>
                             <div class="col-sm-9">
-                                 <input type="text" class="form-control" name="" required autofocus value="${{ number_format($cost_generic_video, 2) }}" style="text-align: right">
+                                 <input type="text" class="form-control" id="cost_generic_video" name="cost_generic_video" required autofocus value="{{ number_format($cost_generic_video, 2) }}" style="text-align: right" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0">Surge</div>
                             <div class="col-sm-9">
-                                 <input type="text" class="form-control" name="" required autofocus value="${{ number_format($cost_surge,2) }}" style="text-align: right">
+                                 <input type="text" class="form-control" id="cost_surge" name="cost_surge" required autofocus value="{{ number_format($cost_surge,2) }}" style="text-align: right" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0">Preferences</div>
                             <div class="col-sm-9">
-                                 <input type="text" class="form-control" name="" required autofocus value="${{ number_format($cost_total_preference,2) }}" style="text-align: right">
+                                 <input type="text" class="form-control" id="cost_preferences" name="cost_preferences" required autofocus value="{{ number_format($cost_total_preference,2) }}" style="text-align: right" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0">Extra's</div>
                             <div class="col-sm-9">
-                                 <input type="text" class="form-control" name="" required autofocus value="${{ number_format($cost_extra, 2) }}" style="text-align: right">
+                                 <input type="text" class="form-control" id="cost_extra" name="cost_extra" required autofocus value="{{ number_format($cost_extra, 2) }}" style="text-align: right" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0">Total</div>
                             <div class="col-sm-9">
-                                 <input type="text" class="form-control" name="" required autofocus value="${{ number_format($total_cost,2) }}" style="text-align: right">
+                                 <input type="text" class="form-control" id="total_cost" name="total_cost" required autofocus value="{{ number_format($total_cost,2) }}" style="text-align: right" readonly>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm"><a href="">Terms and Conditions</a></div>
-                    <div class="col-sm"><button type="button" class="btn btn-primary">CONFIRM</button></div>
+                    <div class="col-sm">
+                        <input type="checkbox" class="group1 custom-control-input" id="accept_terms" value="1" name="accept_terms">
+                        <a href="">Terms and Conditions</a>
+                    </div>
+                    <div class="col-sm"><button type="submit" id="btnConfirm" class="btn btn-primary">CONFIRM</button></div>
                 </div>
             </form>
             
@@ -264,3 +268,173 @@
     </div>
 </div>
 @endsection
+
+<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        //for selecting only one checkbox at a time
+
+        var generic_video = $("#cost_generic_video").val();
+        var cost_surge = $("#cost_surge").val();
+        var cost_pref = $("#cost_preferences").val();
+        var cost_extra = $("#cost_extra").val();
+        var total_cost =  $("#total_cost").val();
+
+        $("#chkRush").click(function() {
+            if($("#chkRush").is(':checked')){
+                // Code in the case checkbox is checked.
+                cost_surge = 45;
+                var roundedSurgeValue = cost_surge.toFixed(2);
+                $('#cost_surge').val(roundedSurgeValue);
+
+                total_cost = parseInt(generic_video) + parseInt(cost_surge) + parseInt(cost_pref) + parseInt(cost_extra);
+                var roundedTotalCost = total_cost.toFixed(2);
+                $('#total_cost').val(roundedTotalCost);
+            }
+        });
+
+        $("#chkSurge").click(function() {
+            if($("#chkSurge").is(':checked')){
+                // Code in the case checkbox is checked.
+                cost_surge = 15;
+                var roundedSurgeValue = cost_surge.toFixed(2);
+                $('#cost_surge').val(roundedSurgeValue);
+
+                total_cost = parseInt(generic_video) + parseInt(cost_surge) + parseInt(cost_pref) + parseInt(cost_extra);
+                var roundedTotalCost = total_cost.toFixed(2);
+                $('#total_cost').val(roundedTotalCost);
+            }
+        });
+
+        $("#chkEmailList").click(function() {
+            if( $("#chkEmailList").is(':checked') && $("#chkBroadcast").is(':checked')){
+                // Code in the case checkbox is checked.
+                $('#emailist').val('On');
+
+                var emailist = 5.00;
+                var broadcast = 5;
+                cost_pref = emailist + broadcast;
+                var roundedPrefValue = cost_pref.toFixed(2);
+                $('#cost_preferences').val(roundedPrefValue);
+
+                total_cost = parseInt(generic_video) + parseInt(cost_surge) + parseInt(cost_pref) + parseInt(cost_extra);
+                var roundedTotalCost = total_cost.toFixed(2);
+                $('#total_cost').val(roundedTotalCost);
+            }
+            else if($("#chkEmailList").not(':checked') && $("#chkBroadcast").is(':checked')){
+                // Code in the case checkbox is checked.
+                $('#emailist').val('Off');
+
+                var emailist = 0;
+                var broadcast = 5;
+                cost_pref = emailist + broadcast;
+                var roundedPrefValue = cost_pref.toFixed(2);
+                $('#cost_preferences').val(roundedPrefValue);
+
+                total_cost = parseInt(generic_video) + parseInt(cost_surge) + parseInt(cost_pref) + parseInt(cost_extra);
+                var roundedTotalCost = total_cost.toFixed(2);
+                $('#total_cost').val(roundedTotalCost);
+            }
+            else if($("#chkEmailList").is(':checked') && $("#chkBroadcast").not(':checked')){
+                // Code in the case checkbox is checked.
+                $('#emailist').val('On');
+
+                var emailist = 5;
+                var broadcast = 0;
+                cost_pref = emailist + broadcast;
+                var roundedPrefValue = cost_pref.toFixed(2);
+                $('#cost_preferences').val(roundedPrefValue);
+
+                total_cost = parseInt(generic_video) + parseInt(cost_surge) + parseInt(cost_pref) + parseInt(cost_extra);
+                var roundedTotalCost = total_cost.toFixed(2);
+                $('#total_cost').val(roundedTotalCost);
+            }
+            else {
+
+                $('#emailist').val('Off');
+
+                var emailist = 0;
+                var broadcast = 0;
+                cost_pref = emailist + broadcast;
+                var roundedPrefValue = cost_pref.toFixed(2);
+                $('#cost_preferences').val(roundedPrefValue);
+
+                total_cost = parseInt(generic_video) + parseInt(cost_surge) + parseInt(cost_pref) + parseInt(cost_extra);
+                var roundedTotalCost = total_cost.toFixed(2);
+                $('#total_cost').val(roundedTotalCost);
+            }
+        });
+
+        $("#chkBroadcast").click(function() {
+            if( $("#chkEmailList").is(':checked') && $("#chkBroadcast").is(':checked')){
+                // Code in the case checkbox is checked.
+                $('#broadcast').val('On');
+
+                var emailist = 5;
+                var broadcast = 5;
+                cost_pref = emailist + broadcast;
+                var roundedPrefValue = cost_pref.toFixed(2);
+                $('#cost_preferences').val(roundedPrefValue);
+
+                total_cost = parseInt(generic_video) + parseInt(cost_surge) + parseInt(cost_pref) + parseInt(cost_extra);
+                var roundedTotalCost = total_cost.toFixed(2);
+                $('#total_cost').val(roundedTotalCost);
+            }
+            else if($("#chkEmailList").not(':checked') && $("#chkBroadcast").is(':checked')){
+                // Code in the case checkbox is checked.
+                $('#broadcast').val('On');
+
+                var emailist = 0;
+                var broadcast = 5;
+                cost_pref = emailist + broadcast;
+                var roundedPrefValue = cost_pref.toFixed(2);
+                $('#cost_preferences').val(roundedPrefValue);
+
+                total_cost = parseInt(generic_video) + parseInt(cost_surge) + parseInt(cost_pref) + parseInt(cost_extra);
+                var roundedTotalCost = total_cost.toFixed(2);
+                $('#total_cost').val(roundedTotalCost);
+            }
+            else if($("#chkEmailList").is(':checked') && $("#chkBroadcast").not(':checked')){
+                // Code in the case checkbox is checked.
+                $('#broadcast').val('Off');
+
+                var emailist = 5;
+                var broadcast = 0;
+                cost_pref = emailist + broadcast;
+                var roundedPrefValue = cost_pref.toFixed(2);
+                $('#cost_preferences').val(roundedPrefValue);
+
+                total_cost = generic_video + cost_surge + cost_pref + cost_extra;
+                var roundedTotalCost = total_cost.toFixed(2);
+                $('#total_cost').val(roundedTotalCost);
+            }
+            else {
+
+                $('#broadcast').val('Off');
+
+                var emailist = 0;
+                var broadcast = 0;
+                cost_pref = emailist + broadcast;
+                var roundedPrefValue = cost_pref.toFixed(2);
+                $('#cost_preferences').val(roundedPrefValue);
+
+                total_cost = parseInt(generic_video) + parseInt(cost_surge) + parseInt(cost_pref) + parseInt(cost_extra);
+                var roundedTotalCost = total_cost.toFixed(2);
+                $('#total_cost').val(roundedTotalCost);
+            }
+        });
+
+        $('input[type="checkbox"]').on('change', function() {
+            $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+        });
+
+        $("#accept_terms").click(function() {
+            $("#btnConfirm").attr("disabled", !this.checked);
+        });
+
+    });
+</script>
+
+
+
