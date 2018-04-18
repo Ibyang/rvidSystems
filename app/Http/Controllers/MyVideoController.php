@@ -239,27 +239,99 @@ class MyVideoController extends Controller
     }
 
 
-    public function postGenericVideo(){
+    public function postGenericVideo()
+    {
 
         $user_id = Auth::user()->id;
+        $email = Auth::user()->email;
         $url = Input::get('url_generic');
         $videoid = Input::get('videonumber');
+        $surgeoffer = Input::get('surgeoffer');
+        $surge_value = $surgeoffer[0];
+
+        $billdate = date('d/m/Y');
 
         $status_email_distribution = Input::get('emailist');
         $status_broadcast = Input::get('broadcast');
 
-        if($status_email_distribution === 'On')
+        $agent = Agent::where('email', $email)->get(['address','suburb', 'state', 'postcode'])->first();
+        $video_generic_description = "#" . $videoid . $agent->address;
+
+        //for storing cost of email distribution
+        $videocost_arr = array(
+            'agent_ID' => $user_id,
+            'video_ID' => $videoid,
+            'description' => $video_generic_description,
+            'amount' => Input::get('cost_generic_video'),
+            'to_bill' => 1,
+            'billing_date' => $billdate
+        );
+        AgentBilling::create($videocost_arr);
+
+        //for storing cost of surge
+        if($surge_value === 'Always Rush'){
+            $surge_rush_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Surge (2 hours)',
+                'amount' => 45,
+                'to_bill' => 1,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($surge_rush_arr);
+        }
+        else if($surge_value === 'Always Surge'){
+            $surge_cost_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Surge (24 hours)',
+                'amount' => 15,
+                'to_bill' => 1,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($surge_cost_arr);
+        }
+
+        if ($status_email_distribution === 'On')
+        {
             $email_status = 1;
+            $email_cost = 5;
+
+            //for storing cost of email distribution
+            $emailcost_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Email Distribution List',
+                'amount' => $email_cost,
+                'to_bill' => 1,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($emailcost_arr);
+        }
         else
             $email_status = 0;
 
         if($status_broadcast === 'On')
+        {
             $broadcast_status = 1;
+            $broadcast_cost = 5;
+
+            //for storing cost of email distribution
+            $broadcastcost_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Broadcast to Areas',
+                'amount' => $broadcast_cost,
+                'to_bill' => 1,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($broadcastcost_arr);
+        }
         else
             $broadcast_status = 0;
 
         $total_cost_video = Input::get('total_cost');
-        $ldate = date('Y-m-d H:i:s');
+
 
         AgentGeneric::where('ID', $videoid)->update([
             'url_address' => $url,
@@ -269,27 +341,27 @@ class MyVideoController extends Controller
         ]);
 
         AgentPreferences::where('agent_ID', $user_id)->update([
-            'surge_offer_option' => Input::get('surgeoffer'),
+            'surge_offer_option' => $surge_value,
             'email_distribution' => $email_status,
-            'broadcast_agent' => Input::get('broadcast')
+            'broadcast_agent' => $broadcast_status
         ]);
 
-        $cost_arr = array(
-            'agent_ID' => $user_id,
-            'video_id' => $videoid,
-            'video_type' => 'Standard',
-            'video_cost' => Input::get('cost_generic_video'),
-            'surge_cost' => Input::get('cost_surge'),
-            'preferences_cost' => Input::get('cost_preferences'),
-            'extra_cost' => Input::get('cost_extra'),
-            'total_cost' => $total_cost_video,
-            'to_bill' => 1,
-            'billing_date' => $ldate
-        );
+//        $cost_arr = array(
+//            'agent_ID' => $user_id,
+//            'video_id' => $videoid,
+//            'video_type' => 'Standard',
+//            'video_cost' => Input::get('cost_generic_video'),
+//            'surge_cost' => Input::get('cost_surge'),
+//            'preferences_cost' => Input::get('cost_preferences'),
+//            'extra_cost' => Input::get('cost_extra'),
+//            'total_cost' => $total_cost_video,
+//            'to_bill' => 1,
+//            'billing_date' => $ldate
+//        );
 
-        AgentBilling::create($cost_arr);
+//        AgentBilling::create($cost_arr);
 
-        return redirect()->route('account-home');
+        return redirect()->route('account-make-video');
 
     }
 
@@ -299,22 +371,91 @@ class MyVideoController extends Controller
         $user_id = Auth::user()->id;
 //        $url = Input::get('url_generic');
         $videoid = Input::get('videonumber');
+        $address = Input::get('address');
+        $surgeoffer = Input::get('surgeoffer');
+        $surge_value = $surgeoffer[0];
+
+        $billdate = date('d/m/Y');
 
         $status_email_distribution = Input::get('emailist');
         $status_broadcast = Input::get('broadcast');
 
-        if($status_email_distribution === 'On')
+        $video_standard_description = "#" . $videoid . $address;
+
+        //for storing cost of email distribution
+        $videocost_arr = array(
+            'agent_ID' => $user_id,
+            'video_ID' => $videoid,
+            'description' => $video_standard_description,
+            'amount' => Input::get('cost_standard_video'),
+            'to_bill' => 1,
+            'billing_date' => $billdate
+        );
+        AgentBilling::create($videocost_arr);
+
+        //for storing cost of surge
+        if($surge_value === 'Always Rush'){
+            $surge_rush_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Surge (2 hours)',
+                'amount' => 45,
+                'to_bill' => 1,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($surge_rush_arr);
+        }
+        else if($surge_value === 'Always Surge'){
+            $surge_cost_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Surge (24 hours)',
+                'amount' => 15,
+                'to_bill' => 1,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($surge_cost_arr);
+        }
+
+        if($status_email_distribution === 'On'){
             $email_status = 1;
+            $email_cost = 5;
+
+            //for storing cost of email distribution
+            $emailcost_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Email Distribution List',
+                'amount' => $email_cost,
+                'to_bill' => 1,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($emailcost_arr);
+        }
+
         else
             $email_status = 0;
 
-        if($status_broadcast === 'On')
+        if($status_broadcast === 'On'){
             $broadcast_status = 1;
+            $broadcast_cost = 5;
+
+            //for storing cost of email distribution
+            $broadcastcost_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Broadcast to Areas',
+                'amount' => $broadcast_cost,
+                'to_bill' => 1,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($broadcastcost_arr);
+        }
+
         else
             $broadcast_status = 0;
 
         $total_cost_video = Input::get('total_cost');
-        $ldate = date('Y-m-d H:i:s');
 
         AgentStandard::where('ID', $videoid)->update([
 //            'url_address' => $url,
@@ -324,25 +465,25 @@ class MyVideoController extends Controller
         ]);
 
         AgentPreferences::where('agent_ID', $user_id)->update([
-            'surge_offer_option' => Input::get('surgeoffer'),
+            'surge_offer_option' => $surge_value,
             'email_distribution' => $email_status,
-            'broadcast_agent' => Input::get('broadcast')
+            'broadcast_agent' => $broadcast_status
         ]);
 
-        $cost_arr = array(
-            'agent_ID' => $user_id,
-            'video_id' => $videoid,
-            'video_type' => 'Standard',
-            'video_cost' => Input::get('cost_standard_video'),
-            'surge_cost' => Input::get('cost_surge'),
-            'preferences_cost' => Input::get('cost_preferences'),
-            'extra_cost' => Input::get('cost_extra'),
-            'total_cost' => $total_cost_video,
-            'to_bill' => 1,
-            'billing_date' => $ldate
-        );
-
-        AgentBilling::create($cost_arr);
+//        $cost_arr = array(
+//            'agent_ID' => $user_id,
+//            'video_id' => $videoid,
+//            'video_type' => 'Standard',
+//            'video_cost' => Input::get('cost_standard_video'),
+//            'surge_cost' => Input::get('cost_surge'),
+//            'preferences_cost' => Input::get('cost_preferences'),
+//            'extra_cost' => Input::get('cost_extra'),
+//            'total_cost' => $total_cost_video,
+//            'to_bill' => 1,
+//            'billing_date' => $ldate
+//        );
+//
+//        AgentBilling::create($cost_arr);
 
         return redirect()->route('account-home');
 
@@ -354,24 +495,90 @@ class MyVideoController extends Controller
     public function postPremiumVideo(){
 
         $user_id = Auth::user()->id;
-        $url = Input::get('url_generic');
+        $url = Input::get('url_premium');
         $videoid = Input::get('videonumber');
+        $address = Input::get('address');
+        $surgeoffer = Input::get('surgeoffer');
+        $surge_value = $surgeoffer[0];
+
+        $billdate = date('d/m/Y');
 
         $status_email_distribution = Input::get('emailist');
         $status_broadcast = Input::get('broadcast');
 
-        if($status_email_distribution === 'On')
+        $video_premium_description = "#" . $videoid . $address;
+
+        //for storing cost of email distribution
+        $videocost_arr = array(
+            'agent_ID' => $user_id,
+            'video_ID' => $videoid,
+            'description' => $video_premium_description,
+            'amount' => Input::get('cost_standard_video'),
+            'to_bill' => 0,
+            'billing_date' => $billdate
+        );
+        AgentBilling::create($videocost_arr);
+
+        //for storing cost of surge
+        if($surge_value === 'Always Rush'){
+            $surge_rush_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Surge (2 hours)',
+                'amount' => 45,
+                'to_bill' => 0,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($surge_rush_arr);
+        }
+        else if($surge_value === 'Always Surge'){
+            $surge_cost_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Surge (24 hours)',
+                'amount' => 15,
+                'to_bill' => 0,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($surge_cost_arr);
+        }
+
+        if($status_email_distribution === 'On'){
             $email_status = 1;
+            $email_cost = 5;
+            $emailcost_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Email Distribution List',
+                'amount' => $email_cost,
+                'to_bill' => 0,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($emailcost_arr);
+        }
         else
             $email_status = 0;
 
-        if($status_broadcast === 'On')
+        if($status_broadcast === 'On'){
             $broadcast_status = 1;
+            $broadcast_cost = 5;
+
+            //for storing cost of email distribution
+            $broadcastcost_arr = array(
+                'agent_ID' => $user_id,
+                'video_ID' => $videoid,
+                'description' => 'Broadcast to Areas',
+                'amount' => $broadcast_cost,
+                'to_bill' => 0,
+                'billing_date' => $billdate
+            );
+            AgentBilling::create($broadcastcost_arr);
+        }
         else
             $broadcast_status = 0;
 
         $total_cost_video = Input::get('total_cost');
-        $ldate = date('Y-m-d H:i:s');
+//        $ldate = date('Y-m-d H:i:s');
 
         AgentPremium::where('ID', $videoid)->update([
             'url_address' => $url,
@@ -381,25 +588,25 @@ class MyVideoController extends Controller
         ]);
 
         AgentPreferences::where('agent_ID', $user_id)->update([
-            'surge_offer_option' => Input::get('surgeoffer'),
+            'surge_offer_option' => $surge_value,
             'email_distribution' => $email_status,
-            'broadcast_agent' => Input::get('broadcast')
+            'broadcast_agent' => $broadcast_status
         ]);
 
-        $cost_arr = array(
-            'agent_ID' => $user_id,
-            'video_id' => $videoid,
-            'video_type' => 'Generic',
-            'video_cost' => Input::get('cost_premium_video'),
-            'surge_cost' => Input::get('cost_surge'),
-            'preferences_cost' => Input::get('cost_preferences'),
-            'extra_cost' => Input::get('cost_extra'),
-            'total_cost' => $total_cost_video,
-            'to_bill' => 0,
-            'billing_date' => $ldate
-        );
-
-        AgentBilling::create($cost_arr);
+//        $cost_arr = array(
+//            'agent_ID' => $user_id,
+//            'video_id' => $videoid,
+//            'video_type' => 'Generic',
+//            'video_cost' => Input::get('cost_premium_video'),
+//            'surge_cost' => Input::get('cost_surge'),
+//            'preferences_cost' => Input::get('cost_preferences'),
+//            'extra_cost' => Input::get('cost_extra'),
+//            'total_cost' => $total_cost_video,
+//            'to_bill' => 0,
+//            'billing_date' => $ldate
+//        );
+//
+//        AgentBilling::create($cost_arr);
 
         return redirect()->route('account-home');
 

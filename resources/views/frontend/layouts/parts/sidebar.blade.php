@@ -15,7 +15,7 @@
     </li>
     <li>
         <i class="account-icon my-creator"></i>
-        <a href="">My Video Creator</a>
+        <a href=" {{ route('account-make-video') }}">My Video Creator</a>
     </li>
     <li>
         <i class="account-icon my-tracker"></i>

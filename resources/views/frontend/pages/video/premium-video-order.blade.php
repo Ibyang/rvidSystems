@@ -16,25 +16,25 @@
                 <div class="row">
                     <div class="col-sm-3 pl-0">Property Address #</div>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="address" required autofocus value=" {{ $agent->address }} ">
+                        <input type="text" class="form-control" name="address" autofocus value=" {{ $agent->address }} ">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3 pl-0"></div>
                     <div class="col-sm-3">
-                        <input  type="text" class="form-control" name="suburb" required autofocus value=" {{ $agent->suburb }} ">
+                        <input  type="text" class="form-control" name="suburb" autofocus value=" {{ $agent->suburb }} ">
                     </div>
                     <div class="col-sm-3">
-                        <input  type="text" class="form-control" name="state" required autofocus value=" {{ $agent->state }} ">
+                        <input  type="text" class="form-control" name="state" autofocus value=" {{ $agent->state }} ">
                     </div>
                     <div class="col-sm-3">
-                        <input  type="text" class="form-control" name="postcode" required autofocus value=" {{ $agent->postcode }} ">
+                        <input  type="text" class="form-control" name="postcode" autofocus value=" {{ $agent->postcode }} ">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3 pl-0">URL Address</div>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="url" required autofocus value="{{$urldetail->url_address}}">
+                        <input type="text" class="form-control" name="url_premium" autofocus value="{{$urldetail->url_address}}">
                     </div>
                 </div>
                 <div class="row">

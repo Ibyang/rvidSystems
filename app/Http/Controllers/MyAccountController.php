@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\AgentBilling;
 use App\User;
 use App\AgentInvoice;
 use App\FAQ;
@@ -22,9 +23,12 @@ class MyAccountController extends Controller
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
         $passwd = Auth::user()->passwd;
+        $userid = Auth::user()->id;
+        $billing = AgentBilling::where('agent_ID', $userid)->latest('created_at')->get();
+//        dd($billing);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         $invoice = AgentInvoice::where('email', $email)->first();
-        return view('frontend.pages.my-account', compact('fullname', 'passwd', 'agent', 'invoice'));
+        return view('frontend.pages.my-account', compact('fullname', 'passwd', 'agent', 'invoice', 'billing'));
     }
 
 

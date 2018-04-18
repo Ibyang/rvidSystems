@@ -83,10 +83,18 @@
                     </div>
                 </div>
             </div>
-            <span class="tooltip" title="What do we get in the subscription?">What Do We Get</span>
-            <a href="" onclick="event.preventDefault(); document.getElementById('form-subscription-details').submit();">Change subscription</a>
+            <div class="row">
+                <div class="col-6">
+                    <a href="" onclick="event.preventDefault(); document.getElementById('form-subscription-details').submit();">Change subscription</a>
+                </div>
+                <div class="col-6">
+                    <span class="tooltip" title="What do we get in the subscription?">What Do We Get</span>
+                    <a href="">what do we get</a>
+                </div>
+            </div>
+
             {{--<a href="">Change subscription</a>--}}
-            <a href="">what do we get</a>
+
         </div>
 
     </form>
