@@ -270,13 +270,22 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/help', 'MyHelpController@index')->name('account-help');
 
+    Route::get('/account/terms-condition', 'MyAccountController@getTermsCondition')->name('account-terms-condition');
+
+    Route::get('/account/copyright', 'MyAccountController@getCopyright')->name('account-copyright');
+
+    Route::get('/account/privacy-terms', 'MyAccountController@getPrivacy')->name('account-privacy-terms');
+
     Route::get('/account/preferences', 'MyPreferencesController@index')->name('account-preferences');
 
     Route::post('/account/preferences/process/{id}', 'MyPreferencesController@update')->name('account-preferences-process');
 
-    Route::get('/account/billing-history', function () {
-        return view('frontend.pages.video.billing-history');
-    })->name('account-billing-history');
+    Route::post('/account/billing-history', 'MyAccountController@getBilling')->name('account-billing-history');
+
+
+//    Route::get('/account/billing-history', function () {
+//        return view('frontend.pages.video.billing-history');
+//    })->name('account-billing-history');
 
 //    Route::get('/account/make-video', function () {
 //        return view('frontend.pages.video.make-video');

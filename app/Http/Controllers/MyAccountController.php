@@ -24,7 +24,7 @@ class MyAccountController extends Controller
         $fullname = Auth::user()->name;
         $passwd = Auth::user()->passwd;
         $userid = Auth::user()->id;
-        $billing = AgentBilling::where('agent_ID', $userid)->latest('created_at')->get();
+        $billing = AgentBilling::where('agent_ID', $userid)->latest('created_at')->orderBy('ID')->get();
 //        dd($billing);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         $invoice = AgentInvoice::where('email', $email)->first();
@@ -115,6 +115,19 @@ class MyAccountController extends Controller
         return redirect('/account/home');
     }
 
+    public function getBilling(){
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+
+        //for generic billing
+        $genericBilling = AgentBilling::where('agent_ID', $userid)->latest('created_at')->orderBy('ID')->get();
+//        dd($billing);
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.my-account', compact('fullname', 'passwd', 'agent', 'billing'));
+
+    }
 
     public function makeVideo(){
 
@@ -124,6 +137,42 @@ class MyAccountController extends Controller
 //        dd($userid);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         return view('frontend.pages.video.make-video', compact('fullname', 'agent', 'userid'));
+
+    }
+
+
+    public function getTermsCondition(){
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+//        dd($userid);
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.account-terms-condition', compact('fullname', 'agent', 'userid'));
+
+    }
+
+
+    public function getCopyright(){
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+//        dd($userid);
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.account-copyright', compact('fullname', 'agent', 'userid'));
+
+    }
+
+
+    public function getPrivacy(){
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+//        dd($userid);
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.account-privacy-terms', compact('fullname', 'agent', 'userid'));
 
     }
 

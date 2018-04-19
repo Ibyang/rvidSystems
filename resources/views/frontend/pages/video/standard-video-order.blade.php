@@ -11,7 +11,7 @@
         <div class="col-lg-9 my-account-form"><br>
             <h3>Standard Video Order</h3><br>
             <hr>
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('postStandardVideo') }}">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm-3 pl-0">Property Address #</div>
@@ -41,7 +41,7 @@
                     <div class="col-sm-3 pl-0">Action Receipt #</div>
                     <div class="col-sm-9">
                         Your Video Number is<br>
-                        <input  type="text" class="form-control" name="url" required autofocus value=" {{ $urlId }} " style="text-align: right">
+                        <input  type="text" class="form-control" name="videonumber" required autofocus value="{{ $vidid }}" style="text-align: right" readonly>
                     </div>
                 </div>
                 <div class="row">
@@ -61,8 +61,8 @@
                             </div>
                          </div>
                          <div class="row">
-                                <div class="col-sm p-0"><input  type="text" class="form-control" name="hours" required autofocus placeholder="## hours"></div>
-                                <div class="col-sm p-0"><input  type="text" class="form-control" name="date" required autofocus placeholder="Date Due"></div>
+                                <div class="col-sm p-0"><input  type="text" class="form-control" name="hours" autofocus placeholder="## hours"></div>
+                                <div class="col-sm p-0"><input  type="text" class="form-control" name="date" autofocus placeholder="Date Due"></div>
                          </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                         <p class="font-weight-bold">Do you want to SURGE?</p>
                         <div class="row">
                             <div class="col-sm pl-0">Rush</div>
-                            <div class="col-sm"><input  type="text" class="form-control" name="" required autofocus placeholder="2 hours"></div>
+                            <div class="col-sm"><input  type="text" class="form-control" name="" autofocus placeholder="2 hours"></div>
                             <div class="col-sm">
                                  <p class="d-inline-block font-weight-bold">Add $45</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
@@ -83,7 +83,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm pl-0">Surge</div>
-                            <div class="col-sm"><input  type="text" class="form-control" name="" required autofocus placeholder="24 hours"></div>
+                            <div class="col-sm"><input  type="text" class="form-control" name="" autofocus placeholder="24 hours"></div>
                             <div class="col-sm">
                                  <p class="d-inline-block font-weight-bold">Add $15</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
@@ -193,7 +193,7 @@
                                   <p class="d-inline-block font-weight-bold">$5</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
                                       <input type="checkbox" class="custom-control-input" name="chkEmailList" id="chkEmailList"  {{ $preference->email_distribution  === "1" ? 'checked' : '' }}>
-                                      <label class="custom-control-label" for="customCheck13"></label>
+                                      <label class="custom-control-label" for="chkEmailList"></label>
                                   </div>
                             </div>
                         </div>
@@ -205,7 +205,7 @@
                                   <p class="d-inline-block font-weight-bold">$5</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
                                       <input type="checkbox" class="custom-control-input" name="chkBroadcast" id="chkBroadcast" {{ $preference->broadcast_agent  === "1" ? 'checked' : '' }}>
-                                      <label class="custom-control-label" for="customCheck14"></label>
+                                      <label class="custom-control-label" for="chkBroadcast"></label>
                                   </div>
                             </div>
                         </div>
@@ -276,9 +276,9 @@
                 <div class="row">
                     <div class="col-sm">
                         <input type="checkbox" class="group1 custom-control-input" id="accept_terms" value="1" name="accept_terms">
-                        <a href="">Terms and Conditions</a>
+                        <a href=" {{ route('account-terms-condition') }}" target="_blank">Terms and Conditions</a>
                     </div>
-                    <div class="col-sm"><button type="button" id="btnConfirm" class="btn btn-primary">CONFIRM</button></div>
+                    <div class="col-sm"><button type="submit" id="btnConfirm" class="btn btn-primary">CONFIRM</button></div>
                 </div>
             </form>
             

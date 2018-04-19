@@ -11,19 +11,19 @@
         <div class="col-lg-9 my-account-form"><br>
             <h3>Generic Video Order</h3><br>
             <hr>
-            <form method="POST" action=" {{ route('postGenericVideo') }} ">
+            <form method="POST" action="{{ route('postGenericVideo') }}">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm-3 pl-0">URL Reference</div>
                     <div class="col-sm-9">
-                         <input type="text" class="form-control" name="url_generic" required autofocus value="{{$urldetail->url_address}}">
+                         <input type="text" class="form-control" name="url_generic" required autofocus value="{{ $url_generic }}">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3 pl-0">Action Receipt #</div>
                     <div class="col-sm-9">
                          Your Video Number is<br>
-                         <input  type="text" class="form-control" name="videonumber" required autofocus value="{{$urldetail->ID}}" style="text-align: right" readonly>
+                         <input  type="text" class="form-control" name="videonumber" required autofocus value="{{ $vidid }}" style="text-align: right" readonly>
                     </div>
                 </div>
                 <div class="row">
@@ -258,7 +258,7 @@
                 <div class="row">
                     <div class="col-sm">
                         <input type="checkbox" class="group1 custom-control-input" id="accept_terms" value="1" name="accept_terms">
-                        <a href="">Terms and Conditions</a>
+                        <a href=" {{ route('account-terms-condition') }}" target="_blank">Terms and Conditions</a>
                     </div>
                     <div class="col-sm"><button type="submit" id="btnConfirm" class="btn btn-primary">CONFIRM</button></div>
                 </div>

@@ -11,7 +11,7 @@
         <div class="col-lg-9 my-account-form"><br>
             <h3>Premium Video Order</h3><br>
             <hr>
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('postPremiumVideo') }}">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm-3 pl-0">Property Address #</div>
@@ -34,14 +34,14 @@
                 <div class="row">
                     <div class="col-sm-3 pl-0">URL Address</div>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="url_premium" autofocus value="{{$urldetail->url_address}}">
+                        <input type="text" class="form-control" name="url_premium" autofocus value="{{ $url_premium }}">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3 pl-0">Action Receipt #</div>
                     <div class="col-sm-9">
                          Your Video Number is<br>
-                         <input  type="text" class="form-control" name="url" required autofocus value="{{$urldetail->ID}}" style="text-align: right">
+                         <input type="text" class="form-control" name="videonumber" required autofocus value="{{ $vidid }}" style="text-align: right" readonly>
                     </div>
                 </div>
                 <div class="row">
@@ -216,7 +216,7 @@
                         <div class="row">
                             <div class="col-sm-3 pl-0">Video</div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="cost_premium_video" name="cost_premium_video" required autofocus value="${{ number_format($cost_premium_video, 2) }}" style="text-align: right">
+                                <input type="text" class="form-control" id="cost_premium_video" name="cost_premium_video" required autofocus value="{{ number_format($cost_premium_video, 2) }}" style="text-align: right">
                             </div>
                         </div>
                         {{--<div class="row">--}}
@@ -228,19 +228,19 @@
                         <div class="row">
                             <div class="col-sm-3 pl-0">Preferences</div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="cost_preferences" name="cost_preferences" required autofocus value="${{ number_format($cost_total_preference,2) }}" style="text-align: right">
+                                <input type="text" class="form-control" id="cost_preferences" name="cost_preferences" required autofocus value="{{ number_format($cost_total_preference,2) }}" style="text-align: right">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0">Extra's</div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="cost_extra" name="cost_extra" required autofocus value="${{ number_format($cost_extra, 2) }}" style="text-align: right">
+                                <input type="text" class="form-control" id="cost_extra" name="cost_extra" required autofocus value="{{ number_format($cost_extra, 2) }}" style="text-align: right">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0">Total</div>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="total_cost" name="total_cost" required autofocus value="${{ number_format($total_cost,2) }}" style="text-align: right">
+                                <input type="text" class="form-control" id="total_cost" name="total_cost" required autofocus value="{{ number_format($total_cost,2) }}" style="text-align: right">
                             </div>
                         </div>
                     </div>
@@ -248,9 +248,9 @@
                 <div class="row">
                     <div class="col-sm">
                         <input type="checkbox" class="group1 custom-control-input" id="accept_terms" value="1" name="accept_terms">
-                        <a href="">Terms and Conditions</a>
+                        <a href=" {{ route('account-terms-condition') }}" target="_blank">Terms and Conditions</a>
                     </div>
-                    <div class="col-sm"><button type="button" id="btnConfirm" class="btn btn-primary">CONFIRM</button></div>
+                    <div class="col-sm"><button type="submit" id="btnConfirm" class="btn btn-primary">CONFIRM</button></div>
                 </div>
             </form>
             

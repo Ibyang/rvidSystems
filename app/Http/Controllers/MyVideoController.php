@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Agent;
 use App\AgentPreferences;
 use App\User;
-use App\AgentInvoice;
+use App\AgentInvoiceList;
 use App\AgentGeneric;
 use App\AgentPremium;
 use App\AgentStandard;
 use App\AgentBilling;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -28,8 +29,7 @@ class MyVideoController extends Controller
         $fullname = Auth::user()->name;
         $passwd = Auth::user()->passwd;
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        $invoice = AgentInvoice::where('email', $email)->first();
-        return view('frontend.pages.my-videos', compact('fullname', 'passwd', 'agent', 'invoice'));
+        return view('frontend.pages.my-videos', compact('fullname', 'passwd', 'agent'));
     }
     
     public function VideoTracker()
@@ -90,17 +90,19 @@ class MyVideoController extends Controller
     public function getGenericVideo()
     {
         $user_id = Auth::user()->id;
-        $url = Input::get('url_generic');
+        $url_generic = Input::get('url_generic');
 
-        $url_arr = array(
-            'agent_ID' => $user_id,
-            'url_address' => $url
-        );
+        $vidid = (AgentGeneric::max('ID')) + 1;
 
-        $uid = AgentGeneric::create($url_arr);
-        $urlId = $uid->id;
+//        $url_arr = array(
+//            'agent_ID' => $user_id,
+//            'url_address' => $url
+//        );
+//
+//        $uid = AgentGeneric::create($url_arr);
+//        $urlId = $uid->id;
 
-        $urldetail = AgentGeneric::where('ID', $urlId)->first();
+//        $urldetail = AgentGeneric::where('ID', $urlId)->first();
         $preference = AgentPreferences::where('agent_ID', $user_id)->first();
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
@@ -132,7 +134,7 @@ class MyVideoController extends Controller
         $total_cost = $cost_generic_video + $cost_surge + $cost_total_preference + $cost_extra;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video.generic-video-order', compact('fullname',  'agent', 'urldetail',
+        return view('frontend.pages.video.generic-video-order', compact('fullname',  'agent', 'url_generic', 'vidid',
                     'preference', 'cost_generic_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost'));
 
     }
@@ -143,13 +145,15 @@ class MyVideoController extends Controller
         $user_id = Auth::user()->id;
 //        $url = Input::get('url_generic');
 
-        $url_arr = array(
-            'agent_ID' => $user_id,
+//        $url_arr = array(
+//            'agent_ID' => $user_id,
 //            'url_address' => $url
-        );
+//        );
 
-        $uid = AgentStandard::create($url_arr);
-        $urlId = $uid->id;
+        $vidid = (AgentStandard::max('ID')) + 1;
+
+//        $uid = AgentStandard::create($url_arr);
+//        $urlId = $uid->id;
 
         $preference = AgentPreferences::where('agent_ID', $user_id)->first();
         $email = Auth::user()->email;
@@ -182,7 +186,7 @@ class MyVideoController extends Controller
         $total_cost = $cost_standard_video + $cost_surge + $cost_total_preference + $cost_extra;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile', 'suburb', 'state', 'postcode'])->first();
-        return view('frontend.pages.video.standard-video-order', compact('fullname',  'agent', 'urlId', 'preference',
+        return view('frontend.pages.video.standard-video-order', compact('fullname',  'agent', 'vidid', 'preference',
                     'cost_standard_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost'));
 
     }
@@ -191,17 +195,19 @@ class MyVideoController extends Controller
     public function getPremiumVideo()
     {
         $user_id = Auth::user()->id;
-        $url = Input::get('url_premium');
+        $url_premium = Input::get('url_premium');
+        $vidid = (AgentPremium::max('ID')) + 1;
 
-        $url_arr = array(
-            'agent_ID' => $user_id,
-            'url_address' => $url
-        );
+//        $url_arr = array(
+//            'agent_ID' => $user_id,
+//            'url_address' => $url
+//        );
+//
+//        $uid = AgentPremium::create($url_arr);
+//        $urlId = $uid->id;
 
-        $uid = AgentPremium::create($url_arr);
-        $urlId = $uid->id;
+//        $urldetail = AgentPremium::where('ID', $urlId)->first();
 
-        $urldetail = AgentPremium::where('ID', $urlId)->first();
         $preference = AgentPreferences::where('agent_ID', $user_id)->first();
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
@@ -233,7 +239,7 @@ class MyVideoController extends Controller
         $total_cost = $cost_premium_video + $cost_surge + $cost_total_preference + $cost_extra;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile', 'suburb', 'state', 'postcode'])->first();
-        return view('frontend.pages.video.premium-video-order', compact('fullname',  'agent', 'urldetail', 'preference',
+        return view('frontend.pages.video.premium-video-order', compact('fullname',  'agent', 'url_premium', 'vidid', 'preference',
             'cost_premium_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost'));
 
     }
@@ -246,22 +252,46 @@ class MyVideoController extends Controller
         $email = Auth::user()->email;
         $url = Input::get('url_generic');
         $videoid = Input::get('videonumber');
+        $total_cost_video = Input::get('total_cost');
         $surgeoffer = Input::get('surgeoffer');
         $surge_value = $surgeoffer[0];
 
-        $billdate = date('d/m/Y');
+        $billdate = date('Y-m-d');
 
         $status_email_distribution = Input::get('emailist');
         $status_broadcast = Input::get('broadcast');
 
         $agent = Agent::where('email', $email)->get(['address','suburb', 'state', 'postcode'])->first();
-        $video_generic_description = "#" . $videoid . $agent->address;
+        $video_invoice_description = "#" . $videoid . $agent->address;
+
+        //store record to Generic Video Table
+        $generic_arr = array(
+          'agent_ID' => $user_id,
+          'url_address' => $url,
+          'apply_driveby' => Input::get('apply_driveby'),
+          'apply_lookfirst' => Input::get('apply_lookfirst'),
+        );
+
+        AgentGeneric::create($generic_arr);
+
+        //store record to Invoice Table
+        $invoice_arr = array(
+            'agent_ID' => $user_id,
+            'video_ID' => $videoid,
+            'description' => $video_invoice_description,
+            'total_amount' => $total_cost_video,
+            'billing_date' => $billdate
+        );
+
+        AgentInvoiceList::create($invoice_arr);
+
+        $video_generic_desc = "#" . $videoid . " Generic Video Production";
 
         //for storing cost of email distribution
         $videocost_arr = array(
             'agent_ID' => $user_id,
             'video_ID' => $videoid,
-            'description' => $video_generic_description,
+            'description' => $video_generic_desc,
             'amount' => Input::get('cost_generic_video'),
             'to_bill' => 1,
             'billing_date' => $billdate
@@ -273,7 +303,7 @@ class MyVideoController extends Controller
             $surge_rush_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Surge (2 hours)',
+                'description' => 'Surge (+$45.00)',
                 'amount' => 45,
                 'to_bill' => 1,
                 'billing_date' => $billdate
@@ -284,7 +314,7 @@ class MyVideoController extends Controller
             $surge_cost_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Surge (24 hours)',
+                'description' => 'Surge (+$15.00)',
                 'amount' => 15,
                 'to_bill' => 1,
                 'billing_date' => $billdate
@@ -301,7 +331,7 @@ class MyVideoController extends Controller
             $emailcost_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Email Distribution List',
+                'description' => 'Email Distribution (+$5.00)',
                 'amount' => $email_cost,
                 'to_bill' => 1,
                 'billing_date' => $billdate
@@ -320,7 +350,7 @@ class MyVideoController extends Controller
             $broadcastcost_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Broadcast to Areas',
+                'description' => 'Broadcast Distribution (+$5.00)',
                 'amount' => $broadcast_cost,
                 'to_bill' => 1,
                 'billing_date' => $billdate
@@ -330,15 +360,6 @@ class MyVideoController extends Controller
         else
             $broadcast_status = 0;
 
-        $total_cost_video = Input::get('total_cost');
-
-
-        AgentGeneric::where('ID', $videoid)->update([
-            'url_address' => $url,
-            'total_cost' => $total_cost_video,
-            'apply_driveby' => Input::get('apply_driveby'),
-            'apply_lookfirst' => Input::get('apply_lookfirst'),
-        ]);
 
         AgentPreferences::where('agent_ID', $user_id)->update([
             'surge_offer_option' => $surge_value,
@@ -372,21 +393,45 @@ class MyVideoController extends Controller
 //        $url = Input::get('url_generic');
         $videoid = Input::get('videonumber');
         $address = Input::get('address');
+        $total_cost_video = Input::get('total_cost');
         $surgeoffer = Input::get('surgeoffer');
         $surge_value = $surgeoffer[0];
 
-        $billdate = date('d/m/Y');
+        $billdate = date('Y-m-d');
 
         $status_email_distribution = Input::get('emailist');
         $status_broadcast = Input::get('broadcast');
 
-        $video_standard_description = "#" . $videoid . $address;
+        $video_detail_desc = "#" . $videoid . $address;
+
+        //store record to Generic Video Table
+        $standard_arr = array(
+            'agent_ID' => $user_id,
+            //'url_address' => $url,
+            'apply_driveby' => Input::get('apply_driveby'),
+            'apply_lookfirst' => Input::get('apply_lookfirst'),
+        );
+
+        AgentStandard::create($standard_arr);
+
+        //store record to Invoice Table
+        $invoice_arr = array(
+            'agent_ID' => $user_id,
+            'video_ID' => $videoid,
+            'description' => $video_detail_desc,
+            'total_amount' => $total_cost_video,
+            'billing_date' => $billdate
+        );
+
+        AgentInvoiceList::create($invoice_arr);
+
+        $video_standard_desc = "#" . $videoid . " Standard Video Production";
 
         //for storing cost of email distribution
         $videocost_arr = array(
             'agent_ID' => $user_id,
             'video_ID' => $videoid,
-            'description' => $video_standard_description,
+            'description' => $video_standard_desc,
             'amount' => Input::get('cost_standard_video'),
             'to_bill' => 1,
             'billing_date' => $billdate
@@ -398,7 +443,7 @@ class MyVideoController extends Controller
             $surge_rush_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Surge (2 hours)',
+                'description' => 'Surge (+$45.00)',
                 'amount' => 45,
                 'to_bill' => 1,
                 'billing_date' => $billdate
@@ -409,7 +454,7 @@ class MyVideoController extends Controller
             $surge_cost_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Surge (24 hours)',
+                'description' => 'Surge (+$15.00)',
                 'amount' => 15,
                 'to_bill' => 1,
                 'billing_date' => $billdate
@@ -425,7 +470,7 @@ class MyVideoController extends Controller
             $emailcost_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Email Distribution List',
+                'description' => 'Email Distribution (+$5.00)',
                 'amount' => $email_cost,
                 'to_bill' => 1,
                 'billing_date' => $billdate
@@ -444,7 +489,7 @@ class MyVideoController extends Controller
             $broadcastcost_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Broadcast to Areas',
+                'description' => 'Broadcast Distribution (+$5.00)',
                 'amount' => $broadcast_cost,
                 'to_bill' => 1,
                 'billing_date' => $billdate
@@ -455,35 +500,20 @@ class MyVideoController extends Controller
         else
             $broadcast_status = 0;
 
-        $total_cost_video = Input::get('total_cost');
-
-        AgentStandard::where('ID', $videoid)->update([
-//            'url_address' => $url,
-            'total_cost' => $total_cost_video,
-            'apply_driveby' => Input::get('apply_driveby'),
-            'apply_lookfirst' => Input::get('apply_lookfirst'),
-        ]);
+//        $total_cost_video = Input::get('total_cost');
+//
+//        AgentStandard::where('ID', $videoid)->update([
+////            'url_address' => $url,
+//            'total_cost' => $total_cost_video,
+//            'apply_driveby' => Input::get('apply_driveby'),
+//            'apply_lookfirst' => Input::get('apply_lookfirst'),
+//        ]);
 
         AgentPreferences::where('agent_ID', $user_id)->update([
             'surge_offer_option' => $surge_value,
             'email_distribution' => $email_status,
             'broadcast_agent' => $broadcast_status
         ]);
-
-//        $cost_arr = array(
-//            'agent_ID' => $user_id,
-//            'video_id' => $videoid,
-//            'video_type' => 'Standard',
-//            'video_cost' => Input::get('cost_standard_video'),
-//            'surge_cost' => Input::get('cost_surge'),
-//            'preferences_cost' => Input::get('cost_preferences'),
-//            'extra_cost' => Input::get('cost_extra'),
-//            'total_cost' => $total_cost_video,
-//            'to_bill' => 1,
-//            'billing_date' => $ldate
-//        );
-//
-//        AgentBilling::create($cost_arr);
 
         return redirect()->route('account-home');
 
@@ -498,22 +528,46 @@ class MyVideoController extends Controller
         $url = Input::get('url_premium');
         $videoid = Input::get('videonumber');
         $address = Input::get('address');
+        $total_cost_video = Input::get('total_cost');
         $surgeoffer = Input::get('surgeoffer');
         $surge_value = $surgeoffer[0];
 
-        $billdate = date('d/m/Y');
+        $billdate = date('Y-m-d');
 
         $status_email_distribution = Input::get('emailist');
         $status_broadcast = Input::get('broadcast');
 
         $video_premium_description = "#" . $videoid . $address;
 
+        //store record to Generic Video Table
+        $standard_arr = array(
+            'agent_ID' => $user_id,
+            //'url_address' => $url,
+            'apply_driveby' => Input::get('apply_driveby'),
+            'apply_lookfirst' => Input::get('apply_lookfirst'),
+        );
+
+        AgentStandard::create($standard_arr);
+
+        //store record to Invoice Table
+        $invoice_arr = array(
+            'agent_ID' => $user_id,
+            'video_ID' => $videoid,
+            'description' => $video_premium_description,
+            'total_amount' => $total_cost_video,
+            'billing_date' => $billdate
+        );
+
+        AgentInvoiceList::create($invoice_arr);
+
+        $video_premium_desc = "#" . $videoid . " Premium Video Production";
+
         //for storing cost of email distribution
         $videocost_arr = array(
             'agent_ID' => $user_id,
             'video_ID' => $videoid,
-            'description' => $video_premium_description,
-            'amount' => Input::get('cost_standard_video'),
+            'description' => $video_premium_desc,
+            'amount' => Input::get('cost_premium_video'),
             'to_bill' => 0,
             'billing_date' => $billdate
         );
@@ -524,7 +578,7 @@ class MyVideoController extends Controller
             $surge_rush_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Surge (2 hours)',
+                'description' => 'Surge (+$45.00)',
                 'amount' => 45,
                 'to_bill' => 0,
                 'billing_date' => $billdate
@@ -535,7 +589,7 @@ class MyVideoController extends Controller
             $surge_cost_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Surge (24 hours)',
+                'description' => 'Surge (+$15.00)',
                 'amount' => 15,
                 'to_bill' => 0,
                 'billing_date' => $billdate
@@ -549,7 +603,7 @@ class MyVideoController extends Controller
             $emailcost_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Email Distribution List',
+                'description' => 'Email Distribution (+$5.00)',
                 'amount' => $email_cost,
                 'to_bill' => 0,
                 'billing_date' => $billdate
@@ -567,7 +621,7 @@ class MyVideoController extends Controller
             $broadcastcost_arr = array(
                 'agent_ID' => $user_id,
                 'video_ID' => $videoid,
-                'description' => 'Broadcast to Areas',
+                'description' => 'Broadcast Distribution (+$5.00)',
                 'amount' => $broadcast_cost,
                 'to_bill' => 0,
                 'billing_date' => $billdate
@@ -577,15 +631,14 @@ class MyVideoController extends Controller
         else
             $broadcast_status = 0;
 
-        $total_cost_video = Input::get('total_cost');
 //        $ldate = date('Y-m-d H:i:s');
-
-        AgentPremium::where('ID', $videoid)->update([
-            'url_address' => $url,
-            'total_cost' => $total_cost_video,
-            'apply_driveby' => Input::get('apply_driveby'),
-            'apply_lookfirst' => Input::get('apply_lookfirst'),
-        ]);
+//
+//        AgentPremium::where('ID', $videoid)->update([
+//            'url_address' => $url,
+//            'total_cost' => $total_cost_video,
+//            'apply_driveby' => Input::get('apply_driveby'),
+//            'apply_lookfirst' => Input::get('apply_lookfirst'),
+//        ]);
 
         AgentPreferences::where('agent_ID', $user_id)->update([
             'surge_offer_option' => $surge_value,
@@ -613,7 +666,5 @@ class MyVideoController extends Controller
         //take note that these should redirect to a different page
 
     }
-
-
 
 }
