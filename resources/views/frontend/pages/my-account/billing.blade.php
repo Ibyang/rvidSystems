@@ -36,7 +36,7 @@
 
     <div class="row">
         <div class="col-6">
-            <a href="">Go to Billing History</a>
+            <a href=" {{ route('account-billing-history') }}">Go to Billing History</a>
         </div>
         <div class="col-6"><a href="">See More</a></div>
     </div>

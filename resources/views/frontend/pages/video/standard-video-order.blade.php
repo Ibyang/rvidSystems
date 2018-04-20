@@ -11,7 +11,7 @@
         <div class="col-lg-9 my-account-form"><br>
             <h3>Standard Video Order</h3><br>
             <hr>
-            <form method="POST" action="{{ route('postStandardVideo') }}">
+            <form method="POST" action="{{ route('postVideoOrder') }}">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm-3 pl-0">Property Address #</div>
@@ -278,7 +278,10 @@
                         <input type="checkbox" class="group1 custom-control-input" id="accept_terms" value="1" name="accept_terms">
                         <a href=" {{ route('account-terms-condition') }}" target="_blank">Terms and Conditions</a>
                     </div>
-                    <div class="col-sm"><button type="submit" id="btnConfirm" class="btn btn-primary">CONFIRM</button></div>
+                    <div class="col-sm">
+                        <input type="hidden" name="videotype" value="Standard">
+                        <button type="submit" id="btnConfirm" class="btn btn-primary">CONFIRM</button>
+                    </div>
                 </div>
             </form>
             

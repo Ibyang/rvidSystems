@@ -280,7 +280,7 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::post('/account/preferences/process/{id}', 'MyPreferencesController@update')->name('account-preferences-process');
 
-    Route::post('/account/billing-history', 'MyAccountController@getBilling')->name('account-billing-history');
+    Route::get('/account/billing-history', 'MyAccountController@getBilling')->name('account-billing-history');
 
 
 //    Route::get('/account/billing-history', function () {
@@ -323,6 +323,9 @@ Route::group(['middleware' => 'guest'], function() {
     //process to save Billing History and other edits for Premium Video
     Route::post('/account/postPremiumVideo', 'MyVideoController@postPremiumVideo')->name('postPremiumVideo');
 
+    //process to save to Invoice, Billing Details and other edits for Premium Video
+    Route::post('/account/postVideoOrder', 'MyVideoController@postVideoOrder')->name('postVideoOrder');
+
     //for posting data for editing of My Account details
     Route::post('/userLogout', 'Auth\LoginController@userLogout')->name('userLogout');
 
@@ -335,6 +338,11 @@ Route::group(['middleware' => 'guest'], function() {
     //route for editing the Subscription section under My Account section
     Route::post('/editSubscription', 'MyAccountController@editSubscription')->name('editSubscription');
 
+    //for getting the Invoice Details
+    Route::get('/getInvoiceDetails/{vidid}', 'MyAccountController@getInvoiceDetails');
+
+    //for generating PDF Documents
+    Route::post('/account/getInvoicePDF', 'MyAccountController@getInvoicePDF')->name('getInvoicePDF');
 
 
 //});

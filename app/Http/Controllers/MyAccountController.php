@@ -7,9 +7,12 @@ use App\AgentBilling;
 use App\User;
 use App\AgentInvoice;
 use App\FAQ;
+use App\AgentInvoiceList;
+use PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+
 
 class MyAccountController extends Controller
 {
@@ -122,10 +125,11 @@ class MyAccountController extends Controller
         $userid = Auth::user()->id;
 
         //for generic billing
-        $genericBilling = AgentBilling::where('agent_ID', $userid)->latest('created_at')->orderBy('ID')->get();
-//        dd($billing);
-        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.my-account', compact('fullname', 'passwd', 'agent', 'billing'));
+//        $genericBilling = AgentBilling::where('agent_ID', $userid)->latest('created_at')->orderBy('ID')->get();
+        $invoices = AgentInvoiceList::where('agent_ID', $userid)->get();
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile','address','suburb','state','postcode'])->first();
+        return view('frontend.pages.video.billing-history', compact('fullname', 'agent', 'invoices'));
 
     }
 
@@ -173,6 +177,36 @@ class MyAccountController extends Controller
 //        dd($userid);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         return view('frontend.pages.account-privacy-terms', compact('fullname', 'agent', 'userid'));
+
+    }
+
+
+    public function getInvoiceDetails($vidid){
+
+        $details = AgentBilling::where('video_ID', $vidid)->get();
+        return json_encode($details);
+
+    }
+
+
+    public function getInvoicePDF(Request $request){
+
+        $invoice_arr = array(
+            'company' => Input::get('company'),
+            'address' => Input::get('address'),
+            'suburb' => Input::get('suburb'),
+            'state' => Input::get('state'),
+            'postcode' => Input::get('postcode'),
+        );
+
+//        dd($invoice_arr['company']);
+
+        $video_id = Input::get('video_id');
+
+        $details = AgentBilling::where('video_ID', $video_id)->get();
+
+        $pdf = PDF::loadView('frontend.pages.video.billing-invoice-details', compact('invoice_arr', 'details', 'video_id'));
+        return $pdf->download('invoice.pdf');
 
     }
 

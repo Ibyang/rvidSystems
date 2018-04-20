@@ -11,12 +11,12 @@
         <div class="col-lg-9 my-account-form"><br>
             <h3>Generic Video Order</h3><br>
             <hr>
-            <form method="POST" action="{{ route('postGenericVideo') }}">
+            <form method="POST" action="{{ route('postVideoOrder') }}">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm-3 pl-0">URL Reference</div>
                     <div class="col-sm-9">
-                         <input type="text" class="form-control" name="url_generic" required autofocus value="{{ $url_generic }}">
+                         <input type="text" class="form-control" name="url" required autofocus value="{{ $url_generic }}">
                     </div>
                 </div>
                 <div class="row">
@@ -260,7 +260,10 @@
                         <input type="checkbox" class="group1 custom-control-input" id="accept_terms" value="1" name="accept_terms">
                         <a href=" {{ route('account-terms-condition') }}" target="_blank">Terms and Conditions</a>
                     </div>
-                    <div class="col-sm"><button type="submit" id="btnConfirm" class="btn btn-primary">CONFIRM</button></div>
+                    <div class="col-sm">
+                        <input type="hidden" name="videotype" value="Generic">
+                        <button type="submit" id="btnConfirm" class="btn btn-primary">CONFIRM</button>
+                    </div>
                 </div>
             </form>
             
