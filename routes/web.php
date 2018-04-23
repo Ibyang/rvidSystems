@@ -344,6 +344,9 @@ Route::group(['middleware' => 'guest'], function() {
     //for generating PDF Documents
     Route::post('/account/getInvoicePDF', 'MyAccountController@getInvoicePDF')->name('getInvoicePDF');
 
+    //option to send to Email the Invoice
+    Route::post('/account/emailInvoice', 'MyAccountController@emailInvoice')->name('emailInvoice');
+
 
 //});
 
@@ -424,6 +427,14 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/standard', 'OrderController@indexStandard')->name('standard');
 
     Route::get('/premium', 'OrderController@indexPremium')->name('premium');
+
+    Route::get('/TermsCondition', 'ContentController@getTermsCondition')->name('getTermsCondition');
+
+    Route::get('/CopyrightTerms', 'ContentController@getCopyrightTerms')->name('getCopyrightTerms');
+
+    Route::get('/PrivacyTerms', 'ContentController@getPrivacyTerms')->name('getPrivacyTerms');
+
+    Route::post('/updateContent', 'ContentController@update')->name('updateContent');
 
 //});
 

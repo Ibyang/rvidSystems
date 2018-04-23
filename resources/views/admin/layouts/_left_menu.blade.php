@@ -30,16 +30,27 @@
         </ul>
     </li>
     @if($role == 'Administrator')
-        <li {!! (Request::is('content') || Request::is('socialmedia') || Request::is('faq') ? 'class="active"' : '') !!}>
+        <li {!! (Request::is('content') || Request::is('socialmedia') || Request::is('faq') || Request::is('TermsCondition')
+                    || Request::is('CopyrightTerms') || Request::is('PrivacyTerms') ? 'class="active"' : '') !!}>
             <a href="#">
                 <i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>
                 <span class="title">Content Management</span>
                 <span class="fa arrow"></span>
             </a>
             <ul class="sub-menu">
-                <li {!! (Request::is('content') ? 'class="active"' : '') !!}>
-                    <a href="{{ route('content.index') }}">
-                        <i class="fa fa-angle-double-right"></i> Content Pages
+                <li {!! (Request::is('TermsCondition') ? 'class="active"' : '') !!}>
+                    <a href="{{ route('getTermsCondition') }}">
+                        <i class="fa fa-angle-double-right"></i> Terms and Condition
+                    </a>
+                </li>
+                <li {!! (Request::is('CopyrightTerms') ? 'class="active"' : '') !!}>
+                    <a href="{{ route('getCopyrightTerms') }}">
+                        <i class="fa fa-angle-double-right"></i> Copyright Terms
+                    </a>
+                </li>
+                <li {!! (Request::is('PrivacyTerms') ? 'class="active"' : '') !!}>
+                    <a href="{{ route('getPrivacyTerms') }}">
+                        <i class="fa fa-angle-double-right"></i> Privacy
                     </a>
                 </li>
                 <li {!! (Request::is('faq') ? 'class="active"' : '') !!}>

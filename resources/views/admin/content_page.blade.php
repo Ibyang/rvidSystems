@@ -30,7 +30,7 @@
       <div class="row">
           <div class="col-lg-12">
               <ul class="nav  nav-tabs ">
-                  <li class="active">
+                  <li >
                       <a href="#tab1" data-toggle="tab">
                           <i class="livicon" data-name="user" data-size="16" data-c="#000" data-hc="#000" data-loop="true"></i> Terms and Conditions</a>
                   </li>
@@ -95,72 +95,98 @@
                   </div> <!-- end tab section for Terms and Conditions -->
 
                   <!-- tab section for Copyright -->
-                  <div id="tab2" class="tab-pane fade">
-                      <div class="row">
-                          <div class="col-md-12 pd-top">
+                    <div id="tab2" class="tab-pane fade active in">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"></h3>
+                                    </div>
 
-                              <section class="content paddingleft_right15">
-                                  <div class="panel panel-danger">
-                                      <div class="panel-heading">
-                                          <div class="text-muted bootstrap-admin-box-title editor-clr">
-                                              <h3 class="panel-title">
-                                                  <i class="livicon" data-name="tag" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                                                  Copyright
-                                              </h3>
-                                          </div>
-                                      </div>
-                                      <!--main content-->
-                                      <div class="row">
-                                          <!-- /.box -->
-                                          <div class='box well well-sm'>
-                                              <!-- /.box-header -->
-                                              <div class='box-body'>
-                                                      <textarea class="textarea editor-cls" placeholder="Place some text here"></textarea>
-                                              </div>
-                                          </div>
-                                          <!-- /.col-->
-                                      </div>
-                                  </div>
-                                  <!--main content ends-->
-                              </section>
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <div class="text-left">
 
-                          </div>
-                      </div>
-                  </div> <!-- end tab section for Copyright -->
+                                                <section class="content paddingleft_right15">
+                                                    <div class="panel panel-danger">
+                                                        <div class="panel-heading">
+                                                            <div class="text-muted bootstrap-admin-box-title editor-clr">
+                                                                <h3 class="panel-title">
+                                                                    <i class="livicon" data-name="tag" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                                                                    Copyright
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                        <!--main content-->
+                                                        <div class="row">
+                                                            <!-- /.box -->
+                                                            <div class='box well well-sm'>
+                                                                <!-- /.box-header -->
+                                                                <div class='box-body'>
+                                                                    <textarea class="textarea editor-cls" placeholder="Place some text here"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.col-->
+                                                        </div>
+                                                    </div>
+                                                    <!--main content ends-->
+                                                </section>
+
+                                            </div>
+                                        </div>
+                                    </div> <!-- panel body -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end tab section for Copyright -->
 
                   <!-- tab section for Privacy -->
-                  <div id="tab3" class="tab-pane fade">
-                      <div class="row">
-                          <div class="col-md-12 pd-top">
+                    <div id="tab3" class="tab-pane fade active in">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"></h3>
+                                    </div>
 
-                              <section class="content paddingleft_right15">
-                                  <div class="panel panel-danger">
-                                      <div class="panel-heading">
-                                          <div class="text-muted bootstrap-admin-box-title editor-clr">
-                                              <h3 class="panel-title">
-                                                  <i class="livicon" data-name="tag" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                                                  Copyright
-                                              </h3>
-                                          </div>
-                                      </div>
-                                      <!--main content-->
-                                      <div class="row">
-                                          <!-- /.box -->
-                                          <div class='box well well-sm'>
-                                              <!-- /.box-header -->
-                                              <div class='box-body'>
-                                                      <textarea class="textarea editor-cls" placeholder="Place some text here"></textarea>
-                                              </div>
-                                          </div>
-                                          <!-- /.col-->
-                                      </div>
-                                  </div>
-                                  <!--main content ends-->
-                              </section>
+                                    <div class="panel-body">
+                                        {{--<div class="col-md-12">--}}
+                                            <div class="text-left">
 
-                          </div>
-                      </div>
-                  </div> <!-- end tab section for Privacy -->
+                                                <section class="content paddingleft_right15">
+                                                    <div class="panel panel-danger">
+                                                        <div class="panel-heading">
+                                                            <div class="text-muted bootstrap-admin-box-title editor-clr">
+                                                                <h3 class="panel-title">
+                                                                    <i class="livicon" data-name="tag" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                                                                    Privacy
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                        <!--main content-->
+                                                        <div class="row">
+                                                            <!-- /.box -->
+                                                            <div class='box well well-sm'>
+                                                                <!-- /.box-header -->
+                                                                <div class='box-body'>
+                                                                    <textarea class="textarea editor-cls" placeholder="Place some text here"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.col-->
+                                                        </div>
+                                                    </div>
+                                                    <!--main content ends-->
+                                                </section>
+
+                                            </div>
+                                        {{--</div>--}}
+                                    </div> <!-- panel body -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end tab section for Privacy -->
 
                 </form>
 

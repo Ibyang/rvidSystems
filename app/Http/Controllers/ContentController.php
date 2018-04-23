@@ -102,4 +102,43 @@ class ContentController extends Controller
     {
         //
     }
+
+
+    //get content for Terms and Conditions
+    public function getTermsCondition()
+    {
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+        return view('admin.terms_conditions',compact('fullname', 'role', 'pic'));
+    }
+
+
+    //get content for Terms and Conditions
+    public function getCopyrightTerms()
+    {
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+        return view('admin.copyright',compact('fullname', 'role', 'pic'));
+    }
+
+
+    //get content for Terms and Conditions
+    public function getPrivacyTerms()
+    {
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+        return view('admin.privacy',compact('fullname', 'role', 'pic'));
+    }
+
+
+    public function updateContent()
+    {
+        $contentid = Input::get('contentid');
+
+
+    }
+
 }

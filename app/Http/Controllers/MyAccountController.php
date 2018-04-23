@@ -12,7 +12,7 @@ use PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-
+use Illuminate\Support\Facades\Mail;
 
 class MyAccountController extends Controller
 {
@@ -128,8 +128,11 @@ class MyAccountController extends Controller
 //        $genericBilling = AgentBilling::where('agent_ID', $userid)->latest('created_at')->orderBy('ID')->get();
         $invoices = AgentInvoiceList::where('agent_ID', $userid)->get();
 
+        $billing_details = AgentInvoiceList::where('agent_ID', $userid)->get(['billing_date', 'video_ID'])->first();
+//        $bill_date = $billing_date->billing_date;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile','address','suburb','state','postcode'])->first();
-        return view('frontend.pages.video.billing-history', compact('fullname', 'agent', 'invoices'));
+        return view('frontend.pages.video.billing-history', compact('fullname', 'agent', 'billing_details', 'invoices'));
 
     }
 
@@ -200,13 +203,47 @@ class MyAccountController extends Controller
         );
 
 //        dd($invoice_arr['company']);
+        $bill_date = Input::get('bill_date');
 
         $video_id = Input::get('video_id');
 
         $details = AgentBilling::where('video_ID', $video_id)->get();
 
-        $pdf = PDF::loadView('frontend.pages.video.billing-invoice-details', compact('invoice_arr', 'details', 'video_id'));
-        return $pdf->download('invoice.pdf');
+        $pdf = PDF::loadView('frontend.pages.video.billing-invoice-details-pdf', compact('invoice_arr', 'details', 'video_id', 'bill_date'));
+        return $pdf->download('#'. $video_id.$invoice_arr['address'].'_invoice.pdf');
+
+    }
+
+
+    public function emailInvoice(){
+
+        $invoice_arr = array(
+            'video_id' => Input::get('video_id'),
+            'bill_date' => Input::get('bill_date'),
+            'email' => Input::get('email'),
+            'company' => Input::get('company'),
+            'address' => Input::get('address'),
+            'suburb' => Input::get('suburb'),
+            'state' => Input::get('state'),
+            'postcode' => Input::get('postcode'),
+        );
+
+        $videoid = Input::get('video_id');
+        $userid = Auth::user()->id;
+        $invoices = AgentBilling::where('video_ID', $videoid)->get();
+
+        dd($videoid);
+
+//        Mail::send('emails.invoiceEmailTemplate', ['invoice_arr' => $invoice_arr, 'invoices' => $invoices], function ($message) {
+//            $to_email = Input::get('email');
+//            $videoid = Input::get('video_id');
+//            $address = Input::get('address');
+//
+//            $message->from('ivy@revid.com.au', 'Ivy Lane');
+//            $message->to($to_email)->subject('Invoice - #' . $videoid . $address );
+//        });
+//
+//        return redirect()->route('account-billing-history');
 
     }
 

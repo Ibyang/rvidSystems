@@ -43,8 +43,8 @@
                             </div>
                          </div>
                          <div class="row">
-                                <div class="col-sm p-0"><input  type="text" class="form-control" name="hours" placeholder="## hours"></div>
-                                <div class="col-sm p-0"><input  type="text" class="form-control" name="date" placeholder="Date Due"></div>
+                                <div class="col-sm p-0"><input  type="text" class="form-control" name="hours" value="{{ $due_arr['num_hrs'] }}"></div>
+                                <div class="col-sm p-0"><input  type="text" class="form-control" name="due_date" value="{{ $due_arr['due_date'] }}"></div>
                          </div>
                     </div>
                 </div>

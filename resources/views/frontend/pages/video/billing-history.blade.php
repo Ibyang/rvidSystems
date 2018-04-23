@@ -70,13 +70,13 @@
 
                             <div class="">
                                 <div class="text-left">
-                                    Date: November 6 2017<br>
+                                    {{ \Carbon\Carbon::parse($billing_details->billing_date)->format('d/m/Y')}}<br>
                                     To: <span id="client_company"></span><br>
                                     Address<br>
                                     Address<br>
                                 </div>
                                 <div class="text-right">
-                                    Video #<span id="videoid"></span><br>
+                                    Video # {{ $billing_details->video_ID }}</span><br>
                                     <span id="client_address"></span><br>
                                     <span id="client_suburb"></span>&nbsp;<span id="client_state"></span>&nbsp;<span id="client_postcode"></span>
                                 </div>
@@ -111,10 +111,13 @@
                                 {{--</div>--}}
                                 <div class="row">
                                     <div class="col">
-                                        <button type="submit" class="btn btn-primary">
-                                            Print
-                                        </button>
+
+                                            <button type="submit" class="btn btn-primary" id="btnPrintInvoice">
+                                                Print
+                                            </button>
+
                                     </div>
+
                                     <div class="col">
                                         <form method="POST" action=" {{ route('getInvoicePDF') }}">
                                             {{ csrf_field() }}
@@ -123,7 +126,8 @@
                                             <input type="hidden" id="suburb" name="suburb" value="{{ $agent->suburb }}">
                                             <input type="hidden" id="state" name="state" value="{{ $agent->state }}">
                                             <input type="hidden" id="postcode" name="postcode" value="{{ $agent->postcode }}">
-                                            <input type="hidden" id="video_id" name="video_id">
+                                            <input type="hidden" id="video_id" name="video_id" value=" {{ $billing_details->video_ID }}">
+                                            <input type="hidden" id="bill_date" name="bill_date" value="{{ $billing_details->billing_date }}">
 
                                             <button type="submit" class="btn btn-primary">
                                                 Download
@@ -131,9 +135,22 @@
                                         </form>
                                     </div>
                                     <div class="col">
-                                        <button type="submit" class="btn btn-primary">
-                                            Email
-                                        </button>
+                                        <form method="POST" action=" {{ route('emailInvoice') }}">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" id="email" name="email" value="{{ $agent->email }}">
+                                            <input type="hidden" id="company" name="company" value="{{ $agent->name_agency }}">
+                                            <input type="hidden" id="address" name="address"value="{{ $agent->address }}">
+                                            <input type="hidden" id="suburb" name="suburb" value="{{ $agent->suburb }}">
+                                            <input type="hidden" id="state" name="state" value="{{ $agent->state }}">
+                                            <input type="hidden" id="postcode" name="postcode" value="{{ $agent->postcode }}">
+                                            <input type="hidden" id="video_id" name="video_id" value=" {{ $billing_details->video_ID }}">
+                                            <input type="hidden" id="bill_date" name="bill_date" value="{{ $billing_details->billing_date }}">
+
+                                            <button type="submit" class="btn btn-primary">
+                                                Email
+                                            </button>
+                                        </form>
+
                                     </div>
                                     <div class="col">
                                         <button type="submit" class="btn btn-primary">
@@ -183,8 +200,8 @@
             console.log("the value of company is " + company);
 
 
-            $('#video_id').val(vidid);
-            $('#videoid').html(vidid);
+            //$('#video_id').val(vidid);
+            // $('#video_id').html(vidid);
             $('#client_company').html(company);
             $('#client_address').html(address);
             $('#client_suburb').html(suburb);
@@ -219,6 +236,13 @@
             }
 
         });
+
+
+        $('#btnPrintInvoice').click(function(){
+            window.print();
+        });
+
+
 
     });
 

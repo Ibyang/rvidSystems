@@ -94,6 +94,13 @@ class MyVideoController extends Controller
 
         $vidid = (AgentGeneric::max('ID')) + 1;
 
+//        date("Y-m-d H:i:s", strtotime('+3 hours', $now));
+
+        $due_arr = array(
+            'num_hrs' => '36 hours',
+            'due_date' => date("Y-m-d H:i:s", strtotime('+36 hours'))
+        );
+
 //        $url_arr = array(
 //            'agent_ID' => $user_id,
 //            'url_address' => $url
@@ -134,7 +141,7 @@ class MyVideoController extends Controller
         $total_cost = $cost_generic_video + $cost_surge + $cost_total_preference + $cost_extra;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video.generic-video-order', compact('fullname',  'agent', 'url_generic', 'vidid',
+        return view('frontend.pages.video.generic-video-order', compact('fullname',  'agent', 'due_arr', 'url_generic', 'vidid',
                     'preference', 'cost_generic_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost'));
 
     }
@@ -151,6 +158,11 @@ class MyVideoController extends Controller
 //        );
 
         $vidid = (AgentStandard::max('ID')) + 1;
+
+        $due_arr = array(
+            'num_hrs' => '36 hours',
+            'due_date' => date("Y-m-d H:i:s", strtotime('+36 hours'))
+        );
 
 //        $uid = AgentStandard::create($url_arr);
 //        $urlId = $uid->id;
@@ -186,7 +198,7 @@ class MyVideoController extends Controller
         $total_cost = $cost_standard_video + $cost_surge + $cost_total_preference + $cost_extra;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile', 'suburb', 'state', 'postcode'])->first();
-        return view('frontend.pages.video.standard-video-order', compact('fullname',  'agent', 'vidid', 'preference',
+        return view('frontend.pages.video.standard-video-order', compact('fullname',  'agent', 'due_arr', 'vidid', 'preference',
                     'cost_standard_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost'));
 
     }
@@ -274,6 +286,7 @@ class MyVideoController extends Controller
                 'url_address' => $url,
                 'apply_driveby' => Input::get('apply_driveby'),
                 'apply_lookfirst' => Input::get('apply_lookfirst'),
+                'due_date' => Input::get('due_date'),
             );
 
             AgentGeneric::create($generic_arr);
@@ -287,6 +300,7 @@ class MyVideoController extends Controller
                 //'url_address' => $url,
                 'apply_driveby' => Input::get('apply_driveby'),
                 'apply_lookfirst' => Input::get('apply_lookfirst'),
+                'due_date' => Input::get('due_date'),
             );
 
             AgentStandard::create($standard_arr);
