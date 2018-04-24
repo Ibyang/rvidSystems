@@ -8,6 +8,7 @@ use App\User;
 use App\AgentInvoice;
 use App\FAQ;
 use App\AgentInvoiceList;
+use App\Content;
 use PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -155,7 +156,8 @@ class MyAccountController extends Controller
         $userid = Auth::user()->id;
 //        dd($userid);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.account-terms-condition', compact('fullname', 'agent', 'userid'));
+        $content = Content::where('ID', 1)->get(['content_text'])->first();
+        return view('frontend.pages.account-terms-condition', compact('fullname', 'agent', 'userid', 'content'));
 
     }
 
@@ -167,7 +169,8 @@ class MyAccountController extends Controller
         $userid = Auth::user()->id;
 //        dd($userid);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.account-copyright', compact('fullname', 'agent', 'userid'));
+        $content = Content::where('ID', 2)->get(['content_text'])->first();
+        return view('frontend.pages.account-copyright', compact('fullname', 'agent', 'userid', 'content'));
 
     }
 
@@ -179,7 +182,8 @@ class MyAccountController extends Controller
         $userid = Auth::user()->id;
 //        dd($userid);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.account-privacy-terms', compact('fullname', 'agent', 'userid'));
+        $content = Content::where('ID', 1)->get(['content_text'])->first();
+        return view('frontend.pages.account-privacy-terms', compact('fullname', 'agent', 'userid', 'content'));
 
     }
 
@@ -232,18 +236,18 @@ class MyAccountController extends Controller
         $userid = Auth::user()->id;
         $invoices = AgentBilling::where('video_ID', $videoid)->get();
 
-        dd($videoid);
+//        dd($videoid);
 
-//        Mail::send('emails.invoiceEmailTemplate', ['invoice_arr' => $invoice_arr, 'invoices' => $invoices], function ($message) {
-//            $to_email = Input::get('email');
-//            $videoid = Input::get('video_id');
-//            $address = Input::get('address');
-//
-//            $message->from('ivy@revid.com.au', 'Ivy Lane');
-//            $message->to($to_email)->subject('Invoice - #' . $videoid . $address );
-//        });
-//
-//        return redirect()->route('account-billing-history');
+        Mail::send('emails.invoiceEmailTemplate', ['invoice_arr' => $invoice_arr, 'invoices' => $invoices], function ($message) {
+            $to_email = Input::get('email');
+            $videoid = Input::get('video_id');
+            $address = Input::get('address');
+
+            $message->from('ivy@revid.com.au', 'Ivy Lane');
+            $message->to($to_email)->subject('Invoice - #' . $videoid . $address );
+        });
+
+        return redirect()->route('account-billing-history');
 
     }
 

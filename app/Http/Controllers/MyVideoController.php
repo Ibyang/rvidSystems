@@ -10,6 +10,7 @@ use App\AgentGeneric;
 use App\AgentPremium;
 use App\AgentStandard;
 use App\AgentBilling;
+use App\videoProgress;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -284,6 +285,7 @@ class MyVideoController extends Controller
             $generic_arr = array(
                 'agent_ID' => $user_id,
                 'url_address' => $url,
+                'status' => 'Compiling',
                 'apply_driveby' => Input::get('apply_driveby'),
                 'apply_lookfirst' => Input::get('apply_lookfirst'),
                 'due_date' => Input::get('due_date'),
@@ -298,6 +300,7 @@ class MyVideoController extends Controller
             $standard_arr = array(
                 'agent_ID' => $user_id,
                 //'url_address' => $url,
+                'status' => 'Compiling',
                 'apply_driveby' => Input::get('apply_driveby'),
                 'apply_lookfirst' => Input::get('apply_lookfirst'),
                 'due_date' => Input::get('due_date'),
@@ -312,6 +315,7 @@ class MyVideoController extends Controller
             $premium_arr = array(
                 'agent_ID' => $user_id,
                 'url_address' => $url,
+                'status' => 'Compiling',
                 'apply_driveby' => Input::get('apply_driveby'),
                 'apply_lookfirst' => Input::get('apply_lookfirst'),
             );
@@ -417,6 +421,16 @@ class MyVideoController extends Controller
                 'broadcast_agent' => $broadcast_status
             ]);
         }
+
+
+        //for creating record in the Video Progress table for updating value later..
+
+        $progress_arr = array(
+            'video_ID' => $videoid
+        );
+
+        videoProgress::create($progress_arr);
+
 
         return redirect()->route('account-make-video');
 

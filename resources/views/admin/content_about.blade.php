@@ -12,7 +12,7 @@
 
   <!-- Right side column. Contains the navbar and content of the page -->
     <section class="content-header">
-      <h1>Copyright Terms</h1>
+      <h1>About Page</h1>
       <ol class="breadcrumb">
         <li>
           <a href="#">
@@ -22,7 +22,7 @@
         <li>
           <a href="#">Content Management</a>
         </li>
-        <li class="active">Copyright Terms</li>
+        <li class="active">About Page</li>
       </ol>
     </section>
     <section class="content">
@@ -32,7 +32,7 @@
             <div class="panel-heading">
               <h3 class="panel-title">
                 <i class="livicon" data-name="clock" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                Content Management - Copyright
+                Content Management - About
               </h3>
               <span class="pull-right">
                   <i class="glyphicon glyphicon-chevron-up clickable"></i>
@@ -40,10 +40,10 @@
             </div>
               <div class="panel-body">
 
-                  <form class="form-horizontal" method="POST" action="{{ route('updateContent', 2) }}">
+                  <form class="form-horizontal" method="POST" action="{{ route('updateContent') }}">
                       {{ csrf_field() }}
-                      <input name="_method" type="hidden" value="PATCH">
-                      <input name="contentid" type="hidden" value="2">
+                      {{--<input name="_method" type="hidden" value="PATCH">--}}
+                      <input name="contentid" type="hidden" value="4">
                       <div class="text-left">
 
                           <section class="content paddingleft_right15">
@@ -54,8 +54,11 @@
                                   <div class='box well well-sm' style="margin-top: 20px">
                                       <!-- /.box-header -->
                                       {{--<div class='box-body'>--}}
-                                      <textarea class="textarea editor-cls" placeholder="Place some text here"></textarea>
+                                      <textarea rows="150" name="about" class="textarea editor-cls" placeholder="Place some text here">
+                                          {{ $content->content_text != null ? $content->content_text : '' }}
+                                      </textarea>
                                       {{--</div>--}}
+                                      <input type="submit" style="text-align: center" value="Submit">
                                   </div>
                                   <!-- /.col-->
                               </div>

@@ -17,9 +17,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">Users</a>
+                    <a href="#">Orders</a>
                 </li>
-                <li class="active">Agents</li>
+                <li class="active">Generic Videos</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -38,35 +38,38 @@
                             <table class="table table-bordered " id="table">
                                 <thead>
                                 <tr class="filters">
-                                    <th>Order ID</th>
+                                    <th>Video ID</th>
                                     <th>URL</th>
                                     <th>Agent Name</th>
                                     <th>Status</th>
                                     <th>Order Date</th>
+                                    <th>Due Date</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr><td colspan="6">No data available yet...</td></tr>
-                                {{--@foreach($agents as $agent)--}}
-                                {{--<tr>--}}
-                                {{--<td>{{$agent->group}}</td>--}}
-                                {{--<td>{{$agent->name_agency}}</td>--}}
-                                {{--<td>{{$agent->role_title}}</td>--}}
-                                {{--<td>{{$agent->firstname}} {{$agent->lastname}}</td>--}}
-                                {{--<td>{{$agent->email}}</td>--}}
-                                {{--<td>{{$agent->mobile}}</td>--}}
-                                {{--<td>{{$agent->address}}, {{$agent->suburb}} {{$agent->State}}{{$agent->postcode}}</td>--}}
-                                {{--<td>--}}
-                                {{--<a href="{{ route('agents.edit', $agent->ID)}}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Agent"></i></a>--}}
-                                {{--<form action="{{action('AgentController@destroy', $agent->ID)}}" method="post" onsubmit="return confirm('Are you sure you want to delete this record?')">--}}
-                                {{--{{csrf_field()}}--}}
-                                {{--<input name="_method" type="hidden" value="DELETE">--}}
-                                {{--<button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>--}}
-                                {{--</form>--}}
-                                {{--</td>--}}
-                                {{--</tr>--}}
-                                {{--@endforeach--}}
+                                    @if(count($videos) > 0)
+                                        @foreach($videos as $video)
+                                            <tr>
+                                                <td style="text-align: center">{{ $video->ID }}</td>
+                                                <td>{{ $video->url_address }}</td>
+                                                <td>{{ $video->name }}</td>
+                                                <td>
+                                                    @if($video->status === 'Compiling')
+                                                        <span style="color: red">{{ $video->status }}</span>
+                                                    @else
+                                                        {{ $video->status }}
+                                                    @endif
+                                                </td>
+                                                <td>{{ \Carbon\Carbon::parse($video->created_at)->format('d/m/Y H:m:s') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($video->due_date)->format('d/m/Y H:m:s') }}</td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                    {{--<tr><td colspan="6">No data available yet...</td></tr>--}}
                                 </tbody>
                             </table>
                         </div>

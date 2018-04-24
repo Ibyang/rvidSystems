@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/vendors/datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
     <meta name="_token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('assets/css/pages/only_dashboard.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/datatables/css/dataTables.bootstrap.css') }}" />
+    <link href="{{ asset('assets/css/pages/tables.css') }}" rel="stylesheet" type="text/css" />
+
 @stop
 
 @section('content')
@@ -141,18 +144,158 @@
         <div class="row">
             @if($role === 'Production')
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="panel panel-success panel-border">
+
+                    <!-- for Generic Videos -->
+                    <div class="panel panel-primary panel-border">
                         <div class="panel-heading  border-light">
                             <h4 class="panel-title">
-                                <i class="livicon" data-name="file-export" data-size="16" data-loop="true" data-c="#fff" data-hc="#fff"></i> Orders
+                                <i class="livicon" data-name="file-export" data-size="16" data-loop="true" data-c="#fff" data-hc="#fff"></i> Generic Video Orders
                             </h4>
                         </div>
                         <div class="panel-body">
 
+                            @if(count($generic_videos) > 0)
+                                <div class="table-responsive">
+                                    <table class="table table-bordered " id="table">
+                                        <thead>
+                                        <tr class="filters">
+                                            <th>Video ID</th>
+                                            <th>URL</th>
+                                            <th>Agent Name</th>
+                                            <th>Status</th>
+                                            <th>Order Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach($generic_videos as $video)
+                                                <tr>
+                                                    <td style="text-align: center">{{ $video->ID }}</td>
+                                                    <td>{{ $video->url_address }}</td>
+                                                    <td>{{ $video->name }}</td>
+                                                    <td>
+                                                        @if($video->status === 'Compiling')
+                                                            <span style="color: red">{{ $video->status }}</span>
+                                                        @else
+                                                            {{ $video->status }}
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ \Carbon\Carbon::parse($video->created_at)->format('d/m/Y H:m:s') }}</td>
+                                                    <td style="text-align: center">
+                                                        Edit
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        {{--<tr><td colspan="6">No data available yet...</td></tr>--}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
 
                         </div> <!-- end of panel body -->
                     </div>
+
+                    <!-- for Standard Videos -->
+                    <div class="panel panel-default panel-border">
+                        <div class="panel-heading  border-light">
+                            <h4 class="panel-title">
+                                <i class="livicon" data-name="file-export" data-size="16" data-loop="true" data-c="#fff" data-hc="#fff"></i> Standard Video Orders
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+
+                            @if(count($standard_videos) > 0)
+                                <div class="table-responsive">
+                                    <table class="table table-bordered " id="table2">
+                                        <thead>
+                                        <tr class="filters">
+                                            <th>Order ID</th>
+                                            <th>Agent Name</th>
+                                            <th>Status</th>
+                                            <th>Order Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($standard_videos as $video)
+                                                <tr>
+                                                    <td style="text-align: center">{{ $video->ID }}</td>
+                                                    <td>{{ $video->name }}</td>
+                                                    <td>
+                                                        @if($video->status === 'Compiling')
+                                                            <span style="color: red">{{ $video->status }}</span>
+                                                        @else
+                                                            {{ $video->status }}
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ \Carbon\Carbon::parse($video->created_at)->format('d/m/Y H:m:s') }}</td>
+                                                    <td style="text-align: center">
+                                                        Edit
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        {{--<tr><td colspan="6">No data available yet...</td></tr>--}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+
+                        </div> <!-- end of panel body -->
+                    </div>
+
+                    <!-- for Premium Videos -->
+                    <div class="panel panel-info panel-border">
+                        <div class="panel-heading  border-light">
+                            <h4 class="panel-title">
+                                <i class="livicon" data-name="file-export" data-size="16" data-loop="true" data-c="#fff" data-hc="#fff"></i> Premium Video Orders
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+
+                            @if(count($premium_videos) > 0)
+                                <div class="table-responsive">
+                                    <table class="table table-bordered " id="table3">
+                                        <thead>
+                                        <tr class="filters">
+                                            <th>Video ID</th>
+                                            <th>URL</th>
+                                            <th>Agent Name</th>
+                                            <th>Status</th>
+                                            <th>Order Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach($premium_videos as $video)
+                                                <tr>
+                                                    <td style="text-align: center">{{ $video->ID }}</td>
+                                                    <td>{{ $video->url_address }}</td>
+                                                    <td>{{ $video->name }}</td>
+                                                    <td>
+                                                        @if($video->status === 'Compiling')
+                                                            <span style="color: red">{{ $video->status }}</span>
+                                                        @else
+                                                            {{ $video->status }}
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ \Carbon\Carbon::parse($video->created_at)->format('d/m/Y H:m:s') }}</td>
+                                                    <td>
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+                        </div> <!-- end of panel body -->
+                    </div>
+
                 </div>
+
             @endif
             <!-- Calendar -->
             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -260,6 +403,15 @@
     <script src="{{ asset('assets/js/pages/dashboard.js') }}" type="text/javascript"></script>
 {{--    <script src="{{ asset('assets/js/pages/todolist.js') }}"></script>--}}
 
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#table').dataTable();
+            $('#table2').dataTable();
+            $('#table3').dataTable();
+        });
+    </script>
 
 @stop
-

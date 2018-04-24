@@ -110,33 +110,84 @@ class ContentController extends Controller
         $fullname = Auth::user()->name;
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
-        return view('admin.terms_conditions',compact('fullname', 'role', 'pic'));
+        $content = Content::where('ID', 1)->get(['content_text'])->first();
+        return view('admin.content_terms_conditions',compact('fullname', 'role', 'pic', 'content'));
     }
 
 
-    //get content for Terms and Conditions
+    //get content for Copyright Terms
     public function getCopyrightTerms()
     {
         $fullname = Auth::user()->name;
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
-        return view('admin.copyright',compact('fullname', 'role', 'pic'));
+        $content = Content::where('ID', 2)->get(['content_text'])->first();
+        return view('admin.content_copyright',compact('fullname', 'role', 'pic', 'content'));
     }
 
 
-    //get content for Terms and Conditions
+    //get content for Privacy Terms
     public function getPrivacyTerms()
     {
         $fullname = Auth::user()->name;
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
-        return view('admin.privacy',compact('fullname', 'role', 'pic'));
+        $content = Content::where('ID', 3)->get(['content_text'])->first();
+        return view('admin.content_privacy',compact('fullname', 'role', 'pic', 'content'));
+    }
+
+
+    //get content for About Page
+    public function getAbout()
+    {
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+        $content = Content::where('ID', 4)->get(['content_text'])->first();
+        return view('admin.content_about',compact('fullname', 'role', 'pic', 'content'));
     }
 
 
     public function updateContent()
     {
         $contentid = Input::get('contentid');
+
+        if($contentid == 1) {
+            $termscondition = Input::get('termsconditions');
+            Content::where('ID', 1)->update([
+                'content_text' => $termscondition
+            ]);
+
+            return redirect('/TermsCondition');
+
+        }
+        else if($contentid == 2) {
+            $copyright = Input::get('copyright');
+            Content::where('ID', 2)->update([
+                'content_text' => $copyright
+            ]);
+
+            return redirect('/CopyrightTerms');
+
+        }
+        else if($contentid == 3) {
+            $privacy = Input::get('privacy');
+            Content::where('ID', 3)->update([
+                'content_text' => $privacy
+            ]);
+
+            return redirect('/PrivacyTerms');
+
+        }
+        else if($contentid == 4) {
+            $about = Input::get('about');
+            Content::where('ID', 4)->update([
+                'content_text' => $about
+            ]);
+
+            return redirect('/About');
+
+        }
 
 
     }

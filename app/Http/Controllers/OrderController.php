@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\AgentGeneric;
+use App\AgentStandard;
+use App\AgentPremium;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -18,7 +22,12 @@ class OrderController extends Controller
         $fullname = Auth::user()->name;
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
-        return view('admin.listGeneric', compact('fullname', 'role', 'pic'));
+//        $videos = AgentGeneric::orderBy('ID', 'ASC')->get();
+        $videos = DB::table("agent_generic_videos")->select("agent_generic_videos.*", "users.name")
+                    ->leftjoin("users", function($join) {
+                       $join->on("users.id", "=", "agent_generic_videos.agent_ID");
+                    })->get();
+        return view('admin.listGeneric', compact('fullname', 'role', 'pic', 'videos'));
 
     }
 
@@ -34,7 +43,12 @@ class OrderController extends Controller
         $fullname = Auth::user()->name;
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
-        return view('admin.listStandard', compact('fullname', 'role', 'pic'));
+//        $videos = AgentStandard::orderBy('ID', 'ASC')->get();
+        $videos = DB::table("agent_standard_videos")->select("agent_standard_videos.*", "users.name")
+            ->leftjoin("users", function($join) {
+                $join->on("users.id", "=", "agent_standard_videos.agent_ID");
+            })->get();
+        return view('admin.listStandard', compact('fullname', 'role', 'pic', 'videos'));
 
     }
 
@@ -50,7 +64,12 @@ class OrderController extends Controller
         $fullname = Auth::user()->name;
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
-        return view('admin.listPremium', compact('fullname', 'role', 'pic'));
+//        $videos = AgentPremium::orderBy('ID', 'ASC')->get();
+        $videos = DB::table("agent_premium_videos")->select("agent_premium_videos.*", "users.name")
+            ->leftjoin("users", function($join) {
+                $join->on("users.id", "=", "agent_premium_videos.agent_ID");
+            })->get();
+        return view('admin.listPremium', compact('fullname', 'role', 'pic', 'videos'));
 
     }
 

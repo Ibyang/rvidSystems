@@ -19,6 +19,7 @@ use App\State;
 use App\SocialMedia;
 use App\FAQ;
 use App\Agent;
+use App\Content;
 
 //USED FOR FRONT END PAGES
 
@@ -198,15 +199,18 @@ Route::group(['middleware' => 'guest'], function() {
     })->name('pricing');
 
     Route::get('/terms-condition', function () {
-        return view('frontend.pages.terms-condition');
+        $content = Content::where('ID', 1)->get(['content_text'])->first();
+        return view('frontend.pages.terms-condition', compact('content'));
     })->name('terms-condition');
 
     Route::get('/copyright', function () {
-        return view('frontend.pages.copyright');
+        $content = Content::where('ID', 2)->get(['content_text'])->first();
+        return view('frontend.pages.copyright', compact('content'));
     })->name('copyright');
 
     Route::get('/privacy-terms', function () {
-        return view('frontend.pages.privacy-terms');
+        $content = Content::where('ID', 3)->get(['content_text'])->first();
+        return view('frontend.pages.privacy-terms', compact('content'));
     })->name('privacy-terms');
 
     Route::resource('registerAgent', 'RegisterController');
@@ -428,13 +432,16 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/premium', 'OrderController@indexPremium')->name('premium');
 
+    //maintenance of Content Pages
     Route::get('/TermsCondition', 'ContentController@getTermsCondition')->name('getTermsCondition');
 
     Route::get('/CopyrightTerms', 'ContentController@getCopyrightTerms')->name('getCopyrightTerms');
 
     Route::get('/PrivacyTerms', 'ContentController@getPrivacyTerms')->name('getPrivacyTerms');
 
-    Route::post('/updateContent', 'ContentController@update')->name('updateContent');
+    Route::get('/About', 'ContentController@getAbout')->name('getAbout');
+
+    Route::post('/updateContent', 'ContentController@updateContent')->name('updateContent');
 
 //});
 

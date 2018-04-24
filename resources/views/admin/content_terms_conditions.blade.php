@@ -40,9 +40,9 @@
             </div>
             <div class="panel-body">
 
-                <form class="form-horizontal" method="POST" action="{{ route('updateContent', 1) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('updateContent') }}">
                 {{ csrf_field() }}
-                <input name="_method" type="hidden" value="PATCH">
+                {{--<input name="_method" type="hidden" value="PATCH">--}}
                 <input name="contentid" type="hidden" value="1">
                     <div class="text-left">
 
@@ -54,7 +54,9 @@
                                     <div class='box well well-sm' style="margin-top: 20px">
                                         <!-- /.box-header -->
                                         {{--<div class='box-body'>--}}
-                                            <textarea name="termsconditions" class="textarea editor-cls" placeholder="Place some text here"></textarea>
+                                            <textarea rows="200" name="termsconditions" id="termsconditions" class="textarea editor-cls" placeholder="Place some text here">
+                                                {{ $content->content_text != null ? $content->content_text : '' }}
+                                            </textarea>
                                         {{--</div>--}}
                                         <input type="submit" style="text-align: center" value="Submit">
                                     </div>
@@ -88,5 +90,18 @@
     <script src="{{ asset('assets/vendors/bootstrap3-wysihtml5-bower/js/bootstrap3-wysihtml5.all.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/vendors/bootstrap3-wysihtml5-bower/js/bootstrap3-wysihtml5.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/pages/editor2.js') }}" type="text/javascript"></script>
+
+    {{--<script type="text/javascript">--}}
+        {{--$(document).ready(function() {--}}
+
+            {{--$("#chatroom").css({--}}
+                {{--'max-height': 'auto',--}}
+                {{--'height': 300,--}}
+                {{--'width': auto,--}}
+                {{--'overflow': 'auto',--}}
+            {{--});--}}
+
+        {{--});--}}
+    {{--</script>--}}
 
 @stop

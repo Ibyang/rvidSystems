@@ -31,13 +31,18 @@
     </li>
     @if($role == 'Administrator')
         <li {!! (Request::is('content') || Request::is('socialmedia') || Request::is('faq') || Request::is('TermsCondition')
-                    || Request::is('CopyrightTerms') || Request::is('PrivacyTerms') ? 'class="active"' : '') !!}>
+                    || Request::is('CopyrightTerms') || Request::is('PrivacyTerms') || Request::is('About') ? 'class="active"' : '') !!}>
             <a href="#">
                 <i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>
                 <span class="title">Content Management</span>
                 <span class="fa arrow"></span>
             </a>
             <ul class="sub-menu">
+                <li {!! (Request::is('About') ? 'class="active"' : '') !!}>
+                    <a href="{{ route('getAbout') }}">
+                        <i class="fa fa-angle-double-right"></i> About Page
+                    </a>
+                </li>
                 <li {!! (Request::is('TermsCondition') ? 'class="active"' : '') !!}>
                     <a href="{{ route('getTermsCondition') }}">
                         <i class="fa fa-angle-double-right"></i> Terms and Condition
