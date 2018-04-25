@@ -292,6 +292,16 @@ class MyVideoController extends Controller
             );
 
             AgentGeneric::create($generic_arr);
+
+            //for creating record in the Video Progress table for updating value later..
+            $progress_arr = array(
+                'video_ID' => $videoid,
+                'videotype' => 'Generic'
+            );
+
+            videoProgress::create($progress_arr);
+
+
         }
         elseif($videotype === 'Standard'){
             $video_desc = "#" . $videoid . " Standard Video Production";
@@ -307,6 +317,16 @@ class MyVideoController extends Controller
             );
 
             AgentStandard::create($standard_arr);
+
+            //for creating record in the Video Progress table for updating value later..
+            $progress_arr = array(
+                'video_ID' => $videoid,
+                'videotype' => 'Standard'
+            );
+
+            videoProgress::create($progress_arr);
+
+
         }
         elseif($videotype === 'Premium'){
             $video_desc = "#" . $videoid . " Premium Video Production";
@@ -321,6 +341,14 @@ class MyVideoController extends Controller
             );
 
             AgentPremium::create($premium_arr);
+
+            //for creating record in the Video Progress table for updating value later..
+            $progress_arr = array(
+                'video_ID' => $videoid,
+                'videotype' => 'Premium'
+            );
+
+            videoProgress::create($progress_arr);
         }
 
         //store record to Invoice Table
@@ -357,6 +385,7 @@ class MyVideoController extends Controller
                     'billing_date' => $billdate
                 );
                 AgentBilling::create($surge_rush_arr);
+
             } else if ($surge_value === 'Always Surge') {
                 $surge_cost_arr = array(
                     'agent_ID' => $user_id,
@@ -421,15 +450,6 @@ class MyVideoController extends Controller
                 'broadcast_agent' => $broadcast_status
             ]);
         }
-
-
-        //for creating record in the Video Progress table for updating value later..
-
-        $progress_arr = array(
-            'video_ID' => $videoid
-        );
-
-        videoProgress::create($progress_arr);
 
 
         return redirect()->route('account-make-video');

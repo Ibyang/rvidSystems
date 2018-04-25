@@ -56,4 +56,16 @@ class AdminController extends Controller
 //            ->with('role', $role)
 //            ->with('pic', $pic);
     }
+
+
+    public function videoOrder(){
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+        $email = Auth::user()->email;
+
+        return view('admin.editVideoOrder', compact('fullname', 'role', 'pic'));
+
+
+    }
 }

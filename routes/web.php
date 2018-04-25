@@ -443,6 +443,14 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::post('/updateContent', 'ContentController@updateContent')->name('updateContent');
 
+    Route::get('/videoOrder', 'AdminController@videoOrder');
+
+    //get Video Details
+    Route::get('/getVideoDetails/{id}/{videotype}', 'OrderController@getVideoDetails')->name('getVideoDetails');
+
+    //post Video Progress
+    Route:: post('/postVideoProgress', 'OrderController@postVideoProgress')->name('postVideoProgress');
+
 //});
 
 //Route::get('/voice/upload', 'FileController@createVoice')->name('showUploadVideo');

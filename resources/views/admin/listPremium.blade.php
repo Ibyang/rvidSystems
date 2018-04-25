@@ -62,7 +62,7 @@
                                                 </td>
                                                 <td>{{ \Carbon\Carbon::parse($video->created_at)->format('d/m/Y H:m:s') }}</td>
                                                 <td>
-
+                                                    <a href="{{ url('getVideoDetails/' . $video->ID . '/Premium') }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Premium Order"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

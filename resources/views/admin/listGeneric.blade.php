@@ -64,7 +64,8 @@
                                                 <td>{{ \Carbon\Carbon::parse($video->created_at)->format('d/m/Y H:m:s') }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($video->due_date)->format('d/m/Y H:m:s') }}</td>
                                                 <td>
-
+{{--                                                    <a href="{{ route('getVideoDetails', $video->ID, 'Generic')}}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Agent"></i></a>--}}
+                                                    <a href="{{ url('getVideoDetails/' . $video->ID . '/Generic') }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Video Order"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
