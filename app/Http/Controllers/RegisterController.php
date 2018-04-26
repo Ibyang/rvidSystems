@@ -64,8 +64,9 @@ class RegisterController extends Controller
         $email = Session::get('email_add');
         $details = Agent::where('email', $email)->first();
         $agent = Session::get('agent_arr');
+        $user_id = Session::get('userId');
 //        dd($agent);
-        return view('frontend.pages.register-step4', compact('details', 'agent'));
+        return view('frontend.pages.register-step4', compact('details', 'agent', 'user_id'));
     }
 
     public function processStep2(){
@@ -398,4 +399,5 @@ class RegisterController extends Controller
     {
         //
     }
+
 }

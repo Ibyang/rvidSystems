@@ -268,6 +268,15 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::post('/processStep4', 'RegisterController@processStep4')->name('processStep4');
 
+    //process for Payment Details
+    Route::post('/postPaymentDetails', 'PaymentController@postPaymentDetails')->name('postPaymentDetails');
+
+    Route::get('/payment-status', 'PaymentController@paymentInfo')->name('payment-status');
+
+    Route::get('/payment-cancel', function() {
+        return 'Payment has been canceled';
+    })->name('payment-cancel');
+
     Route::get('/account/home', 'MyAccountController@index')->name('account-home');
 
     Route::get('/account/my-videos', 'MyVideoController@index')->name('account-my-videos');

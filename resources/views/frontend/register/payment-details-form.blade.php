@@ -1,5 +1,5 @@
  <div class="container register-form">
-     <form class="form-horizontal" method="POST" action="{{ route('processStep4') }}">
+     <form class="form-horizontal" id="frmprocessStep4" method="POST" action="{{ route('processStep4') }}">
          <h3>Your Payment Details</h3>
          {{ csrf_field() }}
          <div class="row">
@@ -18,7 +18,7 @@
                  </div>
                  <div class="col-sm-4">
                      <div class="custom-control custom-checkbox casual">
-                         <input type="checkbox" class="group1 custom-control-input" id="customCheck1" value="Casual" name="subscription1[]">
+                         <input type="checkbox" class="group1 custom-control-input" id="customCheck1" value="Casual" name="subscription1[]" required>
                          <label class="custom-control-label" for="customCheck1"></label>
                      </div>
                  </div>
@@ -35,8 +35,8 @@
                  </div>
                  <div class="col-sm-4">
                      <div class="custom-control custom-checkbox standard">
-                         <input type="checkbox" class="group1 custom-control-input" id="customCheck3" value="Standard" name="subscription1[]">
-                         <label class="custom-control-label" for="customCheck3"></label>
+                         <input type="checkbox" class="group1 custom-control-input" id="customCheck2" value="Standard" name="subscription1[]">
+                         <label class="custom-control-label" for="customCheck2"></label>
                      </div>
                  </div>
              </div>
@@ -54,8 +54,8 @@
                  </div>
                  <div class="col-sm-4">
                      <div class="custom-control custom-checkbox basic">
-                         <input type="checkbox" class="group1 custom-control-input" id="customCheck2" value="Basic" name="subscription1[]">
-                         <label class="custom-control-label" for="customCheck2"></label>
+                         <input type="checkbox" class="group1 custom-control-input" id="customCheck3" value="Basic" name="subscription1[]">
+                         <label class="custom-control-label" for="customCheck3"></label>
                      </div>
                  </div>
              </div>
@@ -291,7 +291,13 @@
                              </span>
                          @endif
                      </div>
+                 </div><br>
+                 <div class="custom-control custom-checkbox premium">
+                     <input type="checkbox" class="group1 custom-control-input" id="paypal" value="1" name="paypal">
+                     <label class="custom-control-label" for="paypal"></label>
+                     Paypal
                  </div>
+
              </div>
              <div class="col-sm">
                  {{--<div class="form-group">--}}
@@ -323,6 +329,13 @@
              </div>
          </div>
 
+     </form>
+
+     <form id="paypal-form" action="{{ route('postPaymentDetails') }}" method="POST" style="display: none;">
+         {{ csrf_field() }}
+         <input type="hidden" name="item_id" id="item_id" value="{{ $user_id }}">
+         <input type="hidden" name="item_name" id="item_name">
+         <input type="hidden" name="amount" id="amount">
 
      </form>
  </div>
