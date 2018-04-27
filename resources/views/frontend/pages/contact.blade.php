@@ -7,12 +7,12 @@
             <div class="border-bot">
                 <div class="row">
                     <div class="col col-lg-3"><img src={{ asset('storage/revid-icon-v2.png') }} /></div>
-                    <div class="col-12 col-lg-4"><h5><b>REVid System Pty LTd</b><br>ACN 111 076 254</h5></div>
+                    <div class="col-12 col-lg-4"><h5><b>REVid System Pty LTd</b><br>ABN 94 111 076 254</h5></div>
                     <div class="col col-lg-5">
                         <b>Suite 90, 102 Railway Street<br>
                             West Perth<br>
                             Western Australia 6005<br><br>
-                            Telephone: 1300 100 333<br>
+                            Telephone: 1300 100 111<br>
                             Email: corporate@revid.com.au<br></b>
                     </div>
                 </div>

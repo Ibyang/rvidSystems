@@ -1,4 +1,4 @@
-<h3>My Account</h3>
+<h3 class="my-account-title">My Account</h3>
             
 <h3>Your Details</h3>
 

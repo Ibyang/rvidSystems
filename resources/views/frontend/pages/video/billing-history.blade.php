@@ -9,48 +9,49 @@
         @endauth
         </div>
         <div class="col-lg-9 my-account-form">
-            <br><h3>Billing History</h3>
-            <br>
+            <h3 class="my-account-title">Billing History</h3>
             <div class="row">
-                <div class="col-6">Statement Details</div>
-                <div class="col-6">Balance Outstanding</div>
+                <div class="col-sm pl-0"><h3>Statement Details</h3></div>
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-md-auto"><h3>Balance <br>Outstanding</h3></div>
+                        <div class="col-6">
+                            <div class="billing-amount">$XXX</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {{--<table class="table">--}}
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Description</th>
-                  <th>Invoiced<br>Amount</th>
-                  <th>Paid<br>Amount</th>
-                  <th>Invoice<br>Number</th>
-                </tr>
-              </thead>
-              <tbody>
-
+            <div class="row font-weight-bold">
+                <div class="col-sm text-center">Date</div>
+                <div class="col-sm-6 text-center">Description</div>
+                <div class="col-sm text-center">Invoiced<br>Amount</div>
+                <div class="col-sm text-center">Paid<br>Amount</div>
+                <div class="col-sm text-center">Invoice<br>Number</div>
+            </div>
               @if(count($invoices) > 0)
                 @foreach($invoices as $invoice)
-                    <tr>
-                      <td>{{ \Carbon\Carbon::parse($invoice->billing_date)->format('d/m/Y')}}</td>
-                      <td>{{ $invoice->description  }}</td>
-                      <td>${{ $invoice->total_amount }}</td>
-                      <td>
-                          @if($invoice->paid_amount == null)
-                              ($XX.XX)
-                          @else
-                               ${{ number_format($invoice->paid_amount, 2) }}
-                          @endif
-                      </td>
-                        <!-- temporarily will use the Video ID -->
-                        <td><a href="#" data-toggle="modal" data-target="#InvoiceModal" data-dbid="{{$invoice->video_ID}}" style="text-decoration: none">{{ $invoice->video_ID }}</a></td>
-                    </tr>
+                    <div class="row">
+                        <div class="col-sm pl-0">{{ \Carbon\Carbon::parse($invoice->billing_date)->format('d/m/Y')}}</div>
+                        <div class="col-sm-6">{{ $invoice->description  }}</div>
+                        <div class="col-sm">${{ $invoice->total_amount }}</div>
+                        <div class="col-sm">
+                            @if($invoice->paid_amount == null)
+                                ($XX.XX)
+                            @else
+                                ${{ number_format($invoice->paid_amount, 2) }}
+                            @endif
+                        </div>
+                        <div class="col-sm">
+                            <!-- temporarily will use the Video ID -->
+                            <a href="#" class="font-weight-bold c0066ff" data-toggle="modal" data-target="#InvoiceModal" data-dbid="{{$invoice->video_ID}}" style="text-decoration: none">{{ $invoice->video_ID }}</a>
+                        </div>
+                    </div>
                 @endforeach
               @else
-                <tr><td colspan="5">No available invoice.</td></tr>
+                <div class="row">
+                    No available invoice.
+                </div>
               @endif
-
-              </tbody>
-            </table>
 
             <!-- Tax Invoice Modal -->
             <div class="modal fade" id="InvoiceModal"
@@ -66,6 +67,117 @@
                                 <span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
+
+                            <div>
+                                <div class="float-r mr-4">
+                                    <div class="billing-arrow"></div>
+                                </div>
+                                <div class="clear"></div>
+
+                                <div class="billing-border">
+                                    <div class="text-left">
+                                        <div class="row">
+                                            <div class="col-sm pl-0">
+                                                <h3>TAX INVOICE</h3>
+                                                <h3>#XXXX</h3>
+                                            </div>
+                                            <div class="col-sm pr-0">
+                                                <div class="text-right">
+                                                    <img src={{ asset('storage/account/revid-billing-icon.png') }} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="col-sm pl-0">
+                                                <div class="pb-1">Date: November 6 2017</div>
+                                                <div class="row mt-0">
+                                                    <div class="col-md-auto pl-0 pr-0">To:</div>
+                                                    <div class="col-md-auto pl-2">
+                                                        <div>Billing Name</div>
+                                                        <div>Address</div>
+                                                        <div>Address</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm pr-0">
+                                                <div class="billing-border">
+                                                    Video #XXXX<br>
+                                                    33 South Rd<br>
+                                                    Bassendean WA 6054
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    DETAILS
+                                    <table class="billing-table mt-2" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>#XXXX Generic Video Production</td>
+                                            <td>$75.0</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="text-right"><span class="font-weight-bold">Cost</span></td>
+                                            <td>$10.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="text-right"><span class="font-weight-bold">Total</span></td>
+                                            <td>$110.00</td>
+                                        </tr>
+                                    </table>
+                                    <div class="mt-3 mb-2">PAYMENT/RECEIPT</div>
+                                    <div class="row">
+                                        <div class="col-sm-2 text-right">Paid</div>
+                                        <div class="col-sm-8">Credit Card XXX-0004</div>
+                                        <div class="col-sm-2">Balance</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2 text-right">Date</div>
+                                        <div class="col-sm-8">November 6 2017</div>
+                                        <div class="col-sm-2">$0.00</div>
+                                    </div>
+                                    <div class="row mt-4 mb-0">
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-10 pr-0">
+                                            <div class="billing-button text-right">
+                                                <div class="d-inline-block">
+                                                    <button type="submit" class="btn btn-primary btn-ff0033">
+                                                        <i class="billing-icon billing-print"></i><span>Print</span>
+                                                    </button>
+                                                </div>
+                                                <div class="d-inline-block">
+                                                    <button type="submit" class="btn btn-primary btn-ff0033">
+                                                        <i class="billing-icon billing-download"></i><span>Download</span>
+                                                    </button>
+                                                </div>
+                                                <div class="d-inline-block">
+                                                    <button type="submit" class="btn btn-primary btn-ff0033">
+                                                        <i class="billing-icon billing-email"></i><span class="pl-2">Email</span>
+                                                    </button>
+                                                </div>
+                                                <div class="d-inline-block">
+                                                    <button type="submit" class="btn btn-primary btn-ff0033">
+                                                        <i class="billing-icon billing-query"></i><span class="pl-2">Query</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
                             <div id="dataid"></div>
 
                             <div class="">
@@ -81,23 +193,7 @@
                                     <span id="client_suburb"></span>&nbsp;<span id="client_state"></span>&nbsp;<span id="client_postcode"></span>
                                 </div>
                                 DETAILS
-                                <table class=table id="invoiceDetailsTable" style="border: 1px">
-                                    {{--<tr>--}}
-                                        {{--<td>1</td>--}}
-                                        {{--<td>#XXXX Generic Video Production</td>--}}
-                                        {{--<td>$75.0</td>--}}
-                                    {{--</tr>--}}
-                                    {{--<tr>--}}
-                                        {{--<td></td>--}}
-                                        {{--<td>Cost</td>--}}
-                                        {{--<td>$10.00</td>--}}
-                                    {{--</tr>--}}
-                                    {{--<tr>--}}
-                                        {{--<td></td>--}}
-                                        {{--<td>Total</td>--}}
-                                        {{--<td>$110.00</td>--}}
-                                    {{--</tr>--}}
-                                </table>
+                                <table class=table id="invoiceDetailsTable" style="border: 1px"></table>
                                 {{--PAYMENT/RECEIPT--}}
                                 {{--<div class="row">--}}
                                     {{--<div class="col">Paid</div>--}}
@@ -160,7 +256,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div> <!-- modal body -->
                         <div class="modal-footer">
                             <button type="button"
                                     class="btn btn-default"
@@ -168,7 +264,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  <!-- end of Invoice Modal -->
 
         </div>
     </div>

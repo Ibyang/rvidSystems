@@ -41,11 +41,11 @@ class RegisterController extends Controller
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.register-step1',compact('email', 'details', 'states', 'groups', 'agencies'));
+        return view('frontend.register.register-step1',compact('email', 'details', 'states', 'groups', 'agencies'));
     }
 
     public function getStep2(){
-        return view('frontend.pages.register-step2');
+        return view('frontend.register.register-step2');
     }
 
     public function getStep3(){
@@ -56,7 +56,7 @@ class RegisterController extends Controller
                         ->orderBy('suburb', 'ASC')
                         ->get();
 //        dd($suburbs);
-        return view('frontend.pages.register-step3', compact('suburbs'));
+        return view('frontend.register.register-step3', compact('suburbs'));
     }
 
     public function getStep4(){
@@ -66,7 +66,7 @@ class RegisterController extends Controller
         $agent = Session::get('agent_arr');
         $user_id = Session::get('userId');
 //        dd($agent);
-        return view('frontend.pages.register-step4', compact('details', 'agent', 'user_id'));
+        return view('frontend.register.register-step4', compact('details', 'agent', 'user_id'));
     }
 
     public function processStep2(){

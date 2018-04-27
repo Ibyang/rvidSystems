@@ -1,17 +1,35 @@
 @extends('frontend.layouts.main')
 
+{{--@section('content')--}}
+
+    {{--<div class="container" id="content">--}}
+        {{--<h1 class="c-6600cc">Let's Get Started! Step 1</h1>--}}
+        {{--<hr>--}}
+        {{--@include('frontend.register.register-info')--}}
+    {{--</div>--}}
+
+    {{--<div class="bg-eae">--}}
+        {{--@include('frontend.register.register-form')--}}
+    {{--</div>--}}
+
+{{--@endsection--}}
+
 @section('content')
-
     <div class="container" id="content">
-        <h1 class="c-6600cc">Let's Get Started! Step 1</h1>
+        <h1 class="c-6600cc">Let’s Get Started! Step 1</h1>
         <hr>
-        @include('frontend.register.register-info-step1')
+        @include('frontend.register.register-info')
+
+    </div>
+    <div class="bg-eae step-two-register">
+        <div class="container" id="content">
+            {{--<form class="register-form">--}}
+            @include('frontend.register.register-form')
+            {{--</form>--}}
+        </div>
     </div>
 
-    <div class="bg-eae">
-        @include('frontend.register.register-form')
     </div>
-
 @endsection
 
 {{--@extends('frontend.layouts.parts.footer-scripts')--}}

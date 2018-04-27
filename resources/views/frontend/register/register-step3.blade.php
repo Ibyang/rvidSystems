@@ -1,18 +1,50 @@
 @extends('frontend.layouts.main')
 
+{{--@section('content')--}}
+
+    {{--<div class="container" id="content">--}}
+        {{--<h1 class="c-6600cc">Let's Get Started! Step 3</h1>--}}
+        {{--<hr>--}}
+        {{--@include('frontend.register.register-info-step3')--}}
+    {{--</div>--}}
+
+    {{--<div class="bg-eae">--}}
+        {{--@include('frontend.register.preferences-form')--}}
+    {{--</div>--}}
+
+{{--@endsection--}}
+
 @section('content')
-
     <div class="container" id="content">
-        <h1 class="c-6600cc">Let's Get Started! Step 3</h1>
+        <h1 class="c-6600cc">Let’s Get Started! Step 3</h1>
         <hr>
-        @include('frontend.register.register-info-step3')
+        @include('frontend.register.register-info')
+
+    </div>
+    <div class="bg-eae step-two-register">
+        <div class="container" id="content">
+            <form class="step-three-register register-form" method="POST" action="{{ route('processStep3') }}">
+                {{ csrf_field() }}
+                <input type="hidden" id="emails_arr" name="emails_arr">
+                <input type="hidden" id="areas_arr" name="areas_arr">
+
+                @include('frontend.register.steps.surge')
+
+                {{--@include('frontend.register.steps.sites') to enable on phase 2 --}}
+
+                {{--@include('frontend.register.steps.social') to enable phase 2--}}
+
+                @include('frontend.register.steps.email')
+
+                @include('frontend.register.steps.broadcast')
+            </form>
+        </div>
     </div>
 
-    <div class="bg-eae">
-        @include('frontend.register.preferences-form')
     </div>
-
 @endsection
+
+
 
 {{--@extends('frontend.layouts.parts.footer-scripts')--}}
 

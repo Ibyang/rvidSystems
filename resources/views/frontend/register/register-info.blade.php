@@ -1,7 +1,19 @@
-<h3 class="register-title text-center">Join now! To start using REVid Today!</h3>
+    @if (Request::segment(1) != 'get-started')
+        <h3 class="register-title text-center">Join now! To start using REVid Today!</h3>
+    @endif
         <div class="row register-info">
           <div class="col-md-auto">
-            <h4>Setup in 4 Easy Steps</h4>
+            @if (Request::segment(2) == 'step1')
+                <h4>4 Easy Steps (4 to Go!)</h4>
+            @elseif (Request::segment(2) == 'step2')
+                <h4>4 Easy Steps (3 to Go!)</h4>
+            @elseif (Request::segment(2) == 'step3')
+                <h4>Easy Steps (2 to Go!)</h4>
+            @elseif (Request::segment(2) == 'step4')
+                <h4> 4 Easy Steps (1 to Go!)</h4>
+            @else
+                <h4>Setup in 4 Easy Steps</h4>
+            @endif
             <div class="row text-center">
                 <div class="col-md-auto">
                     <i class="register-icon details"></i><br>

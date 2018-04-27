@@ -1,7 +1,7 @@
  <div class="container register-form">
         @if(!empty($details))
-            <form class="form-horizontal" method="POST" action="{{ route('registerAgent.update', $details->ID) }}">
-             <h3>Your Details</h3>
+            <form class="register-info" method="POST" action="{{ route('registerAgent.update', $details->ID) }}">
+             <h4>Add Your Details</h4>
              {{ csrf_field() }}
              <input name="_method" type="hidden" value="PATCH">
             <div class="row">
@@ -119,8 +119,8 @@
             </form>
 
         @else
-            <form class="form-horizontal" method="POST" action="{{ route('registerAgent.store') }}">
-                <h3>Your Details</h3>
+            <form class="register-info" method="POST" action="{{ route('registerAgent.store') }}">
+                <h4>Add Your Details</h4>
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm">
