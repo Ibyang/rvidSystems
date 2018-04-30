@@ -204,13 +204,17 @@ class OrderController extends Controller
             'voice_and_music' => $voice_music,
             'edits' => $edits,
             'total_progress' => $total_progress,
+            'status' => $status,
+            'completion_date' => $completion_date
+
         ]);
 
         if($videotype === 'Generic'){
 
             agentGeneric::where('ID', $videoid)->update([
                 'progress_value' => $total_progress,
-                'completion_date' => $completion_date
+                'completion_date' => $completion_date,
+                'status' => $status
             ]);
 
         }
@@ -218,7 +222,8 @@ class OrderController extends Controller
 
             agentStandard::where('ID', $videoid)->update([
                 'progress_value' => $total_progress,
-                'completion_date' => $completion_date
+                'completion_date' => $completion_date,
+                'status' => $status
             ]);
 
         }
@@ -226,7 +231,8 @@ class OrderController extends Controller
 
             agentPremium::where('ID', $videoid)->update([
                 'progress_value' => $total_progress,
-                'completion_date' => $completion_date
+                'completion_date' => $completion_date,
+                'status' => $status
             ]);
 
         }

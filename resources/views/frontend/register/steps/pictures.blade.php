@@ -1,17 +1,20 @@
                 <h3><div class="register-icon reg-picture mb-2"></div><span class="pl-2">Pictures</span></h3>
                 <div class="row">
                     <div class="col reg-step-link">
-                        <img src="{{ asset('storage/register/step-needed.jpg') }}">
+                        <img id="image1" src="{{ asset('storage/register/step-needed.jpg') }}">
                         <div class="text-right pt-2 pb-2">
-                            <a href="">Add/Change <span>+</span></a>
+                            <input type='file' id="mainImage" name="mainImage" />
+                            {{--<a href="">Add/Change <span>+</span></a>--}}
                         </div>
-                        <img src="{{ asset('storage/register/step-optional.jpg') }}">
+                        <img id="image2" src="{{ asset('storage/register/step-optional.jpg') }}">
                         <div class="text-right pt-2 pb-2">
-                            <a href="">Add/Change <span>+</span></a>
+                            <input type='file' id="mainImage2" name="mainImage2" />
+                            {{--<a href="">Add/Change <span>+</span></a>--}}
                         </div>
-                        <img src="{{ asset('storage/register/step-optional.jpg') }}">
+                        <img id="image3" src="{{ asset('storage/register/step-optional.jpg') }}">
                         <div class="text-right pt-2 pb-2">
-                            <a href="">Add/Change <span>+</span></a>
+                            <input type='file' id="mainImage3" name="mainImage3" />
+                            {{--<a href="">Add/Change <span>+</span></a>--}}
                         </div>
                     </div>
                     <div class="col pl-5 align-bottom mt-5">

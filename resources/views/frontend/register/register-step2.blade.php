@@ -40,7 +40,63 @@
     <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
 
     <script type="text/javascript">
+
+        //for Main Image 1
+        function readURLMainImage1(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image1').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        //for Main Image 2
+        function readURLMainImage2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image2').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        //for Main Image 3
+        function readURLMainImage3(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image3').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
         $(document).ready(function() {
+
+            //for Main Image 1
+            $("#mainImage").change(function(){
+                readURLMainImage1(this);
+            });
+
+            //for Main Image 2
+            $("#mainImage2").change(function(){
+                readURLMainImage2(this);
+            });
+
+            //for Main Image 3
+            $("#mainImage3").change(function(){
+                readURLMainImage3(this);
+            });
+
 
         });
     </script>

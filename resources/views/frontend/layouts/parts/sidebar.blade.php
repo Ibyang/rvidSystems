@@ -1,9 +1,13 @@
 
 <ul class="my-account-side">
     <li>
-        <img src="{{ asset('storage/my-account-icon.jpg') }}">
-        {{ Auth::user()->name }}<br>
-        {{ $agent->name_agency }}
+        <div class="d-inline-block align-top">
+            <img src="{{ asset('storage/my-account-icon.jpg') }}">
+        </div>
+        <div class="d-inline-block">
+            <span><b>{{ Auth::user()->name }}</b></span><br>
+            <div class="account-position">{{ $agent->name_agency }}</div>
+        </div>
     </li>
     <li>
         <i class="account-icon my-account"></i>
@@ -11,6 +15,7 @@
     </li>
     <li>
         <i class="account-icon my-videos"></i>
+        {{--<i class="account-icon @if (Request::segment(2) == 'my-videos') {{'my-videos-active'}} @else {{'my-videos'}} @endif"></i>--}}
         <a href="{{ route('account-my-videos') }}" style="text-decoration: none">My Videos</a>
     </li>
     <li>

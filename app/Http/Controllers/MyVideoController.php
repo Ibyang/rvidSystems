@@ -38,10 +38,18 @@ class MyVideoController extends Controller
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
         $passwd = Auth::user()->passwd;
+        $userId = Auth::user()->id;
+
+        $awaiting_videos = videoProgress::where('videotype', 'Premium')->get();
+        $production_videos = videoProgress::where('videotype', 'Generic')->orWhere('videotype', 'Standard')->get();
+
+        $preference = AgentPreferences::where('agent_ID', $userId)->first();
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video.video-tracker', compact('fullname', 'passwd', 'agent'));
+        return view('frontend.pages.video.video-tracker', compact('fullname', 'passwd', 'agent', 'awaiting_videos', 'production_videos', 'preference'));
+
     }
-    
+
     
     public function VoiceOvers()
     {
@@ -268,6 +276,7 @@ class MyVideoController extends Controller
         $total_cost_video = Input::get('total_cost');
         $surgeoffer = Input::get('surgeoffer');
         $surge_value = $surgeoffer[0];
+        $url_address = Input::get('url_address');
 
         $billdate = date('Y-m-d');
 
@@ -275,12 +284,13 @@ class MyVideoController extends Controller
         $status_broadcast = Input::get('broadcast');
 
         $agent = Agent::where('email', $email)->get(['address','suburb', 'state', 'postcode'])->first();
-        $video_invoice_description = "#" . $videoid . $agent->address;
 
         //store record to corresponding Video Type Table
         if($videotype === 'Generic'){
             $video_desc = "#" . $videoid . " Generic Video Production";
             $video_total_cost = Input::get('cost_generic_video');
+
+            $video_invoice_description = "#" . $videoid . $url;
 
             $generic_arr = array(
                 'agent_ID' => $user_id,
@@ -296,7 +306,9 @@ class MyVideoController extends Controller
             //for creating record in the Video Progress table for updating value later..
             $progress_arr = array(
                 'video_ID' => $videoid,
-                'videotype' => 'Generic'
+                'videotype' => 'Generic',
+                'agent_ID' => $user_id,
+                'videoAddress' => $url
             );
 
             videoProgress::create($progress_arr);
@@ -307,9 +319,13 @@ class MyVideoController extends Controller
             $video_desc = "#" . $videoid . " Standard Video Production";
             $video_total_cost = Input::get('cost_standard_video');
 
+            $video_address_standard = Input::get('address') . ' ' . Input::get('suburb') . ' ' . Input::get('state'). Input::get('postcode');
+            $video_invoice_description = "#" . $videoid . $video_address_standard;
+
             $standard_arr = array(
                 'agent_ID' => $user_id,
                 //'url_address' => $url,
+                'videoAddress' => $video_address_standard,
                 'status' => 'Compiling',
                 'apply_driveby' => Input::get('apply_driveby'),
                 'apply_lookfirst' => Input::get('apply_lookfirst'),
@@ -321,7 +337,9 @@ class MyVideoController extends Controller
             //for creating record in the Video Progress table for updating value later..
             $progress_arr = array(
                 'video_ID' => $videoid,
-                'videotype' => 'Standard'
+                'videotype' => 'Standard',
+                'agent_ID' => $user_id,
+                'videoAddress' => $video_address_standard
             );
 
             videoProgress::create($progress_arr);
@@ -332,9 +350,13 @@ class MyVideoController extends Controller
             $video_desc = "#" . $videoid . " Premium Video Production";
             $video_total_cost = Input::get('cost_premium_video');
 
+            $url_premium = Input::get('url_premium');
+            $video_invoice_description = "#" . $videoid . $url_premium;
+
             $premium_arr = array(
                 'agent_ID' => $user_id,
                 'url_address' => $url,
+                'videoAddress' => $url_premium,
                 'status' => 'Compiling',
                 'apply_driveby' => Input::get('apply_driveby'),
                 'apply_lookfirst' => Input::get('apply_lookfirst'),
@@ -345,7 +367,9 @@ class MyVideoController extends Controller
             //for creating record in the Video Progress table for updating value later..
             $progress_arr = array(
                 'video_ID' => $videoid,
-                'videotype' => 'Premium'
+                'videotype' => 'Premium',
+                'agent_ID' => $user_id,
+                'video_address' => $url_premium
             );
 
             videoProgress::create($progress_arr);
@@ -450,7 +474,6 @@ class MyVideoController extends Controller
                 'broadcast_agent' => $broadcast_status
             ]);
         }
-
 
         return redirect()->route('account-make-video');
 

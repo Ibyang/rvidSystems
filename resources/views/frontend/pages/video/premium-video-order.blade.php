@@ -14,29 +14,30 @@
             <form method="POST" action="{{ route('postVideoOrder') }}">
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-sm-3 pl-0">Property Address #</div>
+                    <div class="col-sm-3 pl-0">Property Address <br> URL Address</div>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="address" autofocus value=" {{ $agent->address }} ">
+                        <textarea name="url_address" row="10" cols="60" class="form-control">{{ $url_premium }}</textarea>
+                        {{--<input type="text" class="form-control" name="address" autofocus value=" {{ $agent->address }} ">--}}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3 pl-0"></div>
-                    <div class="col-sm-3">
-                        <input  type="text" class="form-control" name="suburb" autofocus value=" {{ $agent->suburb }} ">
-                    </div>
-                    <div class="col-sm-3">
-                        <input  type="text" class="form-control" name="state" autofocus value=" {{ $agent->state }} ">
-                    </div>
-                    <div class="col-sm-3">
-                        <input  type="text" class="form-control" name="postcode" autofocus value=" {{ $agent->postcode }} ">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3 pl-0">URL Address</div>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="url" autofocus value="{{ $url_premium }}">
-                    </div>
-                </div>
+                {{--<div class="row">--}}
+                    {{--<div class="col-sm-3 pl-0"></div>--}}
+                    {{--<div class="col-sm-3">--}}
+                        {{--<input  type="text" class="form-control" name="suburb" autofocus value=" {{ $agent->suburb }} ">--}}
+                    {{--</div>--}}
+                    {{--<div class="col-sm-3">--}}
+                        {{--<input  type="text" class="form-control" name="state" autofocus value=" {{ $agent->state }} ">--}}
+                    {{--</div>--}}
+                    {{--<div class="col-sm-3">--}}
+                        {{--<input  type="text" class="form-control" name="postcode" autofocus value=" {{ $agent->postcode }} ">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col-sm-3 pl-0">URL Address</div>--}}
+                    {{--<div class="col-sm-9">--}}
+                        {{--<input type="text" class="form-control" name="url" autofocus value="{{ $url_premium }}">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <div class="row">
                     <div class="col-sm-3 pl-0">Action Receipt #</div>
                     <div class="col-sm-9">

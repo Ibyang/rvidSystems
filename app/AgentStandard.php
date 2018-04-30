@@ -9,6 +9,6 @@ class AgentStandard extends Model
     //
     protected $table = "agent_standard_videos";
 
-    protected $fillable = ['agent_ID', 'status', 'due_date', 'total_cost', 'apply_driveby', 'apply_lookfirst', 'progress_value', 'completion_date'];
+    protected $fillable = ['agent_ID', 'status', 'videoAddress', 'due_date', 'total_cost', 'apply_driveby', 'apply_lookfirst', 'progress_value', 'completion_date'];
 
 }

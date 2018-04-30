@@ -37,6 +37,11 @@ Route::group(['middleware' => 'guest'], function() {
         return view('frontend.pages.frontpage', compact('social'));
     })->name('home');
 
+    Route::get('/what-is-revid', function () {
+        $social = SocialMedia::where('ID', 1)->first();
+        return view('frontend.pages.revid', compact('social'));
+    })->name('what-is-revid');
+
     Route::get('/why-use-revid', function () {
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
@@ -130,7 +135,11 @@ Route::group(['middleware' => 'guest'], function() {
     })->name('revid-video');
 
     Route::get('/how-to-join', function () {
-        return view('frontend.pages.join');
+        $groups = Agent::distinct()->get(['group']);
+        $agencies = Agent::distinct()->get(['name_agency']);
+        $states = State::get(['state_code', 'state_name']);
+        $social = SocialMedia::where('ID', 1)->first();
+        return view('frontend.pages.join', compact('states', 'social', 'agencies', 'groups'));
     })->name('how-to-join');
 
     Route::get('/contact', function () {
@@ -150,7 +159,7 @@ Route::group(['middleware' => 'guest'], function() {
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
         $social = SocialMedia::where('ID', 1)->first();
-        return view('frontend.pages.driveby', compact('states', 'social'));
+        return view('frontend.pages.driveby', compact('states', 'social', 'groups', 'agencies'));
     })->name('driveby');
 
     Route::get('/look-first', function () {
@@ -178,6 +187,16 @@ Route::group(['middleware' => 'guest'], function() {
         $social = SocialMedia::where('ID', 1)->first();
         return view('frontend.pages.system-works', compact('states', 'social', 'groups', 'agencies'));
     })->name('how-system-works');
+
+
+    Route::get('/how-system-works-video', function () {
+        $groups = Agent::distinct()->get(['group']);
+        $agencies = Agent::distinct()->get(['name_agency']);
+        $states = State::get(['state_code', 'state_name']);
+        $social = SocialMedia::where('ID', 1)->first();
+        return view('frontend.pages.system-works-video', compact('states', 'social', 'groups', 'agencies'));
+    })->name('how-system-works-video');
+
 
     Route::get('/make-video-premium', function () {
         return view('frontend.pages.make-video.make-video-premium');

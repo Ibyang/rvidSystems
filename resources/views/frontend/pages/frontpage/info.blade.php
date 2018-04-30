@@ -1,10 +1,10 @@
   <div class="container">
     <div class="row f-page-info">
       <div class="col col-md-5">
-        <h3>What is REVid?</h3>
+          <a href=" {{ route('what-is-revid') }} " style="text-decoration: none; color: black"><h3>What is REVid?</h3>
         <p class="text-justify font-weight-bold">The REVid system allows you to create photo
             based real estate recorded voice-over and
-            music to a fully edited video production</p>
+            music to a fully edited video production</p></a>
       </div>
       <div class="col col-md-4">
         <a href=" {{ route('driveby') }} " style="text-decoration: none; color: black"><h3>What is DriveBy?</h3>
