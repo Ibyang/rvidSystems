@@ -14,7 +14,7 @@
 
     <div class="bg-eae step-two-register">
         <div class="container" id="content">
-            <form class="register-form" action="{{ route('processStep2') }}" method="POST">
+            <form class="register-form" action="{{ route('processStep2') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @include('frontend.register.steps.pictures')
 

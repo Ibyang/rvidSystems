@@ -11,11 +11,14 @@ use App\FAQ;
 use App\AgentEmail;
 use App\AgentBroadcast;
 use App\AgentPreferences;
+use App\AgentTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class RegisterController extends Controller
 {
@@ -45,6 +48,7 @@ class RegisterController extends Controller
     }
 
     public function getStep2(){
+
         return view('frontend.register.register-step2');
     }
 
@@ -69,8 +73,139 @@ class RegisterController extends Controller
         return view('frontend.register.register-step4', compact('details', 'agent', 'user_id'));
     }
 
-    public function processStep2(){
+    public function processStep2(Request $request){
+
+        $userId = Session::get('userId');
+
+        $this->validate($request, [
+           'mainImage' => 'required|image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
+           'mainImage2' => 'image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
+           'mainImage3' => 'image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
+           'logoImage' => 'required|image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048'
+        ]);
+
+        //for creating subfolder for a particular client
+        $path = public_path('storage\client_images\\' . $userId . '\\');
+        if(!File::exists($path)){
+            File::makeDirectory($path, 0775, true);
+        }
+
+        //move to folder if there is file uploaded for Main Image
+        if($file = $request->hasFile('mainImage'))
+        {
+            //for Main Image
+            $mainImage = $request->file('mainImage');
+            $fnameMainImage = time() . '_' . $mainImage->getClientOriginalName();
+
+            $mainImage->move($path, $fnameMainImage);
+        }
+
+        //move to folder if there is file uploaded for Main Image 2 (Optional)
+        if($file = $request->hasFile('mainImage2'))
+        {
+            //for Main Image 2 (Optional)
+            $mainImage2 = $request->file('mainImage2');
+            $fnameMainImage2 = time() . '_' . $mainImage2->getClientOriginalName();
+
+            $mainImage2->move($path, $fnameMainImage2);
+        }
+
+        //move to folder if there is file uploaded for Main Image 3 (Optional)
+        if($file = $request->hasFile('mainImage3'))
+        {
+            //for Main Image 3 (Optional)
+            $mainImage3 = $request->file('mainImage3');
+            $fnameMainImage3 = time() . '_' . $mainImage3->getClientOriginalName();
+
+            $mainImage3->move($path, $fnameMainImage3);
+        }
+
+        //for uploading of logo
+        if($file = $request->hasFile('logoImage'))
+        {
+            //for Main Image 3 (Optional)
+            $logoImage = $request->file('logoImage');
+            $fnamelogoImage = 'logo_' . $userId .  '_' . $logoImage->getClientOriginalName();
+
+            $logoImage->move($path, $fnamelogoImage);
+        }
+
+        //for main frame template selection
+        $mainFrameSelections = Input::get('main_frame');
+        if($mainFrameSelections != null )
+            $MFboxes = implode(',', $mainFrameSelections);
+
+        //for middle frame template selection
+        $middleFrameSelections = Input::get('middle_frame');
+        if($middleFrameSelections != null )
+            $MidFboxes = implode(',', $middleFrameSelections);
+
+        //for end frame template selection
+        $EndFrameSelections = Input::get('end_frame');
+        if($EndFrameSelections != null )
+            $EndFboxes = implode(',', $EndFrameSelections);
+
+        //for capturing state of randomise text in middle frame
+        $stateRandomiseMF = Input::get('chkrandomiseMF');
+        if($stateRandomiseMF == null)
+            $chkRandomiseMF = 0;
+        else
+            $chkRandomiseMF = 1;
+
+        //for capturing state of randomise text in end frame
+        $stateRandomiseEF = Input::get('chkrandomiseEF');
+        if($stateRandomiseEF == null)
+            $chkRandomiseEF = 0;
+        else
+            $chkRandomiseEF = 1;
+
+        //for voice format selection
+        $voiceSelection = Input::get('voiceSelection');
+        if($voiceSelection != null )
+            $voiceboxes = implode(',', $voiceSelection);
+
+
+        //for music file format selection
+        $musicSelection = Input::get('musicSelection');
+        if($musicSelection != null )
+            $musicboxes = implode(',', $musicSelection);
+
+
+        $template_arr = array(
+            'mainImage' => $fnameMainImage,
+            'extra_image1' => $fnameMainImage2,
+            'extra_image2' => $fnameMainImage3,
+            'logo' => $fnamelogoImage,
+            'main_frame_template' => Input::get('stateMainFrame'),
+            'main_frame_template_format' => $MFboxes,
+            'main_frame_colours' => Input::get('stateMainFrameColour'),
+            'main_frame_colours_sub' => Input::get('stateMainFrameColourSub'),
+            'middle_frame_template' => Input::get('stateMiddleFrame'),
+            'middle_frame_template_format' => $MidFboxes,
+            'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
+            'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub'),
+            'end_frame_template' => Input::get('stateEndFrame'),
+            'end_frame_template_format' => $EndFboxes,
+            'end_frame_colours' => Input::get('stateEndFrameColour'),
+            'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),
+            'video_frame_name' => Input::get('videoName'),
+            'video_frame_mobile' => Input::get('videoMobile'),
+            'video_frame_web_emailadd' => Input::get('videoEmailAdd'),
+            'video_frame_agency_name' => Input::get('videoAgencyName'),
+            'video_frame_content' => Input::get('videoContent'),
+            'randomise_statement_mf' => $chkRandomiseMF,
+            'video_middle_frame_statement' => Input::get('statementMF'),
+            'randomise_statement_ef' => $chkRandomiseEF,
+            'video_end_frame_statement' => Input::get('statementEF'),
+            'voice_format' => Input::get('stateVoiceFormat'),
+            'voice_file_selection' => $voiceboxes,
+            'music_style' => Input::get('stateMusicStyle'),
+            'music_file_format' => $musicboxes
+
+        );
+        AgentTemplate::create($template_arr);
         return redirect()->route('get-started-step3');
+
     }
 
     public function processStep3()

@@ -1,8 +1,10 @@
 <h3><div class="register-icon reg-music mb-2"></div><span class="pl-1">Music</span></h3>
 <div class="row">
     <div class="col-sm">
-          <select name="state" class="form-control col-9">
-                <option>Random Music</option>
+          <select name="stateMusicStyle" class="form-control col-9">
+              <option value="Random Voice(Standard)">Random Voice (Standard)</option>
+              <option value="One Voice">One Voice</option>
+              <option value="Rotation Voice">Rotation Voice</option>
           </select>
           <div class="row">
                 <div class="col-md-auto">
@@ -21,7 +23,7 @@
                         </div>
                         <div class="col-sm my-account-subcription">
                             <div class="custom-control custom-checkbox standard">
-                                <input type="checkbox" class="custom-control-input" id="customCheck16">
+                                <input type="checkbox" class="custom-control-input" id="customCheck16" name="musicSelection[]" value="music1">
                                 <label class="custom-control-label" for="customCheck16"></label>
                             </div>
                         </div>
@@ -32,7 +34,7 @@
                         </div>
                         <div class="col-sm my-account-subcription">
                             <div class="custom-control custom-checkbox standard">
-                                <input type="checkbox" class="custom-control-input" id="customCheck17">
+                                <input type="checkbox" class="custom-control-input" id="customCheck17" name="musicSelection[]" value="music2">
                                 <label class="custom-control-label" for="customCheck17"></label>
                             </div>
                         </div>

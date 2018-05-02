@@ -3,7 +3,8 @@
                     <div class="col reg-step-link">
                         <img src="{{ asset('storage/register/step-blank.jpg') }}">
                         <div class="text-right pt-2 pb-2">
-                            <a href="">Add/Change <span>+</span></a>
+                            <input type='file' id="logoImage" name="logoImage" />
+                            {{--<a href="">Add/Change <span>+</span></a>--}}
                         </div>
                     </div>
                     <div class="col header-title pt-3 pl-5">

@@ -2,11 +2,11 @@
                 Required (Enter as you wish it to appear)
                 <div class="row">
                     <div class="col-sm">
-                          <input type="text" class="form-control mt-3 mb-3" name="name" placeholder="Name">
-                          <input type="text" class="form-control mt-3 mb-3" name="mobile" placeholder="Mobile">
-                          <input type="text" class="form-control mt-3 mb-3" name="web" placeholder="Web or Email Address">
-                          <textarea placeholder="Agency Name and details (as required)" class="mt-3 mb-3"></textarea>
-                          <textarea placeholder="Content or Other or Address (Optional)" class="mt-3 mb-3"></textarea>
+                          <input type="text" class="form-control mt-3 mb-3" name="videoName" placeholder="Name">
+                          <input type="text" class="form-control mt-3 mb-3" name="videoMobile" placeholder="Mobile">
+                          <input type="text" class="form-control mt-3 mb-3" name="videoEmailAdd" placeholder="Web or Email Address">
+                          <textarea placeholder="Agency Name and details (as required)" name="videoAgencyName" class="mt-3 mb-3"></textarea>
+                          <textarea placeholder="Content or Other or Address (Optional)" name="videoContent" class="mt-3 mb-3"></textarea>
                     </div>
                     <div class="col-sm header-title pl-5 select-form">
                           <b>Required</b>
@@ -23,7 +23,10 @@
                              <div class="d-inline-block font12">Change</div>
                              <div class="d-inline-block">
                                     <select name="" class="form-control">
-                                            <option>1</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
                                     </select>
                              </div>
                           </div>
@@ -33,10 +36,10 @@
                     <div class="col-sm select-form">
                         <h3>Middle Frame</h3>
                         <div class="custom-control custom-checkbox premium">
-                                  <input type="checkbox" class="custom-control-input" name="end-frame" id="customCheck13">
-                                  <label class="custom-control-label" for="customCheck13">Let us randomise statement selections with voice over.</label>
+                                  <input type="checkbox" class="custom-control-input" name="chkrandomiseMF" id="chkrandomiseMF" value="1">
+                                  <label class="custom-control-label" for="chkrandomiseMF">Let us randomise statement selections with voice over.</label>
                         </div>
-                        <textarea placeholder="Your personalise statement or saying (optional)" class="mt-4"></textarea>
+                        <textarea placeholder="Your personalise statement or saying (optional)" class="mt-4" name="statementMF" disabled></textarea>
                     </div>
                     <div class="col-sm header-title pl-5">
                         <b>Middle Frame</b><br><br>
@@ -47,7 +50,10 @@
                              <div class="d-inline-block font12">Change</div>
                              <div class="d-inline-block">
                                     <select name="" class="form-control">
-                                            <option>1</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
                                     </select>
                              </div>
                         </div>
@@ -57,10 +63,10 @@
                     <div class="col-sm">
                         <h3>End Frame</h3>
                         <div class="custom-control custom-checkbox premium">
-                                  <input type="checkbox" class="custom-control-input" name="end-frame" id="customCheck14">
-                                  <label class="custom-control-label" for="customCheck14">Let us randomise statement selections with voice over.</label>
+                                  <input type="checkbox" class="custom-control-input" name="chkrandomiseEF" id="chkrandomiseEF" value="1" checked>
+                                  <label class="custom-control-label" for="chkrandomiseEF">Let us randomise statement selections with voice over.</label>
                         </div>
-                        <textarea placeholder="Your personalise statement or saying (optional)" class="mt-4"></textarea>
+                        <textarea placeholder="Your personalise statement or saying (optional)" class="mt-4" name="statementEF" disabled></textarea>
                     </div>
                     <div class="col-sm pl-5 header-title">
                         <b>End Frame</b><br><br>
@@ -71,7 +77,10 @@
                              <div class="d-inline-block font12">Change</div>
                              <div class="d-inline-block">
                                     <select name="" class="form-control">
-                                            <option>1</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
                                     </select>
                              </div>
                         </div>
