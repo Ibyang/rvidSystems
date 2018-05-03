@@ -2,11 +2,11 @@
                 Required (Enter as you wish it to appear)
                 <div class="row">
                     <div class="col-sm">
-                          <input type="text" class="form-control mt-3 mb-3" name="videoName" placeholder="Name">
-                          <input type="text" class="form-control mt-3 mb-3" name="videoMobile" placeholder="Mobile">
-                          <input type="text" class="form-control mt-3 mb-3" name="videoEmailAdd" placeholder="Web or Email Address">
-                          <textarea placeholder="Agency Name and details (as required)" name="videoAgencyName" class="mt-3 mb-3"></textarea>
-                          <textarea placeholder="Content or Other or Address (Optional)" name="videoContent" class="mt-3 mb-3"></textarea>
+                          <input type="text" class="form-control mt-3 mb-3" name="videoName" placeholder="Name" value="{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}">
+                          <input type="text" class="form-control mt-3 mb-3" name="videoMobile" placeholder="Mobile" value="{{$agent['mobile']}}">
+                          <input type="text" class="form-control mt-3 mb-3" name="videoEmailAdd" placeholder="Web or Email Address" value="{{$agent['email']}}">
+                          <textarea placeholder="Agency Name and details (as required)" name="videoAgencyName" class="form-control mt-3 mb-3">{{$agent['name_agency']}}</textarea>
+                          <textarea placeholder="Content or Other or Address (Optional)" name="videoContent" class="form-control mt-3 mb-3">{{$agent['address']}}&nbsp;{{$agent['suburb']}}&nbsp;{{$agent['state']}}</textarea>
                     </div>
                     <div class="col-sm header-title pl-5 select-form">
                           <b>Required</b>
@@ -36,10 +36,10 @@
                     <div class="col-sm select-form">
                         <h3>Middle Frame</h3>
                         <div class="custom-control custom-checkbox premium">
-                                  <input type="checkbox" class="custom-control-input" name="chkrandomiseMF" id="chkrandomiseMF" value="1">
+                                  <input type="checkbox" class="custom-control-input" name="chkrandomiseMF" id="chkrandomiseMF" value="1" checked>
                                   <label class="custom-control-label" for="chkrandomiseMF">Let us randomise statement selections with voice over.</label>
                         </div>
-                        <textarea placeholder="Your personalise statement or saying (optional)" class="mt-4" name="statementMF" disabled></textarea>
+                        <textarea placeholder="Your personalise statement or saying (optional)" class="mt-4" name="statementMF" id="statementMF" disabled></textarea>
                     </div>
                     <div class="col-sm header-title pl-5">
                         <b>Middle Frame</b><br><br>
@@ -66,7 +66,7 @@
                                   <input type="checkbox" class="custom-control-input" name="chkrandomiseEF" id="chkrandomiseEF" value="1" checked>
                                   <label class="custom-control-label" for="chkrandomiseEF">Let us randomise statement selections with voice over.</label>
                         </div>
-                        <textarea placeholder="Your personalise statement or saying (optional)" class="mt-4" name="statementEF" disabled></textarea>
+                        <textarea placeholder="Your personalise statement or saying (optional)" class="mt-4" name="statementEF" id="statementEF" disabled></textarea>
                     </div>
                     <div class="col-sm pl-5 header-title">
                         <b>End Frame</b><br><br>

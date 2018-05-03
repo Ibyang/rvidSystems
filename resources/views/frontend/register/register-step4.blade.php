@@ -22,7 +22,8 @@
     </div>
     <div class="bg-eae step-two-register">
         <div class="container" id="content">
-            <form class="register-form my-account-subcription" >
+            <form class="register-form my-account-subcription" action="{{ route('processStep4') }}" method="POST">
+                {{ csrf_field() }}
                 <h4 class="reg-title">Your Payment Details</h4>
 
                 @include('frontend.register.steps.subscription')
@@ -71,11 +72,11 @@
                 $("#btnAccept").attr("disabled", !this.checked);
             });
 
-            $("#btnAccept").click(function() {
-                if ($("input[type='checkbox'][name='subscription1']:checked").length == 0){
-                    alert ( "ERROR! Please select at least one checkbox" );
-                }
-            });
+            // $("#btnAccept").click(function() {
+            //     if ($("input[type='checkbox'][name='subscription1']:checked").length == 0){
+            //         alert ( "ERROR! Please select at least one checkbox" );
+            //     }
+            // });
 
             $("#paypal").click(function() {
 

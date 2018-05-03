@@ -9,6 +9,7 @@ use App\AgentInvoice;
 use App\FAQ;
 use App\AgentInvoiceList;
 use App\Content;
+use App\AgentTemplate;
 use PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -28,11 +29,16 @@ class MyAccountController extends Controller
         $fullname = Auth::user()->name;
         $passwd = Auth::user()->passwd;
         $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
         $billing = AgentBilling::where('agent_ID', $userid)->latest('created_at')->orderBy('ID')->get();
-//        dd($billing);
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         $invoice = AgentInvoice::where('email', $email)->first();
-        return view('frontend.pages.my-account', compact('fullname', 'passwd', 'agent', 'invoice', 'billing'));
+        return view('frontend.pages.my-account', compact('fullname', 'passwd', 'agent', 'invoice', 'billing', 'logo_pic'));
     }
 
 
@@ -124,6 +130,11 @@ class MyAccountController extends Controller
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
         $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
 
         //for generic billing
 //        $genericBilling = AgentBilling::where('agent_ID', $userid)->latest('created_at')->orderBy('ID')->get();
@@ -133,7 +144,7 @@ class MyAccountController extends Controller
 //        $bill_date = $billing_date->billing_date;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile','address','suburb','state','postcode'])->first();
-        return view('frontend.pages.video.billing-history', compact('fullname', 'agent', 'billing_details', 'invoices'));
+        return view('frontend.pages.video-creator.billing-history', compact('fullname', 'agent', 'billing_details', 'invoices', 'logo_pic'));
 
     }
 
@@ -142,9 +153,14 @@ class MyAccountController extends Controller
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
         $userid = Auth::user()->id;
-//        dd($userid);
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video.make-video', compact('fullname', 'agent', 'userid'));
+        return view('frontend.pages.video-creator.make-video', compact('fullname', 'agent', 'userid', 'logo_pic'));
 
     }
 
@@ -154,10 +170,15 @@ class MyAccountController extends Controller
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
         $userid = Auth::user()->id;
-//        dd($userid);
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         $content = Content::where('ID', 1)->get(['content_text'])->first();
-        return view('frontend.pages.account-terms-condition', compact('fullname', 'agent', 'userid', 'content'));
+        return view('frontend.pages.account-terms-condition', compact('fullname', 'agent', 'userid', 'content', 'logo_pic'));
 
     }
 
@@ -167,10 +188,15 @@ class MyAccountController extends Controller
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
         $userid = Auth::user()->id;
-//        dd($userid);
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         $content = Content::where('ID', 2)->get(['content_text'])->first();
-        return view('frontend.pages.account-copyright', compact('fullname', 'agent', 'userid', 'content'));
+        return view('frontend.pages.account-copyright', compact('fullname', 'agent', 'userid', 'content', 'logo_pic'));
 
     }
 
@@ -180,10 +206,15 @@ class MyAccountController extends Controller
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
         $userid = Auth::user()->id;
-//        dd($userid);
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         $content = Content::where('ID', 1)->get(['content_text'])->first();
-        return view('frontend.pages.account-privacy-terms', compact('fullname', 'agent', 'userid', 'content'));
+        return view('frontend.pages.account-privacy-terms', compact('fullname', 'agent', 'userid', 'content', 'logo_pic'));
 
     }
 
@@ -213,7 +244,7 @@ class MyAccountController extends Controller
 
         $details = AgentBilling::where('video_ID', $video_id)->get();
 
-        $pdf = PDF::loadView('frontend.pages.video.billing-invoice-details-pdf', compact('invoice_arr', 'details', 'video_id', 'bill_date'));
+        $pdf = PDF::loadView('frontend.pages.video-creator.billing-invoice-details-pdf', compact('invoice_arr', 'details', 'video_id', 'bill_date'));
         return $pdf->download('#'. $video_id.$invoice_arr['address'].'_invoice.pdf');
 
     }

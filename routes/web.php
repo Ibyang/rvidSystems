@@ -329,7 +329,11 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/explore-voice-overs','MyVideoController@VoiceOvers')->name('account-explore-voice-overs');
 
+    Route::get('/account/explore-music','MyVideoController@ExploreMusic')->name('account-explore-music');
+
     Route::get('/account/explore-pictures','MyVideoController@ExplorePicture')->name('account-explore-pictures');
+
+    Route::get('/account/explore-templates','MyVideoController@ExploreTemplate')->name('account-explore-templates');
 
     Route::get('/account/generic-video-order','MyVideoController@GenericVideoOrder')->name('account-generic-video-order');
 

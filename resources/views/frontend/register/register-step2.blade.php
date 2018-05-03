@@ -48,6 +48,9 @@
 
                 reader.onload = function (e) {
                     $('#image1').attr('src', e.target.result);
+                    $('#image1').attr('width', '460px');
+                    $('#image1').attr('height', '234px');
+
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -61,6 +64,9 @@
 
                 reader.onload = function (e) {
                     $('#image2').attr('src', e.target.result);
+                    $('#image2').attr('width', '460px');
+                    $('#image2').attr('height', '234px');
+
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -74,11 +80,30 @@
 
                 reader.onload = function (e) {
                     $('#image3').attr('src', e.target.result);
+                    $('#image3').attr('width', '460px');
+                    $('#image3').attr('height', '234px');
                 }
 
                 reader.readAsDataURL(input.files[0]);
             }
         }
+
+        //for uploading logo Image
+        function readURLLogoImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#logo').attr('src', e.target.result);
+                    $('#logo').attr('width', '460px');
+                    $('#logo').attr('height', '234px');
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
 
         $(document).ready(function() {
 
@@ -95,6 +120,27 @@
             //for Main Image 3
             $("#mainImage3").change(function(){
                 readURLMainImage3(this);
+            });
+
+            //for logo Image
+            $("#logoImage").change(function(){
+                readURLLogoImage(this);
+            });
+
+            //to enable and disable the section of randomise text on Middle Frame
+            $('#chkrandomiseMF').click(function(){
+                if($(this).is(":checked"))
+                    $("#statementMF").attr("disabled" , "disabled");
+                else
+                    $("#statementMF").removeAttr("disabled");
+            });
+
+            //to enable and disable the section of randomise text on Middle Frame
+            $('#chkrandomiseEF').click(function(){
+                if($(this).is(":checked"))
+                    $("#statementEF").attr("disabled" , "disabled");
+                else
+                    $("#statementEF").removeAttr("disabled");
             });
 
 

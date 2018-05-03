@@ -48,8 +48,9 @@ class RegisterController extends Controller
     }
 
     public function getStep2(){
+        $agent = Session::get('agent_arr');
 
-        return view('frontend.register.register-step2');
+        return view('frontend.register.register-step2', compact('agent'));
     }
 
     public function getStep3(){
@@ -134,16 +135,22 @@ class RegisterController extends Controller
         $mainFrameSelections = Input::get('main_frame');
         if($mainFrameSelections != null )
             $MFboxes = implode(',', $mainFrameSelections);
+        else
+            $MFboxes = '';
 
         //for middle frame template selection
         $middleFrameSelections = Input::get('middle_frame');
         if($middleFrameSelections != null )
             $MidFboxes = implode(',', $middleFrameSelections);
+        else
+            $MidFboxes = '';
 
         //for end frame template selection
         $EndFrameSelections = Input::get('end_frame');
         if($EndFrameSelections != null )
             $EndFboxes = implode(',', $EndFrameSelections);
+        else
+            $EndFboxes = '';
 
         //for capturing state of randomise text in middle frame
         $stateRandomiseMF = Input::get('chkrandomiseMF');
@@ -172,7 +179,8 @@ class RegisterController extends Controller
 
 
         $template_arr = array(
-            'mainImage' => $fnameMainImage,
+            'agent_ID' => $userId,
+            'main_image' => $fnameMainImage,
             'extra_image1' => $fnameMainImage2,
             'extra_image2' => $fnameMainImage3,
             'logo' => $fnamelogoImage,
@@ -187,7 +195,7 @@ class RegisterController extends Controller
             'end_frame_template' => Input::get('stateEndFrame'),
             'end_frame_template_format' => $EndFboxes,
             'end_frame_colours' => Input::get('stateEndFrameColour'),
-            'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),
+            'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
             'video_frame_name' => Input::get('videoName'),
             'video_frame_mobile' => Input::get('videoMobile'),
             'video_frame_web_emailadd' => Input::get('videoEmailAdd'),
@@ -204,6 +212,11 @@ class RegisterController extends Controller
 
         );
         AgentTemplate::create($template_arr);
+
+        User::where('ID', $userId)->update([
+           'logo_user' =>  $fnamelogoImage
+        ]);
+
         return redirect()->route('get-started-step3');
 
     }
@@ -378,6 +391,7 @@ class RegisterController extends Controller
         $agentID = request()->input('agentID');
 
         if($modeAction === 'edit'){
+
             $agent = Agent::where('ID', $agentID)->update([
                 'firstname' => trim(Input::get('firstname')),
                 'lastname' => trim(Input::get('lastname')),
@@ -393,6 +407,24 @@ class RegisterController extends Controller
                 //'postcode' => Input::get('postcode'),
                 'state' => Input::get('state'),
             ]);
+
+            $agent_arr = array(
+                'firstname' => trim(Input::get('firstname')),
+                'lastname' => trim(Input::get('lastname')),
+                'email' => Input::get('email'),
+                'mobile' => Input::get('mobile'),
+                'password' => bcrypt(request()->input('password')),
+                'agent_password' => Input::get('password'),
+                'group' => Input::get('group'),
+                'name_agency' => Input::get('name_agency'),
+                //'role_title' => Input::get('role_title'),
+                'address' => Input::get('address'),
+                'suburb' => Input::get('suburb'),
+                //'postcode' => Input::get('postcode'),
+                'state' => Input::get('state'),
+            );
+
+            Session::put('agent_arr', $agent_arr);
         }
         else
         {
@@ -410,6 +442,8 @@ class RegisterController extends Controller
                 'suburb' => request()->input('suburb')
             );
             Agent::create($agent_arr);
+
+            Session::put('agent_arr', $agent_arr);
         }
 
         $fullname = Input::get('firstname') .  ' ' . Input::get('lastname');
@@ -440,7 +474,7 @@ class RegisterController extends Controller
         Session::put('email_add', Input::get('email'));
         Session::put('passwrd', $passwrd);
         Session::put('userId', $userId);
-        Session::put('agent_arr', $agent_arr);
+
 
 
         return redirect()->route('get-started-step2');
@@ -502,6 +536,23 @@ class RegisterController extends Controller
             //'postcode' => Input::get('postcode'),
             'state' => Input::get('state'),
         ]);
+
+        $agent_arr = array(
+            'firstname' => Input::get('firstname'),
+            'lastname' => Input::get('lastname'),
+            'email' => Input::get('email'),
+            'mobile' => Input::get('mobile'),
+            'password' => bcrypt(Input::get('password')),
+            'agent_password' => Input::get('password'),
+            'group' => Input::get('group'),
+            'name_agency' => Input::get('name_agency'),
+            //'role_title' => Input::get('role_title'),
+            'address' => Input::get('address'),
+            'suburb' => Input::get('suburb'),
+            //'postcode' => Input::get('postcode'),
+            'state' => Input::get('state'),
+        );
+        Session::put('agent_arr', $agent_arr);
 
         $fullname = Input::get('firstname') .  ' ' . Input::get('lastname');
         $passwrd = bcrypt(Input::get('password'));

@@ -11,6 +11,7 @@ use App\AgentPremium;
 use App\AgentStandard;
 use App\AgentBilling;
 use App\videoProgress;
+use App\AgentTemplate;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -29,8 +30,15 @@ class MyVideoController extends Controller
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
         $passwd = Auth::user()->passwd;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.my-videos', compact('fullname', 'passwd', 'agent'));
+        return view('frontend.pages.my-videos', compact('fullname', 'passwd', 'agent', 'logo_pic'));
     }
     
     public function VideoTracker()
@@ -39,6 +47,11 @@ class MyVideoController extends Controller
         $fullname = Auth::user()->name;
         $passwd = Auth::user()->passwd;
         $userId = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userId . '/';
+        $logo_pic = $path . $logo;
 
         $awaiting_videos = videoProgress::where('videotype', 'Premium')->get();
         $production_videos = videoProgress::where('videotype', 'Generic')->orWhere('videotype', 'Standard')->get();
@@ -46,7 +59,7 @@ class MyVideoController extends Controller
         $preference = AgentPreferences::where('agent_ID', $userId)->first();
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video.video-tracker', compact('fullname', 'passwd', 'agent', 'awaiting_videos', 'production_videos', 'preference'));
+        return view('frontend.pages.video-tracker.video-tracker', compact('fullname', 'passwd', 'agent', 'awaiting_videos', 'production_videos', 'preference', 'logo_pic'));
 
     }
 
@@ -56,8 +69,31 @@ class MyVideoController extends Controller
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
         $passwd = Auth::user()->passwd;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video.voice-overs', compact('fullname', 'passwd', 'agent'));
+        return view('frontend.pages.video-creator.voice-overs', compact('fullname', 'passwd', 'agent', 'logo_pic'));
+    }
+
+    public function ExploreMusic()
+    {
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $passwd = Auth::user()->passwd;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.video-creator.explore-music', compact('fullname', 'passwd', 'agent', 'logo_pic'));
     }
 
     public function ExplorePicture()
@@ -65,16 +101,49 @@ class MyVideoController extends Controller
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
         $passwd = Auth::user()->passwd;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        $pic = AgentTemplate::where('agent_ID', $userid)->get(['main_image', 'extra_image1', 'extra_image2', 'logo'])->first();
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.explore-picture', compact('fullname', 'passwd', 'agent'));
+        return view('frontend.pages.video-creator.explore-picture', compact('fullname', 'passwd', 'agent', 'logo_pic', 'path', 'pic'));
     }
+
+    public function ExploreTemplate()
+    {
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $passwd = Auth::user()->passwd;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.video-creator.explore-templates', compact('fullname', 'passwd', 'agent', 'logo_pic'));
+    }
+
 
     public function GenericVideoOrder()
     {
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video.generic-video-order', compact('fullname', 'agent'));
+        return view('frontend.pages.video-creator.generic-video-order', compact('fullname', 'agent', 'logo_pic'));
     }
 
 
@@ -82,8 +151,15 @@ class MyVideoController extends Controller
     {
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video.standard-video-order', compact('fullname', 'agent'));
+        return view('frontend.pages.video-creator.standard-video-order', compact('fullname', 'agent', 'logo_pic'));
     }
 
 
@@ -91,8 +167,15 @@ class MyVideoController extends Controller
     {
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video.premium-video-order', compact('fullname', 'agent'));
+        return view('frontend.pages.video-creator.premium-video-order', compact('fullname', 'agent', 'logo_pic'));
     }
 
 
@@ -150,8 +233,10 @@ class MyVideoController extends Controller
         $total_cost = $cost_generic_video + $cost_surge + $cost_total_preference + $cost_extra;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video.generic-video-order', compact('fullname',  'agent', 'due_arr', 'url_generic', 'vidid',
-                    'preference', 'cost_generic_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost'));
+        $logo_pic = Auth::user()->logo_user;
+
+        return view('frontend.pages.video-creator.generic-video-order', compact('fullname',  'agent', 'due_arr', 'url_generic', 'vidid',
+                    'preference', 'cost_generic_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost', 'logo_pic'));
 
     }
 
@@ -207,8 +292,14 @@ class MyVideoController extends Controller
         $total_cost = $cost_standard_video + $cost_surge + $cost_total_preference + $cost_extra;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile', 'suburb', 'state', 'postcode'])->first();
-        return view('frontend.pages.video.standard-video-order', compact('fullname',  'agent', 'due_arr', 'vidid', 'preference',
-                    'cost_standard_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost'));
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $user_id . '/';
+        $logo_pic = $path . $logo;
+
+        return view('frontend.pages.video-creator.standard-video-order', compact('fullname',  'agent', 'due_arr', 'vidid', 'preference',
+                    'cost_standard_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost', 'logo_pic'));
 
     }
 
@@ -260,8 +351,14 @@ class MyVideoController extends Controller
         $total_cost = $cost_premium_video + $cost_surge + $cost_total_preference + $cost_extra;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile', 'suburb', 'state', 'postcode'])->first();
-        return view('frontend.pages.video.premium-video-order', compact('fullname',  'agent', 'url_premium', 'vidid', 'preference',
-            'cost_premium_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost'));
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $user_id . '/';
+        $logo_pic = $path . $logo;
+
+        return view('frontend.pages.video-creator.premium-video-order', compact('fullname',  'agent', 'url_premium', 'vidid', 'preference',
+            'cost_premium_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost', 'logo_pic'));
 
     }
 

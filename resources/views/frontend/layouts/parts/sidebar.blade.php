@@ -2,7 +2,11 @@
 <ul class="my-account-side">
     <li>
         <div class="d-inline-block align-top">
-            <img src="{{ asset('storage/my-account-icon.jpg') }}">
+            @if($logo_pic != null || $logo_pic != '' || !empty($logo_pic))
+                <img src="{{ $logo_pic }}" width="50" height="50">
+            @else
+                <img src="{{ asset('storage/my-account-icon.jpg') }}">
+            @endif
         </div>
         <div class="d-inline-block">
             <span><b>{{ Auth::user()->name }}</b></span><br>
@@ -32,7 +36,7 @@
         <a href="#">Explore</a>
     </li>
     <li style="margin-left: 70px">
-        <a href="#">Templates</a>
+        <a href="{{ route('account-explore-templates') }}">Templates</a>
     </li>
     <li style="margin-left: 70px">
         <a href="{{ route('account-explore-pictures') }}" style="text-decoration: none">Pictures</a>
@@ -41,7 +45,7 @@
         <a href="{{ route('account-explore-voice-overs') }}" style="text-decoration: none">Voice Overs</a>
     </li>
     <li style="margin-left: 70px">
-        <a href="#">Music Selection</a>
+        <a href="{{ route('account-explore-music') }}">Music Selection</a>
     </li>
     <li>
         <i class="account-icon my-preferences"></i>
