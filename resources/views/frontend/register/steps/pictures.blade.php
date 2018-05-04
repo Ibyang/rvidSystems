@@ -3,17 +3,20 @@
                     <div class="col reg-step-link">
                         <img id="image1" src="{{ asset('storage/register/step-needed.jpg') }}">
                         <div class="text-right pt-2 pb-2">
-                            <input type='file' id="mainImage" name="mainImage" />
+                            <input type='file' id="mainImage" name="mainImage" class="FileUpload"/>
+                            <div class="uploadOverlay4">Add/Change <span>+</span></div>
                             {{--<a href="">Add/Change <span>+</span></a>--}}
                         </div>
                         <img id="image2" src="{{ asset('storage/register/step-optional.jpg') }}">
                         <div class="text-right pt-2 pb-2">
-                            <input type='file' id="mainImage2" name="mainImage2" />
+                            <input type='file' id="mainImage2" name="mainImage2" class="FileUpload"/>
+                            <div class="uploadOverlay5">Add/Change <span>+</span></div>
                             {{--<a href="">Add/Change <span>+</span></a>--}}
                         </div>
                         <img id="image3" src="{{ asset('storage/register/step-optional.jpg') }}">
                         <div class="text-right pt-2 pb-2">
-                            <input type='file' id="mainImage3" name="mainImage3" />
+                            <input type='file' id="mainImage3" name="mainImage3" class="FileUpload"/>
+                            <div class="uploadOverlay6">Add/Change <span>+</span></div>
                             {{--<a href="">Add/Change <span>+</span></a>--}}
                         </div>
                     </div>

@@ -12,8 +12,10 @@
                 <h3 class="my-account-title">Explore Music Selection</h3>
                 Select Music Style
                 <form>
-                    <select>
-                        <option>Random Music</option>
+                    <select name="music_style" class="form-control">
+                        <option value="Random Music(Standard)" {{ $music->music_style === 'Random Music(Standard)' ? 'selected' : '' }}>Random Music (Standard)</option>
+                        <option value="One Music" {{ $music->music_style === 'One Music' ? 'selected' : '' }}>One Music</option>
+                        <option value="Rotation Music" {{ $music->music_style === 'Rotation Music' ? 'selected' : '' }}>Rotation Music</option>
                     </select>
                 </form>
                 <div class="col-sm">
@@ -42,7 +44,10 @@
                             </div>
                             <div class="col-sm my-account-subcription">
                                 <div class="custom-control custom-checkbox standard">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck19" name="musicSelection[]" value="music1">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck19" name="musicSelection[]" value="music1"
+                                        @if(in_array('music1', $music_list))
+                                           checked
+                                        @endif>
                                     <label class="custom-control-label" for="customCheck19"></label>
                                 </div>
                             </div>
@@ -53,7 +58,10 @@
                             </div>
                             <div class="col-sm my-account-subcription">
                                 <div class="custom-control custom-checkbox standard">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck20" name="musicSelection[]" value="music2">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck20" name="musicSelection[]" value="music2"
+                                         @if(in_array('music2', $music_list))
+                                           checked
+                                         @endif>
                                     <label class="custom-control-label" for="customCheck20"></label>
                                 </div>
                             </div>
@@ -79,4 +87,6 @@
     </div>
 </div>
 @endsection
+
+
 

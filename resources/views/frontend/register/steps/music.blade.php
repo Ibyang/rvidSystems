@@ -2,9 +2,9 @@
 <div class="row">
     <div class="col-sm">
           <select name="stateMusicStyle" class="form-control col-9">
-              <option value="Random Voice(Standard)">Random Voice (Standard)</option>
-              <option value="One Voice">One Voice</option>
-              <option value="Rotation Voice">Rotation Voice</option>
+              <option value="Random Music(Standard)">Random Voice (Standard)</option>
+              <option value="One Music">One Music</option>
+              <option value="Rotation Music">Rotation Music</option>
           </select>
           <div class="row">
                 <div class="col-md-auto">

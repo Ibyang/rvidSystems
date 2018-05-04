@@ -3,7 +3,8 @@
                     <div class="col reg-step-link">
                         <img id="logo" src="{{ asset('storage/register/step-blank.jpg') }}">
                         <div class="text-right pt-2 pb-2">
-                            <input type='file' id="logoImage" name="logoImage" />
+                            <input type='file' id="logoImage" name="logoImage" class="FileUpload"/>
+                            <div class="uploadOverlayLogo">Add/Change <span>+</span></div>
                             {{--<a href="">Add/Change <span>+</span></a>--}}
                         </div>
                     </div>

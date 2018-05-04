@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use phpDocumentor\Reflection\Types\Integer;
+use Illuminate\Support\Facades\File;
 
 class MyVideoController extends Controller
 {
@@ -76,8 +77,11 @@ class MyVideoController extends Controller
         $path = '/storage/client_images/' . $userid . '/';
         $logo_pic = $path . $logo;
 
+        $voice = AgentTemplate::where('agent_ID', $userid)->get(['voice_format', 'voice_file_selection'])->first();
+
+        $voice_list = explode(',', $voice->voice_file_selection);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video-creator.voice-overs', compact('fullname', 'passwd', 'agent', 'logo_pic'));
+        return view('frontend.pages.video-creator.voice-overs', compact('fullname', 'passwd', 'agent', 'logo_pic', 'voice', 'voice_list'));
     }
 
     public function ExploreMusic()
@@ -92,8 +96,11 @@ class MyVideoController extends Controller
         $path = '/storage/client_images/' . $userid . '/';
         $logo_pic = $path . $logo;
 
+        $music = AgentTemplate::where('agent_ID', $userid)->get(['music_style', 'music_file_format'])->first();
+
+        $music_list = explode(',', $music->music_file_format);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video-creator.explore-music', compact('fullname', 'passwd', 'agent', 'logo_pic'));
+        return view('frontend.pages.video-creator.explore-music', compact('fullname', 'passwd', 'agent', 'logo_pic', 'music', 'music_list'));
     }
 
     public function ExplorePicture()
@@ -573,6 +580,97 @@ class MyVideoController extends Controller
         }
 
         return redirect()->route('account-make-video');
+
+    }
+
+
+    public function postExplorePictures(Request $request){
+
+        $user_id = Auth::user()->id;
+        $path = public_path('storage\client_images\\' . $user_id . '\\');
+
+        //move to folder if there is file uploaded for Main Image
+        if($file = $request->hasFile('mainImage'))
+        {
+            //for Main Image
+            $mainImage = $request->file('mainImage');
+            $fnameMainImage = time() . '_' . $mainImage->getClientOriginalName();
+
+            $mainImage->move($path, $fnameMainImage);
+            AgentTemplate::where('agent_ID', $user_id)->update([
+                'main_image' => $fnameMainImage,
+            ]);
+
+            //delete old file
+            $oldFileMainImage = Input::get('oldFileMainImage');
+            $filename = public_path().'/storage/client_images/' . $user_id . '/'. $oldFileMainImage;
+            \File::delete($filename);
+
+        }
+
+        //move to folder if there is file uploaded for Extra Image
+        if($file = $request->hasFile('mainImage2'))
+        {
+            //for Main Image
+            $mainImage2 = $request->file('mainImage2');
+            $fnameMainImage2 = time() . '_' . $mainImage2->getClientOriginalName();
+
+            $mainImage2->move($path, $fnameMainImage2);
+            AgentTemplate::where('agent_ID', $user_id)->update([
+                'extra_image1' => $fnameMainImage2,
+            ]);
+
+            //delete old file
+            $oldFileMainImage2 = Input::get('oldFileMainImage2');
+            $filename = public_path().'/storage/client_images/' . $user_id . '/' . $oldFileMainImage2;
+            \File::delete($filename);
+
+        }
+
+        //move to folder if there is file uploaded for Exra Image 2
+        if($file = $request->hasFile('mainImage3'))
+        {
+            //for Main Image
+            $mainImage3 = $request->file('mainImage3');
+            $fnameMainImage3 = time() . '_' . $mainImage3->getClientOriginalName();
+
+            $mainImage3->move($path, $fnameMainImage3);
+            AgentTemplate::where('agent_ID', $user_id)->update([
+                'extra_image2' => $fnameMainImage3,
+            ]);
+
+            //delete old file
+            $oldFileMainImage3 = Input::get('oldFileMainImage3');
+            $filename = public_path().'/storage/client_images/' . $user_id . '/' . $oldFileMainImage3;
+            \File::delete($filename);
+
+        }
+
+        //move to folder if there is file uploaded for Logo Image
+        if($file = $request->hasFile('logoImage'))
+        {
+            //for Main Image
+            $logoImage = $request->file('logoImage');
+            $fnameLogoImage = time() . '_' . $logoImage->getClientOriginalName();
+
+            $logoImage->move($path, $fnameLogoImage);
+            AgentTemplate::where('agent_ID', $user_id)->update([
+                'logo' => $fnameLogoImage,
+            ]);
+
+            User::where('id', $user_id)->update([
+                'logo_user' => $fnameLogoImage
+            ]);
+
+            //delete old file
+            $oldLogoImage = Input::get('oldLogoImage');
+            $filename = public_path().'/storage/client_images/' . $user_id . '/' . $oldLogoImage;
+            \File::delete($filename);
+
+            //return redirect()->route('account-explore-pictures');
+        }
+
+        return redirect()->route('account-explore-pictures');
 
     }
 

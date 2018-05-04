@@ -12,8 +12,10 @@
                 <h3 class="my-account-title">Explore Voice Overs</h3>
                 Voice Format
                 <form>
-                    <select>
-                        <option>Random Voice</option>
+                    <select name="stateVoiceFormat" class="form-control">
+                        <option value="Random Voice(Standard)" {{ $voice->voice_format === 'Random Voice(Standard)' ? 'selected' : '' }}>Random Voice (Standard)</option>
+                        <option value="One Voice" {{ $voice->voice_format === 'One Voice' ? 'selected' : '' }}>One Voice</option>
+                        <option value="Rotation Voice" {{ $voice->voice_format === 'Rotation Voice' ? 'selected' : '' }}>Rotation Voice</option>
                     </select>
                 </form>
                 <div class="col-sm">
@@ -41,7 +43,10 @@
                             <div class="col-sm-3 my-account-subcription step-three-register">
                                 <span>OK to use</span>
                                 <div class="custom-control custom-checkbox standard ml-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck15" name="voiceSelection[]" value="voice1">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck15" name="voiceSelection[]" value="voice1"
+                                        @if(in_array('voice1', $voice_list))
+                                            checked
+                                        @endif>
                                     <label class="custom-control-label" for="customCheck15"></label>
                                 </div>
                             </div>
@@ -62,7 +67,10 @@
                             <div class="col-sm-3 my-account-subcription step-three-register">
                                 <span>OK to use</span>
                                 <div class="custom-control custom-checkbox standard ml-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck16" name="voiceSelection[]" value="voice2">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck16" name="voiceSelection[]" value="voice2"
+                                         @if(in_array('voice2', $voice_list))
+                                            checked
+                                         @endif>
                                     <label class="custom-control-label" for="customCheck16"></label>
                                 </div>
                             </div>
@@ -83,7 +91,10 @@
                             <div class="col-sm-3 my-account-subcription step-three-register">
                                 <span>OK to use</span>
                                 <div class="custom-control custom-checkbox standard ml-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck17" name="voiceSelection[]" value="voice3">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck17" name="voiceSelection[]" value="voice3"
+                                          @if(in_array('voice3', $voice_list))
+                                             checked
+                                          @endif>
                                     <label class="custom-control-label" for="customCheck17"></label>
                                 </div>
                             </div>
@@ -104,7 +115,10 @@
                             <div class="col-sm-3 my-account-subcription step-three-register">
                                 <span>OK to use</span>
                                 <div class="custom-control custom-checkbox standard ml-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck18" name="voiceSelection[]" value="voice4">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck18" name="voiceSelection[]" value="voice4"
+                                          @if(in_array('voice4', $voice_list))
+                                             checked
+                                          @endif>
                                     <label class="custom-control-label" for="customCheck18"></label>
                                 </div>
                             </div>

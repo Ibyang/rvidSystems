@@ -335,6 +335,11 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/explore-templates','MyVideoController@ExploreTemplate')->name('account-explore-templates');
 
+    //for processes done on the Explore Section of the Account Dashboard
+    Route::post('/account/explore-pictures/postImages','MyVideoController@postExplorePictures')->name('account-explore-picture-postImages');
+
+//    Route::post('/account/explore-pictures/postImages','MyVideoController@postExplorePictures')->name('account-explore-picture-postImages');
+
     Route::get('/account/generic-video-order','MyVideoController@GenericVideoOrder')->name('account-generic-video-order');
 
     Route::get('/account/standard-video-order','MyVideoController@StandardVideoOrder')->name('account-standard-video-order');

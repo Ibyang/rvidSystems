@@ -578,3 +578,70 @@ i.vs-template { background-position:-112px 0px; }
 i.vs-voice-music { background-position:-169px 0px; }
 i.vs-finish { background-position:-227px 0px; }
 /** end icons **/
+
+/** additional codes to remove the button on file upload **/
+.FileUpload{
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.uploadOverlay {
+    color: red;
+    position: absolute;
+    top: 212px;
+    margin-left: 490px;
+    text-align: right;
+}
+
+.uploadOverlay2 {
+    color: red;
+    position: absolute;
+    top: 212px;
+    margin-left: 490px;
+    text-align: right;
+}
+
+.uploadOverlay3 {
+    color: red;
+    position: absolute;
+    top: 218px;
+    margin-left: 490px;
+    text-align: right;
+}
+
+.uploadOverlayLogo {
+    color: red;
+    position: absolute;
+    top: 216px;
+    margin-left: 490px;
+    text-align: right;
+}
+
+.uploadOverlay4{
+    position: absolute;
+    top: 240px;
+    margin-left: 360px;
+    text-align: right;
+}
+
+.uploadOverlay5{
+    position: absolute;
+    top: 520px;
+    margin-left: 360px;
+    text-align: right;
+}
+
+.uploadOverlay6{
+    position: absolute;
+    top: 800px;
+    margin-left: 360px;
+    text-align: right;
+}
+
+.uploadOverlayLogo{
+    position: absolute;
+    top: 240px;
+    margin-left: 360px;
+    text-align: right;
+}
