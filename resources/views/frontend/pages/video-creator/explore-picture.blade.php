@@ -19,8 +19,8 @@
                                 Promotional Image</p>
                         </div>
                         <div class="col-sm-9 pl-0 pr-0">
-                            @if($pic->main_image != null || !empty($pic->main_image))
-                                <img id="image1" src="{{ $path . $pic->main_image }}" width="545" height="195">
+                            @if($pic['main_image'] != null || !empty($pic['main_image']))
+                                <img id="image1" src="{{ $path . $pic['main_image'] }}" width="545" height="195">
                             @else
                                 <div class="img-block" id="image1"></div>
                             @endif
@@ -28,7 +28,7 @@
                             <form class="register-form" id="postMainImage" action=" {{ route('account-explore-picture-postImages') }} " method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <p class="text-right">
-                                    <input type="hidden" name="oldFileMainImage" value="{{ $pic->main_image }}">
+                                    <input type="hidden" name="oldFileMainImage" value="{{ $pic['main_image'] }}">
                                     <input type='file' id="mainImage" name="mainImage" class="FileUpload" accept=".jpg,.jpeg,.png,.gif"/>
                                     <div class="uploadOverlay">Change</div>
                                 </p>
@@ -43,8 +43,8 @@
                                 Action Picture</p>
                         </div>
                         <div class="col-sm-9 pl-0 pr-0">
-                            @if($pic->extra_image1 != null || !empty($pic->extra_image1))
-                                <img id="image2" src="{{ $path . $pic->extra_image1 }}" width="545" height="195">
+                            @if($pic['extra_image1'] != null || !empty($pic['extra_image1']))
+                                <img id="image2" src="{{ $path . $pic['extra_image1'] }}" width="545" height="195">
                             @else
                                 <div id="image2" class="img-block"></div>
                             @endif
@@ -52,7 +52,7 @@
                             <form class="register-form" id="postMainImage2" action=" {{ route('account-explore-picture-postImages') }} " method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <p class="text-right">
-                                    <input type="hidden" name="oldFileMainImage2" value="{{ $pic->extra_image1 }}">
+                                    <input type="hidden" name="oldFileMainImage2" value="{{ $pic['extra_image1'] }}">
                                     <input type='file' id="mainImage2" name="mainImage2" class="FileUpload" accept=".jpg,.jpeg,.png,.gif"/>
                                     <div class="uploadOverlay2">Change</div>
                                 </p>
@@ -67,15 +67,15 @@
                                 or anything goes</p>
                         </div>
                         <div class="col-sm-9 pl-0 pr-0">
-                            @if($pic->extra_image2 != null || !empty($pic->extra_image2))
-                                <img id="image3" src="{{ $path . $pic->extra_image2 }}" width="545" height="195">
+                            @if($pic['extra_image2'] != null || !empty($pic['extra_image2']))
+                                <img id="image3" src="{{ $path . $pic['extra_image2'] }}" width="545" height="195">
                             @else
                                 <div id="image3" class="img-block"></div>
                             @endif
                             <form class="register-form" id="postMainImage3" action=" {{ route('account-explore-picture-postImages') }} " method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <p class="text-right">
-                                    <input type="hidden" name="oldFileMainImage3" value="{{ $pic->extra_image2 }}">
+                                    <input type="hidden" name="oldFileMainImage3" value="{{ $pic['extra_image2'] }}">
                                     <input type='file' id="mainImage3" name="mainImage3" class="FileUpload" accept=".jpg,.jpeg,.png,.gif"/>
                                     <div class="uploadOverlay3">Change</div>
                                 </p>
@@ -91,15 +91,15 @@
                                 100-200mb)</p>
                         </div>
                         <div class="col-sm-9 pl-0 pr-0">
-                            @if($pic->logo != null || !empty($pic->logo))
-                                <img id="logo" src="{{ $path . $pic->logo }}" width="272" height="195">
+                            @if($pic['logo'] != null || !empty($pic['logo']))
+                                <img id="logo" src="{{ $path . $pic['logo'] }}" width="272" height="195">
                             @else
                                 <div id="logo" class="img-block2"></div>
                             @endif
                             <form class="register-form" id="postLogoImage" action=" {{ route('account-explore-picture-postImages') }} " method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <p class="text-right">
-                                    <input type="hidden" name="oldLogoImage" value="{{ $pic->logo }}">
+                                    <input type="hidden" name="oldLogoImage" value="{{ $pic['logo'] }}">
                                     <input type='file' id="logoImage" name="logoImage" class="FileUpload" accept=".jpg,.jpeg,.png,.gif"/>
                                     <div class="uploadOverlayLogo">Change</div>
                                 </p>

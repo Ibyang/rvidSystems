@@ -327,6 +327,8 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/video-tracker','MyVideoController@VideoTracker')->name('account-video-tracker');
 
+    Route::get('/account/premium-video','MyVideoController@PremiumVideoDetails')->name('account-premium-video');
+
     Route::get('/account/explore-voice-overs','MyVideoController@VoiceOvers')->name('account-explore-voice-overs');
 
     Route::get('/account/explore-music','MyVideoController@ExploreMusic')->name('account-explore-music');
@@ -334,6 +336,17 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/account/explore-pictures','MyVideoController@ExplorePicture')->name('account-explore-pictures');
 
     Route::get('/account/explore-templates','MyVideoController@ExploreTemplate')->name('account-explore-templates');
+
+    //Standard Video System Steps
+    Route::get('/account/preferences/video-system/1','MyVideoController@VideoSystemPictures');
+
+    Route::get('/account/preferences/video-system/2','MyVideoController@VideoSystemScript');
+
+    Route::get('/account/preferences/video-system/3','MyVideoController@VideoSystemTemplate');
+
+    Route::get('/account/preferences/video-system/4','MyVideoController@VideoSystemVoice');
+
+    Route::get('/account/preferences/video-system/5','MyVideoController@VideoSystemFinish');
 
     //for processes done on the Explore Section of the Account Dashboard
     Route::post('/account/explore-pictures/postImages','MyVideoController@postExplorePictures')->name('account-explore-picture-postImages');

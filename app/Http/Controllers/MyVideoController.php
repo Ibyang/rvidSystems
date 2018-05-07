@@ -46,7 +46,6 @@ class MyVideoController extends Controller
     {
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
-        $passwd = Auth::user()->passwd;
         $userId = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -60,7 +59,7 @@ class MyVideoController extends Controller
         $preference = AgentPreferences::where('agent_ID', $userId)->first();
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video-tracker.video-tracker', compact('fullname', 'passwd', 'agent', 'awaiting_videos', 'production_videos', 'preference', 'logo_pic'));
+        return view('frontend.pages.video-tracker.video-tracker', compact('fullname', 'agent', 'awaiting_videos', 'production_videos', 'preference', 'logo_pic'));
 
     }
 
@@ -673,6 +672,105 @@ class MyVideoController extends Controller
         return redirect()->route('account-explore-pictures');
 
     }
+
+    //for displaying the Premium Video System Details
+    public function PremiumVideoDetails() {
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.premium-video', compact('fullname', 'agent', 'logo_pic'));
+    }
+
+    //for Standard Video System Process
+    public function VideoSystemPictures()
+    {
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.preferences.video-system.standard-video-pictures', compact('fullname', 'agent', 'logo_pic'));
+    }
+
+    public function VideoSystemScript()
+    {
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.preferences.video-system.standard-video-script', compact('fullname', 'agent', 'logo_pic'));
+
+    }
+
+    public function VideoSystemTemplate()
+    {
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.preferences.video-system.standard-video-template', compact('fullname', 'agent', 'logo_pic'));
+    }
+
+    public function VideoSystemVoice()
+    {
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.preferences.video-system.standard-video-voice-music', compact('fullname', 'agent', 'logo_pic'));
+    }
+
+    public function VideoSystemFinish()
+    {
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.preferences.video-system.standard-video-finish', compact('fullname', 'agent', 'logo_pic'));
+    }
+
+
 
 
 }
