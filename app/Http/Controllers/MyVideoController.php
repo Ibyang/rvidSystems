@@ -771,6 +771,13 @@ class MyVideoController extends Controller
     }
 
 
+    //process for the Steps of Ztandard Video System
+    public function VideoSystemProcessStep1(Request $request)
+    {
+        $Images = Input::get('selectedImages');
+        dd($Images);
+    }
+
 
 
 }

@@ -348,6 +348,8 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/preferences/video-system/5','MyVideoController@VideoSystemFinish');
 
+    Route::post('/account/video-system/processStep1', 'MyVideoController@VideoSystemProcessStep1')->name('account-video-system-processStep1');
+
     //for processes done on the Explore Section of the Account Dashboard
     Route::post('/account/explore-pictures/postImages','MyVideoController@postExplorePictures')->name('account-explore-picture-postImages');
 
