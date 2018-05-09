@@ -338,11 +338,13 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/account/explore-templates','MyVideoController@ExploreTemplate')->name('account-explore-templates');
 
     //Standard Video System Steps
-    Route::get('/account/preferences/video-system/1','MyVideoController@VideoSystemPictures');
+    Route::get('/account/preferences/video-system/storePics/{file}','MyVideoController@storePics');
 
-    Route::get('/account/preferences/video-system/2','MyVideoController@VideoSystemScript');
+    Route::get('/account/preferences/video-system/1','MyVideoController@VideoSystemPictures')->name('account-video-system-pictures');
 
-    Route::get('/account/preferences/video-system/3','MyVideoController@VideoSystemTemplate');
+    Route::get('/account/preferences/video-system/2','MyVideoController@VideoSystemScript')->name('account-video-system-script');
+
+    Route::get('/account/preferences/video-system/3','MyVideoController@VideoSystemTemplate')->name('account-video-system-template');
 
     Route::get('/account/preferences/video-system/4','MyVideoController@VideoSystemVoice');
 

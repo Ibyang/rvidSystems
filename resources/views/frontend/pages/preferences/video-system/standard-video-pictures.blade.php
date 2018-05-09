@@ -13,7 +13,7 @@
             
             @include('frontend.pages.preferences.video-system.steps')
 
-            <form id="frmStep1" method="POST" action="{{ route('account-video-system-processStep1')}}" enctype="multipart/form-data">
+            <form id="frmStep1" method="POST" action="{{ route('account-video-system-processStep1')}}">
                 {{ csrf_field() }}
                 <div class="row video-system-1">
                     <div class="col-sm-5 p-0">
@@ -26,8 +26,14 @@
                              <div id="storyContent">
                                  <input type="file" multiple>
                                  <p>Add or Drag and Drop <br><span class="c-6600cc"><b>+</b></span><br>Picture</p>
-                                 <select name="" style="margin-bottom: 10px;">
-                                     <option>Fade</option>
+                                 <select name="transition" style="margin-bottom: 10px;">
+                                     <option value="Fade">Fade</option>
+                                     <option value='Slide'>Slide</option>
+                                     <option value='Flip'>Flip</option>
+                                     <option value='Wipe'>Wipe</option>
+                                     <option value='Split'>Split</option>
+                                     <option value='Zoom'>Zoom</option>
+                                     <option value='Page Peel'>Page Peel</option>
                                  </select>
                              </div>
                              <div id="moveStoryContent"></div>
@@ -44,8 +50,11 @@
                         <div class="video-system-pic-block h-100">
                                 <div class="row mt-1">
                                     <div class="col-sm pr-1 pl-1">
-                                        <input type="file" id="image_files" accept=".jpg,.jpeg,.png,.gif" multiple>
-                                        <button class="btn"><i class="standard-video sv-browse"></i>Browse</button>
+                                        {{--<form method="POST" action="{{ route('account-video-system-storePics') }}" id="frmImages" enctype="multipart/form-data">--}}
+{{--                                            {{ csrf_field() }}--}}
+                                            <input type="file" id="image_files" accept=".jpg,.jpeg,.png,.gif" multiple>
+                                            <button class="btn" id="btnBrowse"><i class="standard-video sv-browse"></i>Browse</button>
+                                        {{--</form>--}}
                                     </div>
                                     <div class="col-sm pr-1 pl-1">
                                         <button class="btn" id="btnStoryboard" onclick="event.preventDefault();"><i class="standard-video sv-move"></i>Move Storyboard</button>
@@ -70,12 +79,12 @@
                     </div>
                 </div>
                 <div class="float-r mt-70 mb-5">
+                    <input type="hidden" name="userid" id="userid" value="{{ $userid }}">
                     <input type="hidden" name="selectedImages" id="selectedImages">
-                    <button class="btn btn-primary" type="submit">SAVE : Next Step 2<i class="arrow-right"></i></button>
+                    <button class="btn btn-primary" id="btnStep1Save">SAVE : Next Step 2<i class="arrow-right"></i></button>
                 </div>
                 <div class="clear"></div>
             </form>
-
         </div>
     </div>
 </div>
@@ -88,7 +97,9 @@
     $(document).ready(function() {
 
         var images = [];
+
         $("#image_files").change(function(){
+
 
             //readURLImage(this);
 
@@ -121,30 +132,51 @@
             $('#image_preview').hide();
             var fileCount = $(this)[0].files;
             var input = document.getElementById('image_files');
+            var userid = document.getElementById('userid');
             console.log("the number of files selected is ", fileCount.length);
             var ctr = 0;
             $($(this)[0].files).each(function () {
                 var file = $(this);
-                var reader = new FileReader();
-                reader.onload = function (e) {
+                console.log("the file is ", file);
+                var fname = file[ctr].name;
 
-                    console.log(input.files[ctr].name);
-                    // for(i=0; i<fileCount; i++){
-                    //     $('#img_'+i).attr('src', e.target.result);
-                    // }
-                    $('#image_preview1').add();
-                    $('#image_preview1').append("<li><div><img src='"+e.target.result+"' width='183px' height='100px'></div>" +
-                        "<div class='my-account-subcription step-three-register'>" +
-                        "<div class='custom-control custom-checkbox standard'>" +
-                        "<input type='checkbox' class='custom-control-input' name='img[]' value='" + e.target.result + '|' + input.files[ctr].name + "' id='chkimg" + ctr + "' checked>" +
-                        "<label class='custom-control-label' for='chkimg" + ctr + "'></label>" +
-                        "</div></div></li>");
+                $.ajax({
+                    url: "/account/preferences/video-system/storePics/" + fname,
+                    type: "GET",
+                    // dataType: "json",
+                    // data: fname,
+                    //processData: false,
+                    //contentType: false,
+                    success: function(res) {
+                        console.log("the value of res is ", res);
+                    },
+                    error: function(res) {}
+                });
 
-                    images.push(e.target.result);
-                    ctr = ctr + 1;
-                }
-                reader.readAsDataURL(file[0]);
+
+                // var reader = new FileReader();
+                // reader.onload = function (e) {
+                //
+                //     console.log(input.files[ctr].name);
+                //     // for(i=0; i<fileCount; i++){
+                //     //     $('#img_'+i).attr('src', e.target.result);
+                //     // }
+                //     $('#image_preview1').add();
+                //     $('#image_preview1').append("<li><div><img src='"+e.target.result+"' width='183px' height='100px'></div>" +
+                //         "<div class='my-account-subcription step-three-register'>" +
+                //         "<div class='custom-control custom-checkbox standard'>" +
+                //         "<input type='checkbox' class='custom-control-input' name='img[]' value='" + e.target.result + '|' + input.files[ctr].name + "' id='chkimg" + ctr + "' checked>" +
+                //         "<label class='custom-control-label' for='chkimg" + ctr + "'></label>" +
+                //         "</div></div></li>");
+                //
+                //     images.push(e.target.result);
+                //     ctr = ctr + 1;
+                // }
+                // reader.readAsDataURL(file[0]);
+
             });
+
+            // $('#frmImages').submit();
 
         });
 
@@ -170,13 +202,19 @@
                 console.log("the value of src is ", src);
                 console.log("the value of filename is ", filename);
 
-                $('#moveStoryContent').append("<input type='file' name='images[]' multiple>" +
-                                              "<img src='"+ src +"' width='268px' height='110px'>" +
+                $('#moveStoryContent').append("<input type='file' name='images[]' value='" + filename + "' multiple>" +
+                                              "<img src='"+ src +"' width='268px' height='110px' style='border: 10px solid #ededed; margin-bottom: 10px;'>" +
                                               "<select name='transition[]' style='margin-bottom: 10px;'>" +
-                                              "<option>Fade</option>" +
+                                              "<option value='Fade'>Fade</option>" +
+                                              "<option value='Slide'>Slide</option>" +
+                                              "<option value='Flip'>Flip</option>" +
+                                              "<option value='Wipe'>Wipe</option>" +
+                                              "<option value='Split'>Split</option>" +
+                                              "<option value='Zoom'>Zoom</option>" +
+                                              "<option value='Page Peel'>Page Peel</option>" +
                                               "</select>");
             }
-            $('#selectedImages').val(files_arr);
+            //$('#selectedImages').val(JSON.stringify(files_arr));
         });
 
     });

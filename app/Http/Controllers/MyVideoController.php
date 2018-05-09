@@ -12,6 +12,7 @@ use App\AgentStandard;
 use App\AgentBilling;
 use App\videoProgress;
 use App\AgentTemplate;
+use App\standardVideoPicture;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -702,7 +703,7 @@ class MyVideoController extends Controller
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.preferences.video-system.standard-video-pictures', compact('fullname', 'agent', 'logo_pic'));
+        return view('frontend.pages.preferences.video-system.standard-video-pictures', compact('fullname', 'agent', 'logo_pic', 'userid'));
     }
 
     public function VideoSystemScript()
@@ -770,14 +771,69 @@ class MyVideoController extends Controller
         return view('frontend.pages.preferences.video-system.standard-video-finish', compact('fullname', 'agent', 'logo_pic'));
     }
 
-
     //process for the Steps of Ztandard Video System
     public function VideoSystemProcessStep1(Request $request)
     {
-        $Images = Input::get('selectedImages');
+        $Images = Input::get('images');
+
         dd($Images);
+
+//        $userid = Auth::user()->id;
+//        $videoid = 20;
+//
+//        $Images = Input::get('selectedImages');
+//        $effects = Input::get('transition');
+//
+//        $arr_images = json_decode($Images, true);
+//
+//        $path = public_path('storage\client_images\\' . $userid . '\\pictures\\Video#' . $videoid . '\\');
+//        if(!File::exists($path)){
+//            File::makeDirectory($path, 0775, true);
+//        }
+//
+//        for($i=0; $i<count($arr_images); $i++){
+//            $fnameImage = time() . '_' . $arr_images[$i];
+////            $arr_images[$i]->move($path, $fnameImage);
+//            move_uploaded_file($fnameImage, $path);
+//
+//            //store date to database
+//            $picdetails_arr = array(
+//                'agent_ID' => $userid,
+//                'video_ID' => $videoid,
+//                'image' => $fnameImage,
+//                'effect_style' => $effects[$i]
+//            );
+//            standardVideoPicture::create($picdetails_arr);
+//        }
+//        return redirect()->route('account-video-system-script');
     }
 
+    public function storePics($fname){
+//        $Images = Input::get('file');
+//        return $request;
+//        dd($filename);
+//        $files = $request->file;
+        //return $fname;
+
+        $userid = Auth::user()->id;
+        $videoid = 20;
+
+        $Images = Input::get('selectedImages');
+        $effects = Input::get('transition');
+
+        $arr_images = json_decode($Images, true);
+
+        $path = public_path('storage\client_images\\' . $userid . '\\pictures\\Video#' . $videoid . '\\');
+        if(!File::exists($path)){
+            File::makeDirectory($path, 0777, true);
+        }
+
+        if(move_uploaded_file($fname, $path))
+            return "Success";
+        else
+            return "Was not able to upload....";
+
+    }
 
 
 }

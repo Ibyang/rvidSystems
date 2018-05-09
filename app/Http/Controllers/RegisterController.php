@@ -35,36 +35,40 @@ class RegisterController extends Controller
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.get-started',compact('email', 'details', 'states', 'groups', 'agencies'));
+        return view('frontend.pages.get-started', compact('email', 'details', 'states', 'groups', 'agencies'));
     }
 
-    public function getStep1(){
+    public function getStep1()
+    {
         $email = Input::get('email');
         $details = Agent::where('email', $email)->first();
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.register.register-step1',compact('email', 'details', 'states', 'groups', 'agencies'));
+        return view('frontend.register.register-step1', compact('email', 'details', 'states', 'groups', 'agencies'));
     }
 
-    public function getStep2(){
+    public function getStep2()
+    {
         $agent = Session::get('agent_arr');
 
         return view('frontend.register.register-step2', compact('agent'));
     }
 
-    public function getStep3(){
+    public function getStep3()
+    {
 
         $suburbs = Suburb::distinct(['suburb', 'post_code'])
-                        ->whereNotNull('suburb')
-                        ->whereNotNull('post_code')
-                        ->orderBy('suburb', 'ASC')
-                        ->get();
+            ->whereNotNull('suburb')
+            ->whereNotNull('post_code')
+            ->orderBy('suburb', 'ASC')
+            ->get();
 //        dd($suburbs);
         return view('frontend.register.register-step3', compact('suburbs'));
     }
 
-    public function getStep4(){
+    public function getStep4()
+    {
 
         $email = Session::get('email_add');
         $details = Agent::where('email', $email)->first();
@@ -74,26 +78,26 @@ class RegisterController extends Controller
         return view('frontend.register.register-step4', compact('details', 'agent', 'user_id'));
     }
 
-    public function processStep2(Request $request){
+    public function processStep2(Request $request)
+    {
 
         $userId = Session::get('userId');
 
         $this->validate($request, [
-           'mainImage' => 'required|image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
-           'mainImage2' => 'image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
-           'mainImage3' => 'image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
-           'logoImage' => 'required|image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048'
+            'mainImage' => 'required|image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
+            'mainImage2' => 'image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
+            'mainImage3' => 'image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
+            'logoImage' => 'required|image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048'
         ]);
 
         //for creating subfolder for a particular client
         $path = public_path('storage\client_images\\' . $userId . '\\');
-        if(!File::exists($path)){
+        if (!File::exists($path)) {
             File::makeDirectory($path, 0775, true);
         }
 
         //move to folder if there is file uploaded for Main Image
-        if($file = $request->hasFile('mainImage'))
-        {
+        if ($file = $request->hasFile('mainImage')) {
             //for Main Image
             $mainImage = $request->file('mainImage');
             $fnameMainImage = time() . '_' . $mainImage->getClientOriginalName();
@@ -102,8 +106,7 @@ class RegisterController extends Controller
         }
 
         //move to folder if there is file uploaded for Main Image 2 (Optional)
-        if($file = $request->hasFile('mainImage2'))
-        {
+        if ($file = $request->hasFile('mainImage2')) {
             //for Main Image 2 (Optional)
             $mainImage2 = $request->file('mainImage2');
             $fnameMainImage2 = time() . '_' . $mainImage2->getClientOriginalName();
@@ -112,8 +115,7 @@ class RegisterController extends Controller
         }
 
         //move to folder if there is file uploaded for Main Image 3 (Optional)
-        if($file = $request->hasFile('mainImage3'))
-        {
+        if ($file = $request->hasFile('mainImage3')) {
             //for Main Image 3 (Optional)
             $mainImage3 = $request->file('mainImage3');
             $fnameMainImage3 = time() . '_' . $mainImage3->getClientOriginalName();
@@ -122,59 +124,58 @@ class RegisterController extends Controller
         }
 
         //for uploading of logo
-        if($file = $request->hasFile('logoImage'))
-        {
+        if ($file = $request->hasFile('logoImage')) {
             //for Main Image 3 (Optional)
             $logoImage = $request->file('logoImage');
-            $fnamelogoImage = 'logo_' . $userId .  '_' . $logoImage->getClientOriginalName();
+            $fnamelogoImage = 'logo_' . $userId . '_' . $logoImage->getClientOriginalName();
 
             $logoImage->move($path, $fnamelogoImage);
         }
 
         //for main frame template selection
         $mainFrameSelections = Input::get('main_frame');
-        if($mainFrameSelections != null )
+        if ($mainFrameSelections != null)
             $MFboxes = implode(',', $mainFrameSelections);
         else
             $MFboxes = '';
 
         //for middle frame template selection
         $middleFrameSelections = Input::get('middle_frame');
-        if($middleFrameSelections != null )
+        if ($middleFrameSelections != null)
             $MidFboxes = implode(',', $middleFrameSelections);
         else
             $MidFboxes = '';
 
         //for end frame template selection
         $EndFrameSelections = Input::get('end_frame');
-        if($EndFrameSelections != null )
+        if ($EndFrameSelections != null)
             $EndFboxes = implode(',', $EndFrameSelections);
         else
             $EndFboxes = '';
 
         //for capturing state of randomise text in middle frame
         $stateRandomiseMF = Input::get('chkrandomiseMF');
-        if($stateRandomiseMF == null)
+        if ($stateRandomiseMF == null)
             $chkRandomiseMF = 0;
         else
             $chkRandomiseMF = 1;
 
         //for capturing state of randomise text in end frame
         $stateRandomiseEF = Input::get('chkrandomiseEF');
-        if($stateRandomiseEF == null)
+        if ($stateRandomiseEF == null)
             $chkRandomiseEF = 0;
         else
             $chkRandomiseEF = 1;
 
         //for voice format selection
         $voiceSelection = Input::get('voiceSelection');
-        if($voiceSelection != null )
+        if ($voiceSelection != null)
             $voiceboxes = implode(',', $voiceSelection);
 
 
         //for music file format selection
         $musicSelection = Input::get('musicSelection');
-        if($musicSelection != null )
+        if ($musicSelection != null)
             $musicboxes = implode(',', $musicSelection);
 
 
@@ -214,7 +215,7 @@ class RegisterController extends Controller
         AgentTemplate::create($template_arr);
 
         User::where('ID', $userId)->update([
-           'logo_user' =>  $fnamelogoImage
+            'logo_user' => $fnamelogoImage
         ]);
 
         return redirect()->route('get-started-step3');
@@ -239,14 +240,14 @@ class RegisterController extends Controller
         AgentPreferences::create($surge_arr);
 
         //for Email Distribution List
-        $emails = explode(',',$email_list);
+        $emails = explode(',', $email_list);
 
-        if($email_list != null) {
+        if ($email_list != null) {
             AgentPreferences::where('agent_ID', $userId)->update([
                 'email_distribution' => 1
             ]);
 
-            for ($i=0; $i<count($emails); $i++){
+            for ($i = 0; $i < count($emails); $i++) {
                 $email_arr = array(
                     'agent_ID' => $userId,
                     'email' => $emails[$i],
@@ -255,9 +256,9 @@ class RegisterController extends Controller
             }
         }
 
-        $areas = explode(',',$suburb_list);
-        if($suburb_list != null) {
-            for ($i=0; $i<count($areas); $i++){
+        $areas = explode(',', $suburb_list);
+        if ($suburb_list != null) {
+            for ($i = 0; $i < count($areas); $i++) {
                 $broadcast_arr = array(
                     'agent_ID' => $userId,
                     'suburb' => $areas[$i],
@@ -277,7 +278,8 @@ class RegisterController extends Controller
 
 
     //function after going through the registration steps
-    public function processStep4(){
+    public function processStep4()
+    {
 
         //return view('frontend.pages.register-step4');
         $email = Session::get('email_add');
@@ -287,34 +289,31 @@ class RegisterController extends Controller
 
         $subscription1 = Input::get('subscription1');
 
-        foreach($subscription1 as $sub){
-            if($sub === 'Casual'){
+        foreach ($subscription1 as $sub) {
+            if ($sub === 'Casual') {
                 $subscription_type = $sub;
                 $storage_plan = '$11';
-            }
-            else if($sub === 'Basic'){
+            } else if ($sub === 'Basic') {
                 $subscription_type = $sub;
                 $storage_plan = '$33';
-            }
-            else if($sub === 'Standard') {
+            } else if ($sub === 'Standard') {
                 $subscription_type = $sub;
                 $storage_plan = '$66';
-            }
-            else if($sub === 'Premium') {
+            } else if ($sub === 'Premium') {
                 $subscription_type = $sub;
                 $storage_plan = '$99';
             }
         }
 
         $payment_arr = array(
-          'agent_ID' => $userId,
-          'subscription_type' => $subscription_type,
-          'storage_plan' => $storage_plan,
-          'invoice_to' => Input::get('person_name'),
-          'address' => Input::get('invoice_address'),
-          'person_name' => Input::get('contact_name'),
-          'contact_num' => Input::get('mobile'),
-          'email' => Input::get('email'),
+            'agent_ID' => $userId,
+            'subscription_type' => $subscription_type,
+            'storage_plan' => $storage_plan,
+            'invoice_to' => Input::get('person_name'),
+            'address' => Input::get('invoice_address'),
+            'person_name' => Input::get('contact_name'),
+            'contact_num' => Input::get('mobile'),
+            'email' => Input::get('email'),
         );
 
         AgentInvoice::create($payment_arr);
@@ -326,7 +325,7 @@ class RegisterController extends Controller
 
         Auth::loginUsingId($userId);
 
-        if(Auth::check($credentials)) {
+        if (Auth::check($credentials)) {
             return redirect()->route('account-make-video');
         }
         Session::flush();
@@ -350,13 +349,15 @@ class RegisterController extends Controller
     }
 
     //for getting the answer when question is selected for FAQ module
-    public function getFAQAjax($question){
+    public function getFAQAjax($question)
+    {
         $faq = FAQ::where('ID', $question)->first();
         return json_encode($faq);
     }
 
     //for sending FAQ email to help@revid.com.au
-    public function sendFAQEmail($recipient, $message){
+    public function sendFAQEmail($recipient, $message)
+    {
         Mail::to($recipient)->send(new DemoMail());
     }
 
@@ -373,7 +374,7 @@ class RegisterController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -390,7 +391,7 @@ class RegisterController extends Controller
         $modeAction = request()->input('modeAction');
         $agentID = request()->input('agentID');
 
-        if($modeAction === 'edit'){
+        if ($modeAction === 'edit') {
 
             $agent = Agent::where('ID', $agentID)->update([
                 'firstname' => trim(Input::get('firstname')),
@@ -425,9 +426,7 @@ class RegisterController extends Controller
             );
 
             Session::put('agent_arr', $agent_arr);
-        }
-        else
-        {
+        } else {
             $agent_arr = array(
                 'firstname' => trim(request()->input('firstname')),
                 'lastname' => trim(request()->input('lastname')),
@@ -446,7 +445,7 @@ class RegisterController extends Controller
             Session::put('agent_arr', $agent_arr);
         }
 
-        $fullname = Input::get('firstname') .  ' ' . Input::get('lastname');
+        $fullname = Input::get('firstname') . ' ' . Input::get('lastname');
         $passwrd = bcrypt(Input::get('password'));
         $pass_arr = array(
             'name' => $fullname,
@@ -476,7 +475,6 @@ class RegisterController extends Controller
         Session::put('userId', $userId);
 
 
-
         return redirect()->route('get-started-step2');
     }
 
@@ -484,7 +482,7 @@ class RegisterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -495,7 +493,7 @@ class RegisterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -506,8 +504,8 @@ class RegisterController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -554,7 +552,7 @@ class RegisterController extends Controller
         );
         Session::put('agent_arr', $agent_arr);
 
-        $fullname = Input::get('firstname') .  ' ' . Input::get('lastname');
+        $fullname = Input::get('firstname') . ' ' . Input::get('lastname');
         $passwrd = bcrypt(Input::get('password'));
         $pass_arr = array(
             'name' => $fullname,
@@ -578,12 +576,13 @@ class RegisterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
+
 
 }
