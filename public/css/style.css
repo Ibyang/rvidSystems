@@ -645,3 +645,18 @@ i.vs-finish { background-position:-227px 0px; }
     margin-left: 360px;
     text-align: right;
 }
+
+.text-block {
+    /*opacity: 1;*/
+    /*position: relative;*/
+    top: 100px;
+    /*bottom: 20px;
+    right: 20px;
+    background-color: black;*/
+    font-weight: bold;
+    color: darkblue;
+    padding-left: 50px;
+    padding-right: 20px;
+}
+
+

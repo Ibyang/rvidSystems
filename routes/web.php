@@ -338,7 +338,7 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/account/explore-templates','MyVideoController@ExploreTemplate')->name('account-explore-templates');
 
     //Standard Video System Steps
-    Route::get('/account/preferences/video-system/storePics/{file}','MyVideoController@storePics');
+//    Route::get('/account/preferences/video-system/storePics/{file}','MyVideoController@storePics');
 
     Route::get('/account/preferences/video-system/1','MyVideoController@VideoSystemPictures')->name('account-video-system-pictures');
 
