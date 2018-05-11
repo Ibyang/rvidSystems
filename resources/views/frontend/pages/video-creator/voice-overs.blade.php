@@ -13,9 +13,9 @@
                 Voice Format
                 <form>
                     <select name="stateVoiceFormat" class="form-control">
-                        <option value="Random Voice(Standard)" {{ $voice->voice_format === 'Random Voice(Standard)' ? 'selected' : '' }}>Random Voice (Standard)</option>
-                        <option value="One Voice" {{ $voice->voice_format === 'One Voice' ? 'selected' : '' }}>One Voice</option>
-                        <option value="Rotation Voice" {{ $voice->voice_format === 'Rotation Voice' ? 'selected' : '' }}>Rotation Voice</option>
+                        <option value="Random Voice(Standard)" {{ $voice['voice_format'] === 'Random Voice(Standard)' ? 'selected' : '' }}>Random Voice (Standard)</option>
+                        <option value="One Voice" {{ $voice['voice_format'] === 'One Voice' ? 'selected' : '' }}>One Voice</option>
+                        <option value="Rotation Voice" {{ $voice['voice_format'] === 'Rotation Voice' ? 'selected' : '' }}>Rotation Voice</option>
                     </select>
                 </form>
                 <div class="col-sm">

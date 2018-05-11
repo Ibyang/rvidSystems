@@ -80,7 +80,7 @@ class MyVideoController extends Controller
 
         $voice = AgentTemplate::where('agent_ID', $userid)->get(['voice_format', 'voice_file_selection'])->first();
 
-        $voice_list = explode(',', $voice->voice_file_selection);
+        $voice_list = explode(',', $voice['voice_file_selection']);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         return view('frontend.pages.video-creator.voice-overs', compact('fullname', 'passwd', 'agent', 'logo_pic', 'voice', 'voice_list'));
     }
@@ -99,7 +99,7 @@ class MyVideoController extends Controller
 
         $music = AgentTemplate::where('agent_ID', $userid)->get(['music_style', 'music_file_format'])->first();
 
-        $music_list = explode(',', $music->music_file_format);
+        $music_list = explode(',', $music['music_file_format']);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         return view('frontend.pages.video-creator.explore-music', compact('fullname', 'passwd', 'agent', 'logo_pic', 'music', 'music_list'));
     }
@@ -728,7 +728,8 @@ class MyVideoController extends Controller
         //path for uploaded images
         $path2 = '/storage/client_images/' . $userid . '/pictures/Video' . $videoid . '/';
 
-        $pics = standardVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->get(['image']);
+        $pics = standardVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->get(['ID', 'image']);
+        Session::put('pics', $pics);
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         return view('frontend.pages.preferences.video-system.standard-video-script', compact('fullname', 'agent', 'logo_pic', 'videoid', 'pics', 'path2'));
@@ -798,6 +799,7 @@ class MyVideoController extends Controller
         $arr_images = explode(',', $images);
 
         if ($request->file('image_files')) {
+            $ctr = 0;
             foreach($request->file('image_files') as $image)
             {
                 if(!empty($image)){
@@ -809,22 +811,48 @@ class MyVideoController extends Controller
                     $filename = date('Ym') . $videoid . '_' .$image->getClientOriginalName();
                     $image->move($path, $filename);
 
-                    for($i=0; $i<$ctr_effects; $i++){
-                        $fname = date('Ym') . $videoid . '_' . $arr_images[$i];
+//                    for($i=0; $i<$ctr_effects; $i++){
+                        $fname = date('Ym') . $videoid . '_' . $arr_images[$ctr];
                         //store date to database
                         $picdetails_arr = array(
                             'agent_ID' => $userid,
                             'video_ID' => $videoid,
                             'image' => $fname,
-                            'effect_style' => $effects[$i]
+                            'effect_style' => $effects[$ctr]
                         );
                         standardVideoPicture::create($picdetails_arr);
-                    }
+//                    }
                 }
+                $ctr++;
             }
         }
 
         return redirect()->route('account-video-system-script');
+
+    }
+
+
+    public function VideoSystemProcessStep2(){
+
+        $statements = Input::get('selectedStatements');
+        $arr_statements = explode(',', $statements);
+        $pics = Session::get('pics');
+        //$arr_pics_details = explode(',', $pics);
+//        dd(count($pics));
+
+        $ctr_statements = count($arr_statements);
+
+        for($i=0; $i<$ctr_statements; $i++){
+            $picID = $pics[$i]['ID'];
+//            dd($picID);
+            if($arr_statements[$i]){
+                standardVideoPicture::where('ID', $picID)->update([
+                    'statement' => $arr_statements[$i]
+                ]);
+            }
+        }
+
+        return redirect()->route('account-video-system-template');
 
     }
 

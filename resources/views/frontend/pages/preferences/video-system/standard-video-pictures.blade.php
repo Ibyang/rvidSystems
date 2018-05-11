@@ -10,7 +10,7 @@
         </div>
         <div class="col-lg-9 my-account-form">
             <h3 class="my-account-title">Standard Video System - Step 1</h3>
-            
+
             @include('frontend.pages.preferences.video-system.steps')
 
             <form id="frmStep1" method="POST" action="{{ route('account-video-system-processStep1')}}" enctype="multipart/form-data">

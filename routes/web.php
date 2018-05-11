@@ -346,11 +346,13 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/preferences/video-system/3','MyVideoController@VideoSystemTemplate')->name('account-video-system-template');
 
-    Route::get('/account/preferences/video-system/4','MyVideoController@VideoSystemVoice');
+    Route::get('/account/preferences/video-system/4','MyVideoController@VideoSystemVoice')->name('account-video-system-music');
 
-    Route::get('/account/preferences/video-system/5','MyVideoController@VideoSystemFinish');
+    Route::get('/account/preferences/video-system/5','MyVideoController@VideoSystemFinish')->name('account-video-system-finish');
 
     Route::post('/account/video-system/processStep1', 'MyVideoController@VideoSystemProcessStep1')->name('account-video-system-processStep1');
+
+    Route::post('/account/video-system/processStep2', 'MyVideoController@VideoSystemProcessStep2')->name('account-video-system-processStep2');
 
     //for processes done on the Explore Section of the Account Dashboard
     Route::post('/account/explore-pictures/postImages','MyVideoController@postExplorePictures')->name('account-explore-picture-postImages');

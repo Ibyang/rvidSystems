@@ -13,9 +13,9 @@
                 Select Music Style
                 <form>
                     <select name="music_style" class="form-control">
-                        <option value="Random Music(Standard)" {{ $music->music_style === 'Random Music(Standard)' ? 'selected' : '' }}>Random Music (Standard)</option>
-                        <option value="One Music" {{ $music->music_style === 'One Music' ? 'selected' : '' }}>One Music</option>
-                        <option value="Rotation Music" {{ $music->music_style === 'Rotation Music' ? 'selected' : '' }}>Rotation Music</option>
+                        <option value="Random Music(Standard)" {{ $music['music_style'] === 'Random Music(Standard)' ? 'selected' : '' }}>Random Music (Standard)</option>
+                        <option value="One Music" {{ $music['music_style'] === 'One Music' ? 'selected' : '' }}>One Music</option>
+                        <option value="Rotation Music" {{ $music['music_style'] === 'Rotation Music' ? 'selected' : '' }}>Rotation Music</option>
                     </select>
                 </form>
                 <div class="col-sm">
