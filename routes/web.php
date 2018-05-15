@@ -354,6 +354,12 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::post('/account/video-system/processStep2', 'MyVideoController@VideoSystemProcessStep2')->name('account-video-system-processStep2');
 
+    Route::post('/account/video-system/processStep3', 'MyVideoController@VideoSystemProcessStep3')->name('account-video-system-processStep3');
+
+    Route::post('/account/video-system/processStep4', 'MyVideoController@VideoSystemProcessStep4')->name('account-video-system-processStep4');
+
+    Route::post('/account/video-system/processStep5', 'MyVideoController@VideoSystemProcessStep5')->name('account-video-system-processStep5');
+
     //for processes done on the Explore Section of the Account Dashboard
     Route::post('/account/explore-pictures/postImages','MyVideoController@postExplorePictures')->name('account-explore-picture-postImages');
 

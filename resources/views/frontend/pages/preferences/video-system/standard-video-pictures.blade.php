@@ -23,19 +23,42 @@
                          </div>
                          <div class="story-board-block pl-3 pr-3" >
                              <button class="btn" onclick="event.preventDefault();"><i class="standard-video sv-save"></i>SAVE</button>
+
                              <div id="storyContent">
-                                 <input type="file" multiple>
-                                 <p>Add or Drag and Drop <br><span class="c-6600cc"><b>+</b></span><br>Picture</p>
-                                 <select name="transition" style="margin-bottom: 10px;">
-                                     <option value="Fade">Fade</option>
-                                     <option value='Slide'>Slide</option>
-                                     <option value='Flip'>Flip</option>
-                                     <option value='Wipe'>Wipe</option>
-                                     <option value='Split'>Split</option>
-                                     <option value='Zoom'>Zoom</option>
-                                     <option value='Page Peel'>Page Peel</option>
-                                 </select>
+                                 @if(count($pics) > 0)
+                                     @foreach($pics as $pic)
+                                         <input type="file" multiple>
+                                         @if($pic['new_filename'] != NULL)
+                                             <img src="{{ $path2 . $pic['new_filename'] }}" width='268px' height='110px' style='border: 10px solid #ededed; margin-bottom: 10px;'>
+                                         @else
+                                             <img src="{{ $path2 . $pic['old_filename'] }}" width='268px' height='110px' style='border: 10px solid #ededed; margin-bottom: 10px;'>
+                                         @endif
+                                         {{--<p>Add or Drag and Drop <br><span class="c-6600cc"><b>+</b></span><br>Picture</p>--}}
+                                         <select name="transition" style="margin-bottom: 10px;">
+                                             <option value="Fade" {{ $pic['effect_style'] === 'Fade' ? 'selected' : '' }}>Fade</option>
+                                             <option value="Slide" {{ $pic['effect_style'] === 'Slide' ? 'selected' : '' }}>Slide</option>
+                                             <option value="Flip" {{ $pic['effect_style'] === 'Flip' ? 'selected' : '' }}>Flip</option>
+                                             <option value="Wipe" {{ $pic['effect_style'] === 'Wipe' ? 'selected' : '' }}>Wipe</option>
+                                             <option value="Split" {{ $pic['effect_style'] === 'Split' ? 'selected' : '' }}>Split</option>
+                                             <option value="Zoom" {{ $pic['effect_style'] === 'Zoom' ? 'selected' : '' }}>Zoom</option>
+                                             <option value="Page Peel" {{ $pic['effect_style'] === 'Page Peel' ? 'selected' : '' }}>Page Peel</option>
+                                         </select>
+                                     @endforeach
+                                 @else
+                                     <input type="file" multiple>
+                                     <p>Add or Drag and Drop <br><span class="c-6600cc"><b>+</b></span><br>Picture</p>
+                                     <select name="transition" style="margin-bottom: 10px;">
+                                         <option value="Fade">Fade</option>
+                                         <option value='Slide'>Slide</option>
+                                         <option value='Flip'>Flip</option>
+                                         <option value='Wipe'>Wipe</option>
+                                         <option value='Split'>Split</option>
+                                         <option value='Zoom'>Zoom</option>
+                                         <option value='Page Peel'>Page Peel</option>
+                                     </select>
+                                 @endif
                              </div>
+
                              <div id="moveStoryContent"></div>
                          </div>
                          <div class="text-right">

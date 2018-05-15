@@ -47,9 +47,17 @@
                                     </div>
                                 </div>
                              </div-->
-                                 <div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none"></div>
+                                 @if($pic['statement'] != NULL)
+                                    <div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none">{{ $pic['statement'] }}</div>
+                                 @else
+                                     <div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none"></div>
+                                 @endif
                                  {{--<div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee">Drag Your Statement Here</div>--}}
-                                 <img draggable="true" src={{ $path2 . $pic['image'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; width:150px; height:150px'>
+                                 @if($pic['new_filename'] != NULL)
+                                    <img draggable="true" src={{ $path2 . $pic['new_filename'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; width:150px; height:150px'>
+                                 @else
+                                    <img draggable="true" src={{ $path2 . $pic['old_filename'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; width:150px; height:150px'>
+                                 @endif
                                  <input type="hidden" name="imageID" value="{{ $pic['ID'] }}">
                                  <input type="hidden" name="filename[]" id="filename" ondrop="drop(event)" ondragover="allowDrop(event)">
                                  <select name="statement[]" class="mt-3 mb-3">
