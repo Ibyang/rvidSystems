@@ -143,6 +143,90 @@
                     $("#statementEF").removeAttr("disabled");
             });
 
+            if($('#stateMainFrameColour').val()=='Agency Group Templates') {
+                $('#stateMainFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
+                $('#stateMainFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
+                $('#stateMainFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
+                $('#stateMainFrameColourSelection').hide();
+            }
+
+            if($('#stateMiddleFrameColour').val()=='Agency Group Templates'){
+                $('#stateMiddleFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
+                $('#stateMiddleFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
+                $('#stateMiddleFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
+                $('#stateMiddleFrameColourSelection').hide();
+            }
+
+            if($('#stateEndFrameColour').val()=='Agency Group Templates'){
+                $('#stateEndFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
+                $('#stateEndFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
+                $('#stateEndFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
+                $('#stateEndFrameColourSelection').hide();
+            }
+
+            //auto populating values of the dropdown Sub Colour based on the selection of the Colour Item
+            //for State Main Frame
+            $('#stateMainFrameColour').on('change', function(){
+                $('#stateMainFrameColourSub').html('');
+                if($('#stateMainFrameColour').val()=='Agency Group Templates'){
+                    $('#stateMainFrameColourSub').show();
+                    $('#stateMainFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
+                    $('#stateMainFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
+                    $('#stateMainFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
+                    $('#stateMainFrameColourSelection').hide();
+                }else if($('#stateMainFrameColour').val()=='Themed Templates'){
+                    $('#stateMainFrameColourSub').show();
+                    $('#stateMainFrameColourSub').append('<option value="Professional">Professional</option>');
+                    $('#stateMainFrameColourSub').append('<option value="Fun + Friendly">Fun + Friendly</option>');
+                    $('#stateMainFrameColourSub').append('<option value="Random">Random</option>');
+                    $('#stateMainFrameColourSelection').hide();
+                }else if($('#stateMainFrameColour').val()=='Customise Your Template'){
+                    $('#stateMainFrameColourSelection').show();
+                    $('#stateMainFrameColourSub').hide();
+                }
+            });
+
+            //for Middle Main Frame
+            $('#stateMiddleFrameColour').on('change', function(){
+                $('#stateMiddleFrameColourSub').html('');
+                if($('#stateMiddleFrameColour').val()=='Agency Group Templates'){
+                    $('#stateMiddleFrameColourSub').show();
+                    $('#stateMiddleFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
+                    $('#stateMiddleFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
+                    $('#stateMiddleFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
+                    $('#stateMiddleFrameColourSelection').hide();
+                }else if($('#stateMiddleFrameColour').val()=='Themed Templates'){
+                    $('#stateMiddleFrameColourSub').show();
+                    $('#stateMiddleFrameColourSub').append('<option value="Professional">Professional</option>');
+                    $('#stateMiddleFrameColourSub').append('<option value="Fun + Friendly">Fun + Friendly</option>');
+                    $('#stateMiddleFrameColourSub').append('<option value="Random">Random</option>');
+                    $('#stateMiddleFrameColourSelection').hide();
+                }else if($('#stateMiddleFrameColour').val()=='Customise Your Template'){
+                    $('#stateMiddleFrameColourSelection').show();
+                    $('#stateMiddleFrameColourSub').hide();
+                }
+            });
+
+            //for End Main Frame
+            $('#stateEndFrameColour').on('change', function(){
+                $('#stateEndFrameColourSub').html('');
+                if($('#stateEndFrameColour').val()=='Agency Group Templates'){
+                    $('#stateEndFrameColourSub').show();
+                    $('#stateEndFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
+                    $('#stateEndFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
+                    $('#stateEndFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
+                    $('#stateEndFrameColourSelection').hide();
+                }else if($('#stateEndFrameColour').val()=='Themed Templates'){
+                    $('#stateEndFrameColourSub').show();
+                    $('#stateEndFrameColourSub').append('<option value="Professional">Professional</option>');
+                    $('#stateEndFrameColourSub').append('<option value="Fun + Friendly">Fun + Friendly</option>');
+                    $('#stateEndFrameColourSub').append('<option value="Random">Random</option>');
+                    $('#stateEndFrameColourSelection').hide();
+                }else if($('#stateEndFrameColour').val()=='Customise Your Template'){
+                    $('#stateEndFrameColourSelection').show();
+                    $('#stateEndFrameColourSub').hide();
+                }
+            });
 
         });
     </script>

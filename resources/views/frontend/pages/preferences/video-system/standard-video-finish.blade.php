@@ -19,7 +19,7 @@
                 <h3>Finish</h3>
 
                 <div class="row">
-                    <div class="col-sm pl-0">Pictures # XX</div>
+                    <div class="col-sm pl-0">Pictures # {{ $cnt_pics }}</div>
                     <div class="col-sm">Duration XX</div>
                 </div>
                 <div class="row">
@@ -45,8 +45,8 @@
                         @foreach($pics as $pic)
                             <div class="row video-system-5 m-0">
                                 <div class="col-sm py-3 pr-2">
-                                    <div class="bg-fff h-100">
-                                        <div class="row my-0 h-100">
+                                    <div class="bg-fff" style="height: 20% !important">
+                                        <div class="row my-0" style="height: 20% !important">
                                                 <div class="col my-auto text-center">
                                                     {{--<div class="mx-auto"><span class="c-6600cc"><b>+</b></span><br>Picture</div>--}}
                                                     <div class="mx-auto">
@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm py-3 pl-2">
-                                    <div class="bg-fff h-100">
+                                    <div class="bg-fff" style="height: 20% !important">
                                         <div class="d-flex flex-row-reverse">
                                           <div class="p-1 c-6600cc">01m:14s</div>
                                           <div class="p-1 c-ff0033">Words: 17</div>
@@ -81,28 +81,33 @@
 </div>
 @endsection
 
-{{--<script type="text/javascript">--}}
-    {{--$(document).ready(function() {--}}
+<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
 
-        {{--var checker = document.getElementById('check2');--}}
-        {{--var btnGo = document.getElementById('btnGo');--}}
-        {{--checker.onchange = function() {--}}
-            {{--btnGo.disabled = true;--}}
-        {{--};--}}
+<script type="text/javascript">
+    $(document).ready(function() {
 
-        {{--// $('.custom-control-input').click(function() {--}}
-        {{--//     // alert("This is clicked...");--}}
-        {{--//     if ($(this).is(':checked')) {--}}
-        {{--//         $('#btnGo').removeAttr('disabled');--}}
-        {{--//     } else {--}}
-        {{--//         $('#btnGo').attr('disabled', 'disabled');--}}
-        {{--//     }--}}
-        {{--// });--}}
+        // var checker = document.getElementById('check2');
+        // var btnGo = document.getElementById('btnGo');
+        // checker.onchange = function() {
+        //     btnGo.disabled = true;
+        // };
 
-    {{--});--}}
-{{--</script>--}}
+        $('#check2').click(function() {
+            if ($(this).is(':checked')) {
+                $('#btnGo').removeAttr('disabled');
+            } else {
+                $('#btnGo').attr('disabled', 'disabled');
+            }
+        });
 
-{{--<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>--}}
+        $('#btnGo').click(function() {
+            $('frmStep5').submit();
+        })
+
+    });
+</script>
+
+
 {{--<script type="text/javascript">--}}
 
     {{--// $(document).ready(function() {--}}

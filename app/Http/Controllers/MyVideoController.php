@@ -135,8 +135,14 @@ class MyVideoController extends Controller
         $path = '/storage/client_images/' . $userid . '/';
         $logo_pic = $path . $logo;
 
+        $path2 = '/storage/register/';
+
+        $template = AgentTemplate::where('agent_ID', $userid)->get(['main_frame_template', 'main_frame_template_format', 'main_frame_colours', 'main_frame_colours_sub',
+                                                                    'middle_frame_template', 'middle_frame_template_format', 'middle_frame_colours', 'middle_frame_colours_sub',
+                                                                    'end_frame_template', 'end_frame_template_format', 'end_frame_colours', 'end_frame_colours_sub'])->first();
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video-creator.explore-templates', compact('fullname', 'passwd', 'agent', 'logo_pic'));
+        return view('frontend.pages.video-creator.explore-templates', compact('fullname', 'passwd', 'agent', 'logo_pic', 'template', 'path2'));
     }
 
 
@@ -804,8 +810,10 @@ class MyVideoController extends Controller
         $path2 = '/storage/client_images/' . $userid . '/pictures/Video' . $videoid . '/';
         $pics = standardVideoPicture::where('agent_ID', $userid)->get();
 
+        $cnt_pics = count($pics);
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.preferences.video-system.standard-video-finish', compact('fullname', 'agent', 'logo_pic', 'path2', 'pics'));
+        return view('frontend.pages.preferences.video-system.standard-video-finish', compact('fullname', 'agent', 'logo_pic', 'path2', 'pics', 'cnt_pics'));
     }
 
     //process for the Steps of Ztandard Video System
@@ -947,8 +955,6 @@ class MyVideoController extends Controller
 
             AgentTemplate::create($voice_music_arr);
         }
-
-
         return redirect()->route('account-video-system-finish');
     }
 
@@ -956,8 +962,14 @@ class MyVideoController extends Controller
     public function VideoSystemProcessStep5(){
 
         $userid = Auth::user()->id;
+        $videoid = 20;
+//        $videoid = Session::get('videoID');  //to enable during integration and testing of modules
 
-        return redirect()->route('make-video');
+        AgentStandard::where('ID', $videoid)->where('agent_ID', $userid)->update([
+            'status' => 'In-Production'
+        ]);
+
+        return redirect()->route('account-make-video');
     }
 
 }
