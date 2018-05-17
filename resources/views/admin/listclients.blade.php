@@ -9,17 +9,14 @@
 @section('content')
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>Masterlist of Agents</h1>
+            <h1>Clients</h1>
             <ol class="breadcrumb">
                 <li>
                     <a href="#">
                         <i class="livicon" data-name="home" data-size="14" data-color="#000"></i> Dashboard
                     </a>
                 </li>
-                <li>
-                    <a href="#">Users</a>
-                </li>
-                <li class="active">Agents</li>
+                <li class="active">Clients</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -27,10 +24,7 @@
             <div class="row">
                 <div class="panel panel-primary ">
                     <div class="panel-heading clearfix">
-                        <h4 class="panel-title pull-left"><i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> Agents List</h4>
-                        <div class="pull-right">
-                            <a href="{{ route('agents.create') }}" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus"></span> Create New Agent</a>
-                        </div>
+                        <h4 class="panel-title pull-left"><i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i> Clients List</h4>
                     </div>
                     <br />
                     <div class="panel-body">

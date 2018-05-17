@@ -41,6 +41,7 @@ class AdminController extends Controller
             ->leftjoin("users", function($join) {
                 $join->on("users.id", "=", "agent_standard_videos.agent_ID");
             })->where('agent_standard_videos.status', '=', 'Compiling')
+            ->orWhere('agent_standard_videos.status', '=', 'In-Production')
             ->get();
 
         $premium_videos = DB::table("agent_premium_videos")->select("agent_premium_videos.*", "users.name")

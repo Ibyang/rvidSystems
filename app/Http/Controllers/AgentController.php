@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-
+use Illuminate\Support\Facades\DB;
 
 class AgentController extends Controller
 {
@@ -194,6 +194,22 @@ class AgentController extends Controller
         $agent = Agent::where('ID', $id)->delete();
         return redirect()->route('agents.index')
             ->with('success','Agent deleted successfully');
+    }
+
+    public function listAgents()
+    {
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+
+//        $clients = Users::where('role', 'Agent')->get();
+        $clients = DB::table("users")->select("list_agents.*", "users.name", "users.role")
+            ->leftjoin("list_agents", function($join) {
+                $join->on("users.email", "=", "list_agents.email");
+            })->where('role', 'Agent')
+            ->get();
+
+        return view('admin.editagent',compact('agent', 'fullname', 'role', 'pic', 'clients'));
     }
 
 }

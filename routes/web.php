@@ -337,6 +337,13 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/explore-templates','MyVideoController@ExploreTemplate')->name('account-explore-templates');
 
+    //module for editing templates (Explore Templates)
+    Route::post('/account/explore-templates/editMainFrame', 'MyVideoController@editMainFrame')->name('editMainFrame');
+
+    Route::post('/account/explore-templates/editMiddleFrame', 'MyVideoController@editMiddleFrame')->name('editMiddleFrame');
+
+    Route::post('/account/explore-templates/editEndFrame', 'MyVideoController@editEndFrame')->name('editEndFrame');
+
     //Standard Video System Steps
 //    Route::get('/account/preferences/video-system/storePics/{file}','MyVideoController@storePics');
 
@@ -512,6 +519,9 @@ Route::group(['middleware' => 'guest'], function() {
 
     //post Video Progress
     Route:: post('/postVideoProgress', 'OrderController@postVideoProgress')->name('postVideoProgress');
+
+    //for displaying list of agents in the production portal
+    Route:: get('/admin/list-agents', 'AgentController@listAgents')->name('list-agents');
 
 //});
 

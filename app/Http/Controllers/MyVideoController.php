@@ -141,8 +141,12 @@ class MyVideoController extends Controller
                                                                     'middle_frame_template', 'middle_frame_template_format', 'middle_frame_colours', 'middle_frame_colours_sub',
                                                                     'end_frame_template', 'end_frame_template_format', 'end_frame_colours', 'end_frame_colours_sub'])->first();
 
+        $mainframe_list = explode(',', $template['main_frame_template_format']);
+        $middleframe_list = explode(',', $template['middle_frame_template_format']);
+        $endframe_list = explode(',', $template['end_frame_template_format']);
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video-creator.explore-templates', compact('fullname', 'passwd', 'agent', 'logo_pic', 'template', 'path2'));
+        return view('frontend.pages.video-creator.explore-templates', compact('fullname', 'passwd', 'agent', 'logo_pic', 'mainframe_list', 'middleframe_list', 'endframe_list', 'template', 'path2'));
     }
 
 
@@ -763,8 +767,18 @@ class MyVideoController extends Controller
         $path = '/storage/client_images/' . $userid . '/';
         $logo_pic = $path . $logo;
 
+        $path2 = '/storage/register/';
+
+        $template = AgentTemplate::where('agent_ID', $userid)->get(['main_frame_template', 'main_frame_template_format', 'main_frame_colours', 'main_frame_colours_sub',
+            'middle_frame_template', 'middle_frame_template_format', 'middle_frame_colours', 'middle_frame_colours_sub',
+            'end_frame_template', 'end_frame_template_format', 'end_frame_colours', 'end_frame_colours_sub'])->first();
+
+        $mainframe_list = explode(',', $template['main_frame_template_format']);
+        $middleframe_list = explode(',', $template['middle_frame_template_format']);
+        $endframe_list = explode(',', $template['end_frame_template_format']);
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.preferences.video-system.standard-video-template', compact('fullname', 'agent', 'logo_pic'));
+        return view('frontend.pages.preferences.video-system.standard-video-template', compact('fullname', 'agent', 'logo_pic', 'path2', 'template', 'mainframe_list', 'middleframe_list', 'endframe_list'));
     }
 
     public function VideoSystemVoice()
@@ -970,6 +984,87 @@ class MyVideoController extends Controller
         ]);
 
         return redirect()->route('account-make-video');
+    }
+
+
+    //modules for editing Template
+    public function editMainFrame()
+    {
+        $userid = Auth::user()->id;
+        $pageName = Input::get('pageName');
+
+        //for main frame template selection
+        $mainFrameSelections = Input::get('main_frame');
+        if ($mainFrameSelections != null)
+            $MFboxes = implode(',', $mainFrameSelections);
+        else
+            $MFboxes = '';
+
+        AgentTemplate::where('agent_ID', $userid)->update([
+            'main_frame_template' => Input::get('stateMainFrame'),
+            'main_frame_template_format' => $MFboxes,
+            'main_frame_colours' => Input::get('stateMainFrameColour'),
+            'main_frame_colours_sub' => Input::get('stateMainFrameColourSub')
+        ]);
+
+        if($pageName == 'exploreTemplate')
+            return redirect()->route('account-explore-templates');
+        else
+            return redirect()->route('account-video-system-template');
+    }
+
+
+    public function editMiddleFrame()
+    {
+        $userid = Auth::user()->id;
+        $pageName = Input::get('pageName');
+
+        //for middle frame template selection
+        $middleFrameSelections = Input::get('middle_frame');
+        if ($middleFrameSelections != null)
+            $MidFboxes = implode(',', $middleFrameSelections);
+        else
+            $MidFboxes = '';
+
+
+        AgentTemplate::where('agent_ID', $userid)->update([
+            'middle_frame_template' => Input::get('stateMiddleFrame'),
+            'middle_frame_template_format' => $MidFboxes,
+            'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
+            'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub')
+        ]);
+
+        if($pageName == 'exploreTemplate')
+            return redirect()->route('account-explore-templates');
+        else
+            return redirect()->route('account-video-system-template');
+    }
+
+
+    public function editEndFrame()
+    {
+        $userid = Auth::user()->id;
+        $pageName = Input::get('pageName');
+
+        //for end frame template selection
+        $EndFrameSelections = Input::get('end_frame');
+        if ($EndFrameSelections != null)
+            $EndFboxes = implode(',', $EndFrameSelections);
+        else
+            $EndFboxes = '';
+
+
+        AgentTemplate::where('agent_ID', $userid)->update([
+            'end_frame_template' => Input::get('stateEndFrame'),
+            'end_frame_template_format' => $EndFboxes,
+            'end_frame_colours' => Input::get('stateEndFrameColour'),
+            'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
+        ]);
+
+        if($pageName == 'exploreTemplate')
+            return redirect()->route('account-explore-templates');
+        else
+            return redirect()->route('account-video-system-template');
     }
 
 }

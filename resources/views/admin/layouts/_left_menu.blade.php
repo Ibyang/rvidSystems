@@ -90,7 +90,7 @@
         </a>
     </li>
     @if($role == 'Administrator')
-        <li {!! (Request::is('agents') || Request::is('production') ? 'class="active"' : '') !!}>
+        <li {!! (Request::is('agents') ? 'class="active"' : '') !!}>
             <a href="#">
                 <i class="livicon" data-name="users" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>
                 <span class="title">Users</span>
@@ -99,7 +99,7 @@
             <ul class="sub-menu">
                 <li {!! (Request::is('agents') ? 'class="active"' : '') !!}>
                     <a href="{{ route('agents.index') }}">
-                        <i class="fa fa-angle-double-right"></i> Agents
+                        <i class="fa fa-angle-double-right"></i> Masterlist of Agents
                     </a>
                 </li>
                 <li {!! (Request::is('production') ? 'class="active"' : '') !!}>
@@ -110,4 +110,10 @@
             </ul>
         </li>
     @endif
+    <li {!! (Request::is('video') ? 'class="active"' : '') !!}>
+        <a href="{{ route('list-agents') }}">
+            <i class="livicon" data-name="users" data-size="18" data-c="#F89A14" data-hc="#F89A14" data-loop="true"></i>
+            <span class="title">List of Agents</span>
+        </a>
+    </li>
 </ul>
