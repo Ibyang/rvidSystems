@@ -192,6 +192,12 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            @else
+                                <div class="table-responsive">
+                                    <table class="table table-bordered " id="table">
+                                      <tr><td colspan="6"><b>No orders</b></td></tr>
+                                    </table>
+                                </div>
                             @endif
 
                         </div> <!-- end of panel body -->
@@ -238,6 +244,12 @@
                                             @endforeach
                                         {{--<tr><td colspan="6">No data available yet...</td></tr>--}}
                                         </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="table-responsive">
+                                    <table class="table table-bordered " id="table">
+                                        <tr><td colspan="6"><b>No orders</b></td></tr>
                                     </table>
                                 </div>
                             @endif
@@ -288,6 +300,12 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="table-responsive">
+                                    <table class="table table-bordered " id="table">
+                                        <tr><td colspan="6"><b>No orders</b></td></tr>
                                     </table>
                                 </div>
                             @endif

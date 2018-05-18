@@ -515,13 +515,16 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/videoOrder', 'AdminController@videoOrder');
 
     //get Video Details
-    Route::get('/getVideoDetails/{id}/{videotype}', 'OrderController@getVideoDetails')->name('getVideoDetails');
+    Route::get('/getVideoDetails/{id}', 'OrderController@getVideoDetails')->name('getVideoDetails');
 
     //post Video Progress
     Route:: post('/postVideoProgress', 'OrderController@postVideoProgress')->name('postVideoProgress');
 
     //for displaying list of agents in the production portal
-    Route:: get('/admin/list-agents', 'AgentController@listAgents')->name('list-agents');
+    Route:: get('/list-agents', 'AgentController@listAgents')->name('list-agents');
+
+    //to view video materials uploaded by a particular client
+    Route:: get('/viewMaterials/{id}', 'AgentController@viewMaterials')->name('viewMaterials');
 
 //});
 

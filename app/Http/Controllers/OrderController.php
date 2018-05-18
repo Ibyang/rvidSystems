@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\AgentGeneric;
-use App\AgentStandard;
-use App\AgentPremium;
+//use App\AgentGeneric;
+//use App\AgentStandard;
+//use App\AgentPremium;
+use App\AgentVideoOrders;
 use App\videoProgress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,10 +26,11 @@ class OrderController extends Controller
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
 //        $videos = AgentGeneric::orderBy('ID', 'ASC')->get();
-        $videos = DB::table("agent_generic_videos")->select("agent_generic_videos.*", "users.name")
+        $videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
                     ->leftjoin("users", function($join) {
-                       $join->on("users.id", "=", "agent_generic_videos.agent_ID");
-                    })->get();
+                       $join->on("users.id", "=", "agent_video_orders.agent_ID");
+                    })->where('agent_video_orders.category', '=', 'Generic')
+                    ->get();
         return view('admin.listGeneric', compact('fullname', 'role', 'pic', 'videos'));
 
     }
@@ -46,10 +48,11 @@ class OrderController extends Controller
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
 //        $videos = AgentStandard::orderBy('ID', 'ASC')->get();
-        $videos = DB::table("agent_standard_videos")->select("agent_standard_videos.*", "users.name")
+        $videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
             ->leftjoin("users", function($join) {
-                $join->on("users.id", "=", "agent_standard_videos.agent_ID");
-            })->get();
+                $join->on("users.id", "=", "agent_video_orders.agent_ID");
+            })->where('agent_video_orders.category', '=', 'Standard')
+            ->get();
         return view('admin.listStandard', compact('fullname', 'role', 'pic', 'videos'));
 
     }
@@ -67,10 +70,11 @@ class OrderController extends Controller
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
 //        $videos = AgentPremium::orderBy('ID', 'ASC')->get();
-        $videos = DB::table("agent_premium_videos")->select("agent_premium_videos.*", "users.name")
+        $videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
             ->leftjoin("users", function($join) {
-                $join->on("users.id", "=", "agent_premium_videos.agent_ID");
-            })->get();
+                $join->on("users.id", "=", "agent_video_orders.agent_ID");
+            })->where('agent_video_orders.category', '=', 'Standard')
+            ->get();
         return view('admin.listPremium', compact('fullname', 'role', 'pic', 'videos'));
 
     }
@@ -143,37 +147,44 @@ class OrderController extends Controller
 
 
     //get Video Order Details
-    public function getVideoDetails($videoid, $videotype){
+    public function getVideoDetails($videoid){
 
 
         $fullname = Auth::user()->name;
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
+
+        $video = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
+                ->leftjoin("users", function($join) {
+                    $join->on("users.id", "=", "agent_video_orders.agent_ID");
+                })->where('agent_video_orders.ID', $videoid)
+                ->first();
+
 //        $videos = AgentGeneric::orderBy('ID', 'ASC')->get();
-        if($videotype === 'Generic'){
-            $video = DB::table("agent_generic_videos")->select("agent_generic_videos.*", "users.name")
-                ->leftjoin("users", function($join) {
-                    $join->on("users.id", "=", "agent_generic_videos.agent_ID");
-                })->where('agent_generic_videos.ID', $videoid)
-                ->first();
-        }
-        else if($videotype === 'Standard'){
-            $video = DB::table("agent_standard_videos")->select("agent_standard_videos.*", "users.name")
-                ->leftjoin("users", function($join) {
-                    $join->on("users.id", "=", "agent_standard_videos.agent_ID");
-                })->where('agent_standard_videos.ID', $videoid)
-                ->first();
-        }
-        else if($videotype === 'Premium'){
-            $video = DB::table("agent_premium_videos")->select("agent_premium_videos.*", "users.name")
-                ->leftjoin("users", function($join) {
-                    $join->on("users.id", "=", "agent_premium_videos.agent_ID");
-                })->where('agent_premium_videos.ID', $videoid)
-                ->first();
-        }
+//        if($videotype === 'Generic'){
+//            $video = DB::table("agent_generic_videos")->select("agent_generic_videos.*", "users.name")
+//                ->leftjoin("users", function($join) {
+//                    $join->on("users.id", "=", "agent_generic_videos.agent_ID");
+//                })->where('agent_generic_videos.ID', $videoid)
+//                ->first();
+//        }
+//        else if($videotype === 'Standard'){
+//            $video = DB::table("agent_standard_videos")->select("agent_standard_videos.*", "users.name")
+//                ->leftjoin("users", function($join) {
+//                    $join->on("users.id", "=", "agent_standard_videos.agent_ID");
+//                })->where('agent_standard_videos.ID', $videoid)
+//                ->first();
+//        }
+//        else if($videotype === 'Premium'){
+//            $video = DB::table("agent_premium_videos")->select("agent_premium_videos.*", "users.name")
+//                ->leftjoin("users", function($join) {
+//                    $join->on("users.id", "=", "agent_premium_videos.agent_ID");
+//                })->where('agent_premium_videos.ID', $videoid)
+//                ->first();
+//        }
 
         $progress = videoProgress::where('video_ID', $videoid)->first();
-        return view('admin.editVideoOrder', compact('fullname', 'role', 'pic', 'videotype', 'video', 'progress'));
+        return view('admin.editVideoOrder', compact('fullname', 'role', 'pic', 'video', 'progress'));
 
     }
 
@@ -186,7 +197,6 @@ class OrderController extends Controller
         $videoid = Input::get('videoid');
         $status = Input::get('status');
         $completion_date = date('Y-m-d H:i:s', strtotime(Input::get('completion_date')));
-
 
         $picture = (int)Input::get('picture_progress');
         $script = (int)Input::get('script_progress');
@@ -209,33 +219,39 @@ class OrderController extends Controller
 
         ]);
 
-        if($videotype === 'Generic'){
+        AgentVideoOrders::where('ID', $videoid)->update([
+            'progress_value' => $total_progress,
+            'completion_date' => $completion_date,
+            'status' => $status
+        ]);
 
-            agentGeneric::where('ID', $videoid)->update([
-                'progress_value' => $total_progress,
-                'completion_date' => $completion_date,
-                'status' => $status
-            ]);
-
-        }
-        else if($videotype === 'Standard'){
-
-            agentStandard::where('ID', $videoid)->update([
-                'progress_value' => $total_progress,
-                'completion_date' => $completion_date,
-                'status' => $status
-            ]);
-
-        }
-        else if($videotype === 'Premium'){
-
-            agentPremium::where('ID', $videoid)->update([
-                'progress_value' => $total_progress,
-                'completion_date' => $completion_date,
-                'status' => $status
-            ]);
-
-        }
+//        if($videotype === 'Generic'){
+//
+//            agentGeneric::where('ID', $videoid)->update([
+//                'progress_value' => $total_progress,
+//                'completion_date' => $completion_date,
+//                'status' => $status
+//            ]);
+//
+//        }
+//        else if($videotype === 'Standard'){
+//
+//            agentStandard::where('ID', $videoid)->update([
+//                'progress_value' => $total_progress,
+//                'completion_date' => $completion_date,
+//                'status' => $status
+//            ]);
+//
+//        }
+//        else if($videotype === 'Premium'){
+//
+//            agentPremium::where('ID', $videoid)->update([
+//                'progress_value' => $total_progress,
+//                'completion_date' => $completion_date,
+//                'status' => $status
+//            ]);
+//
+//        }
 
         return redirect(url('getVideoDetails/' . $videoid . '/' . $videotype));
 

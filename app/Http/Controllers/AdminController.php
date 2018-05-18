@@ -31,24 +31,47 @@ class AdminController extends Controller
         $pic = Auth::user()->profile_pic;
         $email = Auth::user()->email;
 
-        $generic_videos = DB::table("agent_generic_videos")->select("agent_generic_videos.*", "users.name")
-            ->leftjoin("users", function($join) {
-                $join->on("users.id", "=", "agent_generic_videos.agent_ID");
-              })->where('agent_generic_videos.status', '=', 'Compiling')
-                ->get();
+//        $generic_videos = DB::table("agent_generic_videos")->select("agent_generic_videos.*", "users.name")
+//            ->leftjoin("users", function($join) {
+//                $join->on("users.id", "=", "agent_generic_videos.agent_ID");
+//              })->where('agent_generic_videos.status', '=', 'Compiling')
+//                ->get();
+//
+//        $standard_videos = DB::table("agent_standard_videos")->select("agent_standard_videos.*", "users.name")
+//            ->leftjoin("users", function($join) {
+//                $join->on("users.id", "=", "agent_standard_videos.agent_ID");
+//            })->where('agent_standard_videos.status', '=', 'Compiling')
+//            ->orWhere('agent_standard_videos.status', '=', 'In-Production')
+//            ->get();
+//
+//        $premium_videos = DB::table("agent_premium_videos")->select("agent_premium_videos.*", "users.name")
+//            ->leftjoin("users", function($join) {
+//                $join->on("users.id", "=", "agent_premium_videos.agent_ID");
+//            })->where('agent_premium_videos.status', '=', 'Compiling')
+//            ->get();
 
-        $standard_videos = DB::table("agent_standard_videos")->select("agent_standard_videos.*", "users.name")
+        $generic_videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
             ->leftjoin("users", function($join) {
-                $join->on("users.id", "=", "agent_standard_videos.agent_ID");
-            })->where('agent_standard_videos.status', '=', 'Compiling')
-            ->orWhere('agent_standard_videos.status', '=', 'In-Production')
+                $join->on("users.id", "=", "agent_video_orders.agent_ID");
+            })->where('agent_video_orders.category', '=', 'Generic')
+            ->where('agent_video_orders.status', '=', 'Compiling')
             ->get();
 
-        $premium_videos = DB::table("agent_premium_videos")->select("agent_premium_videos.*", "users.name")
+        $standard_videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
             ->leftjoin("users", function($join) {
-                $join->on("users.id", "=", "agent_premium_videos.agent_ID");
-            })->where('agent_premium_videos.status', '=', 'Compiling')
+                $join->on("users.id", "=", "agent_video_orders.agent_ID");
+            })->where('agent_video_orders.category', '=', 'Standard')
+            ->where('agent_video_orders.status', '=', 'Compiling')
+            ->orWhere('agent_video_orders.status', '=', 'In-Production')
             ->get();
+
+        $premium_videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
+            ->leftjoin("users", function($join) {
+                $join->on("users.id", "=", "agent_video_orders.agent_ID");
+            })->where('agent_video_orders.category', '=', 'Premium')
+            ->where('agent_video_orders.status', '=', 'Compiling')
+            ->get();
+
 
 
         //Mail::to($email)->send(new DemoMail());

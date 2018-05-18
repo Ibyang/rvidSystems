@@ -414,15 +414,14 @@ class MyVideoController extends Controller
 
             $generic_arr = array(
                 'agent_ID' => $user_id,
-                'category' => 'Generic',
                 'url_address' => $url,
                 'status' => 'Compiling',
                 'apply_driveby' => Input::get('apply_driveby'),
                 'apply_lookfirst' => Input::get('apply_lookfirst'),
                 'due_date' => Input::get('due_date'),
             );
-
-            AgentVideoOrders::create($generic_arr);
+            
+            AgentGeneric::create($generic_arr);
 
             //for creating record in the Video Progress table for updating value later..
             $progress_arr = array(
@@ -445,7 +444,7 @@ class MyVideoController extends Controller
 
             $standard_arr = array(
                 'agent_ID' => $user_id,
-                'category' => 'Standard',
+                //'url_address' => $url,
                 'videoAddress' => $video_address_standard,
                 'status' => 'Compiling',
                 'apply_driveby' => Input::get('apply_driveby'),
@@ -453,7 +452,7 @@ class MyVideoController extends Controller
                 'due_date' => Input::get('due_date'),
             );
 
-            AgentVideoOrders::create($standard_arr);
+            AgentStandard::create($standard_arr);
 
             //for creating record in the Video Progress table for updating value later..
             $progress_arr = array(
@@ -476,7 +475,6 @@ class MyVideoController extends Controller
 
             $premium_arr = array(
                 'agent_ID' => $user_id,
-                'category' => 'Premium',
                 'url_address' => $url,
                 'videoAddress' => $url_premium,
                 'status' => 'Compiling',
@@ -484,7 +482,7 @@ class MyVideoController extends Controller
                 'apply_lookfirst' => Input::get('apply_lookfirst'),
             );
 
-            AgentVideoOrders::create($premium_arr);
+            AgentPremium::create($premium_arr);
 
             //for creating record in the Video Progress table for updating value later..
             $progress_arr = array(

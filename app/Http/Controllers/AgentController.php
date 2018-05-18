@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\AgentVideoOrders;
 use App\State;
 use App\Suburb;
+use App\AgentGeneric;
+use App\AgentStandard;
+use App\AgentPremium;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -203,13 +207,30 @@ class AgentController extends Controller
         $pic = Auth::user()->profile_pic;
 
 //        $clients = Users::where('role', 'Agent')->get();
-        $clients = DB::table("users")->select("list_agents.*", "users.name", "users.role")
+        $clients = DB::table("users")->select("list_agents.*", "users.name", "users.role", "users.id")
             ->leftjoin("list_agents", function($join) {
                 $join->on("users.email", "=", "list_agents.email");
             })->where('role', 'Agent')
             ->get();
+//        dd($clients);
 
-        return view('admin.editagent',compact('agent', 'fullname', 'role', 'pic', 'clients'));
+        return view('admin.listclients',compact('fullname', 'role', 'pic', 'clients'));
+    }
+
+
+    public function viewMaterials($userid)
+    {
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+
+        $genvideos = AgentVideoOrders::where('agent_ID', $userid)->where('category', 'Generic')->get();
+        $stdvideos = AgentVideoOrders::where('agent_ID', $userid)->where('category', 'Standard')->get();
+        $premvideos = AgentVideoOrders::where('agent_ID', $userid)->where('category', 'Premium')->get();
+
+        return view('admin.viewmaterials',compact('fullname', 'role', 'pic', 'genvideos', 'stdvideos', 'premvideos'));
+
+
     }
 
 }
