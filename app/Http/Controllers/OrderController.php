@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 //use App\AgentPremium;
 use App\AgentVideoOrders;
 use App\videoProgress;
+use App\standardVideoPicture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -48,7 +49,7 @@ class OrderController extends Controller
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
 //        $videos = AgentStandard::orderBy('ID', 'ASC')->get();
-        $videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
+        $videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name", "users.id")
             ->leftjoin("users", function($join) {
                 $join->on("users.id", "=", "agent_video_orders.agent_ID");
             })->where('agent_video_orders.category', '=', 'Standard')
@@ -254,6 +255,21 @@ class OrderController extends Controller
 //        }
 
         return redirect(url('getVideoDetails/' . $videoid . '/' . $videotype));
+
+    }
+
+
+    public function viewStandardVideoMaterials($userid, $videoid)
+    {
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+
+        $path2 = '../../storage/client_images/' . $userid . '/pictures/Video' . $videoid . '/';
+
+        $standards = standardVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get();
+
+        return view('admin.listStandardStoryboard', compact('fullname', 'role', 'pic', 'standards', 'path2'));
 
     }
 

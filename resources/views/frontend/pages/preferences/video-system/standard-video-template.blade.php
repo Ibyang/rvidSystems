@@ -370,6 +370,12 @@
                         </div>
                     </div>
                 </form>
+            <div class="float-r mt-3 mb-5">
+                <form method="POST" action="{{ route('account-video-system-processStep3') }}">
+                    {{ csrf_field() }}
+                    <button class="btn btn-primary" type="submit">SAVE : Next Step 4<i class="arrow-right"></i></button>
+                </form>
+            </div>
 
         </div>
     </div>

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\AgentTemplate;
 use App\AgentVideoOrders;
 use App\State;
 use App\Suburb;
-use App\AgentGeneric;
-use App\AgentStandard;
-use App\AgentPremium;
+//use App\AgentGeneric;
+//use App\AgentStandard;
+//use App\AgentPremium;
+use App\AgentPreferences;
+use App\AgentInvoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -224,11 +227,24 @@ class AgentController extends Controller
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
 
+        $path = '/storage/client_images/' . $userid . '/';
+
+        //for videos ordered
         $genvideos = AgentVideoOrders::where('agent_ID', $userid)->where('category', 'Generic')->get();
         $stdvideos = AgentVideoOrders::where('agent_ID', $userid)->where('category', 'Standard')->get();
         $premvideos = AgentVideoOrders::where('agent_ID', $userid)->where('category', 'Premium')->get();
 
-        return view('admin.viewmaterials',compact('fullname', 'role', 'pic', 'genvideos', 'stdvideos', 'premvideos'));
+        //for preferences setup
+        $preference = AgentPreferences::where('agent_ID', $userid)->get()->first();
+
+        //for subscription plan
+        $subscription = AgentInvoice::where('agent_ID', $userid)->get()->first();
+
+        //for Agent/Client Template selected
+        $template = AgentTemplate::where('agent_ID', $userid)->get()->first();
+
+
+        return view('admin.viewmaterials',compact('fullname', 'role', 'pic', 'genvideos', 'stdvideos', 'premvideos', 'template', 'preference', 'subscription', 'path'));
 
 
     }

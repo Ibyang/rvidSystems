@@ -183,7 +183,7 @@
                                                     </td>
                                                     <td>{{ \Carbon\Carbon::parse($video->created_at)->format('d/m/Y H:m:s') }}</td>
                                                     <td style="text-align: center">
-                                                        <a href="{{ url('getVideoDetails/' . $video->ID . '/Generic') }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Generic Order"></i></a>
+                                                        <a href="{{ url('getVideoDetails/' . $video->ID) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Generic Order"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -238,7 +238,8 @@
                                                     </td>
                                                     <td>{{ \Carbon\Carbon::parse($video->created_at)->format('d/m/Y H:m:s') }}</td>
                                                     <td style="text-align: center">
-                                                        <a href="{{ url('getVideoDetails/' . $video->ID . '/Standard') }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Standard Order"></i></a>
+                                                        <a href="{{ url('viewStandardVideoMaterials/' . $video->id . '/' . $video->ID) }}">View Storyboard</a>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ url('getVideoDetails/' . $video->ID) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Standard Order"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -295,7 +296,7 @@
                                                     </td>
                                                     <td>{{ \Carbon\Carbon::parse($video->created_at)->format('d/m/Y H:m:s') }}</td>
                                                     <td style="text-align: center">
-                                                        <a href="{{ url('getVideoDetails/' . $video->ID . '/Premium') }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Premium Order"></i></a>
+                                                        <a href="{{ url('getVideoDetails/' . $video->ID) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Premium Order"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

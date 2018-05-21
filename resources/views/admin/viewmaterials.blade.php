@@ -134,31 +134,31 @@
                                                     <tbody>
                                                     @foreach($stdvideos as $stdvideo)
                                                         <tr>
-                                                            <td>{{ $genvideo->ID }}</td>
-                                                            <td>{{ $genvideo->videoAddress }}</td>
+                                                            <td>{{ $stdvideo->ID }}</td>
+                                                            <td>{{ $stdvideo->videoAddress }}</td>
                                                             <td>
-                                                                @if($genvideo->status == 'Compiling')
-                                                                    <span class="label label-sm label-success">{{ $genvideo->status }}</span>
-                                                                @elseif($genvideo->status == 'In-Production')
-                                                                    <span class="label label-sm label-info">{{ $genvideo->status }}</span>
+                                                                @if($stdvideo->status == 'Compiling')
+                                                                    <span class="label label-sm label-success">{{ $stdvideo->status }}</span>
+                                                                @elseif($stdvideo->status == 'In-Production')
+                                                                    <span class="label label-sm label-info">{{ $stdvideo->status }}</span>
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                                @if($genvideo->apply_driveby == '1')
+                                                                @if($stdvideo->apply_driveby == '1')
                                                                     <span>Yes</span>
-                                                                @elseif($genvideo->apply_driveby == '0')
+                                                                @elseif($stdvideo->apply_driveby == '0')
                                                                     <span>No</span>
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                                @if($genvideo->apply_lookfirst == '1')
+                                                                @if($stdvideo->apply_lookfirst == '1')
                                                                     <span>Yes</span>
-                                                                @elseif($genvideo->apply_lookfirst == '0')
+                                                                @elseif($stdvideo->apply_lookfirst == '0')
                                                                     <span>No</span>
                                                                 @endif
                                                             </td>
-                                                            <td>{{ $genvideo->progress_value }}</td>
-                                                            <td>{{ $genvideo->due_date }}</td>
+                                                            <td>{{ $stdvideo->progress_value }}</td>
+                                                            <td>{{ $stdvideo->due_date }}</td>
                                                         </tr>
                                                     @endforeach
                                                     </tbody>
@@ -231,19 +231,19 @@
 
                                     <div class="tab-pane fade" id="preferences">
 
-                                        <div class="col-md-10">
+                                        <div class="col-md-12">
                                             <br>
                                             <h5>Subscription Details</h5>
                                             <div class="form-group">
                                                 <label class="control-label col-md-3" for="video_id">Subscription Tye</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p>{{ $subscription['subscription_type'] }}</p>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-3" for="video_id">Storage Plan</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p>{{ $subscription['storage_plan'] }}</p>
                                                 </div>
                                             </div><br>
                                             <br><br>
@@ -252,25 +252,37 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-3" for="video_id">Surge Preference</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p>{{ $preference['surge_offer_option'] }}</p>
                                                 </div>
                                             </div>
                                             <br><br>
                                             <hr>
                                             <h5>Email Distribution (on completion)</h5>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Your Email List</label>
+                                                <label class="control-label col-md-3" for="video_id">Email Distribution</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p>
+                                                        @if($preference['email_distribution'] == 1)
+                                                            On
+                                                        @else
+                                                            Off
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             </div>
                                             <br><br>
                                             <hr>
                                             <h5>Broadcast Distribution</h5>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Agents in Your Suburbs</label>
+                                                <label class="control-label col-md-3" for="video_id">Broadcast to Other Agents in Your Area</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p>
+                                                        @if($preference['broadcast_agent'] == 1)
+                                                            On
+                                                        @else
+                                                            Off
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             </div>
                                             <br><br>
@@ -279,13 +291,13 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-3" for="agent_name">DriveBy</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static">Video is loaded to Drive By</p>
+                                                    <p>Video is loaded to Drive By</p>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-3" for="agent_name">LookFirst</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static">Video is loaded to Look First</p>
+                                                    <p>Video is loaded to Look First</p>
                                                 </div>
                                             </div>
 
@@ -294,124 +306,173 @@
                                     <div class="tab-pane fade" id="templates">
                                         <div class="col-md-10">
                                             <br>
-                                            <h5>Main Template</h5>
+                                            <h3>Main Template</h3>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Subscription Tye</label>
+                                                <label class="control-label col-md-3" for="video_id">Main Frame Template Image</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p><img src="../storage/register/{{ $template["main_frame_template_format"] }}"><br>
+                                                        {{ $template["main_frame_template_format"] }}
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Storage Plan</label>
+                                                <label class="control-label col-md-3" for="video_id">Main Frame Preference</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p>{{ $template['main_frame_template'] }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="video_id">Main Frame Colour Preference</label>
+                                                <div class="col-md-9">
+                                                    <p>{{ $template['main_frame_colours'] }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="video_id">Main Frame Colour Settings</label>
+                                                <div class="col-md-9">
+                                                    <p>{{ $template['main_frame_colours_sub'] }}</p>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div style="clear: both"></div>
+                                            <hr>
+                                            <h3>Middle Template</h3>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="video_id">Middle Frame Template Image</label>
+                                                <div class="col-md-9">
+                                                    <p><img src="../storage/register/{{ $template["middle_frame_template_format"] }}"><br>
+                                                        {{ $template["middle_frame_template_format"] }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="video_id">Middle Frame Preference</label>
+                                                <div class="col-md-9">
+                                                    <p>{{ $template['middle_frame_template'] }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="video_id">Middle Frame Colour Preference</label>
+                                                <div class="col-md-9">
+                                                    <p>{{ $template['middle_frame_colours'] }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="video_id">Middle Frame Colour Settings</label>
+                                                <div class="col-md-9">
+                                                    <p>{{ $template['middle_frame_colours_sub'] }}</p>
                                                 </div>
                                             </div><br>
-                                            <br><br>
+                                            <div style="clear: both"></div>
                                             <hr>
-                                            <h5>Middle Template</h5>
+                                            <h3>End Template</h3>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Surge Preference</label>
+                                                <label class="control-label col-md-3" for="video_id">End Frame Template Image</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p><img src="../storage/register/{{ $template["end_frame_template_format"] }}"><br>
+                                                        {{ $template["end_frame_template_format"] }}
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <br><br>
-                                            <hr>
-                                            <h5>End Template</h5>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Your Email List</label>
+                                                <label class="control-label col-md-3" for="video_id">End Frame Preference</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p>{{ $template['end_frame_template'] }}</p>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="video_id">End Frame Colour Preference</label>
+                                                <div class="col-md-9">
+                                                    <p>{{ $template['end_frame_colours'] }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="video_id">End Frame Colour Settings</label>
+                                                <div class="col-md-9">
+                                                    <p>{{ $template['end_frame_colours_sub'] }}</p>
+                                                </div>
+                                            </div><br>
 
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="pictures">
                                         <div class="col-md-10">
                                             <br>
-                                            <h5>Main Picture (Studio Head Shot or Your Main Promotional Image)</h5>
+                                            <h5>Main Picture (Studio Head Shot or Your Main Promotional Image)</h5><br>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Subscription Tye</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
-                                                </div>
+                                                <img src="{{ $path . $template['main_image'] }}">
+                                                {{--<label class="control-label col-md-3" for="video_id">Subscription Tye</label>--}}
+                                                {{--<div class="col-md-9">--}}
+                                                    {{--<p class="form-control-static"></p>--}}
+                                                {{--</div>--}}
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Storage Plan</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
-                                                </div>
-                                            </div><br>
-                                            <br><br>
+                                            <br>
                                             <hr>
-                                            <h5>Extra (Optional)</h5>
+                                            <h5>Extra (Optional)</h5><br>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Surge Preference</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
-                                                </div>
+                                                <img src="{{ $path . $template['extra_image1'] }}">
+                                                {{--<label class="control-label col-md-3" for="video_id">Surge Preference</label>--}}
+                                                {{--<div class="col-md-9">--}}
+                                                    {{--<p class="form-control-static"></p>--}}
+                                                {{--</div>--}}
                                             </div>
-                                            <br><br>
+                                            <br>
                                             <hr>
-                                            <h5>Extra (Optional)</h5>
+                                            <h5>Extra (Optional)</h5><br>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Your Email List</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
-                                                </div>
+                                                <img src="{{ $path . $template['extra_image2'] }}">
+                                                {{--<label class="control-label col-md-3" for="video_id">Your Email List</label>--}}
+                                                {{--<div class="col-md-9">--}}
+                                                    {{--<p class="form-control-static"></p>--}}
+                                                {{--</div>--}}
                                             </div>
-                                            <br><br>
+                                            <br>
                                             <hr>
-                                            <h5>Corporate Logo as Provided</h5>
+                                            <h5>Corporate Logo as Provided</h5><br>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Agents in Your Suburbs</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
-                                                </div>
+                                                <img src="{{ $path . $template['logo'] }}">
+                                                {{--<label class="control-label col-md-3" for="video_id">Agents in Your Suburbs</label>--}}
+                                                {{--<div class="col-md-9">--}}
+                                                    {{--<p class="form-control-static"></p>--}}
+                                                {{--</div>--}}
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="voice_overs">
                                         <div class="col-md-10">
-                                            <br><br>
-                                            <hr>
+                                            <br>
                                             <div class="form-group">
                                                 <label class="control-label col-md-3" for="video_id">Voice Format</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p>{{ $template['voice_format'] }}</p>
                                                 </div>
                                             </div>
+                                            <br><br>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Storage Plan</label>
+                                                <label class="control-label col-md-3" for="video_id">Voice Over Selection</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p>{{ $template['voice_file_selection'] }}</p>
                                                 </div>
                                             </div><br>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="music_selection">
                                         <div class="col-md-10">
-                                            <br><br>
-                                            <hr>
+                                            <br>
                                             <div class="form-group">
                                                 <label class="control-label col-md-3" for="video_id">Music Style</label>
                                                 <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
+                                                    <p>{{ $template['music_style'] }}</p>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3" for="video_id">Storage Plan</label>
-                                                <div class="col-md-9">
-                                                    <p class="form-control-static"></p>
-                                                </div>
-                                            </div><br>
                                             <br><br>
-                                            <hr>
-
-
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3" for="video_id">Music Selection</label>
+                                                <div class="col-md-9">
+                                                    <p>{{ $template['music_file_format'] }}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div> <!-- end myTabContent -->

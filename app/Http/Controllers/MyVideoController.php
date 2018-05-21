@@ -57,8 +57,20 @@ class MyVideoController extends Controller
         $path = '/storage/client_images/' . $userId . '/';
         $logo_pic = $path . $logo;
 
-        $awaiting_videos = videoProgress::where('videotype', 'Premium')->get();
-        $production_videos = videoProgress::where('videotype', 'Generic')->orWhere('videotype', 'Standard')->get();
+        $awaiting_videos = videoProgress::where('videotype', 'Premium')->where('agent_ID', $userId)->get();
+
+//        $production_videos = videoProgress::where('videotype', 'Generic')->orWhere('videotype', 'Standard')->where('agent_ID', $userId)->get();
+//        $production_videos = videoProgress::where(function($query) use($userId)  {
+//            $query->where('agent_ID', $userId)
+//                ->orWhere('videotype', 'Generic')
+//                ->orWhere('videotype', 'Standard');
+//        });
+
+        $production_videos = videoProgress::where('agent_ID', $userId)
+            ->where(function($query){
+                $query->where('videotype', 'Generic')
+                    ->orWhere('videotype', 'Standard');
+            })->get();
 
         $preference = AgentPreferences::where('agent_ID', $userId)->first();
 
@@ -204,7 +216,11 @@ class MyVideoController extends Controller
         $user_id = Auth::user()->id;
         $url_generic = Input::get('url_generic');
 
-        $vidid = (AgentGeneric::max('ID')) + 1;
+        $vidid = (AgentVideoOrders::max('ID'));
+        if($vidid == NULL)
+            $vidid = 1;
+        else
+            $vidid = (AgentVideoOrders::max('ID')) + 1;
 
 //        date("Y-m-d H:i:s", strtotime('+3 hours', $now));
 
@@ -253,7 +269,13 @@ class MyVideoController extends Controller
         $total_cost = $cost_generic_video + $cost_surge + $cost_total_preference + $cost_extra;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+
+        //path for logo pic
         $logo_pic = Auth::user()->logo_user;
+        $path = '/storage/client_images/' . $user_id . '/';
+        $logo_pic = $path . $logo_pic;
+
+
 
         return view('frontend.pages.video-creator.generic-video-order', compact('fullname',  'agent', 'due_arr', 'url_generic', 'vidid',
                     'preference', 'cost_generic_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost', 'logo_pic'));
@@ -271,7 +293,11 @@ class MyVideoController extends Controller
 //            'url_address' => $url
 //        );
 
-        $vidid = (AgentStandard::max('ID')) + 1;
+        $vidid = (AgentVideoOrders::max('ID'));
+        if($vidid == NULL)
+            $vidid = 1;
+        else
+            $vidid = (AgentVideoOrders::max('ID')) + 1;
 
         $due_arr = array(
             'num_hrs' => '36 hours',
@@ -328,7 +354,12 @@ class MyVideoController extends Controller
     {
         $user_id = Auth::user()->id;
         $url_premium = Input::get('url_premium');
-        $vidid = (AgentPremium::max('ID')) + 1;
+
+        $vidid = (AgentVideoOrders::max('ID'));
+        if($vidid == NULL)
+            $vidid = 1;
+        else
+            $vidid = (AgentVideoOrders::max('ID')) + 1;
 
 //        $url_arr = array(
 //            'agent_ID' => $user_id,
@@ -597,7 +628,13 @@ class MyVideoController extends Controller
             ]);
         }
 
-        return redirect()->route('account-make-video');
+        //for redirection
+        if($videotype === 'Generic')
+            return redirect()->route('account-make-video');
+        else if($videotype === 'Standard')
+            return redirect()->route('account-video-system-pictures');
+        else if($videotype === 'Premium')
+            return redirect()->route('account-premium-video');
 
     }
 
@@ -716,7 +753,8 @@ class MyVideoController extends Controller
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
-        $videoid = 20;
+        //$videoid = 20;
+        $videoid = Session::get('videoID');
 
         //path for logo pic
         $path = '/storage/client_images/' . $userid . '/';
@@ -740,8 +778,8 @@ class MyVideoController extends Controller
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
-        $videoid = 20;
-        //$videoid = Session::get('videoID');  //retrieving value from session enable this once doing the testing
+        //$videoid = 20;
+        $videoid = Session::get('videoID');  //retrieving value from session enable this once doing the testing
 
         //path for logo pic
         $path = '/storage/client_images/' . $userid . '/';
@@ -825,7 +863,7 @@ class MyVideoController extends Controller
 
         //path for uploaded images
         $path2 = '/storage/client_images/' . $userid . '/pictures/Video' . $videoid . '/';
-        $pics = standardVideoPicture::where('agent_ID', $userid)->get();
+        $pics = standardVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get();
 
         $cnt_pics = count($pics);
 
@@ -841,8 +879,9 @@ class MyVideoController extends Controller
         $effects = Input::get('transition');
         //$ctr_effects = count($effects);
 
-        $videoid = 20;  //need to get the value of the video ID generated
-        Session::put('videoID', $videoid);  //store to session; NOTE: TO REMOVE ONCE TESTED FROM VIDEO ORDER PAGE
+        //$videoid = 20;  //need to get the value of the video ID generated
+        $videoid = $videoid = Session::get('videoID');
+        //Session::put('videoID', $videoid);  //store to session; NOTE: TO REMOVE ONCE TESTED FROM VIDEO ORDER PAGE
 
         $images = Input::get('selectedImages');
         $arr_images = explode(',', $images);
@@ -979,10 +1018,11 @@ class MyVideoController extends Controller
     public function VideoSystemProcessStep5(){
 
         $userid = Auth::user()->id;
-        $videoid = 20;
-//        $videoid = Session::get('videoID');  //to enable during integration and testing of modules
 
-        AgentStandard::where('ID', $videoid)->where('agent_ID', $userid)->update([
+//        $videoid = 20;
+        $videoid = Session::get('videoID');  //to enable during integration and testing of modules
+
+        AgentVideoOrders::where('ID', $videoid)->where('agent_ID', $userid)->update([
             'status' => 'In-Production'
         ]);
 

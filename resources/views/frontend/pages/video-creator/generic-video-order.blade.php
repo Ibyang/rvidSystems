@@ -170,11 +170,11 @@
                         <b>Email Distribution (on completion)</b>
                         <div class="row">
                             <div class="col-sm pl-0">Your Email List</div>
-                            <div class="col-sm"><input  type="text" class="form-control" name="emailist" id="emailist" required autofocus value="{{ $preference->email_distribution  === "1" ? 'On' : 'Off' }}"></div>
+                            <div class="col-sm"><input  type="text" class="form-control" name="emailist" id="emailist" required autofocus value="{{ $preference->email_distribution  == 1 ? 'On' : 'Off' }}"></div>
                             <div class="col-sm">
                                   <p class="d-inline-block font-weight-bold">$5</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" value="1" name="chkEmailList" id="chkEmailList" {{ $preference->email_distribution  === "1" ? 'checked' : '' }}>
+                                      <input type="checkbox" class="custom-control-input" value="1" name="chkEmailList" id="chkEmailList" {{ $preference->email_distribution  == 1 ? 'checked' : '' }}>
                                       <label class="custom-control-label" for="chkEmailList"></label>
                                   </div>
                             </div>

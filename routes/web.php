@@ -526,6 +526,11 @@ Route::group(['middleware' => 'guest'], function() {
     //to view video materials uploaded by a particular client
     Route:: get('/viewMaterials/{id}', 'AgentController@viewMaterials')->name('viewMaterials');
 
+    //to view
+    Route:: get('/viewStandardVideoMaterials/{userid}/{id}', 'OrderController@viewStandardVideoMaterials')->name('viewStandardVideoMaterials');
+
+
+
 //});
 
 //Route::get('/voice/upload', 'FileController@createVoice')->name('showUploadVideo');

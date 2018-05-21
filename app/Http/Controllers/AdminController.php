@@ -57,7 +57,7 @@ class AdminController extends Controller
             ->where('agent_video_orders.status', '=', 'Compiling')
             ->get();
 
-        $standard_videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
+        $standard_videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name", "users.id")
             ->leftjoin("users", function($join) {
                 $join->on("users.id", "=", "agent_video_orders.agent_ID");
             })->where('agent_video_orders.category', '=', 'Standard')
