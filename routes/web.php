@@ -420,7 +420,6 @@ Route::group(['middleware' => 'guest'], function() {
     //option to send to Email the Invoice
     Route::post('/account/emailInvoice', 'MyAccountController@emailInvoice')->name('emailInvoice');
 
-
 //});
 
 
@@ -526,8 +525,12 @@ Route::group(['middleware' => 'guest'], function() {
     //to view video materials uploaded by a particular client
     Route:: get('/viewMaterials/{id}', 'AgentController@viewMaterials')->name('viewMaterials');
 
-    //to view
+    //to view video materials for Standard Video
     Route:: get('/viewStandardVideoMaterials/{userid}/{id}', 'OrderController@viewStandardVideoMaterials')->name('viewStandardVideoMaterials');
+
+    //to view Premium Video System
+    Route:: get('/account/getPremiumVideoSystem/{id}', 'MyVideoController@getPremiumVideoSystem')->name('getPremiumVideoSystem');
+
 
 
 

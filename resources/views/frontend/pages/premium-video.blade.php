@@ -17,11 +17,17 @@
                         <td>Progress</td>
                     </tr>
                     <tr>
-                        <td>#XXXX</td>
-                        <td>63 North Rd Basserd...</td>
+                        <td style="text-align: center">{{ $premium['ID'] }}</td>
+                        <td>{{ $premium['videoAddress'] }}</td>
                         <td>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">30%</div>
+                                @if($premium['total_progress'] == NULL)
+                                    @php $progress_value = 0; @endphp
+                                @else
+                                    @php $progress_value = $premium['total_progress']; @endphp
+                                @endif
+                                    <div class="progress-bar" role="progressbar" style="width: {{ $progress_value }}%;" aria-valuenow="{{ $progress_value }}" aria-valuemin="0" aria-valuemax="100"><span style="color: black">{{ $progress_value }}%</span></div>
+                                {{--<div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">30%</div>--}}
                             </div>
                         </td>
                     </tr>
@@ -29,19 +35,19 @@
                 <table class="table-action mt-4" cellpadding="0" cellspacing="0" width="100%">
                     <tr>
                         <td width="170">Account Manager</td>
-                        <td>XXXXX XXXXX</td>
+                        <td>{{ $premium['account_manager'] }}</td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td>xxxx@revid.com.au</td>
+                        <td>{{ $premium['email'] }}</td>
                     </tr>
                     <tr>
                         <td>Telephone</td>
-                        <td>(08) XXXX XXXX</td>
+                        <td>{{ $premium['telephone'] }}</td>
                     </tr>
                     <tr>
                         <td>Skype</td>
-                        <td>XXXXXXXXXXXX</td>
+                        <td>{{ $premium['skype'] }}</td>
                     </tr>
                 </table>
                 Action Station
@@ -72,10 +78,10 @@
                         <td>You will need to approve storyboard before for production. <a href="">See Storyboard</a>.</td>
                     </tr>
                     <tr>
-                        <td><b>XXX</b></td>
+                        <td style="text-align: center"><b>{{ $premium['ID'] }}</b></td>
                         <td colspan="2" class="my-account-subcription">
                             <div class="row">
-                                <div class="col-sm-6"><b>63 North Rd Bassendean is</b></div>
+                                <div class="col-sm-6"><b>{{ $premium['videoAddress'] }}</b></div>
                                 <div class="col-md-auto">
                                     <div class="custom-control custom-checkbox standard">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1">

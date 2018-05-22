@@ -194,7 +194,7 @@ class OrderController extends Controller
     public function postVideoProgress(){
 
         $production_id = Auth::user()->id;
-        $videotype = Input::get('videotype');
+//        $videotype = Input::get('videotype');
         $videoid = Input::get('videoid');
         $status = Input::get('status');
         $completion_date = date('Y-m-d H:i:s', strtotime(Input::get('completion_date')));
@@ -254,7 +254,7 @@ class OrderController extends Controller
 //
 //        }
 
-        return redirect(url('getVideoDetails/' . $videoid . '/' . $videotype));
+        return redirect(url('getVideoDetails/' . $videoid));
 
     }
 

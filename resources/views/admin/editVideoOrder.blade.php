@@ -50,12 +50,18 @@
                             {{ csrf_field() }}
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label class="control-label col-md-3" for="video_id">Video Order:</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">{{ $video->category }}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-3" for="video_id">Video ID</label>
                                     <div class="col-md-9">
                                         <p class="form-control-static">{{ $video->ID }}</p>
                                     </div>
                                 </div>
-                                @if($videotype === 'Generic' || $videotype === 'Premium')
+                                @if($video->category === 'Generic' || $video->category === 'Premium')
                                     <div class="form-group">
                                         <label class="control-label col-md-3" for="url">URL:</label>
                                         <div class="col-md-9">
@@ -87,7 +93,7 @@
                                 <br>
                                 <h5>Video Production Progress </h5>
                                 <div class="progress progress-striped">
-                                    <div id="videoprogress" class="progress-bar" role="progressbar" data-transitiongoal="{{ $video->progress_value == null ? 0 : $video->progress_value }}"></div>
+                                    <div id="videoprogress" class="progress-bar" role="progressbar" data-transitiongoal="{{ $progress->total_progress == null ? 0 : $progress->total_progress }}"></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -112,7 +118,7 @@
                                     <label class="control-label col-md-5" for="picture">Uploading of Picture &nbsp;&nbsp;&nbsp;(%)</label>
                                     <div class="col-md-4">
                                         <select name="picture_progress" id="picture_progress" class="form-control" style="width: 100px">
-                                            @for ($i = 1; $i <= 15; $i++)
+                                            @for ($i = 0; $i < 16; $i++)
                                                 <option value="{{ $i }}" {{ $progress->picture_progress == $i ? 'selected' : '' }}>{{ $i }}</option>
                                             @endfor
                                         </select>
@@ -122,7 +128,7 @@
                                     <label class="control-label col-md-5" for="picture">Script &nbsp;&nbsp;&nbsp;(%)</label>
                                     <div class="col-md-4">
                                         <select name="script_progress" id="script_progress" class="form-control" style="width: 100px">
-                                            @for ($i = 1; $i <= 15; $i++)
+                                            @for ($i = 0; $i < 16; $i++)
                                                 <option value="{{ $i }}" {{ $progress->script_progress == $i ? 'selected' : '' }}>{{ $i }}</option>
                                             @endfor
                                         </select>
@@ -132,7 +138,7 @@
                                     <label class="control-label col-md-5" for="picture">Template &nbsp;&nbsp;&nbsp;(%)</label>
                                     <div class="col-md-4">
                                         <select name="template_progress" id="template_progress" class="form-control" style="width: 100px">
-                                            @for ($i = 1; $i <= 15; $i++)
+                                            @for ($i = 0; $i < 16; $i++)
                                                 <option value="{{ $i }}" {{ $progress->template_progress == $i ? 'selected' : '' }}>{{ $i }}</option>
                                             @endfor
                                         </select>
@@ -142,7 +148,7 @@
                                     <label class="control-label col-md-5" for="picture">Voice and Music &nbsp;&nbsp;&nbsp;(%)</label>
                                     <div class="col-md-4">
                                         <select name="voice_music" id="voice_music" class="form-control" style="width: 100px">
-                                            @for ($i = 1; $i <= 15; $i++)
+                                            @for ($i = 0; $i < 16; $i++)
                                                 <option value="{{ $i }}" {{ $progress->voice_and_music == $i ? 'selected' : '' }}>{{ $i }}</option>
                                             @endfor
                                         </select>
@@ -152,7 +158,7 @@
                                     <label class="control-label col-md-5" for="edits">Edits &nbsp;&nbsp;&nbsp;(%)</label>
                                     <div class="col-md-4">
                                         <select name="edits" id="edits" class="form-control" style="width: 100px">
-                                            @for ($i = 1; $i <= 40; $i++)
+                                            @for ($i = 0; $i < 41; $i++)
                                                 <option value="{{ $i }}" {{ $progress->edits == $i ? 'selected' : '' }}>{{ $i }}</option>
                                             @endfor
                                         </select>
@@ -162,7 +168,7 @@
                                     <div class="row">
                                         <div class="col-md-offset-3 col-md-9">
                                             <input type="hidden" name="videoid" value="{{ $video->ID }}">
-                                            <input type="hidden" name="videotype" value="{{ $videotype }}">
+                                            {{--<input type="hidden" name="videotype" value="{{ $videotype }}">--}}
                                             <button type="submit" class="btn btn-success ">Update</button>
                                             <button type="reset" class="btn btn-effect-ripple btn-default">Reset</button>
                                         </div>

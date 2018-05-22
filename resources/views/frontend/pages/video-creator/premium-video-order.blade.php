@@ -15,10 +15,17 @@
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm-3 pl-0">Property Address <br> URL Address</div>
-                    <div class="col-sm-9">
-                        <textarea name="url_address" row="10" cols="60" class="form-control">{{ $url_premium }}</textarea>
-                        {{--<input type="text" class="form-control" name="address" autofocus value=" {{ $agent->address }} ">--}}
-                    </div>
+                    @if($url_premium != null || $url_premium != '')
+                        <div class="col-sm-9">
+                            <textarea name="url_premium" row="10" cols="60" class="form-control">{{ $url_premium }}</textarea>
+                            {{--<input type="text" class="form-control" name="address" autofocus value=" {{ $agent->address }} ">--}}
+                        </div>
+                    @else
+                        <div class="col-sm-9">
+                            <textarea name="url_premium" row="10" cols="60" class="form-control">{{ $agent->address . ' ' . $agent->suburb . ' ' . $agent->state . ' ' . $agent->postcode  }}</textarea>
+                            {{--<input type="text" class="form-control" name="address" autofocus value=" {{ $agent->address }} ">--}}
+                        </div>
+                    @endif
                 </div>
                 {{--<div class="row">--}}
                     {{--<div class="col-sm-3 pl-0"></div>--}}
@@ -49,7 +56,9 @@
                     <div class="col-sm-3 pl-0">Account Manager</div>
                     <div class="col-sm-3">
                         <input type="text" name="acct_manager" placeholder="Name"><br>
-                        <input type="text" name="acct_details" placeholder="Contact Details">
+                        <input type="text" name="acct_email" placeholder="Email">
+                        <input type="text" name="telephone" placeholder="Telephone"><br>
+                        <input type="text" name="skype" placeholder="Skype">
                     </div>
                     <div class="col-sm-3">
                         Is your
@@ -161,11 +170,11 @@
                         <b>Email Distribution (on completion)</b>
                         <div class="row">
                             <div class="col-sm pl-0">Your Email List</div>
-                            <div class="col-sm"><input  type="text" class="form-control" name="emailist" required autofocus value="{{ $preference->email_distribution  === "1" ? 'On' : 'Off' }}"></div>
+                            <div class="col-sm"><input  type="text" class="form-control" name="emailist" required autofocus value="{{ $preference->email_distribution  == 1 ? 'On' : 'Off' }}"></div>
                             <div class="col-sm">
                                   <p class="d-inline-block font-weight-bold">$5</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" name="chkEmailList" id="chkEmailList" {{ $preference->email_distribution  === "1" ? 'checked' : '' }}>
+                                      <input type="checkbox" class="custom-control-input" name="chkEmailList" id="chkEmailList" {{ $preference->email_distribution  == 1 ? 'checked' : '' }}>
                                       <label class="custom-control-label" for="chkEmailList"></label>
                                   </div>
                             </div>

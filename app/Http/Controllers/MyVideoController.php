@@ -426,6 +426,7 @@ class MyVideoController extends Controller
         $surge_value = $surgeoffer[0];
         $url_address = Input::get('url_address');
 
+
         //to store videoID in session
         Session::put('videoID', $videoid);
 
@@ -508,11 +509,15 @@ class MyVideoController extends Controller
             $premium_arr = array(
                 'agent_ID' => $user_id,
                 'category' => 'Premium',
-                'url_address' => $url,
+                //'url_address' => $url_premium,
                 'videoAddress' => $url_premium,
                 'status' => 'Compiling',
                 'apply_driveby' => Input::get('apply_driveby'),
                 'apply_lookfirst' => Input::get('apply_lookfirst'),
+                'account_manager' => Input::get('acct_manager'),
+                'email' => Input::get('acct_email'),
+                'telephone' => Input::get('telephone'),
+                'skype' => Input::get('skype'),
             );
 
             AgentVideoOrders::create($premium_arr);
@@ -522,7 +527,7 @@ class MyVideoController extends Controller
                 'video_ID' => $videoid,
                 'videotype' => 'Premium',
                 'agent_ID' => $user_id,
-                'video_address' => $url_premium
+                'videoAddress' => $url_premium
             );
 
             videoProgress::create($progress_arr);
@@ -915,6 +920,10 @@ class MyVideoController extends Controller
             }
         }
 
+        videoProgress::where('video_ID', $videoid)->update([
+            'picture_progress' => 15
+        ]);
+
         return redirect()->route('account-video-system-script');
 
     }
@@ -928,6 +937,8 @@ class MyVideoController extends Controller
         $pics = Session::get('pics');
         //$arr_pics_details = explode(',', $pics);
 //        dd(count($pics));
+
+        $videoid = Session::get('videoID');
 
         $ctr_statements = count($arr_statements);
 
@@ -959,6 +970,10 @@ class MyVideoController extends Controller
 
         }
 
+        videoProgress::where('video_ID', $videoid)->update([
+            'script_progress' => 15
+        ]);
+
         return redirect()->route('account-video-system-template');
     }
 
@@ -966,6 +981,11 @@ class MyVideoController extends Controller
     public function VideoSystemProcessStep3(){
 
         $userid = Auth::user()->id;
+        $videoid = Session::get('videoID');
+
+        videoProgress::where('video_ID', $videoid)->update([
+            'template_progress' => 15
+        ]);
 
         return redirect()->route('account-video-system-music');
     }
@@ -1011,6 +1031,12 @@ class MyVideoController extends Controller
 
             AgentTemplate::create($voice_music_arr);
         }
+
+        $videoid = Session::get('videoID');
+        videoProgress::where('video_ID', $videoid)->update([
+            'voice_and_music' => 15
+        ]);
+
         return redirect()->route('account-video-system-finish');
     }
 
@@ -1024,6 +1050,13 @@ class MyVideoController extends Controller
 
         AgentVideoOrders::where('ID', $videoid)->where('agent_ID', $userid)->update([
             'status' => 'In-Production'
+        ]);
+
+        $video_progress = videoProgress::where('video_ID', $videoid)->get()->first();
+        $total_progress = $video_progress['picture_progress'] + $video_progress['script_progress'] + $video_progress['template_progress'] + $video_progress['voice_and_music'];
+
+        videoProgress::where('video_ID', $videoid)->update([
+            'total_progress' => $total_progress
         ]);
 
         return redirect()->route('account-make-video');
@@ -1108,6 +1141,27 @@ class MyVideoController extends Controller
             return redirect()->route('account-explore-templates');
         else
             return redirect()->route('account-video-system-template');
+    }
+
+
+    //for Premium Video System
+    public function getPremiumVideoSystem($videoid)
+    {
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userId = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userId . '/';
+        $logo_pic = $path . $logo;
+
+        $premium = AgentVideoOrders::where('ID', $videoid)->get()->first();
+
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.premium-video', compact('fullname',  'agent', 'logo_pic', 'premium'));
+
     }
 
 }

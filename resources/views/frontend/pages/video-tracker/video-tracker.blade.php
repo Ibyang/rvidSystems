@@ -29,7 +29,9 @@
                                   <div class="progress-bar" role="progressbar" style="width: {{ $awv->total_progress }}%;" aria-valuenow="{{ $awv->total_progress }}" aria-valuemin="0" aria-valuemax="100"><span style="color: black">{{ $awv->total_progress }}%</span></div>
                                 </div>
                             </td>
-                            <td><a href=" {{ route('account-premium-video') }}">More Details +</a></td>
+                            <td>
+                                <a href="{{ url('account/getPremiumVideoSystem/' . $awv->video_ID) }}">More Details +</a>
+                            </td>
                         </tr>
                       @endforeach
                   @else
