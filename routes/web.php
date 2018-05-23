@@ -367,6 +367,27 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::post('/account/video-system/processStep5', 'MyVideoController@VideoSystemProcessStep5')->name('account-video-system-processStep5');
 
+    //Premium Video Order System Steps
+    Route::get('/account/premium/video-system/1','MyVideoController@PremiumVideoSystemPictures')->name('account-premium-video-system-pictures');
+
+    Route::get('/account/premium/video-system/2','MyVideoController@PremiumVideoSystemScript')->name('account-premium-video-system-script');
+
+    Route::get('/account/premium/video-system/3','MyVideoController@PremiumVideoSystemTemplate')->name('account-premium-video-system-template');
+
+    Route::get('/account/premium/video-system/4','MyVideoController@PremiumVideoSystemVoice')->name('account-premium-video-system-music');
+
+    Route::get('/account/premium/video-system/5','MyVideoController@PremiumVideoSystemStoryboard')->name('account-premium-video-system-storyboard');
+
+    Route::post('/account/premium-video-system/processStep1', 'MyVideoController@PremiumVideoSystemProcessStep1')->name('account-premium-video-system-processStep1');
+
+    Route::post('/account/premium-video-system/processStep2', 'MyVideoController@PremiumVideoSystemProcessStep2')->name('account-premium-video-system-processStep2');
+
+    Route::post('/account/premium-video-system/processStep3', 'MyVideoController@PremiumVideoSystemProcessStep3')->name('account-premium-video-system-processStep3');
+
+    Route::post('/account/premium-video-system/processStep4', 'MyVideoController@PremiumVideoSystemProcessStep4')->name('account-premium-video-system-processStep4');
+
+    Route::post('/account/premium-video-system/processStep5', 'MyVideoController@PremiumApproveStoryboard')->name('account-premium-video-system-storyboard');
+
     //for processes done on the Explore Section of the Account Dashboard
     Route::post('/account/explore-pictures/postImages','MyVideoController@postExplorePictures')->name('account-explore-picture-postImages');
 

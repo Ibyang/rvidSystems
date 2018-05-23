@@ -16,8 +16,13 @@
                         <td>Address</td>
                     </tr>
                     <tr>
-                        <td>#XXXX</td>
-                        <td>63 North Rd Bassendean <a href="">Return My Tracker</a></td>
+                        <td>#<b>{{ $videoid }}</b></td>
+                        <td>
+                            <div class="d-flex">
+                                <div><b> {{ $videoAddress }}</b></div>
+                                <div class="ml-auto"><a href=" {{ route('account-video-tracker') }} ">Return My Tracker</a></div>
+                            </div>
+                        </td>
                     </tr>
                 </table>
                 <h3 class="d-inline-block">Scripting Options</h3> <a href=""class="d-inline-block">What is this?</a>

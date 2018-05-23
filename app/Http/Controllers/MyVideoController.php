@@ -14,6 +14,7 @@ use App\AgentBilling;
 use App\videoProgress;
 use App\AgentTemplate;
 use App\standardVideoPicture;
+use App\premiumVideoPicture;
 use Carbon\Carbon;
 use phpDocumentor\Reflection\Types\Integer;
 use Illuminate\Support\Facades\Auth;
@@ -424,7 +425,7 @@ class MyVideoController extends Controller
         $total_cost_video = Input::get('total_cost');
         $surgeoffer = Input::get('surgeoffer');
         $surge_value = $surgeoffer[0];
-        $url_address = Input::get('url_address');
+//        $url_address = Input::get('url_address');
 
 
         //to store videoID in session
@@ -447,7 +448,7 @@ class MyVideoController extends Controller
             $generic_arr = array(
                 'agent_ID' => $user_id,
                 'category' => 'Generic',
-                'url_address' => $url,
+                'videoAddress' => $url,
                 'status' => 'Compiling',
                 'apply_driveby' => Input::get('apply_driveby'),
                 'apply_lookfirst' => Input::get('apply_lookfirst'),
@@ -504,6 +505,10 @@ class MyVideoController extends Controller
             $video_total_cost = Input::get('cost_premium_video');
 
             $url_premium = Input::get('url_premium');
+
+            //to store videoAddress in session
+            Session::put('videoAddress', $url_premium);
+
             $video_invoice_description = "#" . $videoid . $url_premium;
 
             $premium_arr = array(
@@ -750,6 +755,114 @@ class MyVideoController extends Controller
         return view('frontend.pages.premium-video', compact('fullname', 'agent', 'logo_pic'));
     }
 
+
+
+
+    //for Premium Video System
+    public function getPremiumVideoSystem($videoid)
+    {
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userId = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userId . '/';
+        $logo_pic = $path . $logo;
+
+        $premium = AgentVideoOrders::where('ID', $videoid)->get()->first();
+
+        //to store videoID and videoAddress in Session
+        Session::put('videoID', $videoid);
+        Session::put('videoAddress', $premium['videoAddress']);
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.premium-video', compact('fullname',  'agent', 'logo_pic', 'premium'));
+
+    }
+
+
+    //modules for editing Template
+    public function editMainFrame()
+    {
+        $userid = Auth::user()->id;
+        $pageName = Input::get('pageName');
+
+        //for main frame template selection
+        $mainFrameSelections = Input::get('main_frame');
+        if ($mainFrameSelections != null)
+            $MFboxes = implode(',', $mainFrameSelections);
+        else
+            $MFboxes = '';
+
+        AgentTemplate::where('agent_ID', $userid)->update([
+            'main_frame_template' => Input::get('stateMainFrame'),
+            'main_frame_template_format' => $MFboxes,
+            'main_frame_colours' => Input::get('stateMainFrameColour'),
+            'main_frame_colours_sub' => Input::get('stateMainFrameColourSub')
+        ]);
+
+        if($pageName == 'exploreTemplate')
+            return redirect()->route('account-explore-templates');
+        else
+            return redirect()->route('account-video-system-template');
+    }
+
+
+    public function editMiddleFrame()
+    {
+        $userid = Auth::user()->id;
+        $pageName = Input::get('pageName');
+
+        //for middle frame template selection
+        $middleFrameSelections = Input::get('middle_frame');
+        if ($middleFrameSelections != null)
+            $MidFboxes = implode(',', $middleFrameSelections);
+        else
+            $MidFboxes = '';
+
+
+        AgentTemplate::where('agent_ID', $userid)->update([
+            'middle_frame_template' => Input::get('stateMiddleFrame'),
+            'middle_frame_template_format' => $MidFboxes,
+            'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
+            'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub')
+        ]);
+
+        if($pageName == 'exploreTemplate')
+            return redirect()->route('account-explore-templates');
+        else
+            return redirect()->route('account-video-system-template');
+    }
+
+
+    public function editEndFrame()
+    {
+        $userid = Auth::user()->id;
+        $pageName = Input::get('pageName');
+
+        //for end frame template selection
+        $EndFrameSelections = Input::get('end_frame');
+        if ($EndFrameSelections != null)
+            $EndFboxes = implode(',', $EndFrameSelections);
+        else
+            $EndFboxes = '';
+
+
+        AgentTemplate::where('agent_ID', $userid)->update([
+            'end_frame_template' => Input::get('stateEndFrame'),
+            'end_frame_template_format' => $EndFboxes,
+            'end_frame_colours' => Input::get('stateEndFrameColour'),
+            'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
+        ]);
+
+        if($pageName == 'exploreTemplate')
+            return redirect()->route('account-explore-templates');
+        else
+            return redirect()->route('account-video-system-template');
+    }
+
+
     //for Standard Video System Process
     public function VideoSystemPictures()
     {
@@ -905,15 +1018,15 @@ class MyVideoController extends Controller
                     $image->move($path, $filename);
 
 //                    for($i=0; $i<$ctr_effects; $i++){
-                        $fname = date('Ym') . $videoid . '_' . $arr_images[$ctr];
-                        //store date to database
-                        $picdetails_arr = array(
-                            'agent_ID' => $userid,
-                            'video_ID' => $videoid,
-                            'old_filename' => $fname,
-                            'effect_style' => $effects[$ctr],
-                        );
-                        standardVideoPicture::create($picdetails_arr);
+                    $fname = date('Ym') . $videoid . '_' . $arr_images[$ctr];
+                    //store date to database
+                    $picdetails_arr = array(
+                        'agent_ID' => $userid,
+                        'video_ID' => $videoid,
+                        'old_filename' => $fname,
+                        'effect_style' => $effects[$ctr],
+                    );
+                    standardVideoPicture::create($picdetails_arr);
 //                    }
                 }
                 $ctr++;
@@ -1063,105 +1176,318 @@ class MyVideoController extends Controller
     }
 
 
-    //modules for editing Template
-    public function editMainFrame()
-    {
-        $userid = Auth::user()->id;
-        $pageName = Input::get('pageName');
-
-        //for main frame template selection
-        $mainFrameSelections = Input::get('main_frame');
-        if ($mainFrameSelections != null)
-            $MFboxes = implode(',', $mainFrameSelections);
-        else
-            $MFboxes = '';
-
-        AgentTemplate::where('agent_ID', $userid)->update([
-            'main_frame_template' => Input::get('stateMainFrame'),
-            'main_frame_template_format' => $MFboxes,
-            'main_frame_colours' => Input::get('stateMainFrameColour'),
-            'main_frame_colours_sub' => Input::get('stateMainFrameColourSub')
-        ]);
-
-        if($pageName == 'exploreTemplate')
-            return redirect()->route('account-explore-templates');
-        else
-            return redirect()->route('account-video-system-template');
-    }
-
-
-    public function editMiddleFrame()
-    {
-        $userid = Auth::user()->id;
-        $pageName = Input::get('pageName');
-
-        //for middle frame template selection
-        $middleFrameSelections = Input::get('middle_frame');
-        if ($middleFrameSelections != null)
-            $MidFboxes = implode(',', $middleFrameSelections);
-        else
-            $MidFboxes = '';
-
-
-        AgentTemplate::where('agent_ID', $userid)->update([
-            'middle_frame_template' => Input::get('stateMiddleFrame'),
-            'middle_frame_template_format' => $MidFboxes,
-            'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
-            'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub')
-        ]);
-
-        if($pageName == 'exploreTemplate')
-            return redirect()->route('account-explore-templates');
-        else
-            return redirect()->route('account-video-system-template');
-    }
-
-
-    public function editEndFrame()
-    {
-        $userid = Auth::user()->id;
-        $pageName = Input::get('pageName');
-
-        //for end frame template selection
-        $EndFrameSelections = Input::get('end_frame');
-        if ($EndFrameSelections != null)
-            $EndFboxes = implode(',', $EndFrameSelections);
-        else
-            $EndFboxes = '';
-
-
-        AgentTemplate::where('agent_ID', $userid)->update([
-            'end_frame_template' => Input::get('stateEndFrame'),
-            'end_frame_template_format' => $EndFboxes,
-            'end_frame_colours' => Input::get('stateEndFrameColour'),
-            'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
-        ]);
-
-        if($pageName == 'exploreTemplate')
-            return redirect()->route('account-explore-templates');
-        else
-            return redirect()->route('account-video-system-template');
-    }
-
-
-    //for Premium Video System
-    public function getPremiumVideoSystem($videoid)
+    //for Premium Video System Process
+    public function PremiumVideoSystemPictures()
     {
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
-        $userId = Auth::user()->id;
+        $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
+        //retrieve values stored from Session
+        $videoid = Session::get('videoID');
+        $videoAddress = Session::get('videoAddress');
+
         //path for logo pic
-        $path = '/storage/client_images/' . $userId . '/';
+        $path = '/storage/client_images/' . $userid . '/';
         $logo_pic = $path . $logo;
 
-        $premium = AgentVideoOrders::where('ID', $videoid)->get()->first();
+        //path for uploaded images
+        $path2 = '/storage/client_images/' . $userid . '/pictures/Video' . $videoid . '/';
 
+        $pics = premiumVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->get(['ID', 'video_ID', 'effect_style', 'old_filename', 'new_filename']);
+        Session::put('pics', $pics);
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.premium-video', compact('fullname',  'agent', 'logo_pic', 'premium'));
+        return view('frontend.pages.preferences.premium-video-picture', compact('fullname', 'agent', 'logo_pic', 'pics', 'path2', 'userid', 'videoid', 'videoAddress'));
+    }
+
+    public function PremiumVideoSystemScript()
+    {
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //retrieve values stored from Session
+        $videoid = Session::get('videoID');
+        $videoAddress = Session::get('videoAddress');
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        //path for uploaded images
+        $path2 = '/storage/client_images/' . $userid . '/pictures/Video' . $videoid . '/';
+
+        $pics = premiumVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->get(['ID', 'video_ID', 'old_filename', 'new_filename', 'statement']);
+        Session::put('pics', $pics);
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.preferences.premium-video-script', compact('fullname', 'agent', 'logo_pic', 'videoid', 'pics', 'path2', 'videoAddress'));
 
     }
+
+    public function PremiumVideoSystemTemplate()
+    {
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //retrieve values stored from Session
+        $videoid = Session::get('videoID');
+        $videoAddress = Session::get('videoAddress');
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        $path2 = '/storage/register/';
+
+        $template = AgentTemplate::where('agent_ID', $userid)->get(['main_frame_template', 'main_frame_template_format', 'main_frame_colours', 'main_frame_colours_sub',
+            'middle_frame_template', 'middle_frame_template_format', 'middle_frame_colours', 'middle_frame_colours_sub',
+            'end_frame_template', 'end_frame_template_format', 'end_frame_colours', 'end_frame_colours_sub'])->first();
+
+        $mainframe_list = explode(',', $template['main_frame_template_format']);
+        $middleframe_list = explode(',', $template['middle_frame_template_format']);
+        $endframe_list = explode(',', $template['end_frame_template_format']);
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.preferences.premium-video-update', compact('fullname', 'agent', 'logo_pic', 'path2', 'template', 'mainframe_list', 'middleframe_list', 'endframe_list', 'videoid', 'videoAddress'));
+    }
+
+    public function PremiumVideoSystemVoice()
+    {
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //retrieve values stored from Session
+        $videoid = Session::get('videoID');
+        $videoAddress = Session::get('videoAddress');
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        //for music
+        $music = AgentTemplate::where('agent_ID', $userid)->get(['music_style', 'music_file_format'])->first();
+        $music_list = explode(',', $music['music_file_format']);
+
+        //for voice-overs
+        $voice = AgentTemplate::where('agent_ID', $userid)->get(['voice_format', 'voice_file_selection'])->first();
+        $voice_list = explode(',', $voice['voice_file_selection']);
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.preferences.premium-video-voice-music', compact('fullname', 'agent', 'logo_pic', 'music', 'music_list', 'voice', 'voice_list', 'videoid', 'videoAddress'));
+    }
+
+    public function PremiumVideoSystemStoryboard()
+    {
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+        $videoid = Session::get('videoID');
+
+        //retrieve values stored from Session
+        $videoid = Session::get('videoID');
+        $videoAddress = Session::get('videoAddress');
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/';
+        $logo_pic = $path . $logo;
+
+        //path for uploaded images
+        $path2 = '/storage/client_images/' . $userid . '/pictures/Video' . $videoid . '/';
+        $pics = premiumVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get();
+
+        $cnt_pics = count($pics);
+
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.preferences.premium-video-storyboard', compact('fullname', 'agent', 'logo_pic', 'path2', 'pics', 'cnt_pics', 'videoid', 'videoAddress'));
+    }
+
+    //process for the Steps of Ztandard Video System
+    public function PremiumVideoSystemProcessStep1(Request $request)
+    {
+
+        $userid = Auth::user()->id;
+        $effects = Input::get('transition');
+        //$ctr_effects = count($effects);
+
+        //$videoid = 20;  //need to get the value of the video ID generated
+        $videoid = $videoid = Session::get('videoID');
+        //Session::put('videoID', $videoid);  //store to session; NOTE: TO REMOVE ONCE TESTED FROM VIDEO ORDER PAGE
+
+        $images = Input::get('selectedImages');
+        $arr_images = explode(',', $images);
+
+        if ($request->file('image_files')) {
+            $ctr = 0;
+            foreach($request->file('image_files') as $image)
+            {
+                if(!empty($image)){
+                    $path = public_path('storage\client_images\\' . $userid . '\\pictures\\Video' . $videoid . '\\');
+                    if(!File::exists($path)){
+                        File::makeDirectory($path, 0775, true);
+                    }
+
+                    $filename = date('Ym') . $videoid . '_' .$image->getClientOriginalName();
+                    $image->move($path, $filename);
+
+//                    for($i=0; $i<$ctr_effects; $i++){
+                    $fname = date('Ym') . $videoid . '_' . $arr_images[$ctr];
+                    //store date to database
+                    $picdetails_arr = array(
+                        'agent_ID' => $userid,
+                        'video_ID' => $videoid,
+                        'old_filename' => $fname,
+                        'effect_style' => $effects[$ctr],
+                    );
+                    standardVideoPicture::create($picdetails_arr);
+//                    }
+                }
+                $ctr++;
+            }
+        }
+
+        return redirect()->route('account-premium-video-system-script');
+
+    }
+
+
+    public function PremiumVideoSystemProcessStep2(){
+
+        $userid = Auth::user()->id;
+        $statements = Input::get('selectedStatements');
+        $arr_statements = explode(',', $statements);
+        $pics = Session::get('pics');
+        //$arr_pics_details = explode(',', $pics);
+//        dd(count($pics));
+
+        $videoid = Session::get('videoID');
+
+        $ctr_statements = count($arr_statements);
+
+        for($i=0; $i<$ctr_statements; $i++){
+            $videoID = $pics[$i]['video_ID'];
+            $picID = $pics[$i]['ID'];
+
+            //code for changing filename after uploading
+            $fname_statements = preg_replace('/\s+/', '_', $arr_statements[$i]);
+            $path2 = '../public/storage/client_images/' . $userid . '/pictures/Video' . $videoID . '/';
+            $path = public_path('storage\client_images\\' . $userid . '\\pictures\\Video' . $videoID . '\\');
+            $picname = $pics[$i]['old_filename'];
+            $imagePath = $path . $picname;
+//            $ext = pathinfo($imagePath, PATHINFO_EXTENSION);
+            $ext = File::extension($picname);
+            $file = basename($imagePath, ".".$ext);
+            $newfilename = $file . '_' . $fname_statements . '.' . $ext;
+            $oldimagePath = $path2 . $picname;
+            $newimagePath = $path2 . $newfilename;
+//
+            if($arr_statements[$i]){
+                premiumVideoPicture::where('ID', $picID)->update([
+                    'statement' => $arr_statements[$i],
+                    'new_filename' => $newfilename
+                ]);
+            }
+//            Storage::move($imagePath, $newimagePath);
+            rename($oldimagePath, $newimagePath);
+
+        }
+
+        return redirect()->route('account-premium-video-system-template');
+    }
+
+
+    public function PremiumVideoSystemProcessStep3(){
+
+        $userid = Auth::user()->id;
+        $videoid = Session::get('videoID');
+
+        videoProgress::where('video_ID', $videoid)->update([
+            'template_progress' => 15
+        ]);
+
+        return redirect()->route('account-premium-video-system-music');
+    }
+
+
+    public function PremiumVideoSystemProcessStep4(){
+
+        $userid = Auth::user()->id;
+
+        //for voice format selection
+        $voiceSelection = Input::get('voiceSelection');
+        if ($voiceSelection != null)
+            $voiceboxes = implode(',', $voiceSelection);
+
+
+        //for music file format selection
+        $musicSelection = Input::get('musicSelection');
+        if ($musicSelection != null)
+            $musicboxes = implode(',', $musicSelection);
+
+        $voice_music_data = AgentTemplate::where('agent_ID', $userid)->get()->first();
+//        dd($voice_music_data);
+
+        if($voice_music_data != NULL){
+
+            AgentTemplate::where('agent_ID', $userid)->update([
+                'voice_format' => Input::get('stateVoiceFormat'),
+                'voice_file_selection' => $voiceboxes,
+                'music_style' => Input::get('stateMusicStyle'),
+                'music_file_format' => $musicboxes
+            ]);
+
+        }
+        else{
+
+            $voice_music_arr = array(
+                'agent_ID' => $userid,
+                'voice_format' => Input::get('stateVoiceFormat'),
+                'voice_file_selection' => $voiceboxes,
+                'music_style' => Input::get('stateMusicStyle'),
+                'music_file_format' => $musicboxes
+            );
+
+            AgentTemplate::create($voice_music_arr);
+        }
+
+        $videoid = Session::get('videoID');
+
+        return redirect()->route('account-premium-video-system-storyboard');
+    }
+
+
+    public function PremiumApproveStoryboard(){
+
+        $userid = Auth::user()->id;
+
+//        $videoid = 20;
+        $videoid = Session::get('videoID');  //to enable during integration and testing of modules
+
+        AgentVideoOrders::where('ID', $videoid)->where('agent_ID', $userid)->update([
+            'status' => 'In-Production'
+        ]);
+
+        $video_progress = videoProgress::where('video_ID', $videoid)->get()->first();
+        $total_progress = $video_progress['picture_progress'] + $video_progress['script_progress'] + $video_progress['template_progress'] + $video_progress['voice_and_music'];
+
+        videoProgress::where('video_ID', $videoid)->update([
+            'total_progress' => $total_progress
+        ]);
+
+        return redirect()->route('account-make-video');
+    }
+
 
 }

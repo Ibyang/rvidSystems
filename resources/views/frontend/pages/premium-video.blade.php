@@ -55,27 +55,27 @@
                     <tr>
                         <td width="170"><i class="make-video-step v-pictures"></i><div class="d-inline-block align-top pl-2">Pictures</div></td>
                         <td width="170">Done</td>
-                        <td>We will obtain your picutres either directly or through <a href="">Picture Tool</a>.</td>
+                        <td>We will obtain your pictures either directly or through <a href=" {{ route('account-premium-video-system-pictures') }} ">Picture Tool</a>.</td>
                     </tr>
                     <tr>
                         <td><i class="make-video-step v-script"></i><div class="d-inline-block align-top pl-2">Script</div></td>
                         <td>Done</td>
-                        <td>We will work with you to write your script <a href="">Template</a>.</td>
+                        <td>We will work with you to write your <a href=" {{ route('account-premium-video-system-script') }} ">Script Tool</a>.</td>
                     </tr>
                     <tr>
                         <td><i class="make-video-step v-template"></i><div class="d-inline-block align-top pl-2">Template</div></td>
                         <td>Done</td>
-                        <td>We will apply your preferences or <a href="">Update Template</a>.</td>
+                        <td>We will apply your preferences or <a href=" {{ route('account-premium-video-system-template') }} ">Update Template</a>.</td>
                     </tr>
                     <tr>
                         <td><i class="make-video-step v-voice"></i><div class="d-inline-block align-top pl-2">Voice + Music</div></td>
                         <td>To Complete</td>
-                        <td>We will apply your preferences or <a href="">Update Voice + Music</a></td>
+                        <td>We will apply your preferences or <a href=" {{ route('account-premium-video-system-music') }} ">Update Voice + Music</a></td>
                     </tr>
                     <tr>
                         <td><i class="make-video-step v-finish"></i><div class="d-inline-block align-middle pl-2">Finish</div></td>
                         <td>To Complete</td>
-                        <td>You will need to approve storyboard before for production. <a href="">See Storyboard</a>.</td>
+                        <td>You will need to approve storyboard before for production. <a href=" {{ route('account-premium-video-system-storyboard') }} ">See Storyboard</a>.</td>
                     </tr>
                     <tr>
                         <td style="text-align: center"><b>{{ $premium['ID'] }}</b></td>
