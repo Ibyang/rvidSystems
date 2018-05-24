@@ -170,7 +170,7 @@
            //console.log(searchIDs.get());
             var array_cnt = searchIDs.length;
 
-            $('#storyContent').remove();
+            // $('#storyContent').remove();
             for(i=0; i<array_cnt; i++){
                 var result = searchIDs[i].split('|');
                 var src = result[0];

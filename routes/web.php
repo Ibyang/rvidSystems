@@ -386,7 +386,7 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::post('/account/premium-video-system/processStep4', 'MyVideoController@PremiumVideoSystemProcessStep4')->name('account-premium-video-system-processStep4');
 
-    Route::post('/account/premium-video-system/processStep5', 'MyVideoController@PremiumApproveStoryboard')->name('account-premium-video-system-storyboard');
+    Route::post('/account/premium-video-system/processStep5', 'MyVideoController@PremiumApproveStoryboard')->name('account-premium-video-system-processStep5');
 
     //for processes done on the Explore Section of the Account Dashboard
     Route::post('/account/explore-pictures/postImages','MyVideoController@postExplorePictures')->name('account-explore-picture-postImages');

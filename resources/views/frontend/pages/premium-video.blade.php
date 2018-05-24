@@ -17,7 +17,7 @@
                         <td>Progress</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center">{{ $premium['ID'] }}</td>
+                        <td>{{ $premium['ID'] }}</td>
                         <td>{{ $premium['videoAddress'] }}</td>
                         <td>
                             <div class="progress">
@@ -78,7 +78,7 @@
                         <td>You will need to approve storyboard before for production. <a href=" {{ route('account-premium-video-system-storyboard') }} ">See Storyboard</a>.</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center"><b>{{ $premium['ID'] }}</b></td>
+                        <td><b>{{ $premium['ID'] }}</b></td>
                         <td colspan="2" class="my-account-subcription">
                             <div class="row">
                                 <div class="col-sm-6"><b>{{ $premium['videoAddress'] }}</b></div>

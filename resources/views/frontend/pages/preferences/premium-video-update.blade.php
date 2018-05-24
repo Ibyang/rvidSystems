@@ -144,7 +144,7 @@
                             <div class="row-mt-3">
                                 <input type="hidden" name="mainFrameColor" id="mainFrameColor" value="{{ $template['main_frame_colours'] }}">
                                 <input type="hidden" name="mainFrameColorSub" id="mainFrameColorSub" value="{{ $template['main_frame_colours_sub'] }}">
-                                <input type="hidden" name="pageName" id="pageName" value="standardVideoTemplate">
+                                <input type="hidden" name="pageName" id="pageName" value="premiumVideoTemplate">
                                 <input type="submit" class="form-control" value="Update Details">
                             </div>
                         </div>
@@ -261,7 +261,7 @@
                             <div class="row-mt-3">
                                 <input type="hidden" name="middleFrameColor" id="middleFrameColor" value="{{ $template['middle_frame_colours'] }}">
                                 <input type="hidden" name="middleFrameColorSub" id="middleFrameColorSub" value="{{ $template['middle_frame_colours_sub'] }}">
-                                <input type="hidden" name="pageName" id="pageName" value="standardVideoTemplate">
+                                <input type="hidden" name="pageName" id="pageName" value="premiumVideoTemplate">
                                 <input type="submit" class="form-control" value="Update Details">
                             </div>
                         </div>
@@ -378,7 +378,7 @@
                             <div class="row-mt-3">
                                 <input type="hidden" name="endFrameColor" id="endFrameColor" value="{{ $template['end_frame_colours'] }}">
                                 <input type="hidden" name="endFrameColorSub" id="endFrameColorSub" value="{{ $template['end_frame_colours_sub'] }}">
-                                <input type="hidden" name="pageName" id="pageName" value="standardVideoTemplate">
+                                <input type="hidden" name="pageName" id="pageName" value="premiumVideoTemplate">
                                 <input type="submit" class="form-control" value="Update Details">
                             </div>
                         </div>

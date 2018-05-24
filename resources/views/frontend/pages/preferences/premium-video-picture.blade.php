@@ -26,6 +26,7 @@
                     </tr>
                 </table>
                 <form id="frmStep1" method="POST" action="{{ route('account-premium-video-system-processStep1')}}" enctype="multipart/form-data">
+                    {{ csrf_field() }}
                     <div class="row video-system-1">
                         <div class="col-sm-7 pl-0">
                             <div class="row">
@@ -93,7 +94,7 @@
                             </div>
                             <div class="story-board-block pl-3 pr-3">
                                 {{--<button class="btn text-left pl-4">Save Storyboard</button>--}}
-                                <button class="btn" onclick="event.preventDefault();"><i class="standard-video sv-save"></i>Save Storyboard</button>
+                                <button class="btn" id="btnSaveStoryboard" onclick="event.preventDefault();"><i class="standard-video sv-save"></i>Save Storyboard</button>
 
                                 <div id="storyContent">
                                     @if(count($pics) > 0)
@@ -105,7 +106,7 @@
                                                 <img src="{{ $path2 . $pic['old_filename'] }}" width='268px' height='110px' style='border: 10px solid #ededed; margin-bottom: 10px;'>
                                             @endif
                                             {{--<p>Add or Drag and Drop <br><span class="c-6600cc"><b>+</b></span><br>Picture</p>--}}
-                                            <select name="transition" style="margin-bottom: 10px;">
+                                            <select name="transition[]" style="margin-bottom: 10px;">
                                                 <option value="Fade" {{ $pic['effect_style'] === 'Fade' ? 'selected' : '' }}>Fade</option>
                                                 <option value="Slide" {{ $pic['effect_style'] === 'Slide' ? 'selected' : '' }}>Slide</option>
                                                 <option value="Flip" {{ $pic['effect_style'] === 'Flip' ? 'selected' : '' }}>Flip</option>
@@ -137,6 +138,8 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="userid" id="userid" value="{{ $userid }}">
+                    <input type="hidden" name="selectedImages" id="selectedImages">
                 </form>
             </div>
         </div>
@@ -201,7 +204,7 @@
             //console.log(searchIDs.get());
             var array_cnt = searchIDs.length;
 
-            $('#storyContent').remove();
+            //$('#storyContent').remove();
             for(i=0; i<array_cnt; i++){
                 var result = searchIDs[i].split('|');
                 var src = result[0];
@@ -224,6 +227,11 @@
             }
             $('#selectedImages').val(files_arr);
         });
+
+
+        $('#btnSaveStoryboard').click(function () {
+            $('#frmStep1').submit();
+        })
 
     });
 

@@ -33,7 +33,7 @@ class MyAccountController extends Controller
         $billing = AgentBilling::where('agent_ID', $userid)->latest('created_at')->orderBy('ID')->get();
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/';
+        $path = '/storage/client_images/' . $userid . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -133,7 +133,7 @@ class MyAccountController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/';
+        $path = '/storage/client_images/' . $userid . '/general_images/';
         $logo_pic = $path . $logo;
 
         //for generic billing
@@ -156,7 +156,7 @@ class MyAccountController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/';
+        $path = '/storage/client_images/' . $userid . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -173,7 +173,7 @@ class MyAccountController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/';
+        $path = '/storage/client_images/' . $userid . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -191,7 +191,7 @@ class MyAccountController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/';
+        $path = '/storage/client_images/' . $userid . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -209,7 +209,7 @@ class MyAccountController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/';
+        $path = '/storage/client_images/' . $userid . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();

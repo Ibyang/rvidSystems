@@ -26,7 +26,7 @@
                     </tr>
                 </table>
 
-                <form id="frmStep4" method="POST" action="{{ route('account-video-system-processStep4')}}">
+                <form id="frmStep4" method="POST" action="{{ route('account-premium-video-system-processStep4')}}">
                     {{ csrf_field() }}
 
                     <h3>Voice/Music Preferences</h3>
@@ -171,7 +171,7 @@
                                         <input type="checkbox" class="custom-control-input" id="customCheck19" name="musicSelection[]" value="music1"
                                                @if(in_array('music1', $music_list))
                                                    checked
-                                               @endif>>
+                                               @endif>
                                         <label class="custom-control-label" for="customCheck19"></label>
                                     </div>
                                 </div>
@@ -191,6 +191,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="float-r mt-3 mb-5">
+                        <button class="btn btn-primary" type="submit">UPDATE DATA<i class="arrow-right"></i></button>
                     </div>
                 </form>
             </div>

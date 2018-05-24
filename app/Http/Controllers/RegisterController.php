@@ -91,7 +91,7 @@ class RegisterController extends Controller
         ]);
 
         //for creating subfolder for a particular client
-        $path = public_path('storage\client_images\\' . $userId . '\\');
+        $path = public_path('storage\client_images\\' . $userId . '\\general_images\\');
         if (!File::exists($path)) {
             File::makeDirectory($path, 0775, true);
         }
