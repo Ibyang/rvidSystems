@@ -772,12 +772,14 @@ class MyVideoController extends Controller
 
         $premium = AgentVideoOrders::where('ID', $videoid)->get()->first();
 
+        $premium_progress = videoProgress::where('video_ID', $videoid)->get()->first();
+
         //to store videoID and videoAddress in Session
         Session::put('videoID', $videoid);
         Session::put('videoAddress', $premium['videoAddress']);
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.premium-video', compact('fullname',  'agent', 'logo_pic', 'premium'));
+        return view('frontend.pages.premium-video', compact('fullname',  'agent', 'logo_pic', 'premium', 'premium_progress'));
 
     }
 
@@ -1327,8 +1329,10 @@ class MyVideoController extends Controller
         $userid = Auth::user()->id;
         $effects = Input::get('transition');
         $ctr_effects = count($effects);
-        $arr_ids = [];
-        $arrids = [];
+
+//        $arr_ids = [];
+//        $arrids = [];
+//        $vIDs = [];
 
         //dd($effects[2]);
 
@@ -1339,12 +1343,14 @@ class MyVideoController extends Controller
         $images = Input::get('selectedImages');
         $arr_images = explode(',', $images);
 
+
         if ($request->file('image_files')) {
             $ctr = 0;
             foreach($request->file('image_files') as $image)
             {
 
-                if(!empty($image) && ($ctr < count($arr_images))){
+//                if(!empty($image) && ($ctr < count($arr_images))){
+                if(!empty($image)){
                     $path = public_path('storage\client_images\\' . $userid . '\\premium_pictures\\Video' . $videoid . '\\');
                     if(!File::exists($path)){
                         File::makeDirectory($path, 0775, true);
@@ -1363,18 +1369,30 @@ class MyVideoController extends Controller
                         'effect_style' => $effects[$ctr],
                     );
                     $picID = premiumVideoPicture::create($picdetails_arr);
-                    $lastInsertedId = $picID->ID;
-                    array_push($arr_ids, $lastInsertedId);
+//                    $lastInsertedId = $picID->ID;
+//                    array_push($arr_ids, $lastInsertedId);
 //                    }
                 }
                 $ctr++;
             }
-            Session::put('arrids',$arr_ids);
+            //dd($arr_ids);
+//            Session::put('arrids', $arr_ids);
         }
         else
         {
-            $vID = Session::get('arrids');
-            dd($vID);
+            $cnt = 0;
+            $pics = premiumVideoPicture::where('video_ID', $videoid)->get();
+            foreach($pics as $pic){
+//                dd($pic['effect_style']);
+                premiumVideoPicture::where('ID', $pic['ID'])->update([
+                    'effect_style' => $effects[$cnt],
+                ]);
+                $cnt++;
+            }
+
+
+//            $vIDs = Session::get('arrids');
+//            dd("hello world");
 //            for($cnt=0; $cnt < $ctr_effects; $cnt++){
 //                premiumVideoPicture::where('video_ID', $videoid)->update([
 //                    'effect_style' => $effects[$cnt],
@@ -1384,7 +1402,7 @@ class MyVideoController extends Controller
 //            }
         }
 
-//        return redirect()->route('getPremiumVideoSystem', ['id' => $videoid]);
+        return redirect()->route('getPremiumVideoSystem', ['id' => $videoid]);
 
     }
 

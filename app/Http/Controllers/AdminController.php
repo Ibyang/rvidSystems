@@ -50,7 +50,7 @@ class AdminController extends Controller
 //            })->where('agent_premium_videos.status', '=', 'Compiling')
 //            ->get();
 
-        $generic_videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
+        $generic_videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name", "users.id")
             ->leftjoin("users", function($join) {
                 $join->on("users.id", "=", "agent_video_orders.agent_ID");
             })->where('agent_video_orders.category', '=', 'Generic')
@@ -65,7 +65,7 @@ class AdminController extends Controller
             ->orWhere('agent_video_orders.status', '=', 'In-Production')
             ->get();
 
-        $premium_videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
+        $premium_videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name", "users.id")
             ->leftjoin("users", function($join) {
                 $join->on("users.id", "=", "agent_video_orders.agent_ID");
             })->where('agent_video_orders.category', '=', 'Premium')

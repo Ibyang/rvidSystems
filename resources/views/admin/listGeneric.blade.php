@@ -39,7 +39,7 @@
                                 <thead>
                                 <tr class="filters">
                                     <th>Video ID</th>
-                                    <th>URL</th>
+                                    <th>Video Address</th>
                                     <th>Agent Name</th>
                                     <th>Status</th>
                                     <th>Order Date</th>
@@ -52,7 +52,7 @@
                                         @foreach($videos as $video)
                                             <tr>
                                                 <td style="text-align: center">{{ $video->ID }}</td>
-                                                <td>{{ $video->url_address }}</td>
+                                                <td>{{ $video->videoAddress }}</td>
                                                 <td>{{ $video->name }}</td>
                                                 <td>
                                                     @if($video->status === 'Compiling')

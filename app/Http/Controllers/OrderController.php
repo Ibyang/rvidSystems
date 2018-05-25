@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 use App\AgentVideoOrders;
 use App\videoProgress;
 use App\standardVideoPicture;
+use App\premiumVideoPicture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -71,10 +72,10 @@ class OrderController extends Controller
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
 //        $videos = AgentPremium::orderBy('ID', 'ASC')->get();
-        $videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name")
+        $videos = DB::table("agent_video_orders")->select("agent_video_orders.*", "users.name", "users.id")
             ->leftjoin("users", function($join) {
                 $join->on("users.id", "=", "agent_video_orders.agent_ID");
-            })->where('agent_video_orders.category', '=', 'Standard')
+            })->where('agent_video_orders.category', '=', 'Premium')
             ->get();
         return view('admin.listPremium', compact('fullname', 'role', 'pic', 'videos'));
 
@@ -265,11 +266,26 @@ class OrderController extends Controller
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
 
-        $path2 = '../../storage/client_images/' . $userid . '/pictures/Video' . $videoid . '/';
+        $path2 = '../../storage/client_images/' . $userid . '/standard_pictures/Video' . $videoid . '/';
 
         $standards = standardVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get();
 
         return view('admin.listStandardStoryboard', compact('fullname', 'role', 'pic', 'standards', 'path2'));
+
+    }
+
+
+    public function viewPremiumVideoMaterials($userid, $videoid)
+    {
+        $fullname = Auth::user()->name;
+        $role = Auth::user()->role;
+        $pic = Auth::user()->profile_pic;
+
+        $path2 = '../../storage/client_images/' . $userid . '/premium_pictures/Video' . $videoid . '/';
+
+        $premiums = premiumVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get();
+
+        return view('admin.listPremiumStoryboard', compact('fullname', 'role', 'pic', 'premiums', 'path2'));
 
     }
 

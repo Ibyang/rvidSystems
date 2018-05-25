@@ -38,7 +38,8 @@
                             <table class="table table-bordered " id="table">
                                 <thead>
                                 <tr class="filters">
-                                    <th>Order ID</th>
+                                    <th>Video ID</th>
+                                    <th>Video Address</th>
                                     <th>Agent Name</th>
                                     <th>Status</th>
                                     <th>Order Date</th>
@@ -51,6 +52,7 @@
                                         @foreach($videos as $video)
                                             <tr>
                                                 <td style="text-align: center">{{ $video->ID }}</td>
+                                                <td>{{ $video->videoAddress }}</td>
                                                 <td>{{ $video->name }}</td>
                                                 <td>
                                                     @if($video->status === 'Compiling')

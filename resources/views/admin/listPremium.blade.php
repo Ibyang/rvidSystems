@@ -39,10 +39,11 @@
                                 <thead>
                                 <tr class="filters">
                                     <th>Video ID</th>
-                                    <th>URL</th>
+                                    <th>Video Address</th>
                                     <th>Agent Name</th>
                                     <th>Status</th>
                                     <th>Order Date</th>
+                                    <th>Due Date</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -51,7 +52,7 @@
                                         @foreach($videos as $video)
                                             <tr>
                                                 <td style="text-align: center">{{ $video->ID }}</td>
-                                                <td>{{ $video->url_address }}</td>
+                                                <td>{{ $video->videoAddress }}</td>
                                                 <td>{{ $video->name }}</td>
                                                 <td>
                                                     @if($video->status === 'Compiling')
@@ -61,8 +62,10 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ \Carbon\Carbon::parse($video->created_at)->format('d/m/Y H:m:s') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($video->due_date)->format('d/m/Y H:m:s') }}</td>
                                                 <td>
-                                                    <a href="{{ url('getVideoDetails/' . $video->ID) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Premium Order"></i></a>
+                                                    <a href="{{ url('viewPremiumVideoMaterials/' . $video->id . '/' . $video->ID) }}">View Storyboard</a>
+                                                    &nbsp;&nbsp;&nbsp;<a href="{{ url('getVideoDetails/' . $video->ID) }}"><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="Update Premium Order"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

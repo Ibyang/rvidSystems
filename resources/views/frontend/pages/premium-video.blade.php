@@ -21,10 +21,10 @@
                         <td>{{ $premium['videoAddress'] }}</td>
                         <td>
                             <div class="progress">
-                                @if($premium['total_progress'] == NULL)
+                                @if($premium['progress_value'] == NULL)
                                     @php $progress_value = 0; @endphp
                                 @else
-                                    @php $progress_value = $premium['total_progress']; @endphp
+                                    @php $progress_value = $premium['progress_value']; @endphp
                                 @endif
                                     <div class="progress-bar" role="progressbar" style="width: {{ $progress_value }}%;" aria-valuenow="{{ $progress_value }}" aria-valuemin="0" aria-valuemax="100"><span style="color: black">{{ $progress_value }}%</span></div>
                                 {{--<div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">30%</div>--}}
@@ -54,27 +54,57 @@
                 <table class="table-action" cellpadding="0" cellspacing="0" width="100%">
                     <tr>
                         <td width="170"><i class="make-video-step v-pictures"></i><div class="d-inline-block align-top pl-2">Pictures</div></td>
-                        <td width="170">Done</td>
+                        <td width="170">
+                            @if($premium_progress['picture_progress'] < 15)
+                                To Complete
+                            @elseif($premium_progress['picture_progress'] == 15)
+                                Done
+                            @endif
+                        </td>
                         <td>We will obtain your pictures either directly or through <a href=" {{ route('account-premium-video-system-pictures') }} ">Picture Tool</a>.</td>
                     </tr>
                     <tr>
                         <td><i class="make-video-step v-script"></i><div class="d-inline-block align-top pl-2">Script</div></td>
-                        <td>Done</td>
+                        <td>
+                            @if($premium_progress['script_progress'] < 15)
+                                To Complete
+                            @elseif($premium_progress['script_progress'] == 15)
+                                Done
+                            @endif
+                        </td>
                         <td>We will work with you to write your <a href=" {{ route('account-premium-video-system-script') }} ">Script Tool</a>.</td>
                     </tr>
                     <tr>
                         <td><i class="make-video-step v-template"></i><div class="d-inline-block align-top pl-2">Template</div></td>
-                        <td>Done</td>
+                        <td>
+                            @if($premium_progress['template_progress'] < 15)
+                                To Complete
+                            @elseif($premium_progress['template_progress'] == 15)
+                                Done
+                            @endif
+                        </td>
                         <td>We will apply your preferences or <a href=" {{ route('account-premium-video-system-template') }} ">Update Template</a>.</td>
                     </tr>
                     <tr>
                         <td><i class="make-video-step v-voice"></i><div class="d-inline-block align-top pl-2">Voice + Music</div></td>
-                        <td>To Complete</td>
+                        <td>
+                            @if($premium_progress['voice_and_music'] < 15)
+                                To Complete
+                            @elseif($premium_progress['voice_and_music'] == 15)
+                                Done
+                            @endif
+                        </td>
                         <td>We will apply your preferences or <a href=" {{ route('account-premium-video-system-music') }} ">Update Voice + Music</a></td>
                     </tr>
                     <tr>
                         <td><i class="make-video-step v-finish"></i><div class="d-inline-block align-middle pl-2">Finish</div></td>
-                        <td>To Complete</td>
+                        <td>
+                            @if($premium_progress['edits'] < 40)
+                                To Complete
+                            @elseif($premium_progress['voice_and_music'] == 40)
+                                Done
+                            @endif
+                        </td>
                         <td>You will need to approve storyboard before for production. <a href=" {{ route('account-premium-video-system-storyboard') }} ">See Storyboard</a>.</td>
                     </tr>
                     <tr>

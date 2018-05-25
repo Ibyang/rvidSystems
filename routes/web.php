@@ -549,6 +549,9 @@ Route::group(['middleware' => 'guest'], function() {
     //to view video materials for Standard Video
     Route:: get('/viewStandardVideoMaterials/{userid}/{id}', 'OrderController@viewStandardVideoMaterials')->name('viewStandardVideoMaterials');
 
+    //to view video materials for Standard Video
+    Route:: get('/viewPremiumVideoMaterials/{userid}/{id}', 'OrderController@viewPremiumVideoMaterials')->name('viewPremiumVideoMaterials');
+
     //to view Premium Video System
     Route:: get('/account/getPremiumVideoSystem/{id}', 'MyVideoController@getPremiumVideoSystem')->name('getPremiumVideoSystem');
 

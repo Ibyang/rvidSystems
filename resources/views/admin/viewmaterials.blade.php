@@ -70,7 +70,7 @@
                                                     <thead>
                                                     <tr>
                                                         <th>Video ID</th>
-                                                        <th>URL Address</th>
+                                                        <th>Video Address</th>
                                                         <th>Status</th>
                                                         <th>Apply DriveBy</th>
                                                         <th>Apply LookFirst</th>
@@ -82,7 +82,8 @@
                                                     @foreach($genvideos as $genvideo)
                                                         <tr>
                                                             <td>{{ $genvideo->ID }}</td>
-                                                            <td>{{ $genvideo->url_address }}</td>
+{{--                                                            <td>{{ $genvideo->url_address }}</td>--}}
+                                                            <td>{{ $genvideo->videoAddress }}</td>
                                                             <td>
                                                                 @if($genvideo->status == 'Compiling')
                                                                     <span class="label label-sm label-success">{{ $genvideo->status }}</span>
@@ -123,7 +124,7 @@
                                                     <thead>
                                                     <tr>
                                                         <th>Video ID</th>
-                                                        <th>Property Address</th>
+                                                        <th>Video Address</th>
                                                         <th>Status</th>
                                                         <th>Apply DriveBy</th>
                                                         <th>Apply LookFirst</th>
@@ -178,8 +179,7 @@
                                                     <thead>
                                                     <tr>
                                                         <th>Video ID</th>
-                                                        <th>URL Address</th>
-                                                        <th>Property Address</th>
+                                                        <th>Video Address</th>
                                                         <th>Status</th>
                                                         <th>Apply DriveBy</th>
                                                         <th>Apply LookFirst</th>
@@ -191,31 +191,31 @@
                                                     @foreach($premvideos as $premvideo)
                                                         <tr>
                                                             <td>{{ $premvideo->ID }}</td>
-                                                            <td>{{ $premvideo->url_address }}</td>
+                                                            {{--<td>{{ $premvideo->url_address }}</td>--}}
                                                             <td>{{ $premvideo->videoAddress }}</td>
                                                             <td>
-                                                                @if($genvideo->status == 'Compiling')
+                                                                @if($premvideo->status == 'Compiling')
                                                                     <span class="label label-sm label-success">{{ $genvideo->status }}</span>
-                                                                @elseif($genvideo->status == 'In-Production')
+                                                                @elseif($premvideo->status == 'In-Production')
                                                                     <span class="label label-sm label-info">{{ $genvideo->status }}</span>
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                                @if($genvideo->apply_driveby == '1')
+                                                                @if($premvideo->apply_driveby == '1')
                                                                     <span>Yes</span>
-                                                                @elseif($genvideo->apply_driveby == '0')
+                                                                @elseif($premvideo->apply_driveby == '0')
                                                                     <span>No</span>
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                                @if($genvideo->apply_lookfirst == '1')
+                                                                @if($premvideo->apply_lookfirst == '1')
                                                                     <span>Yes</span>
-                                                                @elseif($genvideo->apply_lookfirst == '0')
+                                                                @elseif($premvideo->apply_lookfirst == '0')
                                                                     <span>No</span>
                                                                 @endif
                                                             </td>
-                                                            <td>{{ $genvideo->progress_value }}</td>
-                                                            <td>{{ $genvideo->due_date }}</td>
+                                                            <td>{{ $premvideo->progress_value }}</td>
+                                                            <td>{{ $premvideo->due_date }}</td>
                                                         </tr>
                                                     @endforeach
                                                     </tbody>
