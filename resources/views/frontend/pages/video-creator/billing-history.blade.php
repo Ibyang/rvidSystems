@@ -70,7 +70,7 @@
 
                             <div>
                                 <div class="float-r mr-4">
-                                    <div class="billing-arrow"></div>
+                                    {{--<div class="billing-arrow"></div>--}}
                                 </div>
                                 <div class="clear"></div>
 
@@ -89,73 +89,79 @@
                                         </div>
                                         <div class="row mt-4">
                                             <div class="col-sm pl-0">
-                                                <div class="pb-1">Date: November 6 2017</div>
+                                                <div class="pb-1">{{ \Carbon\Carbon::parse($billing_details->billing_date)->format('d/m/Y')}}</div>
                                                 <div class="row mt-0">
                                                     <div class="col-md-auto pl-0 pr-0">To:</div>
                                                     <div class="col-md-auto pl-2">
-                                                        <div>Billing Name</div>
-                                                        <div>Address</div>
-                                                        <div>Address</div>
+                                                        <div id="client_company"></div>
+                                                        {{--<div>Address</div>--}}
+                                                        {{--<div>Address</div>--}}
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-sm pr-0">
                                                 <div class="billing-border">
-                                                    Video #XXXX<br>
-                                                    33 South Rd<br>
-                                                    Bassendean WA 6054
+                                                    Video #{{ $billing_details->video_ID }}<br>
+                                                    <span id="client_address"></span><br>
+                                                    <span id="client_suburb"></span>&nbsp;<span id="client_state"></span>&nbsp;<span id="client_postcode"></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     DETAILS
-                                    <table class="billing-table mt-2" cellpadding="0" cellspacing="0" width="100%">
-                                        <tr>
-                                            <td>1</td>
-                                            <td>#XXXX Generic Video Production</td>
-                                            <td>$75.0</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td class="text-right"><span class="font-weight-bold">Cost</span></td>
-                                            <td>$10.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td class="text-right"><span class="font-weight-bold">Total</span></td>
-                                            <td>$110.00</td>
-                                        </tr>
-                                    </table>
-                                    <div class="mt-3 mb-2">PAYMENT/RECEIPT</div>
-                                    <div class="row">
-                                        <div class="col-sm-2 text-right">Paid</div>
-                                        <div class="col-sm-8">Credit Card XXX-0004</div>
-                                        <div class="col-sm-2">Balance</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-2 text-right">Date</div>
-                                        <div class="col-sm-8">November 6 2017</div>
-                                        <div class="col-sm-2">$0.00</div>
-                                    </div>
+                                    <table class="billing-table mt-2" id="invoiceDetailsTable" cellpadding="0" cellspacing="0" width="100%"></table>
+                                    <!-- COMMENT THIS PORTION FOR NOW -->
+                                    {{--<div class="mt-3 mb-2">PAYMENT/RECEIPT</div>--}}
+                                    {{--<div class="row">--}}
+                                        {{--<div class="col-sm-2 text-right">Paid</div>--}}
+                                        {{--<div class="col-sm-8">Credit Card XXX-0004</div>--}}
+                                        {{--<div class="col-sm-2">Balance</div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="row">--}}
+                                        {{--<div class="col-sm-2 text-right">Date</div>--}}
+                                        {{--<div class="col-sm-8">November 6 2017</div>--}}
+                                        {{--<div class="col-sm-2">$0.00</div>--}}
+                                    {{--</div>--}}
                                     <div class="row mt-4 mb-0">
                                         <div class="col-sm-2"></div>
                                         <div class="col-sm-10 pr-0">
                                             <div class="billing-button text-right">
                                                 <div class="d-inline-block">
-                                                    <button type="submit" class="btn btn-primary btn-ff0033">
+                                                    <button type="submit" class="btn btn-primary btn-ff0033" id="btnPrintInvoice">
                                                         <i class="billing-icon billing-print"></i><span>Print</span>
                                                     </button>
                                                 </div>
                                                 <div class="d-inline-block">
-                                                    <button type="submit" class="btn btn-primary btn-ff0033">
-                                                        <i class="billing-icon billing-download"></i><span>Download</span>
-                                                    </button>
+                                                    <form method="POST" action=" {{ route('getInvoicePDF') }}">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" id="company" name="company" value="{{ $agent->name_agency }}">
+                                                        <input type="hidden" id="address" name="address"value="{{ $agent->address }}">
+                                                        <input type="hidden" id="suburb" name="suburb" value="{{ $agent->suburb }}">
+                                                        <input type="hidden" id="state" name="state" value="{{ $agent->state }}">
+                                                        <input type="hidden" id="postcode" name="postcode" value="{{ $agent->postcode }}">
+                                                        <input type="hidden" id="video_id" name="video_id" value=" {{ $billing_details->video_ID }}">
+                                                        <input type="hidden" id="bill_date" name="bill_date" value="{{ $billing_details->billing_date }}">
+                                                        <button type="submit" class="btn btn-primary btn-ff0033">
+                                                            <i class="billing-icon billing-download"></i><span>Download</span>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                                 <div class="d-inline-block">
-                                                    <button type="submit" class="btn btn-primary btn-ff0033">
-                                                        <i class="billing-icon billing-email"></i><span class="pl-2">Email</span>
-                                                    </button>
+                                                    <form method="POST" action=" {{ route('emailInvoice') }}">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" id="email" name="email" value="{{ $agent->email }}">
+                                                        <input type="hidden" id="company" name="company" value="{{ $agent->name_agency }}">
+                                                        <input type="hidden" id="address" name="address"value="{{ $agent->address }}">
+                                                        <input type="hidden" id="suburb" name="suburb" value="{{ $agent->suburb }}">
+                                                        <input type="hidden" id="state" name="state" value="{{ $agent->state }}">
+                                                        <input type="hidden" id="postcode" name="postcode" value="{{ $agent->postcode }}">
+                                                        <input type="hidden" id="video_id" name="video_id" value=" {{ $billing_details->video_ID }}">
+                                                        <input type="hidden" id="bill_date" name="bill_date" value="{{ $billing_details->billing_date }}">
+                                                        <button type="submit" class="btn btn-primary btn-ff0033">
+                                                            <i class="billing-icon billing-email"></i><span class="pl-2">Email</span>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                                 <div class="d-inline-block">
                                                     <button type="submit" class="btn btn-primary btn-ff0033">
@@ -168,93 +174,6 @@
                                 </div>
                             </div>
 
-
-
-
-
-
-
-
-
-
-
-                            <div id="dataid"></div>
-
-                            <div class="">
-                                <div class="text-left">
-                                    {{ \Carbon\Carbon::parse($billing_details->billing_date)->format('d/m/Y')}}<br>
-                                    To: <span id="client_company"></span><br>
-                                    Address<br>
-                                    Address<br>
-                                </div>
-                                <div class="text-right">
-                                    Video # {{ $billing_details->video_ID }}</span><br>
-                                    <span id="client_address"></span><br>
-                                    <span id="client_suburb"></span>&nbsp;<span id="client_state"></span>&nbsp;<span id="client_postcode"></span>
-                                </div>
-                                DETAILS
-                                <table class=table id="invoiceDetailsTable" style="border: 1px"></table>
-                                {{--PAYMENT/RECEIPT--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col">Paid</div>--}}
-                                    {{--<div class="col">Credit Card XXX-0004</div>--}}
-                                    {{--<div class="col">Balance</div>--}}
-                                {{--</div>--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col">Date</div>--}}
-                                    {{--<div class="col">November 6 2017</div>--}}
-                                    {{--<div class="col">$0.00</div>--}}
-                                {{--</div>--}}
-                                <div class="row">
-                                    <div class="col">
-
-                                            <button type="submit" class="btn btn-primary" id="btnPrintInvoice">
-                                                Print
-                                            </button>
-
-                                    </div>
-
-                                    <div class="col">
-                                        <form method="POST" action=" {{ route('getInvoicePDF') }}">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" id="company" name="company" value="{{ $agent->name_agency }}">
-                                            <input type="hidden" id="address" name="address"value="{{ $agent->address }}">
-                                            <input type="hidden" id="suburb" name="suburb" value="{{ $agent->suburb }}">
-                                            <input type="hidden" id="state" name="state" value="{{ $agent->state }}">
-                                            <input type="hidden" id="postcode" name="postcode" value="{{ $agent->postcode }}">
-                                            <input type="hidden" id="video_id" name="video_id" value=" {{ $billing_details->video_ID }}">
-                                            <input type="hidden" id="bill_date" name="bill_date" value="{{ $billing_details->billing_date }}">
-
-                                            <button type="submit" class="btn btn-primary">
-                                                Download
-                                            </button>
-                                        </form>
-                                    </div>
-                                    <div class="col">
-                                        <form method="POST" action=" {{ route('emailInvoice') }}">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" id="email" name="email" value="{{ $agent->email }}">
-                                            <input type="hidden" id="company" name="company" value="{{ $agent->name_agency }}">
-                                            <input type="hidden" id="address" name="address"value="{{ $agent->address }}">
-                                            <input type="hidden" id="suburb" name="suburb" value="{{ $agent->suburb }}">
-                                            <input type="hidden" id="state" name="state" value="{{ $agent->state }}">
-                                            <input type="hidden" id="postcode" name="postcode" value="{{ $agent->postcode }}">
-                                            <input type="hidden" id="video_id" name="video_id" value=" {{ $billing_details->video_ID }}">
-                                            <input type="hidden" id="bill_date" name="bill_date" value="{{ $billing_details->billing_date }}">
-
-                                            <button type="submit" class="btn btn-primary">
-                                                Email
-                                            </button>
-                                        </form>
-
-                                    </div>
-                                    <div class="col">
-                                        <button type="submit" class="btn btn-primary">
-                                            Query
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div> <!-- modal body -->
                         <div class="modal-footer">
@@ -274,8 +193,6 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
 
@@ -322,7 +239,8 @@
                             output += '<tr><td>' + ctr + '</td><td>' + e.description + '</td><td style="text-align: right">$' + e.amount + '</td></tr>';
                         });
                         // print_sum = '<tr><td colspan="3" style="text-align: right;">' + sum_items + '</td></tr>';
-                        print_sum = '<tr><td></td><td></td><td style="text-align: right"><b>Total: </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$' + sum_items.toFixed(2) + '</td></tr>';
+                        // print_sum = '<tr><td></td><td></td><td style="text-align: right"><b>Total: </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$' + sum_items.toFixed(2) + '</td></tr>';
+                        print_sum = '<tr><td></td><td class="text-right"><span class="font-weight-bold">Total</span></td><td>' + sum_items.toFixed(2) + '</td></tr>';
 
                         $('#invoiceDetailsTable').append(output);
                         $('#invoiceDetailsTable').append(print_sum);

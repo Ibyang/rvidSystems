@@ -48,8 +48,8 @@
                 <a href="">What <br>are <br>these?</a>    
               </p>
               <div class="row">
-                  <div class="col-sm"><a href=" {{ route('driveby') }}"><i class="driveby-link"></i></a></div>
-                  <div class="col-sm"><a href=" {{ route('look-first') }}"><i class="lookfirst-link"></i></a></div>
+                  <div class="col-sm"><a href=" {{ route('what-is-driveby') }}"><i class="driveby-link"></i></a></div>
+                  <div class="col-sm"><a href=" {{ route('what-is-lookfirst') }}"><i class="lookfirst-link"></i></a></div>
               </div>
               <div class="header-right-box">INCLUDED FREE</div>
           </div>

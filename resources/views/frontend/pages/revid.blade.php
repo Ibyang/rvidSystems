@@ -6,7 +6,7 @@
         <div class="border-bot3">
             <h1 class="c-6600cc">What is REVid?</h1>
             <div class="row">
-               <div class="col-sm"><a href=""><img src={{ asset('storage/what-is-revid.jpg') }} /></a></div>
+               <div class="col-sm"><a href=" {{ route('revid-video') }} "><img src={{ asset('storage/what-is-revid.jpg') }} /></a></div>
                <div class="col-sm">
                 <ul class="list">
                     <li>It’s "Video" for social media marketing,

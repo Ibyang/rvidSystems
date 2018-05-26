@@ -42,6 +42,14 @@ Route::group(['middleware' => 'guest'], function() {
         return view('frontend.pages.revid', compact('social'));
     })->name('what-is-revid');
 
+    Route::get('/what-is-driveby', function () {
+        $social = SocialMedia::where('ID', 1)->first();
+        $groups = Agent::distinct()->get(['group']);
+        $agencies = Agent::distinct()->get(['name_agency']);
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.what-is-driveby', compact('social', 'groups', 'agencies', 'states'));
+    })->name('what-is-driveby');
+
     Route::get('/why-use-revid', function () {
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
@@ -162,9 +170,9 @@ Route::group(['middleware' => 'guest'], function() {
         return view('frontend.pages.driveby', compact('states', 'social', 'groups', 'agencies'));
     })->name('driveby');
 
-    Route::get('/look-first', function () {
+    Route::get('/what-is-lookfirst', function () {
         return view('frontend.pages.look-first');
-    })->name('look-first');
+    })->name('what-is-lookfirst');
 
     Route::get('/look-first-video', function () {
         $groups = Agent::distinct()->get(['group']);

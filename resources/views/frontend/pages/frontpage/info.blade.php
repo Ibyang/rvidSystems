@@ -7,7 +7,7 @@
             music to a fully edited video production</p></a>
       </div>
       <div class="col col-md-4">
-        <a href=" {{ route('driveby') }} " style="text-decoration: none; color: black"><h3>What is DriveBy?</h3>
+        <a href=" {{ route('what-is-driveby') }} " style="text-decoration: none; color: black"><h3>What is DriveBy?</h3>
         <p class="text-justify font-weight-bold">DriveBy uses Geolocation to make the
             “drive-by” experience full service – <a href="">see
             demo</a> – means more buyer engagement.</p></a>

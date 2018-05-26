@@ -112,8 +112,8 @@
               <ul class="sub-nav">
                   <li><a href=" {{ route('home') }} " class="main">Home</a></li>
                   <li><a href=" {{ route('pricing') }} " class="main">Pricing</a></li>
-                  <li><a href=" {{ route('driveby') }} " class="sub">What is<br>DriveBy?</a></li>
-                  <li><a href="  {{ route('look-first') }} " class="sub">What is<br>LookFirst?</a></li>
+                  <li><a href=" {{ route('what-is-driveby') }} " class="sub">What is<br>DriveBy?</a></li>
+                  <li><a href="  {{ route('what-is-lookfirst') }} " class="sub">What is<br>LookFirst?</a></li>
               </ul>
             </div>
         </div>

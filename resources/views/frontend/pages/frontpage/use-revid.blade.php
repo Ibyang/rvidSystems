@@ -26,7 +26,7 @@
                     <i class="link-icon driveby"></i>
                 <p>DriveBy</p></a>
             </li>
-            <li><a href="{{ route('look-first') }}">
+            <li><a href="{{ route('what-is-lookfirst') }}">
                     <i class="link-icon lookfirst"></i>
                 <p>LookFirst</p></a>
             </li>
@@ -54,11 +54,11 @@
                 <i class="link-icon sell"></i>
             <p>Helps Sell</p></a>
         </li>
-        <li><a href=" {{ route('driveby') }}">
+        <li><a href=" {{ route('what-is-driveby') }}">
                 <i class="link-icon driveby"></i>
             <p>DriveBy</p></a>
         </li>
-        <li><a href=" {{ route('look-first') }}">
+        <li><a href=" {{ route('what-is-lookfirst') }}">
                 <i class="link-icon lookfirst"></i>
             <p>LookFirst</p></a>
         </li>

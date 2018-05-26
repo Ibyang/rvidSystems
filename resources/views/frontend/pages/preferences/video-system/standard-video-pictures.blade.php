@@ -22,9 +22,25 @@
                             <div class="col-sm pr-0"><a href="">What is this?</a></div>
                          </div>
                          <div class="story-board-block pl-3 pr-3" >
-                             <button class="btn" onclick="event.preventDefault();"><i class="standard-video sv-save"></i>SAVE</button>
+                             <button class="btn" id="btnSaveStoryboard" onclick="event.preventDefault();"><i class="standard-video sv-save"></i>SAVE</button>
 
                              <div id="storyContent">
+                                 @if(count($pics) > 0)
+                                     <input type="file" multiple>
+                                     <p>Add or Drag and Drop <br><span class="c-6600cc"><b>+</b></span><br>Picture</p>
+                                     <select name="transition" style="margin-bottom: 10px;">
+                                         <option value="Fade">Fade</option>
+                                         <option value='Slide'>Slide</option>
+                                         <option value='Flip'>Flip</option>
+                                         <option value='Wipe'>Wipe</option>
+                                         <option value='Split'>Split</option>
+                                         <option value='Zoom'>Zoom</option>
+                                         <option value='Page Peel'>Page Peel</option>
+                                     </select>
+                                 @endif
+                             </div>
+
+                             <div id="moveStoryContent">
                                  @if(count($pics) > 0)
                                      @foreach($pics as $pic)
                                          <input type="file" multiple>
@@ -44,23 +60,10 @@
                                              <option value="Page Peel" {{ $pic['effect_style'] === 'Page Peel' ? 'selected' : '' }}>Page Peel</option>
                                          </select>
                                      @endforeach
-                                 @else
-                                     <input type="file" multiple>
-                                     <p>Add or Drag and Drop <br><span class="c-6600cc"><b>+</b></span><br>Picture</p>
-                                     <select name="transition" style="margin-bottom: 10px;">
-                                         <option value="Fade">Fade</option>
-                                         <option value='Slide'>Slide</option>
-                                         <option value='Flip'>Flip</option>
-                                         <option value='Wipe'>Wipe</option>
-                                         <option value='Split'>Split</option>
-                                         <option value='Zoom'>Zoom</option>
-                                         <option value='Page Peel'>Page Peel</option>
-                                     </select>
                                  @endif
                              </div>
-
-                             <div id="moveStoryContent"></div>
                          </div>
+
                          <div class="text-right">
                              <a class="c0066ff"><b>Add +</b></a>
                          </div>
@@ -119,6 +122,7 @@
 
     $(document).ready(function() {
 
+        $('#storyContent').show();
         var images = [];
 
         $("#image_files").change(function(){
@@ -171,7 +175,7 @@
             var array_cnt = searchIDs.length;
 
             $('#storyContent').remove();
-            $('#moveStoryContent').empty();
+            //$('#moveStoryContent').empty();
             for(i=0; i<array_cnt; i++){
                 var result = searchIDs[i].split('|');
                 var src = result[0];
@@ -194,6 +198,10 @@
             }
             $('#selectedImages').val(files_arr);
         });
+
+        $('#btnSaveStoryboard').click(function () {
+            $('#frmStep1').submit();
+        })
 
     });
 
