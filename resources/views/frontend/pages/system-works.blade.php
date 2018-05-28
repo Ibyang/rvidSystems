@@ -5,7 +5,9 @@
         <div class="border-bot3">
             <h1 class="c-6600cc">How the System Works</h1>
             <div class="row">
-                <div class="col-sm"><a href=""><img src={{ asset('storage/get-started.jpg') }} /></a></div>
+                <div class="col-sm">
+                    <a href= {{ route('how-system-works-video') }}><img src={{ asset('storage/how-system-works.jpg') }} /></a>
+                </div>
                 <div class="col-sm">
                     <ul class="list">
                         <li>It’s "Video" for social media marketing,

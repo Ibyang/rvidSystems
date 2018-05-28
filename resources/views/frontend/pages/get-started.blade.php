@@ -5,7 +5,9 @@
     <div class="container" id="content">
         <h1 class="c-6600cc">Get Started Today!</h1>
         <div class="row">
-           <div class="col-sm"><a href=""><img src={{ asset('storage/get-started.jpg') }} /></a></div>
+           <div class="col-sm">
+               <a href={{ route('how-to-join') }}><img src={{ asset('storage/get-started.jpg') }} /></a>
+           </div>
            <div class="col-sm">
             <ul class="list">
                 <li>It’s "Video" for social media marketing,
@@ -26,7 +28,7 @@
              with your monthly membership
            </div>
         </div>
-        
+        <hr>
         @include('frontend.register.register-info')
         
     </div>

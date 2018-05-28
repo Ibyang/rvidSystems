@@ -171,14 +171,19 @@ Route::group(['middleware' => 'guest'], function() {
     })->name('driveby');
 
     Route::get('/what-is-lookfirst', function () {
-        return view('frontend.pages.look-first');
+        $groups = Agent::distinct()->get(['group']);
+        $agencies = Agent::distinct()->get(['name_agency']);
+        $states = State::get(['state_code', 'state_name']);
+        $social = SocialMedia::where('ID', 1)->first();
+        return view('frontend.pages.look-first', compact('states', 'social', 'groups', 'agencies'));
     })->name('what-is-lookfirst');
 
     Route::get('/look-first-video', function () {
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.look-first-video', compact('states', 'groups', 'agencies'));
+        $social = SocialMedia::where('ID', 1)->first();
+        return view('frontend.pages.look-first-video', compact('states', 'groups', 'agencies', 'social'));
     })->name('look-first-video');
 
     Route::get('/get-started', function () {

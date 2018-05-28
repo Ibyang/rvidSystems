@@ -10,7 +10,9 @@
                     volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
                     ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
             </div>
-            <div class="col-sm"><img src="{{ asset('storage/what-is-driveby3.jpg') }}"></div>
+            <div class="col-sm">
+                <a href={{ route('driveby') }}><img src="{{ asset('/storage/what-is-driveby3.jpg') }}"></a>
+            </div>
         </div>
         <div class="border-top-bot-999 py-4 look-first">
             <h1 class="c0066ff">It “Supercharges” the value of the Signboard</h1>

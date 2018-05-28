@@ -16,17 +16,17 @@
     </div>
     <div class="row step-info">
         <div class="col-md-auto">
-           <h3 class="c-6600cc">Generic Video <br>$75</h3>
-         <div class="d-inline-block">
-             <i class="video-icon url"></i>
-             <p class="text-center">URL<br><b>Details</b></p>
-         </div>
-         <div class="d-inline-block align-top">
-            <p><b>We do it<br>for you</b></p>
-         </div>
+            <a href=" {{ route('make-video-generic') }}"><h3 class="c-6600cc">Generic Video <br>$75</h3></a>
+            <div class="d-inline-block">
+                <i class="video-icon url"></i>
+                <p class="text-center">URL<br><b>Details</b></p>
+            </div>
+            <div class="d-inline-block align-top">
+                <p><b>We do it<br>for you</b></p>
+            </div>
         </div>
         <div class="col-md-auto">
-            <h3 class="c0066ff">Standard Video <br>$125</h3>
+            <a href=" {{ route('make-video-standard') }}"><h3 class="c0066ff">Standard Video <br>$125</h3></a>
             <div class="row step-info2 text-center">
                 <div class="col-md-auto">
                     <i class="video-icon pic"></i><br>
@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="col-md-auto">
-            <h3 class="c-ff0033">Premium  Video <br>$375</h3>
+            <a href=" {{ route('make-video-premium') }}"><h3 class="c-ff0033">Premium  Video <br>$375</h3></a>
             <div class="d-inline-block">
                 <i class="video-icon cstm"></i><br>
                 <p class="text-center">CUSTOM<br><b>Made</b></p>

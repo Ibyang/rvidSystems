@@ -18,7 +18,7 @@
                     nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat</p>
               </div>
               <div class="col">
-                  <a href=""><img src={{ asset('storage/look-first.png') }} /></a>
+                  <a href={{ route('look-first-video') }}><img src={{ asset('storage/look-first.png') }} /></a>
               </div>
             </div>
         </div>
@@ -27,5 +27,18 @@
         <div class="text-center">
             <a href="" class="btn btn-danger">SEE INSIDE NOW</a>
         </div>
+
+        @include('frontend.register.register-info')
+
+        @include('frontend.register.register-form')
+
     </div>
+
+    @include('frontend.pages.frontpage.info-form')
+
+    @include('frontend.pages.frontpage.use-revid')
+
+    @include('frontend.pages.frontpage.footer')
+
+
 @endsection

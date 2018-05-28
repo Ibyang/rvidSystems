@@ -21,8 +21,15 @@ class MyHelpController extends Controller
         $faqs = FAQ::get(['ID', 'question']);
         $email = Auth::user()->email;
         $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $logo_pic = $path . $logo;
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.account-help', compact('faqs', 'agent', 'fullname'));
+        return view('frontend.pages.account-help', compact('faqs', 'agent', 'fullname', 'logo_pic'));
     }
 
 

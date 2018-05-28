@@ -6,15 +6,15 @@
         <div class="row">
           <div class="col-8">
               <h1 class="c-6600cc">What is REVid? Video</h1>
-              <img src="">
+              <img src>
           </div>
-          <div class="col-4">
-              <h1 class="c-6600cc">How to join?</h1>
-              (Get started today)
-              <a href="" data-toggle="modal" data-target="#VideoModal"><img src={{ asset('storage/how-to-join.jpg') }} /></a>
-              <h1 class="c-6600cc">How the system works?</h1>
-              (It’s easy)
-              <img src={{ asset('storage/how-system-works.jpg') }} />
+          <div class="col-4 text-center">
+              <h1 class="c-6600cc m-0">How to join?</h1>
+              <b>(Get started today)</b><br><br>
+              <a href="" data-toggle="modal" data-target="#HowtoJoinVideoModal"><img src={{ asset('storage/how-to-join.jpg') }} /></a>
+              <br><br><h1 class="c-6600cc m-0">How the system works?</h1>
+              <b>(It’s easy)</b><br><br>
+              <a href="" data-toggle="modal" data-target="#HowSystemWorksVideoModal"><img src={{ asset('storage/how-system-works.jpg') }} /></a>
           </div>
       
         </div>
@@ -31,8 +31,8 @@
 
     @include('frontend.pages.frontpage.footer')
 
-    <!-- Video Modal -->
-    <div class="modal fade" id="VideoModal"
+    <!-- Video Modal for What is Revid -->
+    <div class="modal fade" id="WhatisRevidVideoModal"
          tabindex="-1" role="dialog"
          aria-labelledby="VideoModalLabel">
         <div class="modal-dialog" role="document" style="max-width: 700px;">
@@ -45,8 +45,66 @@
                         <span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <video controls id="video1" style="width: 100%" autoplay>
-                        <source src="/uploads/videos/VIDDYOZE-REVid_V6.mp4" type="video/mp4">
+                    <video controlsList="nodownload" controls id="video1" style="width: 100%" autoplay>
+                        <source src={{ asset('storage/videos/VIDDYOZE-REVid_V6.mp4') }} type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-default"
+                            data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Video Modal for How to Join -->
+    <div class="modal fade" id="HowtoJoinVideoModal"
+         tabindex="-1" role="dialog"
+         aria-labelledby="VideoModalLabel">
+        <div class="modal-dialog" role="document" style="max-width: 700px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Video</h4>
+                    <button type="button" class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <video controlsList="nodownload" controls id="video1" style="width: 100%" autoplay>
+                        <source src={{ asset('storage/videos/VIDDYOZE-REVid_V6.mp4') }} type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-default"
+                            data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Video Modal for How the System Works -->
+    <div class="modal fade" id="HowSystemWorksVideoModal"
+         tabindex="-1" role="dialog"
+         aria-labelledby="VideoModalLabel">
+        <div class="modal-dialog" role="document" style="max-width: 700px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Video</h4>
+                    <button type="button" class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <video controlsList="nodownload" controls id="video1" style="width: 100%" autoplay>
+                        <source src={{ asset('storage/videos/VIDDYOZE-REVid_V6.mp4') }} type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -72,14 +130,29 @@
 
     $(document).ready(function() {
 
-        $('#VideoModal').on('shown.bs.modal', function () {
+        $('#HowtoJoinVideoModal').on('shown.bs.modal', function () {
             $('body').addClass('test');
-            $('#video1')[0].play();
+            $('#HowtoJoinVideoModal')[0].play();
         })
 
-        $('#VideoModal').on('hidden.bs.modal', function () {
-            $('#video1')[0].pause();
+        // $('#HowtoJoinVideoModal').on('hidden.bs.modal', function () {
+        //     $('#HowtoJoinVideoModal')[0].pause();
+        // })
+
+        $('#HowSystemWorksVideoModal').on('shown.bs.modal', function () {
+            $('body').addClass('test');
+            $('#HowSystemWorksVideoModal')[0].play();
         })
+
+
+        $('#RevidBusinessVideoModal').on('shown.bs.modal', function () {
+            $('body').addClass('test');
+            $('#RevidBusinessVideoModal')[0].play();
+        })
+
+        // $('#HowSystemWorksVideoModal').on('hidden.bs.modal', function () {
+        //     $('#HowSystemWorksVideoModal')[0].pause();
+        // })
 
     });
 

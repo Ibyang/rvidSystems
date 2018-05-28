@@ -456,6 +456,9 @@ i.lf { background-position:-475px 0px; }
 
 
 /** ADDITIONAL STYLES BY IVY **/
+
+a { text-decoration: none !important; }
+
 .explore-pictures .img-block2 { background:#e5e5e5; width:50%; height:195px; display:block; }
 
 /* *** adjustments for removing the right padding on the page when modal is closed */
