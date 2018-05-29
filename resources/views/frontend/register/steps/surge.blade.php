@@ -6,7 +6,7 @@
                         <div class="col">
                             <div class="custom-control custom-checkbox standard">
                               <input type="checkbox" class="custom-control-input" id="customCheck1" value="Always Surge" name="surgeoffer[]">
-                              <label class="custom-control-label" for="customCheck1">Always Surge (24 hours) ($5 fixed)</label>
+                              <label class="custom-control-label" for="customCheck1">Always Surge (24 hours) ($15 fixed)</label>
                             </div>
                             <div class="custom-control custom-checkbox standard">
                               <input type="checkbox" class="custom-control-input" id="customCheck2" value="Always Rush" name="surgeoffer[]">

@@ -41,7 +41,7 @@
                                 ${{ number_format($invoice->paid_amount, 2) }}
                             @endif
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm text-center">
                             <!-- temporarily will use the Video ID -->
                             <a href="#" class="font-weight-bold c0066ff" data-toggle="modal" data-target="#InvoiceModal" data-dbid="{{$invoice->video_ID}}" style="text-decoration: none">{{ $invoice->video_ID }}</a>
                         </div>
@@ -164,9 +164,16 @@
                                                     </form>
                                                 </div>
                                                 <div class="d-inline-block">
-                                                    <button type="submit" class="btn btn-primary btn-ff0033">
-                                                        <i class="billing-icon billing-query"></i><span class="pl-2">Query</span>
-                                                    </button>
+                                                    {{--<button type="submit" class="btn btn-primary btn-ff0033">--}}
+                                                        {{--<i class="billing-icon billing-query"></i><span class="pl-2">Query</span>--}}
+                                                    {{--</button>--}}
+                                                    <form method="POST" action=" {{ route('account-tax-inquiry') }}">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" id="video_id" name="video_id" value=" {{ $billing_details->video_ID }}">
+                                                        <button type="submit"
+                                                                class="btn btn-primary btn-ff0033"><i class="billing-icon billing-query"></i><span class="pl-2">Query</span>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

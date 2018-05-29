@@ -443,7 +443,7 @@ class MyVideoController extends Controller
             $video_desc = "#" . $videoid . " Generic Video Production";
             $video_total_cost = Input::get('cost_generic_video');
 
-            $video_invoice_description = "#" . $videoid . $url;
+            $video_invoice_description = "#" . $videoid . ' ' . $url;
 
             $generic_arr = array(
                 'agent_ID' => $user_id,
@@ -474,7 +474,7 @@ class MyVideoController extends Controller
             $video_total_cost = Input::get('cost_standard_video');
 
             $video_address_standard = Input::get('address') . ' ' . Input::get('suburb') . ' ' . Input::get('state'). Input::get('postcode');
-            $video_invoice_description = "#" . $videoid . $video_address_standard;
+            $video_invoice_description = "#" . $videoid . ' ' . $video_address_standard;
 
             $standard_arr = array(
                 'agent_ID' => $user_id,
@@ -509,7 +509,7 @@ class MyVideoController extends Controller
             //to store videoAddress in session
             Session::put('videoAddress', $url_premium);
 
-            $video_invoice_description = "#" . $videoid . $url_premium;
+            $video_invoice_description = "#" . $videoid . ' ' . $url_premium;
 
             $premium_arr = array(
                 'agent_ID' => $user_id,

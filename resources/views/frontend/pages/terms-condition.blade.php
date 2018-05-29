@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col">Version 1.1</div>
             <div class="col">Dated 1 Jan 2018</div>
-            <div class="col">Download PDF</div>
+            <div class="col"><a href="{{ url('account/getDocumentPDF/1') }}">Download PDF</a></div>
             <div class="col"></div>
         </div>
         <div class="border-999">

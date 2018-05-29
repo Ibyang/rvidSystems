@@ -327,6 +327,11 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/billing-history', 'MyAccountController@getBilling')->name('account-billing-history');
 
+    Route::post('/account/tax-inquiry', 'MyAccountController@taxInquiry')->name('account-tax-inquiry');
+
+    //print PDF for the license documents
+    Route::get('/account/getDocumentPDF/{id}', 'RegisterController@getPDFDocument')->name('account-getpdf');
+
 
 //    Route::get('/account/billing-history', function () {
 //        return view('frontend.pages.video.billing-history');
@@ -454,6 +459,11 @@ Route::group(['middleware' => 'guest'], function() {
     //option to send to Email the Invoice
     Route::post('/account/emailInvoice', 'MyAccountController@emailInvoice')->name('emailInvoice');
 
+    //update Surge Offer in Video Tracker
+    Route::post('/account/updateSurgeOffer', 'MyAccountController@updateSurgeOffer')->name('account-update-surge');
+
+    //get SurgeDetails
+    Route::get('getSurgeDetails/{vidid}', 'MyAccountController@getSurgeDetails');
 //});
 
 

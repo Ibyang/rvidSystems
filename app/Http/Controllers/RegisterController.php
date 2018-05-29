@@ -12,6 +12,8 @@ use App\AgentEmail;
 use App\AgentBroadcast;
 use App\AgentPreferences;
 use App\AgentTemplate;
+use App\Content;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -582,6 +584,25 @@ class RegisterController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    //for printing documents
+    public function getPDFDocument($doc){
+
+        $content = Content::where('ID', $doc)->get(['ID', 'content_text'])->first();
+
+//        dd($content['content_text']);
+
+        $pdf = PDF::loadView('frontend.pages.documents-pdf', compact('content'));
+
+        if($doc == 1)
+            return $pdf->download('terms_and_conditions.pdf');
+        else if($doc == 2)
+            return $pdf->download('copyright.pdf');
+        else if($doc == 3)
+            return $pdf->download('privacy.pdf');
+
     }
 
 

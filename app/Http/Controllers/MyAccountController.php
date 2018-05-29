@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Agent;
 use App\AgentBilling;
+use App\AgentPreferences;
 use App\User;
 use App\AgentInvoice;
 use App\FAQ;
 use App\AgentInvoiceList;
 use App\Content;
 use App\AgentTemplate;
+use App\videoProgress;
 use PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -281,5 +283,51 @@ class MyAccountController extends Controller
         return redirect()->route('account-billing-history');
 
     }
+
+
+    public function taxInquiry()
+    {
+
+        $email = Auth::user()->email;
+        $fullname = Auth::user()->name;
+        $userid = Auth::user()->id;
+        $logo = Auth::user()->logo_user;
+
+        $video_id = Input::get('video_id');
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $logo_pic = $path . $logo;
+
+        $invoice = AgentInvoiceList::where('agent_ID', $userid)->where('video_ID', $video_id)->get()->first();
+        $details = AgentBilling::where('video_ID', $video_id)->get();
+
+        $agent = Agent::where('email', $email)->get(['role_title', 'name_agency', 'group', 'email', 'address', 'mobile', 'address', 'suburb', 'state', 'postcode'])->first();
+        return view('frontend.pages.tax-invoice', compact('fullname', 'agent', 'details', 'invoice', 'logo_pic'));
+
+    }
+
+    public function updateSurgeOffer()
+    {
+
+        $userid = Auth::user()->id;
+        $surge_offer = Input::get('surgeoffer');
+
+        $surge_arr = array(
+            'surge_offer_option' => $surge_offer[0]
+        );
+
+        AgentPreferences::where('agent_ID', $userid)->update($surge_arr);
+
+        return redirect('/account/video-tracker');
+
+    }
+
+    public function getSurgeDetails($vidid)
+    {
+        $details = videoProgress::where('video_ID', $vidid)->get()->first();
+        return json_encode($details);
+    }
+
 
 }

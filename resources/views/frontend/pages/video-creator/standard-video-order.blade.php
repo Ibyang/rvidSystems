@@ -56,7 +56,7 @@
                                   <p class="d-inline-block font-weight-bold">$105</p>
                                   <div class="d-inline-block custom-control custom-checkbox basic">
                                       <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
-                                      <label class="custom-control-label" for="customCheck2"></label>
+                                      <label class="custom-control-label" for="customCheck2" style="display: block"></label>
                                   </div>
                             </div>
                          </div>
@@ -73,23 +73,37 @@
                         <div class="row">
                             <div class="col-sm pl-0">Rush</div>
                             <div class="col-sm"><input  type="text" class="form-control" name="" autofocus placeholder="2 hours"></div>
-                            <div class="col-sm">
-                                 <p class="d-inline-block font-weight-bold">Add $45</p>
-                                  <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" name="surgeoffer[]" value="Always Rush" id="chkRush" {{$preference->surge_offer_option  === "Always Rush" ? 'checked' : '' }}>
-                                      <label class="custom-control-label" for="customCheck3"></label>
-                                  </div>
+                            {{--<div class="col-sm">--}}
+                                 {{--<p class="d-inline-block font-weight-bold">Add $45</p>--}}
+                                  {{--<div class="d-inline-block custom-control custom-checkbox basic">--}}
+                                      {{--<input type="checkbox" class="custom-control-input" name="surgeoffer[]" value="Always Rush" id="chkRush" {{$preference->surge_offer_option  === "Always Rush" ? 'checked' : '' }}>--}}
+                                      {{--<label class="custom-control-label" for="customCheck3"></label>--}}
+                                  {{--</div>--}}
+                            {{--</div>--}}
+                            <div class="col-sm-3 text-right my-account-subcription">
+                                <p class="d-inline-block font-weight-bold">Add $45</p>
+                                <div class="d-inline-block custom-control custom-checkbox basic">
+                                    <input type="checkbox" class="custom-control-input" name="surgeoffer[]" value="Always Rush" id="chkRush" {{$preference->surge_offer_option  === "Always Rush" ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="chkRush" style="display: block"></label>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm pl-0">Surge</div>
                             <div class="col-sm"><input  type="text" class="form-control" name="" autofocus placeholder="24 hours"></div>
-                            <div class="col-sm">
-                                 <p class="d-inline-block font-weight-bold">Add $15</p>
-                                  <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" name="surgeoffer[]" value="Always Surge" id="chkSurge" {{$preference->surge_offer_option  === "Always Surge" ? 'checked' : '' }}>
-                                      <label class="custom-control-label" for="customCheck4"></label>
-                                  </div>
+                            {{--<div class="col-sm">--}}
+                                 {{--<p class="d-inline-block font-weight-bold">Add $15</p>--}}
+                                  {{--<div class="d-inline-block custom-control custom-checkbox basic">--}}
+                                      {{--<input type="checkbox" class="custom-control-input" name="surgeoffer[]" value="Always Surge" id="chkSurge" {{$preference->surge_offer_option  === "Always Surge" ? 'checked' : '' }}>--}}
+                                      {{--<label class="custom-control-label" for="customCheck4"></label>--}}
+                                  {{--</div>--}}
+                            {{--</div>--}}
+                            <div class="col-sm-3 text-right my-account-subcription">
+                                <p class="d-inline-block font-weight-bold">Add $15</p>
+                                <div class="d-inline-block custom-control custom-checkbox basic">
+                                    <input type="checkbox" class="custom-control-input" name="surgeoffer[]" value="Always Surge" id="chkSurge" {{$preference->surge_offer_option  === "Always Surge" ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="chkSurge" style="display: block"></label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -189,24 +203,38 @@
                         <div class="row">
                             <div class="col-sm pl-0">Your Email List</div>
                             <div class="col-sm"><input  type="text" class="form-control" name="emailist" required autofocus value="{{ $preference->email_distribution  == 1 ? 'On' : 'Off' }}"></div>
-                            <div class="col-sm">
-                                  <p class="d-inline-block font-weight-bold">$5</p>
-                                  <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" name="chkEmailList" id="chkEmailList"  {{ $preference->email_distribution  == 1 ? 'checked' : '' }}>
-                                      <label class="custom-control-label" for="chkEmailList"></label>
-                                  </div>
+                            {{--<div class="col-sm">--}}
+                                  {{--<p class="d-inline-block font-weight-bold">$5</p>--}}
+                                  {{--<div class="d-inline-block custom-control custom-checkbox basic">--}}
+                                      {{--<input type="checkbox" class="custom-control-input" name="chkEmailList" id="chkEmailList"  {{ $preference->email_distribution  == 1 ? 'checked' : '' }}>--}}
+                                      {{--<label class="custom-control-label" for="chkEmailList"></label>--}}
+                                  {{--</div>--}}
+                            {{--</div>--}}
+                            <div class="col-sm-3 text-right my-account-subcription">
+                                <p class="d-inline-block font-weight-bold">$5</p>
+                                <div class="d-inline-block custom-control custom-checkbox basic">
+                                    <input type="checkbox" class="custom-control-input" name="chkEmailList" id="chkEmailList"  {{ $preference->email_distribution  == 1 ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="chkEmailList" style="display: block"></label>
+                                </div>
                             </div>
                         </div>
                         <b>Broadcast Distribution</b>
                         <div class="row">
                             <div class="col-sm pl-0">Agents in <br>Your Suburbs</div>
                             <div class="col-sm"><input  type="text" class="form-control" name="broadcast" required autofocus value="{{ $preference->broadcast_agent  === "1" ? 'On' : 'Off' }}"></div>
-                            <div class="col-sm">
-                                  <p class="d-inline-block font-weight-bold">$5</p>
-                                  <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" name="chkBroadcast" id="chkBroadcast" {{ $preference->broadcast_agent  === "1" ? 'checked' : '' }}>
-                                      <label class="custom-control-label" for="chkBroadcast"></label>
-                                  </div>
+                            {{--<div class="col-sm">--}}
+                                  {{--<p class="d-inline-block font-weight-bold">$5</p>--}}
+                                  {{--<div class="d-inline-block custom-control custom-checkbox basic">--}}
+                                      {{--<input type="checkbox" class="custom-control-input" name="chkBroadcast" id="chkBroadcast" {{ $preference->broadcast_agent  === "1" ? 'checked' : '' }}>--}}
+                                      {{--<label class="custom-control-label" for="chkBroadcast"></label>--}}
+                                  {{--</div>--}}
+                            {{--</div>--}}
+                            <div class="col-sm-3 text-right my-account-subcription">
+                                <p class="d-inline-block font-weight-bold">$5</p>
+                                <div class="d-inline-block custom-control custom-checkbox basic">
+                                    <input type="checkbox" class="custom-control-input" name="chkBroadcast" id="chkBroadcast" {{ $preference->broadcast_agent  === "1" ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="chkBroadcast" style="display: block"></label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -217,23 +245,37 @@
                         <div class="row">
                             <div class="col-sm pl-0">DriveBy</div>
                             <div class="col-sm"><button type="button" class="btn btn-primary">FREE</button></div>
-                            <div class="col-sm">
+                            {{--<div class="col-sm">--}}
+                                {{--<p class="d-inline-block font-weight-bold">$0</p>--}}
+                                {{--<div class="d-inline-block custom-control custom-checkbox basic">--}}
+                                      {{--<input type="checkbox" class="custom-control-input" name="apply_driveby" value="1" id="customCheck15" checked>--}}
+                                      {{--<label class="custom-control-label" for="customCheck15"></label>--}}
+                                  {{--</div>--}}
+                            {{--</div>--}}
+                            <div class="col-sm-3 text-right my-account-subcription">
                                 <p class="d-inline-block font-weight-bold">$0</p>
                                 <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" name="apply_driveby" value="1" id="customCheck15" checked>
-                                      <label class="custom-control-label" for="customCheck15"></label>
-                                  </div>
+                                    <input type="checkbox" class="custom-control-input" name="apply_driveby" value="1" id="customCheck15" checked>
+                                    <label class="custom-control-label" for="customCheck15" style="display: block"></label>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm pl-0">LookFirst</div>
                             <div class="col-sm"><button type="button" class="btn btn-primary">FREE</button></div>
-                            <div class="col-sm">
+                            {{--<div class="col-sm">--}}
+                                {{--<p class="d-inline-block font-weight-bold">$0</p>--}}
+                                {{--<div class="d-inline-block custom-control custom-checkbox basic">--}}
+                                      {{--<input type="checkbox" class="custom-control-input" name="apply_lookfirst" value="1" id="customCheck16" checked>--}}
+                                      {{--<label class="custom-control-label" for="customCheck16"></label>--}}
+                                  {{--</div>--}}
+                            {{--</div>--}}
+                            <div class="col-sm-3 text-right my-account-subcription">
                                 <p class="d-inline-block font-weight-bold">$0</p>
                                 <div class="d-inline-block custom-control custom-checkbox basic">
-                                      <input type="checkbox" class="custom-control-input" name="apply_lookfirst" value="1" id="customCheck16" checked>
-                                      <label class="custom-control-label" for="customCheck16"></label>
-                                  </div>
+                                    <input type="checkbox" class="custom-control-input" name="apply_lookfirst" value="1" id="customCheck16" checked>
+                                    <label class="custom-control-label" for="customCheck16" style="display: block"></label>
+                                </div>
                             </div>
                         </div>
                     </div>

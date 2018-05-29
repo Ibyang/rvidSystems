@@ -45,7 +45,7 @@
                 <tr>
                     <td colspan="2"></td>  
                     <td>Progress</td>
-                    <td>Action Needed</td>
+                    <td>Due Date</td>
                 </tr>
                   @if(count($production_videos) > 0)
                       @foreach($production_videos as $pv)
@@ -58,7 +58,7 @@
 {{--                                    <span>{{ $pv->total_progress }}%</span>--}}
                                 </div>
                             </td>
-                            <td><a href="">More Details +</a></td>
+                            <td><a href="" data-toggle="modal" data-target="#surgeModal" data-dbid="{{$pv->video_ID}}">Surge +</a></td>
                         </tr>
                       @endforeach
                   @else
@@ -66,74 +66,147 @@
                   @endif
               </table>
             </div>
-            <h3>What is the SURGE?</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan enim ac sagittis
-            laoreet. Donec pretium, dui dictum tincidunt cursus, orci urna dapibus elit, eget egestas mauris
-            lorem sit amet diam. Phasellus volutpat laoreet fringilla. Pellentesque ornare ac tellus nec egestas.
-            In adipiscing lorem non orci placerat semper. Maecenas aliquam leo eget tincidunt elementum.
-            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 
-            <div class="row">
-                <div class="col">Sign Up for</div>
-                <div class="col">
-                    <div class="surge d-inline-block">
-                        <div class="custom-control custom-checkbox">
-                                  <input type="checkbox" class="custom-control-input" id="customCheck1" value="Always Surge" name="surgeoffer[]" {{ $preference->surge_offer_option  === "Always Surge" ? 'checked' : '' }}>
-                                  <label class="custom-control-label" for="customCheck1"></label>
+            <h3 class="c-6600cc">What is the SURGE?</h3>
+            <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan enim ac sagittis
+                laoreet. Donec pretium, dui dictum tincidunt cursus, orci urna dapibus elit, eget egestas mauris
+                lorem sit amet diam. Phasellus volutpat laoreet fringilla. Pellentesque ornare ac tellus nec egestas.
+                In adipiscing lorem non orci placerat semper. Maecenas aliquam leo eget tincidunt elementum.
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+
+
+            <form method="POST" action={{ route('account-update-surge') }}>
+                {{ csrf_field() }}
+                <div class="row">
+                    <div class="col-md-auto pl-0">Sign Up for</div>
+                    <div class="col p-0">
+                        <div class="row m-0">
+                            <div class="col-md-auto surge">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" name="surgeoffer[]" id="chkSurge" value="Always Surge" {{$preference->surge_offer_option  === "Always Surge" ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="chkSurge"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-auto p-0">
+                                <div class="btn btn-primary surge-button">SURGE ALWAYS</div>
+                            </div>
+                            <div class="col-md-auto line-height18">Less than 24 hours <br>$15.00 per Video</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-auto surge">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" name="surgeoffer[]" id="chkRush" value="Always Rush" {{$preference->surge_offer_option  === "Always Rush" ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="chkRush"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-auto p-0">
+                                <div class="btn btn-primary surge-button">RUSH ALWAYS</div>
+                            </div>
+                            <div class="col-md-auto line-height18">Less than 2 hours <br>$45.00 per video</div>
                         </div>
                     </div>
-                    <div class="d-inline-block btn btn-primary">SURGE ALWAYS</div><br>
-                    <div class="surge d-inline-block">
-                        <div class="custom-control custom-checkbox">
-                                  <input type="checkbox" class="custom-control-input" id="customCheck2" value="Always Rush" name="surgeoffer[]" {{ $preference->surge_offer_option  === "Always Rush" ? 'checked' : '' }}>
-                                  <label class="custom-control-label" for="customCheck2"></label>
-                        </div>
+                    <div class="col-md-auto p-0">
+                        <button type="submit" class="btn btn-primary surge-button">APPLY</button>
                     </div>
-                    <div class="d-inline-block btn btn-primary">RUSH ALWAYS</div>
-                    <div class="surge d-inline-block">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck3" value="Sometimes" name="surgeoffer[]" {{ $preference->surge_offer_option  === "Sometimes" ? 'checked' : '' }}>
-                            <label class="custom-control-label" for="customCheck3"></label>
-                        </div>
-                    </div>
-                    <div class="d-inline-block btn btn-primary">SOMETIMES (Ask Me)</div>
                 </div>
-                <div class="col">
-                    Less than 24 hours <br>$15.00 per Video<br>
-                    Less than 2 hours <br>$45.00 per video
-                
+
+                <div class="row">
+                    <div class="col-sm-8 pl-0">
+                        <h3 class="c-6600cc">Production Statistics</h3>
+                        Delivery
+                        <div class="row col-8">
+                            <div class="col-sm pl-0">Average Days <br>Production</div>
+                            <div class="col-sm"><input type="text" placeholder="Current Days"></div>
+                        </div>
+                        <div class="row col-8">
+                            <div class="col-sm pl-0">Forecast with <br>Surge Always</div>
+                            <div class="col-sm"><input type="text" placeholder="Surge Always"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3 class="c-6600cc">Total Productions</h3><br>
+                        <div class="col-10">
+                            <div class="my-2">
+                                <input type="text" placeholder="To Date">
+                            </div>
+                            <div class="mt-4">
+                                <input type="text" placeholder="To year">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="">
-                    <button type="submit" class="btn btn-primary">APPLY</button>
+            </form>
+
+            <div class="modal surge-popup" id="surgeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form></form>
+                            <div class="modal-body">
+                                <div class="btn btn-primary surge-button">SURGE ALWAYS</div>
+                                <div class="row">
+                                    <div class="col-sm-3 pl-0">
+                                        <b>#<span id="videoid"></span></b><br>
+                                        <span id="videoAddress"></span>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <div class="row">
+                                            <div class="col-md-auto">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" name="surgeoption[]" id="customCheck3" value="Less than 24 hours">
+                                                    <label class="custom-control-label" for="customCheck3"></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-auto">Less than 24 hours</div>
+                                            <div class="col c-6600cc"><b>$xxx</b></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-auto">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" name="surgeoption[]" id="customCheck4" value="Less than 12 hours">
+                                                    <label class="custom-control-label" for="customCheck4"></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-auto">Less than 12 hours</div>
+                                            <div class="col c-6600cc"><b>$xxx</b></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-auto">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" name="surgeoption[]" id="customCheck5" value="Rush 2 hours">
+                                                    <label class="custom-control-label" for="customCheck5"></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-auto">Rush 2 hours</div>
+                                            <div class="col c-6600cc"><b>$xxx</b></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm pl-0"><a href="">Terms and Conditions</a></div>
+                                    <div class="col-sm"><button type="submit" class="btn btn-primary">ACCEPT</button></div>
+                                </div>
+                            </div>
+                        <form>
+                    </div>
                 </div>
             </div>
-            
-            <br><div class="row">
-                <div class="col-sm">
-                    <h3>Delivery</h3>
-                    <div class="row">
-                        <div class="col">Average Days <br>Production</div>
-                        <div class="col"><input type="text"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col">Forecast with <br>Surge Always</div>
-                        <div class="col"><input type="text"></div>
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <h3>Total Productions</h3>
-                    <input type="text" placeholder="To Date">
-                    <input type="text" placeholder="To year">
-                </div>
-            </div>
+            <style type="text/css">
+                .modal-backdrop, .modal-backdrop.fade.in{ opacity: 0 !important; }
+                .modal { top:100px; right:-480px; }
+                .modal-content { border-radius:0px; border:1px solid #6600cc; }
+            </style>
+
         
         </div>
     </div>
 </div>
 @endsection
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -142,6 +215,81 @@
         $('input[type="checkbox"]').on('change', function () {
             $('input[name="' + this.name + '"]').not(this).prop('checked', false);
         });
+
+
+        $('#surgeModal').on('show.bs.modal', function(e) {
+
+            var vidid = $(e.relatedTarget).attr('data-dbid');
+            console.log('the value of vidid is ', vidid);
+
+            if(vidid) {
+                $.ajax({
+                    url: '/getSurgeDetails/' + vidid,
+                    type: "GET",
+                    dataType: "JSON",
+                    success:function(data) {
+                        $('#videoid').html(data.video_ID);
+                        $('#videoAddress').html(data.videoAddress);
+                        var stateSurge = data.surge_offer;
+                        if(stateSurge === 'Less than 24 hours')
+                            $("#customCheck3").prop('checked', true);
+                        else if(stateSurge === 'Less than 12 hours')
+                            $("#customCheck4").prop('checked', true);
+                        else if(stateSurge === 'Rush 2 hours')
+                            $("#customCheck5").prop('checked', true);
+
+                    }
+                });
+            }
+
+            // var vidid = $(e.relatedTarget).attr('data-dbid');
+            // var company = $('#company').val();
+            // var address = $('#address').val();
+            // var suburb = $('#suburb').val();
+            // var state = $('#state').val();
+            // var postcode = $('#postcode').val();
+            //
+            // console.log("the value of company is " + company);
+            //
+            //
+            // //$('#video_id').val(vidid);
+            // // $('#video_id').html(vidid);
+            // $('#client_company').html(company);
+            // $('#client_address').html(address);
+            // $('#client_suburb').html(suburb);
+            // $('#client_state').html(state);
+            // $('#client_postcode').html(postcode);
+            // $('#invoiceDetailsTable').empty();
+            //
+            // if(vidid) {
+            //     $.ajax({
+            //         url: '/getInvoiceDetails/' + vidid,
+            //         type: "GET",
+            //         dataType: "JSON",
+            //         success:function(data) {
+            //             // console.log("the return data is ", data)
+            //             var output;
+            //             var print_sum;
+            //             var ctr = 0;
+            //             var sum_items = 0;
+            //             $.each(data, function(i,e){
+            //                 ctr = ctr + 1;
+            //                 sum_items = sum_items + parseInt(e.amount);
+            //                 output += '<tr><td>' + ctr + '</td><td>' + e.description + '</td><td style="text-align: right">$' + e.amount + '</td></tr>';
+            //             });
+            //             // print_sum = '<tr><td colspan="3" style="text-align: right;">' + sum_items + '</td></tr>';
+            //             // print_sum = '<tr><td></td><td></td><td style="text-align: right"><b>Total: </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$' + sum_items.toFixed(2) + '</td></tr>';
+            //             print_sum = '<tr><td></td><td class="text-right"><span class="font-weight-bold">Total</span></td><td>' + sum_items.toFixed(2) + '</td></tr>';
+            //
+            //             $('#invoiceDetailsTable').append(output);
+            //             $('#invoiceDetailsTable').append(print_sum);
+            //
+            //         }
+            //     });
+            // }
+
+        });
+
 
     });
 
