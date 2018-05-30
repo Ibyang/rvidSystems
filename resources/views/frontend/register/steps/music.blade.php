@@ -8,13 +8,13 @@
           </select>
           <div class="row">
                 <div class="col-md-auto">
-                    <div class="music-block active"><a href="">Cafe Jazz</a></div>
-                    <div class="music-block"><a href="">Middle of the Road</a></div>
-                    <div class="music-block"><a href="">Upbeat</a></div>
-                    <div class="music-block"><a href="">Jazz Latin</a></div>
-                    <div class="music-block"><a href="">Classical</a></div>
-                    <div class="music-block"><a href="">Modern</a></div>
-                    <div class="music-block"><a href="">New Age</a></div>
+                    <div class="music-block active" id="cafejazz"><a href="">Cafe Jazz</a></div>
+                    <div class="music-block" id="middleroad"><a href="">Middle of the Road</a></div>
+                    <div class="music-block" id="upbeat"><a href="">Upbeat</a></div>
+                    <div class="music-block" id="jazzlatin"><a href="">Jazz Latin</a></div>
+                    <div class="music-block" id="classical"><a href="">Classical</a></div>
+                    <div class="music-block" id="modern"><a href="">Modern</a></div>
+                    <div class="music-block" id="newage"><a href="">New Age</a></div>
                 </div>
                 <div class="col-sm step-three-register">
                     <div class="row mt-2">

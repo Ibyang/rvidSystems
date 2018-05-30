@@ -24,7 +24,7 @@
                         </div>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                   <input id="lastname" type="text" class="form-control" name="lastname" required autofocus value="{{ $details->lastname }}">
-                                  @if ($errors->has('name'))
+                                  @if ($errors->has('lastname'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('lastname') }}</strong>
                                         </span>
@@ -32,16 +32,16 @@
                         </div>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <input id="mobile" type="text" class="form-control" name="mobile" required autofocus value="{{ $details->mobile }}">
-                                @if ($errors->has('name'))
+                                @if ($errors->has('mobile'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('mobile') }}</strong>
                                     </span>
                                 @endif
                         </div>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <textarea id="address" type="text" class="form-control" name="address" required autofocus>{{ $details->address }}</textarea>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('address'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('address') }}</strong>
                                     </span>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group">
                                 <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required value="" Placeholder="Repeat Password">
-                            </div>
+                        </div>
                             <h3>Agency Details</h3>
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 {{--<input id="group" type="text" class="form-control" name="group" required value="{{ $details->group }}">--}}
@@ -128,7 +128,7 @@
                             @if(!empty($email) || isset($email))
                                 <input id="emailadd" type="email" class="form-control" name="email" value="{{ $email }}" required>
                             @else
-                                <input id="emailadd" type="email" class="form-control" name="email" placeholder="Email" required>
+                                <input id="emailadd" type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" required>
                             @endif
                             @if ($errors->has('email'))
                                 <span class="help-block">
@@ -136,34 +136,34 @@
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <input id="firstname" type="text" class="form-control" name="firstname" required autofocus placeholder="First Name">
-                            @if ($errors->has('name'))
+                        <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
+                            <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autofocus placeholder="First Name">
+                            @if ($errors->has('firstname'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('firstname') }}</strong>
                                    </span>
                             @endif
                         </div>
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <input id="lastname" type="text" class="form-control" name="lastname" required autofocus placeholder="Last Name">
-                            @if ($errors->has('name'))
+                        <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                            <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus placeholder="Last Name">
+                            @if ($errors->has('lastname'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('lastname') }}</strong>
                                     </span>
                             @endif
                         </div>
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <input id="mobile" type="text" class="form-control" name="mobile" required autofocus placeholder="Mobile Telephone">
-                            @if ($errors->has('name'))
+                        <div class="form-group{{ $errors->has('mobile') ? ' has-error' : '' }}">
+                            <input id="mobile" type="text" class="form-control" name="mobile" value="{{ old('mobile') }}" required autofocus placeholder="Mobile Telephone">
+                            @if ($errors->has('mobile'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('mobile') }}</strong>
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <textarea id="address" type="text" class="form-control" name="address" placeholder="Address" required autofocus></textarea>
+                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <textarea id="address" type="text" class="form-control" name="address" placeholder="Address" required autofocus>{{ old('address') }}</textarea>
 
-                            @if ($errors->has('name'))
+                            @if ($errors->has('address'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('address') }}</strong>
                                 </span>
@@ -183,38 +183,33 @@
                             <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" Placeholder="Repeat Password" required>
                         </div>
                         <h3>Agency Details</h3>
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('group') ? ' has-error' : '' }}">
                             {{--<input id="group" type="text" class="form-control" name="group" required autofocus placeholder="Group">--}}
                             <select name="group" class="form-control">
                                 @foreach($groups as $grp)
-                                    <option value="{{ $grp->group }}"> {{ $grp->group }} </option>
+                                    <option value="{{ $grp->group }}" {{ old('group', $grp->group) == 1 ? 'selected' : '' }}> {{ $grp->group }} </option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('name_agency') ? ' has-error' : '' }}">
                             {{--<input id="name_agency" type="text" class="form-control" name="name_agency" required autofocus placeholder="Name Of Agency">--}}
                             <select name="name_agency" class="form-control">
                                 @foreach($agencies as $agency)
-                                    <option value="{{ $agency->name_agency }}"> {{ $agency->name_agency }} </option>
+                                    <option value="{{ $agency->name_agency }}" {{ old('name_agency', $agency->name_agency) == 1 ? 'selected' : '' }}> {{ $agency->name_agency }} </option>
                                 @endforeach
                             </select>
-                            @if ($errors->has('name'))
-                                <span class="help-block">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                            @endif
                         </div>
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }}">
                             <select name="state" id="state" class="form-control" >
                                 @if($states)
                                     @foreach($states as $state)
-                                        <option value="{{ $state->state_code }} "> {{ $state->state_name }} </option>
+                                        <option value="{{ $state->state_code }}" {{ old('state', $state->state_code) == 1 ? 'selected' : '' }}> {{ $state->state_name }} </option>
                                     @endforeach
                                 @endif
 
                             </select>
                         </div>
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('suburb') ? ' has-error' : '' }}">
                             <select name="suburb" id="suburb" class="form-control"></select>
                         </div>
 

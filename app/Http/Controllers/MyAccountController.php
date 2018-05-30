@@ -325,8 +325,26 @@ class MyAccountController extends Controller
 
     public function getSurgeDetails($vidid)
     {
-        $details = videoProgress::where('video_ID', $vidid)->get()->first();
+        $userid = Auth::user()->id;
+        $details = videoProgress::where('video_ID', $vidid)->where('agent_ID', $userid)->first();
         return json_encode($details);
+    }
+
+    public function updateSurgeVideo()
+    {
+        $vid = Input::get('vid');
+        $userid = Auth::user()->id;
+
+        $surgeoption = Input::get('surgeoption');
+
+        $surge_arr = array(
+            'surge_offer' => $surgeoption[0]
+        );
+
+        videoProgress::where('agent_ID', $userid)->where('video_ID', $vid)->update($surge_arr);
+
+        return redirect('/account/video-tracker');
+
     }
 
 

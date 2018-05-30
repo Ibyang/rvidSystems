@@ -1,8 +1,11 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div class="container make-video-con">
-        <h3 class="border-title">Make My Video</h3>
+    {{--<div class="container make-video-con">--}}
+        {{--<h3 class="border-title">Make My Video</h3>--}}
+
+    <div class="container" id="content">
+        <h1 class="c-6600cc">Make My Video</h1>
 
             <div class="col-8">
                  <div class="row make-my-video border-top-ff0033">
@@ -28,6 +31,14 @@
                     </div>
                 </div>
             </div>
+
+        <hr>
+        @include('frontend.register.register-info')
+
+    </div>
+
+    <div class="bg-eae">
+        @include('frontend.register.register-form')
     </div>
 
 @endsection

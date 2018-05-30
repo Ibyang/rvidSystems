@@ -140,11 +140,12 @@
             <div class="modal surge-popup" id="surgeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <form></form>
+                        <form method="POST" action=" {{ route('account-update-surge-video') }}">
+                            {{ csrf_field() }}
                             <div class="modal-body">
                                 <div class="btn btn-primary surge-button">SURGE ALWAYS</div>
                                 <div class="row">
-                                    <div class="col-sm-3 pl-0">
+                                    <div class="col-sm-3 pl-0" style="overflow: auto">
                                         <b>#<span id="videoid"></span></b><br>
                                         <span id="videoAddress"></span>
                                     </div>
@@ -183,10 +184,11 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm pl-0"><a href="">Terms and Conditions</a></div>
+                                    <input type="hidden" name="vid" id="vid">
                                     <div class="col-sm"><button type="submit" class="btn btn-primary">ACCEPT</button></div>
                                 </div>
                             </div>
-                        <form>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -216,77 +218,47 @@
             $('input[name="' + this.name + '"]').not(this).prop('checked', false);
         });
 
-
         $('#surgeModal').on('show.bs.modal', function(e) {
+
+            $("#customCheck3").prop('checked', false);
+            $("#customCheck4").prop('checked', false);
+            $("#customCheck5").prop('checked', false);
 
             var vidid = $(e.relatedTarget).attr('data-dbid');
             console.log('the value of vidid is ', vidid);
 
             if(vidid) {
+                var stateSurge = '';
                 $.ajax({
                     url: '/getSurgeDetails/' + vidid,
                     type: "GET",
                     dataType: "JSON",
                     success:function(data) {
+                        console.log("data is ", data);
                         $('#videoid').html(data.video_ID);
+                        $('#vid').val(data.video_ID);
                         $('#videoAddress').html(data.videoAddress);
-                        var stateSurge = data.surge_offer;
-                        if(stateSurge === 'Less than 24 hours')
+                        stateSurge = data.surge_offer;
+                        console.log("the value of stateSurge is ", stateSurge);
+                        if(stateSurge === 'Less than 24 hours'){
                             $("#customCheck3").prop('checked', true);
-                        else if(stateSurge === 'Less than 12 hours')
+                            // $("#customCheck4").prop('checked', false);
+                            // $("#customCheck5").prop('checked', false);
+                        }
+                        else if(stateSurge === 'Less than 12 hours'){
+                            // $("#customCheck3").prop('checked', false);
                             $("#customCheck4").prop('checked', true);
-                        else if(stateSurge === 'Rush 2 hours')
+                            // $("#customCheck5").prop('checked', false);
+                        }
+                        else if(stateSurge === 'Rush 2 hours'){
+                            // $("#customCheck3").prop('checked', false);
+                            // $("#customCheck4").prop('checked', false);
                             $("#customCheck5").prop('checked', true);
+                        }
 
                     }
                 });
             }
-
-            // var vidid = $(e.relatedTarget).attr('data-dbid');
-            // var company = $('#company').val();
-            // var address = $('#address').val();
-            // var suburb = $('#suburb').val();
-            // var state = $('#state').val();
-            // var postcode = $('#postcode').val();
-            //
-            // console.log("the value of company is " + company);
-            //
-            //
-            // //$('#video_id').val(vidid);
-            // // $('#video_id').html(vidid);
-            // $('#client_company').html(company);
-            // $('#client_address').html(address);
-            // $('#client_suburb').html(suburb);
-            // $('#client_state').html(state);
-            // $('#client_postcode').html(postcode);
-            // $('#invoiceDetailsTable').empty();
-            //
-            // if(vidid) {
-            //     $.ajax({
-            //         url: '/getInvoiceDetails/' + vidid,
-            //         type: "GET",
-            //         dataType: "JSON",
-            //         success:function(data) {
-            //             // console.log("the return data is ", data)
-            //             var output;
-            //             var print_sum;
-            //             var ctr = 0;
-            //             var sum_items = 0;
-            //             $.each(data, function(i,e){
-            //                 ctr = ctr + 1;
-            //                 sum_items = sum_items + parseInt(e.amount);
-            //                 output += '<tr><td>' + ctr + '</td><td>' + e.description + '</td><td style="text-align: right">$' + e.amount + '</td></tr>';
-            //             });
-            //             // print_sum = '<tr><td colspan="3" style="text-align: right;">' + sum_items + '</td></tr>';
-            //             // print_sum = '<tr><td></td><td></td><td style="text-align: right"><b>Total: </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$' + sum_items.toFixed(2) + '</td></tr>';
-            //             print_sum = '<tr><td></td><td class="text-right"><span class="font-weight-bold">Total</span></td><td>' + sum_items.toFixed(2) + '</td></tr>';
-            //
-            //             $('#invoiceDetailsTable').append(output);
-            //             $('#invoiceDetailsTable').append(print_sum);
-            //
-            //         }
-            //     });
-            // }
 
         });
 

@@ -212,15 +212,24 @@ Route::group(['middleware' => 'guest'], function() {
 
 
     Route::get('/make-video-premium', function () {
-        return view('frontend.pages.make-video.make-video-premium');
+        $groups = Agent::distinct()->get(['group']);
+        $agencies = Agent::distinct()->get(['name_agency']);
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.make-video.make-video-premium', compact('groups', 'agencies', 'states'));
     })->name('make-video-premium');
 
     Route::get('/make-video-standard', function () {
-        return view('frontend.pages.make-video.make-video-standard');
+        $groups = Agent::distinct()->get(['group']);
+        $agencies = Agent::distinct()->get(['name_agency']);
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.make-video.make-video-standard', compact('groups', 'agencies', 'states'));
     })->name('make-video-standard');
 
     Route::get('/make-video-generic', function () {
-        return view('frontend.pages.make-video.make-video-generic');
+        $groups = Agent::distinct()->get(['group']);
+        $agencies = Agent::distinct()->get(['name_agency']);
+        $states = State::get(['state_code', 'state_name']);
+        return view('frontend.pages.make-video.make-video-generic', compact('groups', 'agencies', 'states'));
     })->name('make-video-generic');
 
     Route::get('/pricing', function () {
@@ -464,6 +473,9 @@ Route::group(['middleware' => 'guest'], function() {
 
     //get SurgeDetails
     Route::get('getSurgeDetails/{vidid}', 'MyAccountController@getSurgeDetails');
+
+    //update Surge Per Video
+    Route::post('/account/updateSurgeVideo', 'MyAccountController@updateSurgeVideo')->name('account-update-surge-video');
 //});
 
 
