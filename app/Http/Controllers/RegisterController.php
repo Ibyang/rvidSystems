@@ -53,12 +53,37 @@ class RegisterController extends Controller
     public function getStep2()
     {
         $agent = Session::get('agent_arr');
+        $userId = Session::get('userId');
 
-        return view('frontend.register.register-step2', compact('agent'));
+        $path = '/storage/client_images/' . $userId . '/general_images/';
+
+        if($userId){
+            $template = AgentTemplate::where('agent_ID', $userId)->get()->first();
+
+            $mainframe_list = explode(',', $template['main_frame_template_format']);
+            $middleframe_list = explode(',', $template['middle_frame_template_format']);
+            $endframe_list = explode(',', $template['end_frame_template_format']);
+
+            $voice_list = explode(',', $template['voice_file_selection']);
+            $music_list = explode(',', $template['music_file_format']);
+
+        }
+
+        return view('frontend.register.register-step2', compact('agent', 'template', 'path', 'mainframe_list', 'middleframe_list', 'endframe_list', 'voice_list', 'music_list'));
     }
 
     public function getStep3()
     {
+
+        $userId = Session::get('userId');
+
+        if($userId){
+            $preference = AgentPreferences::where('agent_ID', $userId)->get()->first();
+
+            $emails = AgentEmail::where('agent_ID', $userId)->get();
+            $areas = AgentBroadcast::where('agent_ID', $userId)->get();
+
+        }
 
         $suburbs = Suburb::distinct(['suburb', 'post_code'])
             ->whereNotNull('suburb')
@@ -66,7 +91,7 @@ class RegisterController extends Controller
             ->orderBy('suburb', 'ASC')
             ->get();
 //        dd($suburbs);
-        return view('frontend.register.register-step3', compact('suburbs'));
+        return view('frontend.register.register-step3', compact('suburbs', 'preference', 'emails', 'areas'));
     }
 
     public function getStep4()
@@ -76,8 +101,13 @@ class RegisterController extends Controller
         $details = Agent::where('email', $email)->first();
         $agent = Session::get('agent_arr');
         $user_id = Session::get('userId');
-//        dd($agent);
-        return view('frontend.register.register-step4', compact('details', 'agent', 'user_id'));
+
+        if($user_id){
+            $payment = AgentInvoice::where('agent_ID', $user_id)->get()->first();
+        }
+
+
+        return view('frontend.register.register-step4', compact('details', 'agent', 'user_id', 'payment'));
     }
 
     public function processStep2(Request $request)
@@ -180,41 +210,78 @@ class RegisterController extends Controller
         if ($musicSelection != null)
             $musicboxes = implode(',', $musicSelection);
 
+        $stateMode = Input::get('modeAction');
 
-        $template_arr = array(
-            'agent_ID' => $userId,
-            'main_image' => $fnameMainImage,
-            'extra_image1' => $fnameMainImage2,
-            'extra_image2' => $fnameMainImage3,
-            'logo' => $fnamelogoImage,
-            'main_frame_template' => Input::get('stateMainFrame'),
-            'main_frame_template_format' => $MFboxes,
-            'main_frame_colours' => Input::get('stateMainFrameColour'),
-            'main_frame_colours_sub' => Input::get('stateMainFrameColourSub'),
-            'middle_frame_template' => Input::get('stateMiddleFrame'),
-            'middle_frame_template_format' => $MidFboxes,
-            'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
-            'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub'),
-            'end_frame_template' => Input::get('stateEndFrame'),
-            'end_frame_template_format' => $EndFboxes,
-            'end_frame_colours' => Input::get('stateEndFrameColour'),
-            'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
-            'video_frame_name' => Input::get('videoName'),
-            'video_frame_mobile' => Input::get('videoMobile'),
-            'video_frame_web_emailadd' => Input::get('videoEmailAdd'),
-            'video_frame_agency_name' => Input::get('videoAgencyName'),
-            'video_frame_content' => Input::get('videoContent'),
-            'randomise_statement_mf' => $chkRandomiseMF,
-            'video_middle_frame_statement' => Input::get('statementMF'),
-            'randomise_statement_ef' => $chkRandomiseEF,
-            'video_end_frame_statement' => Input::get('statementEF'),
-            'voice_format' => Input::get('stateVoiceFormat'),
-            'voice_file_selection' => $voiceboxes,
-            'music_style' => Input::get('stateMusicStyle'),
-            'music_file_format' => $musicboxes
+        if($stateMode == 'addTemplate') {
+            $template_arr = array(
+                'agent_ID' => $userId,
+                'main_image' => $fnameMainImage,
+                'extra_image1' => $fnameMainImage2,
+                'extra_image2' => $fnameMainImage3,
+                'logo' => $fnamelogoImage,
+                'main_frame_template' => Input::get('stateMainFrame'),
+                'main_frame_template_format' => $MFboxes,
+                'main_frame_colours' => Input::get('stateMainFrameColour'),
+                'main_frame_colours_sub' => Input::get('stateMainFrameColourSub'),
+                'middle_frame_template' => Input::get('stateMiddleFrame'),
+                'middle_frame_template_format' => $MidFboxes,
+                'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
+                'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub'),
+                'end_frame_template' => Input::get('stateEndFrame'),
+                'end_frame_template_format' => $EndFboxes,
+                'end_frame_colours' => Input::get('stateEndFrameColour'),
+                'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
+                'video_frame_name' => Input::get('videoName'),
+                'video_frame_mobile' => Input::get('videoMobile'),
+                'video_frame_web_emailadd' => Input::get('videoEmailAdd'),
+                'video_frame_agency_name' => Input::get('videoAgencyName'),
+                'video_frame_content' => Input::get('videoContent'),
+                'randomise_statement_mf' => $chkRandomiseMF,
+                'video_middle_frame_statement' => Input::get('statementMF'),
+                'randomise_statement_ef' => $chkRandomiseEF,
+                'video_end_frame_statement' => Input::get('statementEF'),
+                'voice_format' => Input::get('stateVoiceFormat'),
+                'voice_file_selection' => $voiceboxes,
+                'music_style' => Input::get('stateMusicStyle'),
+                'music_file_format' => $musicboxes
 
-        );
-        AgentTemplate::create($template_arr);
+            );
+            AgentTemplate::create($template_arr);
+        }
+        else
+        {
+            AgentTemplate::where('ID', $userId)->update([
+                'main_image' => $fnameMainImage,
+                'extra_image1' => $fnameMainImage2,
+                'extra_image2' => $fnameMainImage3,
+                'logo' => $fnamelogoImage,
+                'main_frame_template' => Input::get('stateMainFrame'),
+                'main_frame_template_format' => $MFboxes,
+                'main_frame_colours' => Input::get('stateMainFrameColour'),
+                'main_frame_colours_sub' => Input::get('stateMainFrameColourSub'),
+                'middle_frame_template' => Input::get('stateMiddleFrame'),
+                'middle_frame_template_format' => $MidFboxes,
+                'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
+                'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub'),
+                'end_frame_template' => Input::get('stateEndFrame'),
+                'end_frame_template_format' => $EndFboxes,
+                'end_frame_colours' => Input::get('stateEndFrameColour'),
+                'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
+                'video_frame_name' => Input::get('videoName'),
+                'video_frame_mobile' => Input::get('videoMobile'),
+                'video_frame_web_emailadd' => Input::get('videoEmailAdd'),
+                'video_frame_agency_name' => Input::get('videoAgencyName'),
+                'video_frame_content' => Input::get('videoContent'),
+                'randomise_statement_mf' => $chkRandomiseMF,
+                'video_middle_frame_statement' => Input::get('statementMF'),
+                'randomise_statement_ef' => $chkRandomiseEF,
+                'video_end_frame_statement' => Input::get('statementEF'),
+                'voice_format' => Input::get('stateVoiceFormat'),
+                'voice_file_selection' => $voiceboxes,
+                'music_style' => Input::get('stateMusicStyle'),
+                'music_file_format' => $musicboxes
+            ]);
+        }
 
         User::where('ID', $userId)->update([
             'logo_user' => $fnamelogoImage
@@ -233,42 +300,80 @@ class RegisterController extends Controller
         $email_list = Input::get('emails_arr');
         $suburb_list = Input::get('areas_arr');
 
-        //for Surge Offer Preferences Section
-        $surge_arr = array(
-            'agent_ID' => $userId,
-            'surge_offer_option' => $surge_offer[0],
-            'broadcast_agent' => $broadcast_status
-        );
-        AgentPreferences::create($surge_arr);
+        $stateMode = Input::get('modeAction');
 
-        //for Email Distribution List
-        $emails = explode(',', $email_list);
+        if($stateMode === 'addPreference'){
+            //for Surge Offer Preferences Section
+            $surge_arr = array(
+                'agent_ID' => $userId,
+                'surge_offer_option' => $surge_offer[0],
+                'broadcast_agent' => $broadcast_status
+            );
+            AgentPreferences::create($surge_arr);
 
-        if ($email_list != null) {
+            //for Email Distribution List
+            $emails = explode(',', $email_list);
+
+            if ($email_list != null) {
+                AgentPreferences::where('agent_ID', $userId)->update([
+                    'email_distribution' => 1
+                ]);
+
+                for ($i = 0; $i < count($emails); $i++) {
+                    $email_arr = array(
+                        'agent_ID' => $userId,
+                        'email' => $emails[$i],
+                    );
+                    AgentEmail::create($email_arr);
+                }
+            }
+
+            $areas = explode(',', $suburb_list);
+            if ($suburb_list != null) {
+                for ($i = 0; $i < count($areas); $i++) {
+                    $broadcast_arr = array(
+                        'agent_ID' => $userId,
+                        'suburb' => $areas[$i],
+                    );
+                    AgentBroadcast::create($broadcast_arr);
+                }
+            }
+        }
+        elseif($stateMode === 'editPreference'){
+
+            $emails = Input::get('email_list');
+            $areas = Input::get('suburb_list');
+
             AgentPreferences::where('agent_ID', $userId)->update([
-                'email_distribution' => 1
+                'surge_offer_option' => $surge_offer[0],
             ]);
 
-            for ($i = 0; $i < count($emails); $i++) {
-                $email_arr = array(
-                    'agent_ID' => $userId,
-                    'email' => $emails[$i],
-                );
-                AgentEmail::create($email_arr);
+            if ($emails != null) {
+
+                AgentEmail::where('agent_ID', $userId)->delete();
+
+                for ($i = 0; $i < count($emails); $i++) {
+                    $email_arr = array(
+                        'agent_ID' => $userId,
+                        'email' => $emails[$i],
+                    );
+                    AgentEmail::create($email_arr);
+                }
+            }
+
+            if ($areas != null) {
+
+                AgentBroadcast::where('agent_ID', $userId)->delete();
+
+                for ($i = 0; $i < count($areas); $i++) {
+                    $email_arr = array(
+                        'agent_ID' => $userId,
+                        'suburb' => $areas[$i],
+                    );
+                    AgentEmail::create($email_arr);
+                }
             }
         }
-
-        $areas = explode(',', $suburb_list);
-        if ($suburb_list != null) {
-            for ($i = 0; $i < count($areas); $i++) {
-                $broadcast_arr = array(
-                    'agent_ID' => $userId,
-                    'suburb' => $areas[$i],
-                );
-                AgentBroadcast::create($broadcast_arr);
-            }
-        }
-
         return redirect()->route('get-started-step4');
     }
 

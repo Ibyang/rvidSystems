@@ -510,21 +510,21 @@ a { text-decoration: none !important; }
 
 .uploadOverlay4{
     position: absolute;
-    top: 240px;
+    top: 290px;
     margin-left: 360px;
     text-align: right;
 }
 
 .uploadOverlay5{
     position: absolute;
-    top: 520px;
+    top: 630px;
     margin-left: 360px;
     text-align: right;
 }
 
 .uploadOverlay6{
     position: absolute;
-    top: 800px;
+    top: 970px;
     margin-left: 360px;
     text-align: right;
 }

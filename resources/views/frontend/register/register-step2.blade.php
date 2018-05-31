@@ -228,6 +228,15 @@
                 }
             });
 
+            //to determine the order for the selected template
+            $('#chkrandomiseMF').click(function(){
+                if($(this).is(":checked"))
+                    $("#statementMF").attr("disabled" , "disabled");
+                else
+                    $("#statementMF").removeAttr("disabled");
+            });
+
+
         });
     </script>
 

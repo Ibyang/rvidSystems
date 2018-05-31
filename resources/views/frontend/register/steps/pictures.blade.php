@@ -1,25 +1,48 @@
                 <h3><div class="register-icon reg-picture mb-2"></div><span class="pl-2">Pictures</span></h3>
                 <div class="row">
-                    <div class="col reg-step-link">
-                        <img id="image1" src="{{ asset('storage/register/step-needed.jpg') }}" style='border: 10px solid #ededed; margin-bottom: 10px;'>
-                        <div class="text-right pt-2 pb-2">
-                            <input type='file' id="mainImage" name="mainImage" class="FileUpload"/>
-                            <div class="uploadOverlay4">Add/Change <span>+</span></div>
-                            {{--<a href="">Add/Change <span>+</span></a>--}}
+                    @if(!empty($template) || $template != null)
+                        <div class="col reg-step-link">
+                            <img id="image1" src="{{ $path . $template['main_image'] }}" style='border: 10px solid grey; margin-bottom: 10px;'>
+                            <div class="text-right pt-2 pb-2">
+                                <input type='file' id="mainImage" name="mainImage" class="FileUpload"/>
+                                <div class="uploadOverlay4">Add/Change <span>+</span></div>
+                                {{--<a href="">Add/Change <span>+</span></a>--}}
+                            </div>
+                            <img id="image2" src="{{ $path . $template['extra_image1'] }}" style='border: 10px solid grey; margin-bottom: 10px;'>
+                            <div class="text-right pt-2 pb-2">
+                                <input type='file' id="mainImage2" name="mainImage2" class="FileUpload"/>
+                                <div class="uploadOverlay5">Add/Change <span>+</span></div>
+                                {{--<a href="">Add/Change <span>+</span></a>--}}
+                            </div>
+                            <img id="image3" src="{{ $path . $template['extra_image2'] }}" style='border: 10px solid grey; margin-bottom: 10px;'>
+                            <div class="text-right pt-2 pb-2">
+                                <input type='file' id="mainImage3" name="mainImage3" class="FileUpload"/>
+                                <div class="uploadOverlay6">Add/Change <span>+</span></div>
+                                {{--<a href="">Add/Change <span>+</span></a>--}}
+                            </div>
                         </div>
-                        <img id="image2" src="{{ asset('storage/register/step-optional.jpg') }}" style='border: 10px solid #ededed; margin-bottom: 10px;'>
-                        <div class="text-right pt-2 pb-2">
-                            <input type='file' id="mainImage2" name="mainImage2" class="FileUpload"/>
-                            <div class="uploadOverlay5">Add/Change <span>+</span></div>
-                            {{--<a href="">Add/Change <span>+</span></a>--}}
+                    @else
+                        <div class="col reg-step-link">
+                            <img id="image1" src="{{ asset('storage/register/step-needed.jpg') }}">
+                            <div class="text-right pt-2 pb-2">
+                                <input type='file' id="mainImage" name="mainImage" class="FileUpload"/>
+                                <div class="uploadOverlay4">Add/Change <span>+</span></div>
+                                {{--<a href="">Add/Change <span>+</span></a>--}}
+                            </div>
+                            <img id="image2" src="{{ asset('storage/register/step-optional.jpg') }}">
+                            <div class="text-right pt-2 pb-2">
+                                <input type='file' id="mainImage2" name="mainImage2" class="FileUpload"/>
+                                <div class="uploadOverlay5">Add/Change <span>+</span></div>
+                                {{--<a href="">Add/Change <span>+</span></a>--}}
+                            </div>
+                            <img id="image3" src="{{ asset('storage/register/step-optional.jpg') }}">
+                            <div class="text-right pt-2 pb-2">
+                                <input type='file' id="mainImage3" name="mainImage3" class="FileUpload"/>
+                                <div class="uploadOverlay6">Add/Change <span>+</span></div>
+                                {{--<a href="">Add/Change <span>+</span></a>--}}
+                            </div>
                         </div>
-                        <img id="image3" src="{{ asset('storage/register/step-optional.jpg') }}" style='border: 10px solid #ededed; margin-bottom: 10px;'>
-                        <div class="text-right pt-2 pb-2">
-                            <input type='file' id="mainImage3" name="mainImage3" class="FileUpload"/>
-                            <div class="uploadOverlay6">Add/Change <span>+</span></div>
-                            {{--<a href="">Add/Change <span>+</span></a>--}}
-                        </div>
-                    </div>
+                    @endif
                     <div class="col pl-5 align-bottom mt-5">
                         <p class="font-weight-bold header-title">
                             We need your pictures to set-up your <br>video templates.
