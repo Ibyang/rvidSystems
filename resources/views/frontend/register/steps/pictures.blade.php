@@ -2,22 +2,22 @@
                 <div class="row">
                     @if(!empty($template) || $template != null)
                         <div class="col reg-step-link">
-                            <img id="image1" src="{{ $path . $template['main_image'] }}" style='border: 10px solid grey; margin-bottom: 10px;'>
+                            <img id="image1" src="{{ $path . $template['main_image'] }}" width="460" height="235" style='border: 10px solid grey; margin-bottom: 10px;'>
                             <div class="text-right pt-2 pb-2">
                                 <input type='file' id="mainImage" name="mainImage" class="FileUpload"/>
                                 <div class="uploadOverlay4">Add/Change <span>+</span></div>
                                 {{--<a href="">Add/Change <span>+</span></a>--}}
                             </div>
-                            <img id="image2" src="{{ $path . $template['extra_image1'] }}" style='border: 10px solid grey; margin-bottom: 10px;'>
+                            <img id="image2" src="{{ $path . $template['extra_image1'] }}" width="460" height="235" style='border: 10px solid grey; margin-bottom: 10px;'>
                             <div class="text-right pt-2 pb-2">
                                 <input type='file' id="mainImage2" name="mainImage2" class="FileUpload"/>
-                                <div class="uploadOverlay5">Add/Change <span>+</span></div>
+                                <div class="uploadOverlay5a">Add/Change <span>+</span></div>
                                 {{--<a href="">Add/Change <span>+</span></a>--}}
                             </div>
-                            <img id="image3" src="{{ $path . $template['extra_image2'] }}" style='border: 10px solid grey; margin-bottom: 10px;'>
+                            <img id="image3" src="{{ $path . $template['extra_image2'] }}" width="460" height="235" style='border: 10px solid grey; margin-bottom: 10px;'>
                             <div class="text-right pt-2 pb-2">
                                 <input type='file' id="mainImage3" name="mainImage3" class="FileUpload"/>
-                                <div class="uploadOverlay6">Add/Change <span>+</span></div>
+                                <div class="uploadOverlay6a">Add/Change <span>+</span></div>
                                 {{--<a href="">Add/Change <span>+</span></a>--}}
                             </div>
                         </div>

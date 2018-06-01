@@ -2,9 +2,10 @@
     BROADCAST TO OTHER AGENTS IN YOUR AREA <a href="">What is this?</a>
 
     @if(!empty($preference) || $preference != null)
+    {{--@if(count($preference) > 0)--}}
         <div class="custom-control custom-checkbox standard">
             <input type="checkbox" class="custom-control-input" id="customCheck27" value="1" name="broadcast_status"
-                    {{ $prererence['broadcast_agent'] === '1' ? 'checked' : '' }}>
+                    {{ $preference['broadcast_agent'] === '1' ? 'checked' : '' }}>
             <label class="custom-control-label" for="customCheck27">Yes, send weekely New Video Update to REVid member <br>real estate agents in the selected areas listed below.</label>
         </div>
     @else
@@ -16,7 +17,7 @@
 
                     
     Select Areas
-    @if(!empty($areas) || $areas != null)
+    @if(count($areas) > 0)
         <div class="row mt-2 mb-2">
             <div class="col-sm">
                 {{--<input type="text" name="area" class="form-control">--}}
@@ -40,7 +41,7 @@
                 <div class="col-sm reg-step-link"><span id="removeSuburbLink" style="color: red; cursor: pointer">Remove -</span></div>
 
                 <div class="col-sm align-items-end">
-                    <input type="hidden" name="modeAction" value="editPreference">
+                    <input type="hidden" name="modeActionPreference" value="editModePreference">
                     <button type="submit" class="btn btn-primary">NEXT : Payment Details <i class="arrow-right"></i></button>
                 </div>
             </div>
@@ -64,7 +65,7 @@
             <div class="col-sm reg-step-link"><span id="removeSuburbLink" style="color: red; cursor: pointer">Remove -</span></div>
 
             <div class="col-sm align-items-end">
-                <input type="hidden" name="modeAction" value="addPreference">
+                <input type="hidden" name="modeActionPreference" value="addModePreference">
                 <button type="submit" class="btn btn-primary">NEXT : Payment Details <i class="arrow-right"></i></button>
             </div>
         </div>

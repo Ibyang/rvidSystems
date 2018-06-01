@@ -1,7 +1,5 @@
   <h3><div class="register-icon reg-content mb-2"></div><span class="pl-1">Content for Video Frame Templates</span></h3>
-
         @if(!empty($template) || $template != null)
-
                 Required (Enter as you wish it to appear)
                 <div class="row">
                     <div class="col-sm">

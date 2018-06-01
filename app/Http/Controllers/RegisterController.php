@@ -300,9 +300,9 @@ class RegisterController extends Controller
         $email_list = Input::get('emails_arr');
         $suburb_list = Input::get('areas_arr');
 
-        $stateMode = Input::get('modeAction');
+        $stateMode = Input::get('modeActionPreference');
 
-        if($stateMode === 'addPreference'){
+        if($stateMode === 'addModePreference'){
             //for Surge Offer Preferences Section
             $surge_arr = array(
                 'agent_ID' => $userId,
@@ -339,7 +339,7 @@ class RegisterController extends Controller
                 }
             }
         }
-        elseif($stateMode === 'editPreference'){
+        elseif($stateMode === 'editModePreference'){
 
             $emails = Input::get('email_list');
             $areas = Input::get('suburb_list');
@@ -412,18 +412,33 @@ class RegisterController extends Controller
             }
         }
 
-        $payment_arr = array(
-            'agent_ID' => $userId,
-            'subscription_type' => $subscription_type,
-            'storage_plan' => $storage_plan,
-            'invoice_to' => Input::get('person_name'),
-            'address' => Input::get('invoice_address'),
-            'person_name' => Input::get('contact_name'),
-            'contact_num' => Input::get('mobile'),
-            'email' => Input::get('email'),
-        );
+        $stateMode = Input::get('modeAction');
 
-        AgentInvoice::create($payment_arr);
+        if($stateMode === 'addTemplate'){
+            $payment_arr = array(
+                'agent_ID' => $userId,
+                'subscription_type' => $subscription_type,
+                'storage_plan' => $storage_plan,
+                'invoice_to' => Input::get('person_name'),
+                'address' => Input::get('invoice_address'),
+                'person_name' => Input::get('contact_name'),
+                'contact_num' => Input::get('mobile'),
+                'email' => Input::get('email'),
+            );
+
+            AgentInvoice::create($payment_arr);
+        }
+        elseif($stateMode === 'editTemplate'){
+            AgentInvoice::where('agent_ID', $userId)->update([
+                'subscription_type' => $subscription_type,
+                'storage_plan' => $storage_plan,
+                'invoice_to' => Input::get('person_name'),
+                'address' => Input::get('invoice_address'),
+                'person_name' => Input::get('contact_name'),
+                'contact_num' => Input::get('mobile'),
+                'email' => Input::get('email'),
+            ]);
+        }
 
         $credentials = array(
             'email' => $email,

@@ -371,6 +371,11 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::post('/account/explore-templates/editEndFrame', 'MyVideoController@editEndFrame')->name('editEndFrame');
 
+    //module for editing voice over selection
+    Route::post('/account/explore-voice-overs/editVoice', 'MyVideoController@updateVoiceOvers')->name('account-update-voiceovers');
+
+    Route::post('/account/explore-music/editMusic', 'MyVideoController@updateMusic')->name('account-update-music');
+
     //Standard Video System Steps
 //    Route::get('/account/preferences/video-system/storePics/{file}','MyVideoController@storePics');
 

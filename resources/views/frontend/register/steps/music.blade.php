@@ -1,4 +1,4 @@
-<h3><div class="register-icon reg-music mb-2"></div><span class="pl-1">Music</span>
+<h3><div class="register-icon reg-music mb-2"></div><span class="pl-1">Music</span></h3>
 
     @if(!empty($template) || $template != null)
 
@@ -43,7 +43,7 @@
                                         <input type="checkbox" class="custom-control-input" id="customCheck20" name="musicSelection[]" value="music2"
                                                @if(in_array('music2', $music_list))
                                                     checked
-                                               @endif>>
+                                               @endif>
                                         <label class="custom-control-label" for="customCheck20"></label>
                                     </div>
                                 </div>
@@ -133,3 +133,5 @@
             <button class="btn btn-primary" type="submit">NEXT: Preferences <i class="arrow-right"></i></button>
         </div>
         <div class="clear"></div>
+
+    @endif

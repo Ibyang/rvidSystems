@@ -83,7 +83,7 @@
                         <div class="row m-0">
                             <div class="col-md-auto surge">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" name="surgeoffer[]" id="chkSurge" value="Always Surge" {{$preference->surge_offer_option  === "Always Surge" ? 'checked' : '' }}>
+                                    <input type="checkbox" class="custom-control-input" name="surgeoffer[]" id="chkSurge" value="Always Surge" {{$preference['surge_offer_option']  === "Always Surge" ? 'checked' : '' }}>
                                     <label class="custom-control-label" for="chkSurge"></label>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                         <div class="row">
                             <div class="col-md-auto surge">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" name="surgeoffer[]" id="chkRush" value="Always Rush" {{$preference->surge_offer_option  === "Always Rush" ? 'checked' : '' }}>
+                                    <input type="checkbox" class="custom-control-input" name="surgeoffer[]" id="chkRush" value="Always Rush" {{$preference['surge_offer_option']  === "Always Rush" ? 'checked' : '' }}>
                                     <label class="custom-control-label" for="chkRush"></label>
                                 </div>
                             </div>

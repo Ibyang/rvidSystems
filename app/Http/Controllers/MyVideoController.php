@@ -1529,5 +1529,48 @@ class MyVideoController extends Controller
 
     }
 
+    public function updateVoiceOvers(){
+
+        $userid = Auth::user()->id;
+
+        //for voice format selection
+        $stateVoiceFormat = Input::get('stateVoiceFormat');
+        $voiceSelection = Input::get('voiceSelection');
+        if ($voiceSelection != null)
+            $voiceboxes = implode(',', $voiceSelection);
+        else
+            $voiceboxes = '';
+
+        AgentTemplate::where('agent_ID', $userid)->update([
+            'voice_format' => $stateVoiceFormat,
+            'voice_file_selection' => $voiceboxes
+        ]);
+
+        return redirect()->route('account-explore-voice-overs');
+
+    }
+
+
+    public function updateMusic(){
+
+        $userid = Auth::user()->id;
+
+        //for voice format selection
+        $music_style = Input::get('music_style');
+        //for music file format selection
+        $musicSelection = Input::get('musicSelection');
+        if ($musicSelection != null)
+            $musicboxes = implode(',', $musicSelection);
+        else
+            $musicboxes = '';
+
+        AgentTemplate::where('agent_ID', $userid)->update([
+            'music_style' => $music_style,
+            'music_file_format' => $musicboxes
+        ]);
+
+        return redirect()->route('account-explore-music');
+
+    }
 
 }

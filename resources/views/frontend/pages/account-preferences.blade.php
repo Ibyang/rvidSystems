@@ -10,14 +10,14 @@
             </div>
             <div class="col-lg-9 my-account-form">
 
-                <form class="form-horizontal" method="POST" action="{{ route('account-preferences-process', $preference->agent_ID) }}">
+                <form class="form-horizontal" method="POST" action="{{ route('account-preferences-process', $preference['agent_ID']) }}">
                     {{ csrf_field() }}
-                    <h3>My Preferences</h3><br>
+                    <br><h3>My Preferences</h3><br>
                     <h3>SURGE OFFER</h3> What is this?
                     <div class="row">
                         <div class="col-sm">
                             <div class="custom-control custom-checkbox premium">
-                                <input type="checkbox" class="group1 custom-control-input" id="customCheck1" value="Always Surge" name="surgeoffer[]" {{ $preference->surge_offer_option  === "Always Surge" ? 'checked' : '' }}>
+                                <input type="checkbox" class="group1 custom-control-input" id="customCheck1" value="Always Surge" name="surgeoffer[]" {{ $preference['surge_offer_option']  === "Always Surge" ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="customCheck1"></label>
                                 Always Surge (24 hours) ($5 fixed)
                             </div>
@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="custom-control custom-checkbox premium">
-                                <input type="checkbox" class="group1 custom-control-input" id="customCheck2" value="Always Rush" name="surgeoffer[]" {{ $preference->surge_offer_option  === "Always Rush" ? 'checked' : '' }}>
+                                <input type="checkbox" class="group1 custom-control-input" id="customCheck2" value="Always Rush" name="surgeoffer[]" {{ $preference['surge_offer_option']  === "Always Rush" ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="customCheck2"></label>
                                 Always Rush (2 hours) ($45 fixed)
                             </div>
@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="custom-control custom-checkbox premium">
-                                <input type="checkbox" class="group1 custom-control-input" id="customCheck3" value="Sometimes" name="surgeoffer[]" {{ $preference->surge_offer_option  === "Sometimes" ? 'checked' : '' }}>
+                                <input type="checkbox" class="group1 custom-control-input" id="customCheck3" value="Sometimes" name="surgeoffer[]" {{ $preference['surge_offer_option']  === "Sometimes" ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="customCheck3"></label>
                                 Sometimes (Ask Me) (Cost of the Day)
                             </div>
@@ -81,7 +81,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="custom-control custom-checkbox premium">
-                                <input type="checkbox" class="group1 custom-control-input" id="customCheck4" value="1" name="broadcast_status" {{ $preference->broadcast_agent  === "1" ? 'checked' : '' }}>
+                                <input type="checkbox" class="group1 custom-control-input" id="customCheck4" value="1" name="broadcast_status" {{ $preference['broadcast_agent']  === "1" ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="customCheck4"></label>
                                 Yes, send weekly New Video Update to REVid member real estate agents in the selected areas listed below.
                             </div>

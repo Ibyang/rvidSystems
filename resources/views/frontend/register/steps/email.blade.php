@@ -7,7 +7,8 @@
         <div class="col-sm align-self-center"><span id="addEmailLink" style="color: blue; cursor: pointer">Add +</span></div>
     </div>
 
-    @if(!empty($emails) || $emails != null)
+{{--    @if(!empty($emails) || $emails != null)--}}
+    @if(count($emails) > 0)
         <div class="mt-2 mb-2">Current List</div>
             <div class="row">
                 <div class="col-sm">

@@ -77,7 +77,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="main_frame[]" id="customCheck1" value="main-frame-1.jpg"
-                                               @if(in_array('main-frame-1.jpg', $mainframe_list))
+                                               @if(in_array('1', $mainframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck1">Select</label>
@@ -89,7 +89,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="main_frame[]" id="customCheck2" value="main-frame-2.jpg"
-                                               @if(in_array('main-frame-2.jpg', $mainframe_list))
+                                               @if(in_array('2', $mainframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck2">Select</label>
@@ -103,7 +103,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="main_frame[]" id="customCheck3" value="main-frame-3.jpg"
-                                               @if(in_array('main-frame-3.jpg', $mainframe_list))
+                                               @if(in_array('3', $mainframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck3">Select</label>
@@ -115,7 +115,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="main_frame[]" id="customCheck4" value="main-frame-4.jpg"
-                                               @if(in_array('main-frame-4.jpg', $mainframe_list))
+                                               @if(in_array('4', $mainframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck4">Select</label>
@@ -194,7 +194,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck5" value="main-frame-1.jpg"
-                                               @if(in_array('main-frame-1.jpg', $middleframe_list))
+                                               @if(in_array('1', $middleframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck5">Select</label>
@@ -206,7 +206,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck6" value="main-frame-2.jpg"
-                                               @if(in_array('main-frame-2.jpg', $middleframe_list))
+                                               @if(in_array('2', $middleframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck6">Select</label>
@@ -220,7 +220,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck7" value="main-frame-3.jpg"
-                                               @if(in_array('main-frame-3.jpg', $middleframe_list))
+                                               @if(in_array('3', $middleframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck7">Select</label>
@@ -232,7 +232,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck8" value="main-frame-4.jpg"
-                                               @if(in_array('main-frame-4.jpg', $middleframe_list))
+                                               @if(in_array('4', $middleframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck8">Select</label>
@@ -311,7 +311,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck9" value="main-frame-1.jpg"
-                                               @if(in_array('main-frame-1.jpg', $endframe_list))
+                                               @if(in_array('1', $endframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck9">Select</label>
@@ -323,7 +323,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck10" value="main-frame-2.jpg"
-                                               @if(in_array('main-frame-2.jpg', $endframe_list))
+                                               @if(in_array('2', $endframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck10">Select</label>
@@ -337,7 +337,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck11" value="main-frame-3.jpg"
-                                               @if(in_array('main-frame-3.jpg', $endframe_list))
+                                               @if(in_array('3', $endframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck11">Select</label>
@@ -349,7 +349,7 @@
                                     <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                     <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                         <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck12" value="main-frame-4.jpg"
-                                               @if(in_array('main-frame-4.jpg', $endframe_list))
+                                               @if(in_array('4', $endframe_list))
                                                     checked
                                                @endif>
                                         <label class="custom-control-label font12" for="customCheck12">Select</label>

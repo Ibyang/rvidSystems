@@ -391,7 +391,7 @@
                                    <img src="{{ asset('storage/register/main-frame-1.jpg') }}"><br>
                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                       <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck5" value="main-frame-1.jpg">
+                                       <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck5" value="1">
                                        <label class="custom-control-label font12" for="customCheck5">Select</label>
                                    </div>
                                </div>
@@ -399,7 +399,7 @@
                                    <img src="{{ asset('storage/register/main-frame-2.jpg') }}"><br>
                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                       <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck6" value="main-frame-2.jpg">
+                                       <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck6" value="2">
                                        <label class="custom-control-label font12" for="customCheck6">Select</label>
                                    </div>
                                </div>
@@ -409,7 +409,7 @@
                                    <img src="{{ asset('storage/register/main-frame-3.jpg') }}"><br>
                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                       <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck7" value="main-frame-3.jpg">
+                                       <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck7" value="3">
                                        <label class="custom-control-label font12" for="customCheck7">Select</label>
                                    </div>
                                </div>
@@ -417,7 +417,7 @@
                                    <img src="{{ asset('storage/register/main-frame-4.jpg') }}"><br>
                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                       <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck8" value="main-frame-4.jpg">
+                                       <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck8" value="4">
                                        <label class="custom-control-label font12" for="customCheck8">Select</label>
                                    </div>
                                </div>

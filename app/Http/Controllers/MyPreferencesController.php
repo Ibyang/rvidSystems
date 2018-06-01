@@ -43,7 +43,7 @@ class MyPreferencesController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userId . '/';
+        $path = '/storage/client_images/' . $userId . '/general_images/';
         $logo_pic = $path . $logo;
 
         return view('frontend.pages.account-preferences', compact('suburbs', 'agent', 'userId', 'emails', 'areas', 'preference', 'logo_pic'));

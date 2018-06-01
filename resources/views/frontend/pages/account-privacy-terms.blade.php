@@ -9,7 +9,7 @@
                 @endauth
             </div>
             <div class="col-lg-9 my-account-form">
-                <h3 class="border-title">Privacy Terms</h3>
+                <br><h3 class="border-title">Privacy Terms</h3>
                 <div class="row">
                     <div class="col">Version 1.1</div>
                     <div class="col">Dated 1 Jan 2018</div>
