@@ -172,7 +172,7 @@
                                             @foreach($generic_videos as $video)
                                                 <tr>
                                                     <td style="text-align: center">{{ $video->ID }}</td>
-                                                    <td>{{ $video->url_address }}</td>
+                                                    <td>{{ $video->videoAddress }}</td>
                                                     <td>{{ $video->name }}</td>
                                                     <td>
                                                         @if($video->status === 'Compiling')

@@ -121,7 +121,7 @@
                                                 <img src="{{ $path2 . $pic['old_filename'] }}" width='268px' height='110px' style='border: 10px solid #ededed; margin-bottom: 10px;'>
                                             @endif
                                             {{--<p>Add or Drag and Drop <br><span class="c-6600cc"><b>+</b></span><br>Picture</p>--}}
-                                            <select name="transition[]" style="margin-bottom: 10px;">
+                                            <select name="transition[]" style="margin-bottom: 10px; width: 130px">
                                                 <option value="Fade" {{ $pic['effect_style'] === 'Fade' ? 'selected' : '' }}>Fade</option>
                                                 <option value="Slide" {{ $pic['effect_style'] === 'Slide' ? 'selected' : '' }}>Slide</option>
                                                 <option value="Flip" {{ $pic['effect_style'] === 'Flip' ? 'selected' : '' }}>Flip</option>
@@ -130,6 +130,7 @@
                                                 <option value="Zoom" {{ $pic['effect_style'] === 'Zoom' ? 'selected' : '' }}>Zoom</option>
                                                 <option value="Page Peel" {{ $pic['effect_style'] === 'Page Peel' ? 'selected' : '' }}>Page Peel</option>
                                             </select>
+                                            <span style="float: right">Remove Image</span>
                                         @endforeach
                                     @endif
                                 </div>
@@ -224,9 +225,9 @@
                 console.log("the value of src is ", src);
                 console.log("the value of filename is ", filename);
 
-                $('#moveStoryContent').append("<input type='file' name='images[]' value='" + filename + "' multiple>" +
+                $('#moveStoryContent').append("<div id='divImg'><input type='file' name='images[]' value='" + filename + "' multiple>" +
                     "<img src='"+ src +"' width='268px' height='110px' style='border: 10px solid #ededed; margin-bottom: 10px;'>" +
-                    "<select name='transition[]' style='margin-bottom: 10px;'>" +
+                    "<select name='transition[]' style='margin-bottom: 10px; width: 130px'>" +
                     "<option value='Fade'>Fade</option>" +
                     "<option value='Slide'>Slide</option>" +
                     "<option value='Flip'>Flip</option>" +
@@ -234,7 +235,8 @@
                     "<option value='Split'>Split</option>" +
                     "<option value='Zoom'>Zoom</option>" +
                     "<option value='Page Peel'>Page Peel</option>" +
-                    "</select>");
+                    "</select>" +
+                    "<div style='float: right; font-size: medium' id='removeDiv'>Remove Image</div></div>");
             }
             $('#selectedImages').val(files_arr);
         });
@@ -242,7 +244,14 @@
 
         $('#btnSaveStoryboard').click(function () {
             $('#frmStep1').submit();
-        })
+        });
+
+
+        $('#close-div').on('click', function () {
+            alert("hello world");
+            //$("#divImg").remove();
+            // $(this).parent().parent().remove();
+        });
 
     });
 

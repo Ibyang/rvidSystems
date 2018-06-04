@@ -1017,7 +1017,7 @@ class MyVideoController extends Controller
             foreach($request->file('image_files') as $image)
             {
                 if(!empty($image) && ($ctr < count($arr_images))){
-                    $path = public_path('storage\client_images\\' . $userid . '\\pictures\\Video' . $videoid . '\\');
+                    $path = public_path('storage\client_images\\' . $userid . '\\standard_pictures\\Video' . $videoid . '\\');
                     if(!File::exists($path)){
                         File::makeDirectory($path, 0775, true);
                     }
