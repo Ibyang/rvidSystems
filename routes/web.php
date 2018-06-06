@@ -288,10 +288,11 @@ Route::group(['middleware' => 'guest'], function() {
     Route::post('account/help/callMe', 'MyHelpController@callmeHelp')->name('callmeHelp');
 
     //passing values from the Front End pages
-    Route::post('/get-started', 'RegisterController@index')->name('get-started');
+//    Route::post('/get-started', 'RegisterController@index')->name('get-started');
+    Route::post('/get-started', 'RegisterController@getStarted')->name('get-started');
 
     //passing values via enter of Email field
-    Route::post('/get-started/step1', 'RegisterController@getStep1')->name('get-started-step1');
+    Route::get('/get-started/step1', 'RegisterController@getStep1')->name('get-started-step1');
 
     //redirect to Step 2 of Registration
     Route::get('/get-started/step2', 'RegisterController@getStep2')->name('get-started-step2');
@@ -303,6 +304,8 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/get-started/step4', 'RegisterController@getStep4')->name('get-started-step4');
 
     //modules for processing of the steps in registration
+    Route::post('/processStep1', 'RegisterController@processStep1')->name('processStep1');
+
     Route::post('/processStep2', 'RegisterController@processStep2')->name('processStep2');
 
     Route::post('/processStep3', 'RegisterController@processStep3')->name('processStep3');

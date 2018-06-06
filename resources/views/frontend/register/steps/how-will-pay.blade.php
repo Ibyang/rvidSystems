@@ -46,13 +46,13 @@
                     <div class="col-sm">
                         <div class="float-r">
 
-                            @if(!empty($payment) || $payment != null)
-                                <input type="hidden" name="modeAction" id="modeAction" value="editTemplate">
-                            @else
-                                <input type="hidden" name="modeAction" id="modeAction" value="addTemplate">
-                            @endif
-
-                            <button class="btn btn-primary" type="submit" id="btnAccept" disabled>
+                            {{--@if(!empty($payment) || $payment != null)--}}
+                                {{--<input type="hidden" name="modeAction" id="modeAction" value="editTemplate">--}}
+                            {{--@else--}}
+                                {{--<input type="hidden" name="modeAction" id="modeAction" value="addTemplate">--}}
+                            {{--@endif--}}
+                            <div style="float: left; margin-right: 10px"><button class="btn btn-primary" type="submit" name="action" value="previousStep"><i class="arrow-left"></i> Previous Step</button></div>
+                            <button class="btn btn-primary" type="submit" id="btnAccept" name="action" value="accept" disabled>
                                 Accept
                             </button>
                         </div>

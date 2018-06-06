@@ -41,6 +41,10 @@
 
     <script type="text/javascript">
 
+        function goBack(){
+            window.history.back();
+        }
+
         //for Main Image 1
         function readURLMainImage1(input) {
             if (input.files && input.files[0]) {

@@ -1,51 +1,4 @@
                 Who will pay for Videos
-                @if(!empty($details))
-                    <div class="row mb-3">
-                        <div class="col-sm">
-                            <input type="text" class="form-control" name="person_name" id="person_name" value="{{ $details->firstname }}&nbsp;{{ $details->lastname }}">
-                        </div>
-                        <div class="col-sm">
-                            <input type="text" class="form-control" name="contact_name" id="contact_name" placeholder="Contact Name (if different)">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-sm">
-                            <input type="text" class="form-control" name="name_agency" id="name_agency" value="{{ $details->name_agency }}">
-                        </div>
-                        <div class="col-sm">
-                            <input type="email" class="form-control" name="email" id="email" value="{{ $details->email }}">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-sm">
-                            <textarea cols="10" rows="5" id="invoice_address" name="invoice_address" class="form-control">{{ $details->address }}</textarea>
-                        </div>
-                        <div class="col-sm">
-                            <input type="text" class="form-control" name="mobile" id="mobile" value="{{ $details->mobile }}">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-sm">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <input type="text" class="form-control" name="suburb" id="suburb" value="{{ $details->suburb }}">
-                                </div>
-                                <div class="col-sm">
-                                    <input type="text" class="form-control" name="state" id="state" value="{{ $details->state }}">
-                                </div>
-                                <div class="col-sm">
-                                    <input type="text" class="form-control" name="postcode" id="postcode" value="{{ $details->postcode }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm step-three-register">
-                            <div class="custom-control custom-checkbox premium">
-                                    <input type="checkbox" class="custom-control-input" id="accept_terms" value="1" name="accept_terms">
-                                    <label class="custom-control-label" for="accept_terms">I accept terms and conditions of use</label>
-                            </div>
-                        </div>
-                    </div>
-                @elseif(!empty($agent))
                     <div class="row mb-3">
                         <div class="col-sm">
                             <input type="text" class="form-control" name="person_name" id="person_name" value="{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}">
@@ -78,7 +31,7 @@
                                     <input type="text" class="form-control" name="state" id="state" value="{{$agent['state']}}">
                                 </div>
                                 <div class="col-sm">
-                                    <input type="text" class="form-control" name="postcode" id="postcode" value="{{$agent['postcode']}}">
+                                    <input type="text" class="form-control" name="postcode" id="postcode" value="">
                                 </div>
                             </div>
                         </div>
@@ -89,4 +42,3 @@
                             </div>
                         </div>
                     </div>
-                @endif

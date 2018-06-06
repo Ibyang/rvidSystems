@@ -39,6 +39,7 @@
     <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
 
     <script type="text/javascript">
+
         $(document).ready(function() {
 
             var suburbValue = $('#suburbValue').val();

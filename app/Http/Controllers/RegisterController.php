@@ -40,50 +40,79 @@ class RegisterController extends Controller
         return view('frontend.pages.get-started', compact('email', 'details', 'states', 'groups', 'agencies'));
     }
 
-    public function getStep1()
+    public function getStarted(Request $request)
     {
+        //
         $email = Input::get('email');
         $details = Agent::where('email', $email)->first();
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.register.register-step1', compact('email', 'details', 'states', 'groups', 'agencies'));
+        $agent = $request->session()->get('agent_arr');
+        return view('frontend.pages.get-started', compact('email', 'details', 'states', 'groups', 'agencies', 'agent'));
     }
 
-    public function getStep2()
+    public function getStep1(Request $request)
     {
-        $agent = Session::get('agent_arr');
-        $userId = Session::get('userId');
+        $email = Input::get('email');
+        $groups = Agent::distinct()->get(['group']);
+        $agencies = Agent::distinct()->get(['name_agency']);
+        $states = State::get(['state_code', 'state_name']);
+        $agent = $request->session()->get('agent_arr');
+        return view('frontend.register.register-step1', compact('email', 'agent', 'details', 'states', 'groups', 'agencies'));
+    }
 
-        $path = '/storage/client_images/' . $userId . '/general_images/';
+    public function getStep2(Request $request)
+    {
+        //$agent = Session::get('agent_arr');
+        //$userId = Session::get('userId');
 
-        if($userId){
-            $template = AgentTemplate::where('agent_ID', $userId)->get()->first();
+        //$path = '/storage/client_images/' . $userId . '/general_images/';
 
+//        if($userId){
+//            $template = AgentTemplate::where('agent_ID', $userId)->get()->first();
+//        }
+
+//        return view('frontend.register.register-step2', compact('agent', 'template', 'path', 'mainframe_list', 'middleframe_list', 'endframe_list', 'voice_list', 'music_list'));
+
+        $template = $request->session()->get('template');
+        $agent = $request->session()->get('agent_arr');
+
+        if(isset($template))
+        {
             $mainframe_list = explode(',', $template['main_frame_template_format']);
             $middleframe_list = explode(',', $template['middle_frame_template_format']);
             $endframe_list = explode(',', $template['end_frame_template_format']);
 
             $voice_list = explode(',', $template['voice_file_selection']);
             $music_list = explode(',', $template['music_file_format']);
-
         }
 
-        return view('frontend.register.register-step2', compact('agent', 'template', 'path', 'mainframe_list', 'middleframe_list', 'endframe_list', 'voice_list', 'music_list'));
+        return view('frontend.register.register-step2', compact('agent', 'template', 'mainframe_list', 'middleframe_list', 'endframe_list', 'voice_list', 'music_list'));
+
     }
 
-    public function getStep3()
+    public function getStep3(Request $request)
     {
 
         $userId = Session::get('userId');
 
-        if($userId){
-            $preference = AgentPreferences::where('agent_ID', $userId)->get()->first();
+//        if($userId){
+//            $preference = AgentPreferences::where('agent_ID', $userId)->get()->first();
+//
+//            $emails = AgentEmail::where('agent_ID', $userId)->get();
+//            $areas = AgentBroadcast::where('agent_ID', $userId)->get();
+//
+//        }
 
-            $emails = AgentEmail::where('agent_ID', $userId)->get();
-            $areas = AgentBroadcast::where('agent_ID', $userId)->get();
+        $surge_offer = $request->session()->get('surge_offer');
+        $broadcast_status = $request->session()->get('broadcast_status');
+        $e_list = $request->session()->get('email_list');
+        $area_list = $request->session()->get('suburb_list');
 
-        }
+        $emails = explode(',', $e_list);
+        $areas = explode(',', $area_list);
+
 
         $suburbs = Suburb::distinct(['suburb', 'post_code'])
             ->whereNotNull('suburb')
@@ -91,7 +120,9 @@ class RegisterController extends Controller
             ->orderBy('suburb', 'ASC')
             ->get();
 //        dd($suburbs);
-        return view('frontend.register.register-step3', compact('suburbs', 'preference', 'emails', 'areas'));
+//        return view('frontend.register.register-step3', compact('suburbs', 'preference', 'emails', 'areas'));
+        return view('frontend.register.register-step3', compact('suburbs', 'surge_offer', 'broadcast_status', 'emails', 'areas'));
+
     }
 
     public function getStep4()
@@ -100,34 +131,81 @@ class RegisterController extends Controller
         $email = Session::get('email_add');
         $details = Agent::where('email', $email)->first();
         $agent = Session::get('agent_arr');
-        $user_id = Session::get('userId');
+        $subscription = Session::get('subscription');
+//        $user_id = Session::get('userId');
+//
+//        if($user_id){
+//            $payment = AgentInvoice::where('agent_ID', $user_id)->get()->first();
+//        }
 
-        if($user_id){
-            $payment = AgentInvoice::where('agent_ID', $user_id)->get()->first();
-        }
+//        return view('frontend.register.register-step4', compact('details', 'agent', 'user_id', 'payment'));
+        return view('frontend.register.register-step4', compact( 'agent', 'subscription', 'details'));
+    }
+
+    public function processStep1(Request $request)
+    {
+
+        $this->validate($request, [
+            'firstname' => 'required|min:2',
+            'lastname' => 'required',
+            'email' => 'email',
+            'mobile' => 'required',
+            'password' => 'min:4|required|confirmed'
+        ]);
+
+        $agent_arr = array(
+            'firstname' => trim(Input::get('firstname')),
+            'lastname' => trim(Input::get('lastname')),
+            'email' => Input::get('email'),
+            'mobile' => Input::get('mobile'),
+            'password' => bcrypt(request()->input('password')),
+            'agent_password' => Input::get('password'),
+            'group' => Input::get('group'),
+            'name_agency' => Input::get('name_agency'),
+            //'role_title' => Input::get('role_title'),
+            'address' => Input::get('address'),
+            'suburb' => Input::get('suburb'),
+            //'postcode' => Input::get('postcode'),
+            'state' => Input::get('state'),
+        );
+
+        Session::put('agent_arr', $agent_arr);
+
+        $fullname = Input::get('firstname') . ' ' . Input::get('lastname');
+        $passwrd = bcrypt(Input::get('password'));
+        $pass_arr = array(
+            'name' => $fullname,
+            'status' => 'Pending',
+            'role' => 'Agent',
+            'email' => Input::get('email'),
+            'password' => $passwrd,
+            'passwd' => Input::get('password')
+        );
+
+        //for getting the last inserted ID
+//        $user = User::create($pass_arr);
+//        $userId = $user->id;
+
+        Session::put('fullname', $fullname);
+        Session::put('pass_arr', $pass_arr);
+//        Session::put('email_add', Input::get('email'));
+//        Session::put('passwrd', $passwrd);
+//        Session::put('userId', $userId);
 
 
-        return view('frontend.register.register-step4', compact('details', 'agent', 'user_id', 'payment'));
+        return redirect()->route('get-started-step2');
     }
 
     public function processStep2(Request $request)
     {
 
-        $userId = Session::get('userId');
-
-        $this->validate($request, [
-            'mainImage' => 'required|image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
-            'mainImage2' => 'image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
-            'mainImage3' => 'image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048',
-            'logoImage' => 'required|image|mimes:jpeg,png,jpg,gif,bmp,svg|max:2048'
-        ]);
+        $username = Session::get('fullname');
 
         //for creating subfolder for a particular client
-        $path = public_path('storage\client_images\\' . $userId . '\\general_images\\');
+        $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
         if (!File::exists($path)) {
             File::makeDirectory($path, 0775, true);
         }
-
         //move to folder if there is file uploaded for Main Image
         if ($file = $request->hasFile('mainImage')) {
             //for Main Image
@@ -135,6 +213,9 @@ class RegisterController extends Controller
             $fnameMainImage = time() . '_' . $mainImage->getClientOriginalName();
 
             $mainImage->move($path, $fnameMainImage);
+        }
+        else{
+            $fnameMainImage = '';
         }
 
         //move to folder if there is file uploaded for Main Image 2 (Optional)
@@ -145,6 +226,9 @@ class RegisterController extends Controller
 
             $mainImage2->move($path, $fnameMainImage2);
         }
+        else{
+            $fnameMainImage2 = '';
+        }
 
         //move to folder if there is file uploaded for Main Image 3 (Optional)
         if ($file = $request->hasFile('mainImage3')) {
@@ -154,14 +238,19 @@ class RegisterController extends Controller
 
             $mainImage3->move($path, $fnameMainImage3);
         }
-
+        else{
+            $fnameMainImage3 = '';
+        }
         //for uploading of logo
         if ($file = $request->hasFile('logoImage')) {
             //for Main Image 3 (Optional)
             $logoImage = $request->file('logoImage');
-            $fnamelogoImage = 'logo_' . $userId . '_' . $logoImage->getClientOriginalName();
+            $fnamelogoImage = 'logo_' . $logoImage->getClientOriginalName();
 
             $logoImage->move($path, $fnamelogoImage);
+        }
+        else{
+            $fnamelogoImage = '';
         }
 
         //for main frame template selection
@@ -203,89 +292,131 @@ class RegisterController extends Controller
         $voiceSelection = Input::get('voiceSelection');
         if ($voiceSelection != null)
             $voiceboxes = implode(',', $voiceSelection);
+        else
+            $voiceboxes = '';
 
 
         //for music file format selection
         $musicSelection = Input::get('musicSelection');
         if ($musicSelection != null)
             $musicboxes = implode(',', $musicSelection);
-
-        $stateMode = Input::get('modeAction');
-
-        if($stateMode == 'addTemplate') {
-            $template_arr = array(
-                'agent_ID' => $userId,
-                'main_image' => $fnameMainImage,
-                'extra_image1' => $fnameMainImage2,
-                'extra_image2' => $fnameMainImage3,
-                'logo' => $fnamelogoImage,
-                'main_frame_template' => Input::get('stateMainFrame'),
-                'main_frame_template_format' => $MFboxes,
-                'main_frame_colours' => Input::get('stateMainFrameColour'),
-                'main_frame_colours_sub' => Input::get('stateMainFrameColourSub'),
-                'middle_frame_template' => Input::get('stateMiddleFrame'),
-                'middle_frame_template_format' => $MidFboxes,
-                'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
-                'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub'),
-                'end_frame_template' => Input::get('stateEndFrame'),
-                'end_frame_template_format' => $EndFboxes,
-                'end_frame_colours' => Input::get('stateEndFrameColour'),
-                'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
-                'video_frame_name' => Input::get('videoName'),
-                'video_frame_mobile' => Input::get('videoMobile'),
-                'video_frame_web_emailadd' => Input::get('videoEmailAdd'),
-                'video_frame_agency_name' => Input::get('videoAgencyName'),
-                'video_frame_content' => Input::get('videoContent'),
-                'randomise_statement_mf' => $chkRandomiseMF,
-                'video_middle_frame_statement' => Input::get('statementMF'),
-                'randomise_statement_ef' => $chkRandomiseEF,
-                'video_end_frame_statement' => Input::get('statementEF'),
-                'voice_format' => Input::get('stateVoiceFormat'),
-                'voice_file_selection' => $voiceboxes,
-                'music_style' => Input::get('stateMusicStyle'),
-                'music_file_format' => $musicboxes
-
-            );
-            AgentTemplate::create($template_arr);
-        }
         else
-        {
-            AgentTemplate::where('ID', $userId)->update([
-                'main_image' => $fnameMainImage,
-                'extra_image1' => $fnameMainImage2,
-                'extra_image2' => $fnameMainImage3,
-                'logo' => $fnamelogoImage,
-                'main_frame_template' => Input::get('stateMainFrame'),
-                'main_frame_template_format' => $MFboxes,
-                'main_frame_colours' => Input::get('stateMainFrameColour'),
-                'main_frame_colours_sub' => Input::get('stateMainFrameColourSub'),
-                'middle_frame_template' => Input::get('stateMiddleFrame'),
-                'middle_frame_template_format' => $MidFboxes,
-                'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
-                'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub'),
-                'end_frame_template' => Input::get('stateEndFrame'),
-                'end_frame_template_format' => $EndFboxes,
-                'end_frame_colours' => Input::get('stateEndFrameColour'),
-                'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
-                'video_frame_name' => Input::get('videoName'),
-                'video_frame_mobile' => Input::get('videoMobile'),
-                'video_frame_web_emailadd' => Input::get('videoEmailAdd'),
-                'video_frame_agency_name' => Input::get('videoAgencyName'),
-                'video_frame_content' => Input::get('videoContent'),
-                'randomise_statement_mf' => $chkRandomiseMF,
-                'video_middle_frame_statement' => Input::get('statementMF'),
-                'randomise_statement_ef' => $chkRandomiseEF,
-                'video_end_frame_statement' => Input::get('statementEF'),
-                'voice_format' => Input::get('stateVoiceFormat'),
-                'voice_file_selection' => $voiceboxes,
-                'music_style' => Input::get('stateMusicStyle'),
-                'music_file_format' => $musicboxes
-            ]);
-        }
+            $musicboxes = '';
 
-        User::where('ID', $userId)->update([
-            'logo_user' => $fnamelogoImage
-        ]);
+        $path2 = '/storage/client_images/' . $username . '/general_images/';
+
+        $template = array(
+            //'agent_ID' => $userId,
+            'path' => $path2,
+            'main_image' => $fnameMainImage,
+            'extra_image1' => $fnameMainImage2,
+            'extra_image2' => $fnameMainImage3,
+            'logo' => $fnamelogoImage,
+            'main_frame_template' => Input::get('stateMainFrame'),
+            'main_frame_template_format' => $MFboxes,
+            'main_frame_colours' => Input::get('stateMainFrameColour'),
+            'main_frame_colours_sub' => Input::get('stateMainFrameColourSub'),
+            'middle_frame_template' => Input::get('stateMiddleFrame'),
+            'middle_frame_template_format' => $MidFboxes,
+            'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
+            'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub'),
+            'end_frame_template' => Input::get('stateEndFrame'),
+            'end_frame_template_format' => $EndFboxes,
+            'end_frame_colours' => Input::get('stateEndFrameColour'),
+            'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
+            'video_frame_name' => Input::get('videoName'),
+            'video_frame_mobile' => Input::get('videoMobile'),
+            'video_frame_web_emailadd' => Input::get('videoEmailAdd'),
+            'video_frame_agency_name' => Input::get('videoAgencyName'),
+            'video_frame_content' => Input::get('videoContent'),
+            'randomise_statement_mf' => $chkRandomiseMF,
+            'video_middle_frame_statement' => Input::get('statementMF'),
+            'randomise_statement_ef' => $chkRandomiseEF,
+            'video_end_frame_statement' => Input::get('statementEF'),
+            'voice_format' => Input::get('stateVoiceFormat'),
+            'voice_file_selection' => $voiceboxes,
+            'music_style' => Input::get('stateMusicStyle'),
+            'music_file_format' => $musicboxes
+        );
+
+        Session::put('template', $template);
+
+//        $stateMode = Input::get('modeAction');
+//
+//        if($stateMode == 'addTemplate') {
+//            $template_arr = array(
+//                'agent_ID' => $userId,
+//                'main_image' => $fnameMainImage,
+//                'extra_image1' => $fnameMainImage2,
+//                'extra_image2' => $fnameMainImage3,
+//                'logo' => $fnamelogoImage,
+//                'main_frame_template' => Input::get('stateMainFrame'),
+//                'main_frame_template_format' => $MFboxes,
+//                'main_frame_colours' => Input::get('stateMainFrameColour'),
+//                'main_frame_colours_sub' => Input::get('stateMainFrameColourSub'),
+//                'middle_frame_template' => Input::get('stateMiddleFrame'),
+//                'middle_frame_template_format' => $MidFboxes,
+//                'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
+//                'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub'),
+//                'end_frame_template' => Input::get('stateEndFrame'),
+//                'end_frame_template_format' => $EndFboxes,
+//                'end_frame_colours' => Input::get('stateEndFrameColour'),
+//                'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
+//                'video_frame_name' => Input::get('videoName'),
+//                'video_frame_mobile' => Input::get('videoMobile'),
+//                'video_frame_web_emailadd' => Input::get('videoEmailAdd'),
+//                'video_frame_agency_name' => Input::get('videoAgencyName'),
+//                'video_frame_content' => Input::get('videoContent'),
+//                'randomise_statement_mf' => $chkRandomiseMF,
+//                'video_middle_frame_statement' => Input::get('statementMF'),
+//                'randomise_statement_ef' => $chkRandomiseEF,
+//                'video_end_frame_statement' => Input::get('statementEF'),
+//                'voice_format' => Input::get('stateVoiceFormat'),
+//                'voice_file_selection' => $voiceboxes,
+//                'music_style' => Input::get('stateMusicStyle'),
+//                'music_file_format' => $musicboxes
+//
+//            );
+//            AgentTemplate::create($template_arr);
+//        }
+//        else
+//        {
+//            AgentTemplate::where('ID', $userId)->update([
+//                'main_image' => $fnameMainImage,
+//                'extra_image1' => $fnameMainImage2,
+//                'extra_image2' => $fnameMainImage3,
+//                'logo' => $fnamelogoImage,
+//                'main_frame_template' => Input::get('stateMainFrame'),
+//                'main_frame_template_format' => $MFboxes,
+//                'main_frame_colours' => Input::get('stateMainFrameColour'),
+//                'main_frame_colours_sub' => Input::get('stateMainFrameColourSub'),
+//                'middle_frame_template' => Input::get('stateMiddleFrame'),
+//                'middle_frame_template_format' => $MidFboxes,
+//                'middle_frame_colours' => Input::get('stateMiddleFrameColour'),
+//                'middle_frame_colours_sub' => Input::get('stateMiddleFrameColourSub'),
+//                'end_frame_template' => Input::get('stateEndFrame'),
+//                'end_frame_template_format' => $EndFboxes,
+//                'end_frame_colours' => Input::get('stateEndFrameColour'),
+//                'end_frame_colours_sub' => Input::get('stateEndFrameColourSub'),   //temporarily disabled
+//                'video_frame_name' => Input::get('videoName'),
+//                'video_frame_mobile' => Input::get('videoMobile'),
+//                'video_frame_web_emailadd' => Input::get('videoEmailAdd'),
+//                'video_frame_agency_name' => Input::get('videoAgencyName'),
+//                'video_frame_content' => Input::get('videoContent'),
+//                'randomise_statement_mf' => $chkRandomiseMF,
+//                'video_middle_frame_statement' => Input::get('statementMF'),
+//                'randomise_statement_ef' => $chkRandomiseEF,
+//                'video_end_frame_statement' => Input::get('statementEF'),
+//                'voice_format' => Input::get('stateVoiceFormat'),
+//                'voice_file_selection' => $voiceboxes,
+//                'music_style' => Input::get('stateMusicStyle'),
+//                'music_file_format' => $musicboxes
+//            ]);
+//        }
+
+//        User::where('ID', $userId)->update([
+//            'logo_user' => $fnamelogoImage
+//        ]);
 
         return redirect()->route('get-started-step3');
 
@@ -293,87 +424,97 @@ class RegisterController extends Controller
 
     public function processStep3()
     {
-        $userId = Session::get('userId');
+        //$userId = Session::get('userId');
 
         $surge_offer = Input::get('surgeoffer');
         $broadcast_status = Input::get('broadcast_status');
         $email_list = Input::get('emails_arr');
         $suburb_list = Input::get('areas_arr');
 
-        $stateMode = Input::get('modeActionPreference');
+        Session::put('surge_offer', $surge_offer);
+        Session::put('broacast_status', $broadcast_status);
+        Session::put('email_list', $email_list);
+        Session::put('suburb_list', $suburb_list);
 
-        if($stateMode === 'addModePreference'){
-            //for Surge Offer Preferences Section
-            $surge_arr = array(
-                'agent_ID' => $userId,
-                'surge_offer_option' => $surge_offer[0],
-                'broadcast_agent' => $broadcast_status
-            );
-            AgentPreferences::create($surge_arr);
+//        dd($email_list);
 
-            //for Email Distribution List
-            $emails = explode(',', $email_list);
 
-            if ($email_list != null) {
-                AgentPreferences::where('agent_ID', $userId)->update([
-                    'email_distribution' => 1
-                ]);
+//        $stateMode = Input::get('modeActionPreference');
+//
+//        if($stateMode === 'addModePreference'){
+//            //for Surge Offer Preferences Section
+//            $surge_arr = array(
+//                'agent_ID' => $userId,
+//                'surge_offer_option' => $surge_offer[0],
+//                'broadcast_agent' => $broadcast_status
+//            );
+//            AgentPreferences::create($surge_arr);
+//
+//            //for Email Distribution List
+//            $emails = explode(',', $email_list);
+//
+//            if ($email_list != null) {
+//                AgentPreferences::where('agent_ID', $userId)->update([
+//                    'email_distribution' => 1
+//                ]);
+//
+//                for ($i = 0; $i < count($emails); $i++) {
+//                    $email_arr = array(
+//                        'agent_ID' => $userId,
+//                        'email' => $emails[$i],
+//                    );
+//                    AgentEmail::create($email_arr);
+//                }
+//            }
+//
+//            $areas = explode(',', $suburb_list);
+//            if ($suburb_list != null) {
+//                for ($i = 0; $i < count($areas); $i++) {
+//                    $broadcast_arr = array(
+//                        'agent_ID' => $userId,
+//                        'suburb' => $areas[$i],
+//                    );
+//                    AgentBroadcast::create($broadcast_arr);
+//                }
+//            }
+//        }
+//        elseif($stateMode === 'editModePreference'){
+//
+//            $emails = Input::get('email_list');
+//            $areas = Input::get('suburb_list');
+//
+//            AgentPreferences::where('agent_ID', $userId)->update([
+//                'surge_offer_option' => $surge_offer[0],
+//            ]);
+//
+//            if ($emails != null) {
+//
+//                AgentEmail::where('agent_ID', $userId)->delete();
+//
+//                for ($i = 0; $i < count($emails); $i++) {
+//                    $email_arr = array(
+//                        'agent_ID' => $userId,
+//                        'email' => $emails[$i],
+//                    );
+//                    AgentEmail::create($email_arr);
+//                }
+//            }
+//
+//            if ($areas != null) {
+//
+//                AgentBroadcast::where('agent_ID', $userId)->delete();
+//
+//                for ($i = 0; $i < count($areas); $i++) {
+//                    $email_arr = array(
+//                        'agent_ID' => $userId,
+//                        'suburb' => $areas[$i],
+//                    );
+//                    AgentEmail::create($email_arr);
+//                }
+//            }
+//        }
 
-                for ($i = 0; $i < count($emails); $i++) {
-                    $email_arr = array(
-                        'agent_ID' => $userId,
-                        'email' => $emails[$i],
-                    );
-                    AgentEmail::create($email_arr);
-                }
-            }
 
-            $areas = explode(',', $suburb_list);
-            if ($suburb_list != null) {
-                for ($i = 0; $i < count($areas); $i++) {
-                    $broadcast_arr = array(
-                        'agent_ID' => $userId,
-                        'suburb' => $areas[$i],
-                    );
-                    AgentBroadcast::create($broadcast_arr);
-                }
-            }
-        }
-        elseif($stateMode === 'editModePreference'){
-
-            $emails = Input::get('email_list');
-            $areas = Input::get('suburb_list');
-
-            AgentPreferences::where('agent_ID', $userId)->update([
-                'surge_offer_option' => $surge_offer[0],
-            ]);
-
-            if ($emails != null) {
-
-                AgentEmail::where('agent_ID', $userId)->delete();
-
-                for ($i = 0; $i < count($emails); $i++) {
-                    $email_arr = array(
-                        'agent_ID' => $userId,
-                        'email' => $emails[$i],
-                    );
-                    AgentEmail::create($email_arr);
-                }
-            }
-
-            if ($areas != null) {
-
-                AgentBroadcast::where('agent_ID', $userId)->delete();
-
-                for ($i = 0; $i < count($areas); $i++) {
-                    $email_arr = array(
-                        'agent_ID' => $userId,
-                        'suburb' => $areas[$i],
-                    );
-                    AgentEmail::create($email_arr);
-                }
-            }
-        }
         return redirect()->route('get-started-step4');
     }
 
@@ -385,72 +526,138 @@ class RegisterController extends Controller
 
 
     //function after going through the registration steps
-    public function processStep4()
+    public function processStep4(Request $request)
     {
 
-        //return view('frontend.pages.register-step4');
-        $email = Session::get('email_add');
-        $passwrd = Session::get('passwrd');
+        switch ($request->input('action'))
+        {
+            case 'previousStep':
+                // Save model
+                $subscription = Input::get('subscription1');
+                Session::put('subscription', $subscription);
 
-        $userId = Session::get('userId');
+                return redirect()->route('get-started-step3');
 
-        $subscription1 = Input::get('subscription1');
+                break;
 
-        foreach ($subscription1 as $sub) {
-            if ($sub === 'Casual') {
-                $subscription_type = $sub;
-                $storage_plan = '$11';
-            } else if ($sub === 'Basic') {
-                $subscription_type = $sub;
-                $storage_plan = '$33';
-            } else if ($sub === 'Standard') {
-                $subscription_type = $sub;
-                $storage_plan = '$66';
-            } else if ($sub === 'Premium') {
-                $subscription_type = $sub;
-                $storage_plan = '$99';
-            }
+            case 'accept':
+                // Preview model
+
+                $email = Session::get('email_add');
+                $passwrd = Session::get('passwrd');
+
+                //getting Session array values
+                $agent_arr = $request->session()->get('agent_arr');
+                $pass_arr = $request->session()->get('pass_arr');
+                $template = $request->session()->get('template');
+                $logofilename = $template['logo'];
+
+                $surge_offer = $request->session()->get('surge_offer');
+                $broadcast_status = $request->session()->get('broadcast_status');
+                $email_list = $request->session()->get('email_list');
+                $suburb_list = $request->session()->get('suburb_list');
+
+                //Saving of Step 1 Details
+                Agent::create($agent_arr);
+
+                $user = User::create($pass_arr);
+                $userId = $user->id;
+
+                $template['agent_ID'] = $userId;
+                $request->session()->put('template', $template);
+//                Session::put('template', $template);
+
+                //Saving of Step 2 Details
+                AgentTemplate::create($template);
+
+                User::where('ID', $userId)->update([
+                     'logo_user' => $logofilename
+                ]);
+
+                //Saving of Step 3 Details
+                $surge_arr = array(
+                    'agent_ID' => $userId,
+                    'surge_offer_option' => $surge_offer[0],
+                    'broadcast_agent' => $broadcast_status
+                );
+                AgentPreferences::create($surge_arr);
+
+                //for Email Distribution List
+                $emails = explode(',', $email_list);
+
+                if ($email_list != null) {
+                    AgentPreferences::where('agent_ID', $userId)->update([
+                        'email_distribution' => 1
+                    ]);
+
+                    for ($i = 0; $i < count($emails); $i++) {
+                        $email_arr = array(
+                            'agent_ID' => $userId,
+                            'email' => $emails[$i],
+                        );
+                        AgentEmail::create($email_arr);
+                    }
+                }
+
+                $areas = explode(',', $suburb_list);
+                if ($suburb_list != null) {
+                    for ($i = 0; $i < count($areas); $i++) {
+                        $broadcast_arr = array(
+                            'agent_ID' => $userId,
+                            'suburb' => $areas[$i],
+                        );
+                        AgentBroadcast::create($broadcast_arr);
+                    }
+                }
+
+                //Saving of Step 4 Details
+                $subscription1 = Input::get('subscription1');
+
+                foreach ($subscription1 as $sub) {
+                    if ($sub === 'Casual') {
+                        $subscription_type = $sub;
+                        $storage_plan = '$11';
+                    } else if ($sub === 'Basic') {
+                        $subscription_type = $sub;
+                        $storage_plan = '$33';
+                    } else if ($sub === 'Standard') {
+                        $subscription_type = $sub;
+                        $storage_plan = '$66';
+                    } else if ($sub === 'Premium') {
+                        $subscription_type = $sub;
+                        $storage_plan = '$99';
+                    }
+                }
+
+                $payment_arr = array(
+                    'agent_ID' => $userId,
+                    'subscription_type' => $subscription_type,
+                    'storage_plan' => $storage_plan,
+                    'invoice_to' => Input::get('person_name'),
+                    'address' => Input::get('invoice_address'),
+                    'person_name' => Input::get('contact_name'),
+                    'contact_num' => Input::get('mobile'),
+                    'email' => Input::get('email'),
+                );
+
+                AgentInvoice::create($payment_arr);
+
+
+                $credentials = array(
+                    'email' => $email,
+                    'password' => $passwrd
+                );
+
+                Auth::loginUsingId($userId);
+
+                if (Auth::check($credentials)) {
+                    return redirect()->route('account-make-video');
+                }
+                Session::flush();
+
+                break;
+
         }
-
-        $stateMode = Input::get('modeAction');
-
-        if($stateMode === 'addTemplate'){
-            $payment_arr = array(
-                'agent_ID' => $userId,
-                'subscription_type' => $subscription_type,
-                'storage_plan' => $storage_plan,
-                'invoice_to' => Input::get('person_name'),
-                'address' => Input::get('invoice_address'),
-                'person_name' => Input::get('contact_name'),
-                'contact_num' => Input::get('mobile'),
-                'email' => Input::get('email'),
-            );
-
-            AgentInvoice::create($payment_arr);
-        }
-        elseif($stateMode === 'editTemplate'){
-            AgentInvoice::where('agent_ID', $userId)->update([
-                'subscription_type' => $subscription_type,
-                'storage_plan' => $storage_plan,
-                'invoice_to' => Input::get('person_name'),
-                'address' => Input::get('invoice_address'),
-                'person_name' => Input::get('contact_name'),
-                'contact_num' => Input::get('mobile'),
-                'email' => Input::get('email'),
-            ]);
-        }
-
-        $credentials = array(
-            'email' => $email,
-            'password' => $passwrd
-        );
-
-        Auth::loginUsingId($userId);
-
-        if (Auth::check($credentials)) {
-            return redirect()->route('account-make-video');
-        }
-        Session::flush();
 
     }
 
@@ -548,6 +755,7 @@ class RegisterController extends Controller
             );
 
             Session::put('agent_arr', $agent_arr);
+
         } else {
             $agent_arr = array(
                 'firstname' => trim(request()->input('firstname')),

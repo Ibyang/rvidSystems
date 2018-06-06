@@ -7,24 +7,16 @@
         <div class="col-sm align-self-center"><span id="addEmailLink" style="color: blue; cursor: pointer">Add +</span></div>
     </div>
 
-{{--    @if(!empty($emails) || $emails != null)--}}
-    @if(count($emails) > 0)
-        <div class="mt-2 mb-2">Current List</div>
-            <div class="row">
-                <div class="col-sm">
-                    <select name="email_list" id="email_list" multiple class="form-control">
-                        @foreach($emails as $email)
-                            <option value={{$email['email']}}>{{ $email['email'] }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            <div class="col-sm reg-step-link"><span id="removeEmailLink" style="color: red; cursor: pointer">Remove -</span></div>
-        </div>
-    @else
-        <div class="mt-2 mb-2">Current List</div>
-        <div class="row">
-            <div class="col-sm">
-                <select name="email_list" id="email_list" multiple class="form-control"></select>
+    <div class="mt-2 mb-2">Current List</div>
+    <div class="row">
+        <div class="col-sm">
+            <select name="email_list" id="email_list" multiple class="form-control">
+                @if(is_array($emails))
+                    @foreach($emails as $email)
+                        <option value="{{$email}}">{{$email}}</option>
+                    @endforeach
+                @endif
+            </select>
                 {{--<ul>--}}
                 {{--<li>john@professionals.com.au</li>--}}
                 {{--<li>mary@professionals.com.au</li>--}}
@@ -32,7 +24,6 @@
                 {{--<li>other@professionals.com.au</li>--}}
                 {{--<li>other@professionals.com.au</li>--}}
                 {{--</ul>--}}
-            </div>
-            <div class="col-sm reg-step-link"><span id="removeEmailLink" style="color: red; cursor: pointer">Remove -</span></div>
         </div>
-    @endif
+        <div class="col-sm reg-step-link"><span id="removeEmailLink" style="color: red; cursor: pointer">Remove -</span></div>
+    </div>

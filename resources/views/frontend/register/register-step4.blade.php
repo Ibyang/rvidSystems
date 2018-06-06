@@ -35,7 +35,7 @@
             </form>
             <form id="paypal-form" action="{{ route('postPaymentDetails') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
-                <input type="hidden" name="item_id" id="item_id" value="{{ $user_id }}">
+                {{--<input type="hidden" name="item_id" id="item_id" value="{{ $user_id }}">--}}
                 <input type="hidden" name="item_name" id="item_name">
                 <input type="hidden" name="amount" id="amount">
             </form>
