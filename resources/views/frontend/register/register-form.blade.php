@@ -82,6 +82,7 @@
                  </div>
                  <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }}">
                      <select name="state" id="state" class="form-control" >
+                         <option value=""> -- Select State -- </option>
                          @if($states)
                              @foreach($states as $state)
                                  <option value="{{ $state->state_code }}" {{{ (isset($agent['state']) && $agent['state'] == $state->state_code) ? "selected=\"selected\"" : "" }}}> {{ $state->state_name }} </option>
@@ -94,7 +95,7 @@
                          @if(isset($agent['suburb']))
                              <option value="{{ $agent['suburb'] }}"> {{ $agent['suburb'] }} </option>
                          @else
-                             <option value="{{ old('suburb') }}">{{ old('suburb') }}</option>
+                             <option value="">Please Select State</option>
                          @endif
                      </select>
                  </div>

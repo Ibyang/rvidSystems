@@ -40,7 +40,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -55,7 +55,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userId . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $awaiting_videos = videoProgress::where('videotype', 'Premium')->where('agent_ID', $userId)->get();
@@ -90,7 +90,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $voice = AgentTemplate::where('agent_ID', $userid)->get(['voice_format', 'voice_file_selection'])->first();
@@ -109,7 +109,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $music = AgentTemplate::where('agent_ID', $userid)->get(['music_style', 'music_file_format'])->first();
@@ -128,7 +128,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $pic = AgentTemplate::where('agent_ID', $userid)->get(['main_image', 'extra_image1', 'extra_image2', 'logo'])->first();
@@ -146,7 +146,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $path2 = '/storage/register/';
@@ -172,7 +172,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -188,7 +188,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -204,7 +204,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -273,7 +273,7 @@ class MyVideoController extends Controller
 
         //path for logo pic
         $logo_pic = Auth::user()->logo_user;
-        $path = '/storage/client_images/' . $user_id . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo_pic;
 
 
@@ -342,7 +342,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $user_id . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         return view('frontend.pages.video-creator.standard-video-order', compact('fullname',  'agent', 'due_arr', 'vidid', 'preference',
@@ -406,7 +406,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $user_id . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         return view('frontend.pages.video-creator.premium-video-order', compact('fullname',  'agent', 'url_premium', 'vidid', 'preference',
@@ -652,7 +652,9 @@ class MyVideoController extends Controller
     public function postExplorePictures(Request $request){
 
         $user_id = Auth::user()->id;
-        $path = public_path('storage\client_images\\' . $user_id . '\\general_images\\');
+
+        $username = Auth::user()->name;
+        $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
 
         //move to folder if there is file uploaded for Main Image
         if($file = $request->hasFile('mainImage'))
@@ -748,7 +750,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -767,7 +769,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userId . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $premium = AgentVideoOrders::where('ID', $videoid)->get()->first();
@@ -883,11 +885,11 @@ class MyVideoController extends Controller
         $videoid = Session::get('videoID');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $userid . '/standard_pictures/Video' . $videoid . '/';
+        $path2 = '/storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
 
         $pics = standardVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->get(['ID', 'video_ID', 'effect_style', 'old_filename', 'new_filename']);
         Session::put('pics', $pics);
@@ -908,11 +910,11 @@ class MyVideoController extends Controller
         $videoid = Session::get('videoID');  //retrieving value from session enable this once doing the testing
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $userid . '/standard_pictures/Video' . $videoid . '/';
+        $path2 = '/storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
 
         $pics = standardVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->get(['ID', 'video_ID', 'old_filename', 'new_filename', 'statement']);
         Session::put('pics', $pics);
@@ -931,7 +933,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $path2 = '/storage/register/';
@@ -957,7 +959,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //for music
@@ -982,13 +984,13 @@ class MyVideoController extends Controller
         $videoid = Session::get('videoID');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
 
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $userid . '/standard_pictures/Video' . $videoid . '/';
+        $path2 = '/storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
         $pics = standardVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get();
 
         $cnt_pics = count($pics);
@@ -1002,6 +1004,7 @@ class MyVideoController extends Controller
     {
 
         $userid = Auth::user()->id;
+        $username = Auth::user()->name;
         $effects = Input::get('transition');
         //$ctr_effects = count($effects);
 
@@ -1017,7 +1020,7 @@ class MyVideoController extends Controller
             foreach($request->file('image_files') as $image)
             {
                 if(!empty($image) && ($ctr < count($arr_images))){
-                    $path = public_path('storage\client_images\\' . $userid . '\\standard_pictures\\Video' . $videoid . '\\');
+                    $path = public_path('storage\client_images\\' . $username . '\\standard_pictures\\Video' . $videoid . '\\');
                     if(!File::exists($path)){
                         File::makeDirectory($path, 0775, true);
                     }
@@ -1053,6 +1056,7 @@ class MyVideoController extends Controller
     public function VideoSystemProcessStep2(){
 
         $userid = Auth::user()->id;
+        $username = Auth::user()->name;
         $statements = Input::get('selectedStatements');
         $arr_statements = explode(',', $statements);
         $pics = Session::get('pics');
@@ -1069,8 +1073,8 @@ class MyVideoController extends Controller
 
             //code for changing filename after uploading
             $fname_statements = preg_replace('/\s+/', '_', $arr_statements[$i]);
-            $path2 = '../public/storage/client_images/' . $userid . '/standard_pictures/Video' . $videoID . '/';
-            $path = public_path('storage\client_images\\' . $userid . '\\standard_pictures\\Video' . $videoID . '\\');
+            $path2 = '../public/storage/client_images/' . $username . '/standard_pictures/Video' . $videoID . '/';
+            $path = public_path('storage\client_images\\' . $username . '\\standard_pictures\\Video' . $videoID . '\\');
             $picname = $pics[$i]['old_filename'];
             $imagePath = $path . $picname;
 //            $ext = pathinfo($imagePath, PATHINFO_EXTENSION);
@@ -1197,11 +1201,11 @@ class MyVideoController extends Controller
         $videoAddress = Session::get('videoAddress');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $userid . '/premium_pictures/Video' . $videoid . '/';
+        $path2 = '/storage/client_images/' . $fullname . '/premium_pictures/Video' . $videoid . '/';
 
         $pics = premiumVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->get(['ID', 'video_ID', 'effect_style', 'old_filename', 'new_filename']);
         Session::put('pics', $pics);
@@ -1223,11 +1227,11 @@ class MyVideoController extends Controller
         $videoAddress = Session::get('videoAddress');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $userid . '/premium_pictures/Video' . $videoid . '/';
+        $path2 = '/storage/client_images/' . $fullname . '/premium_pictures/Video' . $videoid . '/';
 
         $pics = premiumVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get(['ID', 'video_ID', 'old_filename', 'new_filename', 'statement']);
         Session::put('pics', $pics);
@@ -1250,7 +1254,7 @@ class MyVideoController extends Controller
         $videoAddress = Session::get('videoAddress');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $path2 = '/storage/register/';
@@ -1280,7 +1284,7 @@ class MyVideoController extends Controller
         $videoAddress = Session::get('videoAddress');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //for music
@@ -1309,11 +1313,11 @@ class MyVideoController extends Controller
         $videoAddress = Session::get('videoAddress');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $userid . '/premium_pictures/Video' . $videoid . '/';
+        $path2 = '/storage/client_images/' . $fullname . '/premium_pictures/Video' . $videoid . '/';
         $pics = premiumVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get();
 
         $cnt_pics = count($pics);
@@ -1327,6 +1331,7 @@ class MyVideoController extends Controller
     {
 
         $userid = Auth::user()->id;
+        $username = Auth::user()->name;
         $effects = Input::get('transition');
         $ctr_effects = count($effects);
 
@@ -1351,7 +1356,7 @@ class MyVideoController extends Controller
 
 //                if(!empty($image) && ($ctr < count($arr_images))){
                 if(!empty($image)){
-                    $path = public_path('storage\client_images\\' . $userid . '\\premium_pictures\\Video' . $videoid . '\\');
+                    $path = public_path('storage\client_images\\' . $username . '\\premium_pictures\\Video' . $videoid . '\\');
                     if(!File::exists($path)){
                         File::makeDirectory($path, 0775, true);
                     }

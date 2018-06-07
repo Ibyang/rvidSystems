@@ -288,8 +288,8 @@ Route::group(['middleware' => 'guest'], function() {
     Route::post('account/help/callMe', 'MyHelpController@callmeHelp')->name('callmeHelp');
 
     //passing values from the Front End pages
-//    Route::post('/get-started', 'RegisterController@index')->name('get-started');
-    Route::post('/get-started', 'RegisterController@getStarted')->name('get-started');
+    Route::post('/get-started', 'RegisterController@index')->name('get-started');
+//    Route::post('/get-started', 'RegisterController@getStarted')->name('get-started');
 
     //passing values via enter of Email field
     Route::get('/get-started/step1', 'RegisterController@getStep1')->name('get-started-step1');

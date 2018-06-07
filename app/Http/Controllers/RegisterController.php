@@ -201,6 +201,8 @@ class RegisterController extends Controller
 
         $username = Session::get('fullname');
 
+        $temp = $request->session()->get('template');
+
         //for creating subfolder for a particular client
         $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
         if (!File::exists($path)) {
@@ -215,7 +217,7 @@ class RegisterController extends Controller
             $mainImage->move($path, $fnameMainImage);
         }
         else{
-            $fnameMainImage = '';
+            $fnameMainImage = $temp['main_image'];
         }
 
         //move to folder if there is file uploaded for Main Image 2 (Optional)
@@ -227,7 +229,7 @@ class RegisterController extends Controller
             $mainImage2->move($path, $fnameMainImage2);
         }
         else{
-            $fnameMainImage2 = '';
+            $fnameMainImage2 = $temp['extra_image1'];
         }
 
         //move to folder if there is file uploaded for Main Image 3 (Optional)
@@ -239,8 +241,9 @@ class RegisterController extends Controller
             $mainImage3->move($path, $fnameMainImage3);
         }
         else{
-            $fnameMainImage3 = '';
+            $fnameMainImage3 = $temp['extra_image2'];
         }
+
         //for uploading of logo
         if ($file = $request->hasFile('logoImage')) {
             //for Main Image 3 (Optional)
@@ -250,7 +253,7 @@ class RegisterController extends Controller
             $logoImage->move($path, $fnamelogoImage);
         }
         else{
-            $fnamelogoImage = '';
+            $fnamelogoImage = $temp['logo'];
         }
 
         //for main frame template selection
@@ -432,7 +435,7 @@ class RegisterController extends Controller
         $suburb_list = Input::get('areas_arr');
 
         Session::put('surge_offer', $surge_offer);
-        Session::put('broacast_status', $broadcast_status);
+        Session::put('broadcast_status', $broadcast_status);
         Session::put('email_list', $email_list);
         Session::put('suburb_list', $suburb_list);
 
@@ -571,7 +574,7 @@ class RegisterController extends Controller
                 AgentTemplate::create($template);
 
                 User::where('ID', $userId)->update([
-                     'logo_user' => $logofilename
+                     'logo_user' => $template['logo']
                 ]);
 
                 //Saving of Step 3 Details

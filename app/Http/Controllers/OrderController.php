@@ -266,7 +266,7 @@ class OrderController extends Controller
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
 
-        $path2 = '../../storage/client_images/' . $userid . '/standard_pictures/Video' . $videoid . '/';
+        $path2 = '../../storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
 
         $standards = standardVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get();
 
@@ -281,7 +281,7 @@ class OrderController extends Controller
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
 
-        $path2 = '../../storage/client_images/' . $userid . '/premium_pictures/Video' . $videoid . '/';
+        $path2 = '../../storage/client_images/' . $fullname . '/premium_pictures/Video' . $videoid . '/';
 
         $premiums = premiumVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get();
 

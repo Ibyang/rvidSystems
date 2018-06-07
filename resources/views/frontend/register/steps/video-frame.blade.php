@@ -216,7 +216,7 @@
                                    <img src="{{ asset('storage/register/main-frame-1.jpg') }}"><br>
                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                       <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck9" value="main-frame-1.jpg"
+                                       <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck9" value="1"
                                                {{{ (isset($endframe_list) && (in_array('1', $endframe_list))) ? "checked" : ""}}}>
                                        <label class="custom-control-label font12" for="customCheck9">Select</label>
                                    </div>
@@ -225,7 +225,7 @@
                                    <img src="{{ asset('storage/register/main-frame-2.jpg') }}"><br>
                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                       <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck10" value="main-frame-2.jpg"
+                                       <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck10" value="2"
                                                {{{ (isset($endframe_list) && (in_array('2', $endframe_list))) ? "checked" : ""}}}>
                                        <label class="custom-control-label font12" for="customCheck10">Select</label>
                                    </div>
@@ -236,7 +236,7 @@
                                    <img src="{{ asset('storage/register/main-frame-3.jpg') }}"><br>
                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                       <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck11" value="main-frame-3.jpg"
+                                       <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck11" value="3"
                                                {{{ (isset($endframe_list) && (in_array('3', $endframe_list))) ? "checked" : ""}}}>
                                        <label class="custom-control-label font12" for="customCheck11">Select</label>
                                    </div>
@@ -245,7 +245,7 @@
                                    <img src="{{ asset('storage/register/main-frame-4.jpg') }}"><br>
                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                       <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck12" value="main-frame-4.jpg"
+                                       <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck12" value="4"
                                                {{{ (isset($endframe_list) && (in_array('4', $endframe_list))) ? "checked" : ""}}}>
                                        <label class="custom-control-label font12" for="customCheck12">Select</label>
                                    </div>

@@ -24,7 +24,6 @@
                 <li>Easy + Quick with No Fuss</li>
                 <li>Valuable; you get video’s (3 versions)Plus</li>
             </ul>
-               
              with your monthly membership
            </div>
         </div>

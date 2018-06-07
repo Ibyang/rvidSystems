@@ -10,13 +10,27 @@
     <div class="mt-2 mb-2">Current List</div>
     <div class="row">
         <div class="col-sm">
-            <select name="email_list" id="email_list" multiple class="form-control">
-                @if(is_array($emails))
-                    @foreach($emails as $email)
-                        <option value="{{$email}}">{{$email}}</option>
+
+            @if(count($emails) > 0)
+                <?php
+                $cnt_email = count($emails);
+                $ctr = 0; ?>
+                {{--<p>There is data</p>--}}
+                <select name="email_list" multiple class="form-control">
+                    @foreach($emails as $em)
+                        {{--@if($ctr < $cnt_email)--}}
+                            <option value="{{ $em }}">{{ $em }}</option>
+                        {{--@endif--}}
+<!--                        --><?php //$ctr++; ?>
                     @endforeach
-                @endif
-            </select>
+                </select>
+            @else
+                {{--<p>There is no data</p>--}}
+                <select name="email_list" id="email_list" multiple class="form-control" style="width: 340px">
+                    <option value="">No emails on the list...</option>
+                </select>
+            @endif
+
                 {{--<ul>--}}
                 {{--<li>john@professionals.com.au</li>--}}
                 {{--<li>mary@professionals.com.au</li>--}}
