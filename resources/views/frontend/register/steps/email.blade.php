@@ -11,33 +11,21 @@
     <div class="row">
         <div class="col-sm">
 
-            @if(count($emails) > 0)
+            @if(is_array($emails))
                 <?php
                 $cnt_email = count($emails);
                 $ctr = 0; ?>
-                {{--<p>There is data</p>--}}
-                <select name="email_list" multiple class="form-control">
+                <select name="email_list" id="email_list" multiple class="form-control">
                     @foreach($emails as $em)
-                        {{--@if($ctr < $cnt_email)--}}
-                            <option value="{{ $em }}">{{ $em }}</option>
-                        {{--@endif--}}
-<!--                        --><?php //$ctr++; ?>
+                        <option value="{{ $em }}">{{ $em }}</option>
                     @endforeach
                 </select>
             @else
-                {{--<p>There is no data</p>--}}
                 <select name="email_list" id="email_list" multiple class="form-control" style="width: 340px">
                     <option value="">No emails on the list...</option>
                 </select>
             @endif
 
-                {{--<ul>--}}
-                {{--<li>john@professionals.com.au</li>--}}
-                {{--<li>mary@professionals.com.au</li>--}}
-                {{--<li>admin@professionals.com.au</li>--}}
-                {{--<li>other@professionals.com.au</li>--}}
-                {{--<li>other@professionals.com.au</li>--}}
-                {{--</ul>--}}
         </div>
         <div class="col-sm reg-step-link"><span id="removeEmailLink" style="color: red; cursor: pointer">Remove -</span></div>
     </div>

@@ -61,11 +61,12 @@
             });
 
             $('.register-form select').css('background-image', 'none');
-            var $list = $('#email_list').empty();
+
             var emails = [];
             var areas = [];
             $('span').on('click', function () {
                 //alert(this.id);
+                //var $list = $('#email_list').empty();
                 var spanId = this.id;
 
                 //process for EMAIL Distribution List

@@ -22,14 +22,23 @@
     <div class="mt-2 mb-2">Suburb Selection</div>
     <div class="row">
         <div class="col-sm">
-            <select name="suburb_list" id="suburb_list" multiple class="form-control">
-                @if(is_array($areas))
+
+            @if(count($areas) > 0)
+                <?php
+                $cnt_area = count($areas);
+                $ctr = 0; ?>
+                <select name="suburb_list" id="suburb_list" multiple class="form-control" style="width: 340px">
                     @foreach($areas as $area)
-                        <option value="{{$area}}">{{$area}}</option>
+                        <option value="{{ $area }}">{{ $area }}</option>
                     @endforeach
-                @endif
-            </select>
+                </select>
+            @else
+                <select name="suburb_list" id="suburb_list" multiple class="form-control" style="width: 340px">
+                    <option value="">No emails on the list...</option>
+                </select>
+            @endif
         </div>
+
         <div class="col-sm reg-step-link"><span id="removeSuburbLink" style="color: red; cursor: pointer">Remove -</span></div>
 
         <div style="float: left; margin-right: 10px"><a href="/get-started/step2"><button class="btn btn-primary" type="button"><i class="arrow-left"></i> Previous Step</button></a></div>
