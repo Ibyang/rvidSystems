@@ -55,6 +55,7 @@ class RegisterController extends Controller
     public function getStep1(Request $request)
     {
         $email = Input::get('email');
+        $details = Agent::where('email', $email)->first();
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
@@ -593,6 +594,8 @@ class RegisterController extends Controller
                         'email_distribution' => 1
                     ]);
 
+                    AgentEmail::where('agent_ID', $userId)->delete();
+
                     for ($i = 0; $i < count($emails); $i++) {
                         $email_arr = array(
                             'agent_ID' => $userId,
@@ -638,6 +641,8 @@ class RegisterController extends Controller
                     'storage_plan' => $storage_plan,
                     'invoice_to' => Input::get('person_name'),
                     'address' => Input::get('invoice_address'),
+                    'suburb' => Input::get('invoice_suburb'),
+                    'state' => Input::get('postcode'),
                     'person_name' => Input::get('contact_name'),
                     'contact_num' => Input::get('mobile'),
                     'email' => Input::get('email'),

@@ -1,10 +1,11 @@
 <footer class="py-5 bg-dark">
       <div class="container">
           <h6 class="text-center">Join with a <span>FREE 30day Trial Membership</span> today<br> and receive your first video for $0</h6>
-          <form>
+          <form method="post" action="{{ route('get-started-step1') }}">
+              {{ csrf_field() }}
               <div class="row">
-                    <div class="col-8"><input type="email" class="form-control" placeholder="Email"></div>
-                    <div class="col-4"><button type="submit" class="btn btn-primary">Free Offer</button></div>
+                  <div class="col-8"><input type="email" name="email" class="form-control" placeholder="Email" required></div>
+                  <div class="col-4"><button type="submit" class="btn btn-primary">Start</button></div>
               </div>
           </form>
           <p class="text-center footer-logo">

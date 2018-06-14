@@ -103,14 +103,16 @@ class MyPreferencesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
 
-//        dd($id);
+//        $userId = Auth::user()->id;
 
         $surge_offer = Input::get('surgeoffer');
         $broadcast_status = Input::get('broadcast_status');
-        $email_list = Input::get('emails_arr');
+//        $email_list = Input::get('emails_arr');
+        $email_list = Input::get('email_list');
         $suburb_list = Input::get('areas_arr');
+
+        dd($email_list);
 
         //for Surge Offer Preferences Section
         AgentPreferences::where('agent_ID', $id)->update([
@@ -118,31 +120,43 @@ class MyPreferencesController extends Controller
             'broadcast_agent' => $broadcast_status
         ]);
 
+        //$emailist = AgentEmail::where('agent_ID', $id)->get();
+
+        //$emails2 = explode(',',$email_list2);
+
+
         //for Email Distribution List
-        $emails = explode(',',$email_list);
-        if($emails != null) {
-            for ($i=0; $i<count($emails); $i++){
-                $email_arr = array(
-                    'agent_ID' => $id,
-                    'email' => $emails[$i],
-                );
-                AgentEmail::create($email_arr);
-            }
-        }
 
-        //for Broadcast Areas of Agents
-        $areas = explode(',',$suburb_list);
-        if($areas != null) {
-            for ($i=0; $i<count($areas); $i++){
-                $broadcast_arr = array(
-                    'agent_ID' => $id,
-                    'suburb' => $areas[$i],
-                );
-                AgentBroadcast::create($broadcast_arr);
-            }
-        }
-
-        return redirect()->route('account-preferences');
+//        $emails = explode(',',$email_list);
+//        AgentEmail::where('agent_ID', $id)->delete();
+//        if($emails != null) {
+//
+//            $emails2 = explode(',',$email_list2);
+//            if($emails2 != null)
+//                $emails = array_diff($emails, $emails2);
+//
+//            for ($i=0; $i<count($emails); $i++){
+//                $email_arr = array(
+//                    'agent_ID' => $id,
+//                    'email' => $emails[$i],
+//                );
+//                AgentEmail::create($email_arr);
+//            }
+//        }
+//
+//        //for Broadcast Areas of Agents
+//        $areas = explode(',',$suburb_list);
+//        if($areas != null) {
+//            for ($i=0; $i<count($areas); $i++){
+//                $broadcast_arr = array(
+//                    'agent_ID' => $id,
+//                    'suburb' => $areas[$i],
+//                );
+//                AgentBroadcast::create($broadcast_arr);
+//            }
+//        }
+//
+//        return redirect()->route('account-preferences');
 
     }
 

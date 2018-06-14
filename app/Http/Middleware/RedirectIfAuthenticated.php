@@ -28,7 +28,7 @@ class RedirectIfAuthenticated
             else if($role === 'Production')
                 return redirect('/admin');
             else if($role === 'Agent')
-                return redirect('/account/home');
+                return redirect('/account/make-video');
             else
                 return redirect('/');
 

@@ -95,7 +95,11 @@
                             val = selectedItem.options[i].value;
                             selectedItem.options[i].remove();
                         }
+                        else{
+                            emails.push(selectedItem.options[i].value);
+                        }
                     }
+                    $('#emails_arr').val(emails);
                 }
 
 

@@ -12,6 +12,7 @@ use App\AgentInvoiceList;
 use App\Content;
 use App\AgentTemplate;
 use App\videoProgress;
+use App\State;
 use PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -39,9 +40,10 @@ class MyAccountController extends Controller
         $path = '/storage/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
+        $states = State::get(['state_code', 'state_name']);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         $invoice = AgentInvoice::where('email', $email)->first();
-        return view('frontend.pages.my-account', compact('fullname', 'passwd', 'agent', 'invoice', 'billing', 'logo_pic'));
+        return view('frontend.pages.my-account', compact('fullname', 'passwd', 'agent', 'states', 'invoice', 'billing', 'logo_pic'));
     }
 
 
@@ -76,6 +78,9 @@ class MyAccountController extends Controller
             'invoice_to' => request()->input('invoiceTo'),
             'invoice_to_type' => request()->input('invoice_to'),
             'address' => request()->input('invoice_address'),
+            'suburb' => request()->input('invoice_suburb'),
+            'state' => request()->input('invoice_state'),
+            'postcode' => request()->input('invoice_postcode'),
             'person_name' => request()->input('invoice_agent'),
             'contact_num' => request()->input('invoice_contact'),
             'email' => request()->input('invoice_email')

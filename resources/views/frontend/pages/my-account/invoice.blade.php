@@ -31,7 +31,7 @@
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
         <div class="row">
             <div class="col-9 pl-0">
-                <textarea id="invoice_address" type="text" class="form-control" name="invoice_address" required autofocus>{{ $invoice->address }}</textarea>
+                <input id="invoice_address" type="text" class="form-control" name="invoice_address" value="{{ $invoice->address }}" required ></input>
                 @if ($errors->has('name'))
                     <span class="help-block">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -40,6 +40,24 @@
             </div>
             <div class="col-3">Address</div>
         </div>
+        <div class="row account-payment" style="padding-left: 0!important;">
+            <div class="col-sm-9 pl-0">
+                <div class="row">
+                    <input style="width: 150px" id="invoice_suburb" type="text" class="form-control" name="invoice_suburb" placeholder="Suburb" value="{{ $invoice->suburb }}" required >
+
+                    <div class="col-sm">
+                        <select class="form-control" name="invoice_state" id="invoice_state" style="width: 250px">
+                            @foreach($states as $state)
+                                <option value="{{ $state->state_code }}" {{ $invoice->state === $state->state_code ? 'selected' : '' }}> {{ $state->state_name }} </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <input style="width: 90px" id="invoice_postcode" type="text" class="form-control" name="invoice_postcode" placeholder="Postcode" value="{{ $invoice->postcode }}" required>
+
+                </div>
+            </div>
+        </div>
+
     </div>
     Person Name for Payment
 

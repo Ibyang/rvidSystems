@@ -6,13 +6,11 @@ use App\Agent;
 use App\AgentPreferences;
 use App\User;
 use App\AgentInvoiceList;
-//use App\AgentGeneric;
-//use App\AgentPremium;
-//use App\AgentStandard;
 use App\AgentVideoOrders;
 use App\AgentBilling;
 use App\videoProgress;
 use App\AgentTemplate;
+use App\AgentEmail;
 use App\standardVideoPicture;
 use App\premiumVideoPicture;
 use Carbon\Carbon;
@@ -43,10 +41,46 @@ class MyVideoController extends Controller
         $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
+        $emails = AgentEmail::where('agent_ID', $userid)->get();
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.my-videos', compact('fullname', 'passwd', 'agent', 'logo_pic'));
+        return view('frontend.pages.my-videos', compact('fullname', 'passwd', 'emails', 'agent', 'logo_pic'));
     }
-    
+
+    public function updateEmailList()
+    {
+        $userId = Auth::user()->id;
+
+        //delete the records
+        //AgentEmail::where('agent_ID', $userId)->delete();
+
+        //recreate all the records
+        $email_list = Input::get('emails_arr');
+//        $email_list = Input::get('emailCurrentList');
+
+//        dd($email_list);
+        $emails = explode(',', $email_list);
+
+//        dd($emails);
+
+
+        if ($email_list != null) {
+//            AgentPreferences::where('agent_ID', $userId)->update([
+//                'email_distribution' => 1
+//            ]);
+
+            for ($i = 0; $i < count($emails); $i++) {
+                $email_arr = array(
+                    'agent_ID' => $userId,
+                    'email' => $emails[$i],
+                );
+                AgentEmail::create($email_arr);
+            }
+        }
+
+        return redirect()->route('account-my-videos');
+    }
+
     public function VideoTracker()
     {
         $email = Auth::user()->email;

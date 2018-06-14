@@ -292,7 +292,7 @@ Route::group(['middleware' => 'guest'], function() {
 //    Route::post('/get-started', 'RegisterController@getStarted')->name('get-started');
 
     //passing values via enter of Email field
-    Route::get('/get-started/step1', 'RegisterController@getStep1')->name('get-started-step1');
+    Route::post('/get-started/step1', 'RegisterController@getStep1')->name('get-started-step1');
 
     //redirect to Step 2 of Registration
     Route::get('/get-started/step2', 'RegisterController@getStep2')->name('get-started-step2');
@@ -324,6 +324,8 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/account/home', 'MyAccountController@index')->name('account-home');
 
     Route::get('/account/my-videos', 'MyVideoController@index')->name('account-my-videos');
+
+    Route::post('/account/myvideos/updateEmail', 'MyVideoController@updateEmailList')->name('myvideos-updateEmail');
 
     Route::get('/account/help', 'MyHelpController@index')->name('account-help');
 

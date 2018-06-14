@@ -60,14 +60,14 @@
 {{--                            @if($emails != null)--}}
                             @if($emails->count() > 0)
                                 {{--<p>There is data</p>--}}
-                                <select name="email_list" id="email_list" multiple class="form-control">
+                                <select name="email_list[]" id="email_list" multiple class="form-control">
                                     @foreach($emails as $em)
                                         <option value="{{$em->email}}">{{$em->email}}</option>
                                     @endforeach
                                 </select>
-                            @else
+                            {{--@else--}}
                                 {{--<p>There is no data</p>--}}
-                                <select name="email_list" id="email_list" multiple class="form-control" style="width: 340px"></select>
+                                {{--<select name="email_list" id="email_list" multiple class="form-control" style="width: 340px"></select>--}}
                             @endif
                         </div>
                         <div class="col-sm">
@@ -138,6 +138,7 @@
                         </div>
                     </div>
                     <input type="hidden" id="emails_arr" name="emails_arr">
+                    <input type="hidden" id="emails_arr2" name="emails_arr2">
                     <input type="hidden" id="areas_arr" name="areas_arr">
                 </form>
             </div>
@@ -181,15 +182,23 @@
                 $('#emailAdd').val("");
             }
 
+            var emails2 = [];
             if(spanId === 'removeEmailLink'){
+                //emails.empty();
                 var selectedItem = document.getElementById("email_list");
 
                 for (var i = 0; i < selectedItem.options.length; i++) {
                     if (selectedItem.options[i].selected) {
                         val = selectedItem.options[i].value;
                         selectedItem.options[i].remove();
+                        //emails2.push(val);
                     }
+                    // else {
+                    //     emails.push(selectedItem.options[i].value);
+                    // }
                 }
+                console.log("the content of emails2 is ", emails2);
+                $('#emails_arr2').val(emails2);
             }
 
 

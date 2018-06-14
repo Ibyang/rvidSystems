@@ -31,7 +31,7 @@
                                     <input type="text" class="form-control" name="state" id="state" value="{{$agent['state']}}">
                                 </div>
                                 <div class="col-sm">
-                                    <input type="text" class="form-control" name="postcode" id="postcode" value="">
+                                    <input type="text" class="form-control" name="postcode" id="postcode" value="{{$agent['postcode']}}">
                                 </div>
                             </div>
                         </div>

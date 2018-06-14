@@ -12,9 +12,6 @@
         <div class="col-sm">
 
             @if(is_array($emails))
-                <?php
-                $cnt_email = count($emails);
-                $ctr = 0; ?>
                 <select name="email_list" id="email_list" multiple class="form-control">
                     @foreach($emails as $em)
                         <option value="{{ $em }}">{{ $em }}</option>

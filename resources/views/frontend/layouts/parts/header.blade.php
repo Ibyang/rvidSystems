@@ -22,43 +22,44 @@
         <div class="container">
           <div class="row">
               <div class="float-l"><a href=" {{ route('home') }}"><img src={{ asset('storage/revid-icon.png') }} /></a></div>
-            <div class="float-l">
-                @guest
-                    <ul class="hdr-i-col">
-                      <li>
-                        <i class="menu-icon about"></i>
-                        <p><a href=" {{ route('about') }}">About</a></p>
-                      </li>
-                      <li>
-                        <i class="menu-icon join"></i>
-                        <p><a href=" {{ route('get-started') }}">Join Today</a></p>
-                      </li>
-                      <li>
-                        <i class="menu-icon help"></i>
-                        <p><a href=" {{ route('help') }}">Need Help?</a></p>
-                      </li>
-                    </ul>
-                @else 
-                    <ul class="hdr-i-col @if(Auth::check()) account-menu @endif">
-                      <li>
-                        <i class="menu-icon help"></i>
-                        <p><a href=" {{ route('account-help') }}">Need Help?</a></p>
-                      </li>
-                      <li>
-                        <i class="menu-icon about"></i>
-                        <p><a href=" {{ route('account-home') }} ">My Account</a></p>
-                      </li>
-                      <li>
-                        <i class="menu-icon logout"></i>
-                        <p><a href="{{ route('userLogout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
-                          <form id="logout-form" action="{{ route('userLogout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                          </form></p>
-                      </li>
-                      <li>All your videos<br> are uploaded<br> to DriveBy</li>
-                    </ul>
-                @endguest
-            </div>
+              <div class="float-l">
+                  @guest
+                      <ul class="hdr-i-col">
+                          <li>
+                              <a href=" {{ route('about') }}"><i class="menu-icon about"></i>
+                                  <p>About</p></a>
+                          </li>
+                          <li>
+                              <a href=" {{ route('get-started') }}"><i class="menu-icon join"></i>
+                                  <p>Join Today</p></a>
+                          </li>
+                          <a href=" {{ route('help') }}"><li>
+                                  <i class="menu-icon help"></i>
+                                  <p>Need Help?</p>
+                              </li></a>
+                      </ul>
+                  @else
+                      <ul class="hdr-i-col @if(Auth::check()) account-menu @endif">
+                          <li>
+                              <a href=" {{ route('account-help') }}"><i class="menu-icon help"></i>
+                                  <p>Need Help?</p></a>
+                          </li>
+                          <li>
+                              {{--                          <a href=" {{ route('account-home') }} "><i class="menu-icon about"></i>--}}
+                              <a href=" {{ route('account-billing-history') }} "><i class="menu-icon about"></i>
+                                  <p>My Billing</p></a>
+                          </li>
+                          <li>
+                              <a href="{{ route('userLogout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="menu-icon logout"></i>
+                                  <p>Log Out</p></a>
+                              <form id="logout-form" action="{{ route('userLogout') }}" method="POST" style="display: none;">
+                                  {{ csrf_field() }}
+                              </form>
+                          </li>
+                          <li>All your videos<br> are uploaded<br> to DriveBy</li>
+                      </ul>
+                  @endguest
+              </div>
             <div class="clear"></div>
           </div>
           @guest

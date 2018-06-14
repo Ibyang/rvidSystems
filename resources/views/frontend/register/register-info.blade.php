@@ -12,7 +12,7 @@
             @elseif (Request::segment(2) == 'step4')
                 <h4> 4 Easy Steps (1 to Go!)</h4>
             @elseif (Request::segment(1) == 'get-started')
-                  <h4>Membershtip + Setup in 4 Easy Steps</h4>
+                  <h4>Membership + Setup in 4 Easy Steps</h4>
             @else
                 {{--<h4>Setup in 4 Easy Steps</h4>--}}
                 <h4>4 Easy Steps (4 to Go!)</h4>

@@ -3,9 +3,10 @@
     <li>
         <div class="d-inline-block align-top">
             @if($logo_pic != null || $logo_pic != '' || !empty($logo_pic))
-                <img src="{{ $logo_pic }}" width="50" height="50">
+                {{--                <img src="{{ $logo_pic }}" width="50" height="50">--}}
+                <img src="{{ asset('storage/app/public/' . $logo_pic) }}" width="50" height="50">
             @else
-                <img src="{{ asset('storage/my-account-icon.jpg') }}">
+                <img src="{{ asset('storage/app/public/my-account-icon.jpg') }}">
             @endif
         </div>
         <div class="d-inline-block">
@@ -14,8 +15,8 @@
         </div>
     </li>
     <li>
-        <i class="account-icon my-account"></i>
-        <a href="{{ route('account-home') }}" style="text-decoration: none">My Home</a>
+        <i class="account-icon my-creator"></i>
+        <a href=" {{ route('account-make-video') }}" style="text-decoration: none">Make My Video</a>
     </li>
     <li>
         <i class="account-icon my-videos"></i>
@@ -23,12 +24,12 @@
         <a href="{{ route('account-my-videos') }}" style="text-decoration: none">My Videos</a>
     </li>
     <li>
-        <i class="account-icon my-creator"></i>
-        <a href=" {{ route('account-make-video') }}" style="text-decoration: none">My Video Creator</a>
-    </li>
-    <li>
         <i class="account-icon my-tracker"></i>
         <a href="{{ route('account-video-tracker') }}" style="text-decoration: none">My Video Tracker</a>
+    </li>
+    <li>
+        <i class="account-icon my-account"></i>
+        <a href="{{ route('account-home') }}" style="text-decoration: none">My Account</a>
     </li>
     <!-- just added this part to integrate the links for the other pages -->
     <li>
