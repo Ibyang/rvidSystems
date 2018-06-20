@@ -1,5 +1,10 @@
 @extends('frontend.layouts.main')
 
+<link href="{{ asset('assets/vendors/dropzone/css/dropzone.css') }}" rel="stylesheet" type="text/css" />
+<style>
+    .dropzone { text-align: center; }
+</style>
+
 @section('content')
 
     <div class="container" id="content">
@@ -14,11 +19,13 @@
 
     <div class="bg-eae step-two-register">
         <div class="container" id="content">
-            <form class="register-form" action="{{ route('processStep2') }}" method="POST" enctype="multipart/form-data">
-                {{ csrf_field() }}
+
                 @include('frontend.register.steps.pictures')
 
                 @include('frontend.register.steps.logo')
+
+            <form class="register-form" action="{{ route('processStep2') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
 
                 @include('frontend.register.steps.video-frame')
 
@@ -37,7 +44,66 @@
 
 {{-- page level scripts --}}
 {{--@section('footer_scripts')--}}
-    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+    {{--<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>--}}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src=" {{ asset('assets/vendors/dropzone/js/dropzone.js') }}"></script>
+
+    <script>
+
+        var FormDropzone = function() {
+            var name="";
+            Dropzone.options.myDropzone = {
+                //uploadMultiple: true,
+                //parallelUploads: 10,
+                maxFiles: 1,
+                paramName: 'mainImage',
+                maxFilesize: 5, // MB
+                addRemoveLinks: true,
+                thumbnailWidth: 250,//the "size of image" width at px
+                thumbnailHeight: 250,//the "size of image" height at px
+                dictRemoveFile: 'Remove Image',
+                dictFileTooBig: 'Image is larger than 5MB',
+                dictDefaultMessage: 'Drag Image Here',
+                dictInvalidFileType: 'You can\'t upload files of this type.',
+                acceptedFiles: ".jpeg,.jpg,.png,.gif",
+                timeout: 10000,
+                renameFile: function (mainImage) {
+                    name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + mainImage.name;
+                    console.log("the name is ", name);
+                    return name;
+                },
+                init: function() {
+
+                    this.on("maxfilesexceeded", function(mainImage){
+                        alert("You are only allowed to upload 1 Image!");
+                        this.removeFile(mainImage);
+                    });
+
+                    this.on("removedfile", function (mainImage) {
+                        $.ajax({
+                            headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                            type: 'GET',
+                            url: '/imageDelete/' + mainImage.customName,
+                            dataType: 'json',
+                        });
+                    });
+
+                    // this.on("success", function(file, responseText) {
+                    //     //
+                    //     var divbutton = document.getElementById("backdiv");
+                    //     divbutton.style.display = "block";
+                    // });
+
+                },
+                success: function (mainImage, done) {
+                    mainImage["customName"] = mainImage.name;
+                    console.log("the file name is ", mainImage);
+                }
+            };
+        }();
+
+    </script>
 
     <script type="text/javascript">
 
@@ -52,8 +118,19 @@
 
                 reader.onload = function (e) {
                     $('#image1').attr('src', e.target.result);
-                    $('#image1').attr('width', '460px');
-                    $('#image1').attr('height', '234px');
+
+                    var img = document.getElementById('image1');
+                    var width = img.clientWidth;
+                    var height = img.clientHeight;
+
+                    if(width > height)
+                        $('#image1').attr('width', "100%");
+                    else
+                        $('#image1').attr('height', "100%");
+
+                    // $('#image1').attr('style', "max-width=460px");
+                    // $('#image1').attr('style', "max-height=234px");
+
 
                 }
 
@@ -62,35 +139,35 @@
         }
 
         //for Main Image 2
-        function readURLMainImage2(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#image2').attr('src', e.target.result);
-                    $('#image2').attr('width', '460px');
-                    $('#image2').attr('height', '234px');
-
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        //for Main Image 3
-        function readURLMainImage3(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#image3').attr('src', e.target.result);
-                    $('#image3').attr('width', '460px');
-                    $('#image3').attr('height', '234px');
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+        // function readURLMainImage2(input) {
+        //     if (input.files && input.files[0]) {
+        //         var reader = new FileReader();
+        //
+        //         reader.onload = function (e) {
+        //             $('#image2').attr('src', e.target.result);
+        //             $('#image2').attr('width', '460px');
+        //             $('#image2').attr('height', '234px');
+        //
+        //         }
+        //
+        //         reader.readAsDataURL(input.files[0]);
+        //     }
+        // }
+        //
+        // //for Main Image 3
+        // function readURLMainImage3(input) {
+        //     if (input.files && input.files[0]) {
+        //         var reader = new FileReader();
+        //
+        //         reader.onload = function (e) {
+        //             $('#image3').attr('src', e.target.result);
+        //             $('#image3').attr('width', '460px');
+        //             $('#image3').attr('height', '234px');
+        //         }
+        //
+        //         reader.readAsDataURL(input.files[0]);
+        //     }
+        // }
 
         //for uploading logo Image
         function readURLLogoImage(input) {
@@ -98,9 +175,21 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
+
                     $('#logo').attr('src', e.target.result);
-                    $('#logo').attr('width', '460px');
-                    $('#logo').attr('height', '234px');
+
+                    var img = document.getElementById('logo');
+                    var width = img.clientWidth;
+                    var height = img.clientHeight;
+
+                    if(width > height)
+                        $('#logo').attr('style', "width=100%");
+                    else
+                        $('#logo').attr('style', "height=100%");
+
+                    $('#logo').attr('style', "max-width=460px");
+                    $('#logo').attr('style', "max-height=234px");
+
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -110,6 +199,64 @@
 
 
         $(document).ready(function() {
+
+            // var img = document.getElementById('image1');
+            // var width = img.clientWidth;
+            // var height = img.clientHeight;
+            //
+            // if(width > height)
+            //     $('#image1').attr('width', "100%");
+            // else
+            //     $('#image1').attr('height', "100%");
+            //
+            // $('#image1').attr('style', "max-width=460px");
+            // $('#image1').attr('style', "max-height=234px");
+
+            var FormDropzone = function() {
+                var name="";
+                Dropzone.options.myDropzone = {
+                    //uploadMultiple: true,
+                    //parallelUploads: 10,
+                    paramName: 'mainImage',
+                    maxFilesize: 5, // MB
+                    addRemoveLinks: true,
+                    dictRemoveFile: 'Remove Image',
+                    dictFileTooBig: 'Image is larger than 5MB',
+                    dictDefaultMessage: 'Click Here To Upload',
+                    dictInvalidFileType: 'You can\'t upload files of this type.',
+                    acceptedFiles: ".jpeg,.jpg,.png,.gif",
+                    timeout: 10000,
+                    renameFile: function (mainImage) {
+                        name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + mainImage.name;
+                        console.log("the name is ", name);
+                        return name;
+                    },
+                    init: function() {
+
+                        this.on("removedfile", function (mainImage) {
+                            $.ajax({
+                                headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                                type: 'GET',
+                                url: '/imageDelete/' + mainImage.customName,
+                                dataType: 'json',
+                            });
+                        });
+
+                        // this.on("success", function(file, responseText) {
+                        //     //
+                        //     var divbutton = document.getElementById("backdiv");
+                        //     divbutton.style.display = "block";
+                        // });
+
+                    },
+                    success: function (mainImage, done) {
+                        mainImage["customName"] = mainImage.name;
+                        console.log("the file name is ", mainImage);
+                    }
+                };
+            }();
+
+
 
             //for Main Image 1
             $("#mainImage").change(function(){
@@ -147,21 +294,14 @@
                     $("#statementEF").removeAttr("disabled");
             });
 
-            if($('#stateMainFrameColour').val()=='Agency Group Templates') {
+            if($('#stateMainFrameColour').val()=='Agency Group Colours') {
                 $('#stateMainFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
                 $('#stateMainFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
                 $('#stateMainFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
                 $('#stateMainFrameColourSelection').hide();
             }
 
-            if($('#stateMiddleFrameColour').val()=='Agency Group Templates'){
-                $('#stateMiddleFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
-                $('#stateMiddleFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
-                $('#stateMiddleFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
-                $('#stateMiddleFrameColourSelection').hide();
-            }
-
-            if($('#stateEndFrameColour').val()=='Agency Group Templates'){
+            if($('#stateEndFrameColour').val()=='Agency Group Colours'){
                 $('#stateEndFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
                 $('#stateEndFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
                 $('#stateEndFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
@@ -172,19 +312,19 @@
             //for State Main Frame
             $('#stateMainFrameColour').on('change', function(){
                 $('#stateMainFrameColourSub').html('');
-                if($('#stateMainFrameColour').val()=='Agency Group Templates'){
+                if($('#stateMainFrameColour').val()=='Agency Group Colours'){
                     $('#stateMainFrameColourSub').show();
                     $('#stateMainFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
                     $('#stateMainFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
                     $('#stateMainFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
                     $('#stateMainFrameColourSelection').hide();
-                }else if($('#stateMainFrameColour').val()=='Themed Templates'){
+                }else if($('#stateMainFrameColour').val()=='Themed Colours'){
                     $('#stateMainFrameColourSub').show();
                     $('#stateMainFrameColourSub').append('<option value="Professional">Professional</option>');
                     $('#stateMainFrameColourSub').append('<option value="Fun + Friendly">Fun + Friendly</option>');
                     $('#stateMainFrameColourSub').append('<option value="Random">Random</option>');
                     $('#stateMainFrameColourSelection').hide();
-                }else if($('#stateMainFrameColour').val()=='Customise Your Template'){
+                }else if($('#stateMainFrameColour').val()=='Customise Your Colours'){
                     $('#stateMainFrameColourSelection').show();
                     $('#stateMainFrameColourSub').hide();
                 }
@@ -193,19 +333,19 @@
             //for Middle Main Frame
             $('#stateMiddleFrameColour').on('change', function(){
                 $('#stateMiddleFrameColourSub').html('');
-                if($('#stateMiddleFrameColour').val()=='Agency Group Templates'){
+                if($('#stateMiddleFrameColour').val()=='Agency Group Colours'){
                     $('#stateMiddleFrameColourSub').show();
                     $('#stateMiddleFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
                     $('#stateMiddleFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
                     $('#stateMiddleFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
                     $('#stateMiddleFrameColourSelection').hide();
-                }else if($('#stateMiddleFrameColour').val()=='Themed Templates'){
+                }else if($('#stateMiddleFrameColour').val()=='Themed Colours'){
                     $('#stateMiddleFrameColourSub').show();
                     $('#stateMiddleFrameColourSub').append('<option value="Professional">Professional</option>');
                     $('#stateMiddleFrameColourSub').append('<option value="Fun + Friendly">Fun + Friendly</option>');
                     $('#stateMiddleFrameColourSub').append('<option value="Random">Random</option>');
                     $('#stateMiddleFrameColourSelection').hide();
-                }else if($('#stateMiddleFrameColour').val()=='Customise Your Template'){
+                }else if($('#stateMiddleFrameColour').val()=='Customise Your Colours'){
                     $('#stateMiddleFrameColourSelection').show();
                     $('#stateMiddleFrameColourSub').hide();
                 }
@@ -214,19 +354,19 @@
             //for End Main Frame
             $('#stateEndFrameColour').on('change', function(){
                 $('#stateEndFrameColourSub').html('');
-                if($('#stateEndFrameColour').val()=='Agency Group Templates'){
+                if($('#stateEndFrameColour').val()=='Agency Group Colours'){
                     $('#stateEndFrameColourSub').show();
                     $('#stateEndFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
                     $('#stateEndFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
                     $('#stateEndFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
                     $('#stateEndFrameColourSelection').hide();
-                }else if($('#stateEndFrameColour').val()=='Themed Templates'){
+                }else if($('#stateEndFrameColour').val()=='Themed Colours'){
                     $('#stateEndFrameColourSub').show();
                     $('#stateEndFrameColourSub').append('<option value="Professional">Professional</option>');
                     $('#stateEndFrameColourSub').append('<option value="Fun + Friendly">Fun + Friendly</option>');
                     $('#stateEndFrameColourSub').append('<option value="Random">Random</option>');
                     $('#stateEndFrameColourSelection').hide();
-                }else if($('#stateEndFrameColour').val()=='Customise Your Template'){
+                }else if($('#stateEndFrameColour').val()=='Customise Your Colours'){
                     $('#stateEndFrameColourSelection').show();
                     $('#stateEndFrameColourSub').hide();
                 }

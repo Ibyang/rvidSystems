@@ -19,76 +19,83 @@
                     Example
                     <img src="{{ asset('storage/register/example-frame.jpg') }}">
                     <a href="" class="d-inline-block font12">< Click to Expand ></a>
-                    <div class="float-r">
-                        <div class="d-inline-block font12">Change</div>
-                        <div class="d-inline-block">
-                            <select name="" class="form-control">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <hr>
-            <div class="row select-form">
-                <div class="col-sm select-form">
-                    <h3>Middle Frame</h3>
-                    <div class="custom-control custom-checkbox premium">
-                        <input type="checkbox" class="custom-control-input" name="chkrandomiseMF" id="chkrandomiseMF" value="1" checked>
-                        <label class="custom-control-label" for="chkrandomiseMF">Let us randomise statement selections with voice over.</label>
-                    </div>
-                    <textarea placeholder="Your personalise statement or saying (optional)" class="mt-4" name="statementMF" id="statementMF" disabled></textarea>
-                </div>
-                <div class="col-sm header-title pl-5">
-                    <b>Middle Frame</b><br><br>
-                    Example
-                    <img src="{{ asset('storage/register/example-frame.jpg') }}">
-                    <a href="" class="d-inline-block font12">< Click to Expand ></a>
-                    <div class="float-r">
-                        <div class="d-inline-block font12">Change</div>
-                        <div class="d-inline-block">
-                            <select name="" class="form-control">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <hr>
-            <div class="row select-form">
-                <div class="col-sm">
-                    <h3>End Frame</h3>
-                    <div class="custom-control custom-checkbox premium">
-                        <input type="checkbox" class="custom-control-input" name="chkrandomiseEF" id="chkrandomiseEF" value="1" checked>
-                        <label class="custom-control-label" for="chkrandomiseEF">Let us randomise statement selections with voice over.</label>
-                    </div>
-                    <textarea placeholder="Your personalise statement or saying (optional)" class="mt-4" name="statementEF" id="statementEF" disabled></textarea>
-                </div>
-                <div class="col-sm pl-5 header-title">
-                    <b>End Frame</b><br><br>
+                    {{--<div class="float-r">--}}
+                        {{--<div class="d-inline-block font12">Change</div>--}}
+                        {{--<div class="d-inline-block">--}}
+                            {{--<select name="" class="form-control">--}}
+                                {{--<option value="1">1</option>--}}
+                                {{--<option value="2">2</option>--}}
+                                {{--<option value="3">3</option>--}}
+                                {{--<option value="4">4</option>--}}
+                            {{--</select>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    <hr>
+                    <div style="clear: both"></div>
+                    <b>End Frame</b><br>
                     Example
                     <img src="{{ asset('storage/register/end-frame.jpg') }}">
                     <a href="" class="d-inline-block font12">< Click to Expand ></a>
-                    <div class="float-r">
-                        <div class="d-inline-block font12">Change</div>
-                        <div class="d-inline-block">
-                            <select name="" class="form-control">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                    </div>
+
                 </div>
             </div>
+
+            {{--<hr>--}}
+            {{--<div class="row select-form">--}}
+                {{--<div class="col-sm select-form">--}}
+                    {{--<h3>Middle Frame</h3>--}}
+                    {{--<div class="custom-control custom-checkbox premium">--}}
+                        {{--<input type="checkbox" class="custom-control-input" name="chkrandomiseMF" id="chkrandomiseMF" value="1" checked>--}}
+                        {{--<label class="custom-control-label" for="chkrandomiseMF">Let us randomise statement selections with voice over.</label>--}}
+                    {{--</div>--}}
+                    {{--<textarea placeholder="Your personalise statement or saying (optional)" class="mt-4" name="statementMF" id="statementMF" disabled></textarea>--}}
+                {{--</div>--}}
+                {{--<div class="col-sm header-title pl-5">--}}
+                    {{--<b>Middle Frame</b><br><br>--}}
+                    {{--Example--}}
+                    {{--<img src="{{ asset('storage/register/example-frame.jpg') }}">--}}
+                    {{--<a href="" class="d-inline-block font12">< Click to Expand ></a>--}}
+                    {{--<div class="float-r">--}}
+                        {{--<div class="d-inline-block font12">Change</div>--}}
+                        {{--<div class="d-inline-block">--}}
+                            {{--<select name="" class="form-control">--}}
+                                {{--<option value="1">1</option>--}}
+                                {{--<option value="2">2</option>--}}
+                                {{--<option value="3">3</option>--}}
+                                {{--<option value="4">4</option>--}}
+                            {{--</select>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+
+
+            {{--<div class="row select-form">--}}
+                {{--<div class="col-sm">--}}
+                    {{--<h3>End Frame</h3>--}}
+                    {{--<div class="custom-control custom-checkbox premium">--}}
+                        {{--<input type="checkbox" class="custom-control-input" name="chkrandomiseEF" id="chkrandomiseEF" value="1" checked>--}}
+                        {{--<label class="custom-control-label" for="chkrandomiseEF">Let us randomise statement selections with voice over.</label>--}}
+                    {{--</div>--}}
+                    {{--<textarea placeholder="Your personalise statement or saying (optional)" class="mt-4" name="statementEF" id="statementEF" disabled></textarea>--}}
+                {{--</div>--}}
+                {{--<div class="col-sm pl-5 header-title">--}}
+                    {{--<b>End Frame</b><br><br>--}}
+                    {{--Example--}}
+                    {{--<img src="{{ asset('storage/register/end-frame.jpg') }}">--}}
+                    {{--<a href="" class="d-inline-block font12">< Click to Expand ></a>--}}
+                    {{--<div class="float-r">--}}
+                        {{--<div class="d-inline-block font12">Change</div>--}}
+                        {{--<div class="d-inline-block">--}}
+                            {{--<select name="" class="form-control">--}}
+                                {{--<option value="1">1</option>--}}
+                                {{--<option value="2">2</option>--}}
+                                {{--<option value="3">3</option>--}}
+                                {{--<option value="4">4</option>--}}
+                            {{--</select>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
 

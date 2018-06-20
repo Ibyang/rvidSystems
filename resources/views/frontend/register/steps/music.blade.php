@@ -2,9 +2,9 @@
         <div class="row">
             <div class="col-sm">
                 <select name="stateMusicStyle" class="form-control col-9">
-                    <option value="Random Music(Standard)">Random Voice (Standard)</option>
-                    <option value="One Music">One Music</option>
-                    <option value="Rotation Music">Rotation Music</option>
+                    <option value="Random Music Tracks" {{{ (isset($template['music_style']) && $template['music_style'] == 'Random Music Tracks') ? "selected=\"selected\"" : "" }}}>Random Music Tracks</option>
+                    <option value="Same Music for all my Videos" {{{ (isset($template['music_style']) && $template['music_style'] == 'Same Music for all my Videos') ? "selected=\"selected\"" : "" }}}>Same Music for all my Videos</option>
+                    <option value="Rotate My Music" {{{ (isset($template['music_style']) && $template['music_style'] == 'Rotate My Music') ? "selected=\"selected\"" : "" }}}>Rotate My Music</option>
                 </select>
                 <div class="row">
                     <div class="col-md-auto">
@@ -52,16 +52,16 @@
             </div>
             <div class="col-sm">
                 You can Select from 3 options
-                <div class="c0066ff font-weight-bold">1. RANDOM MUSIC (Standard)</div>
+                <div class="c0066ff font-weight-bold">1. RANDOM MUSIC TRACKS</div>
                 <div>We Pick Random Music for Your Videos</div>
-                <div class="c0066ff pt-3 font-weight-bold">2. ONE MUSIC (+ $5.00)</div>
-                <div>You Pick One Music Selection for Your Videos</div>
-                <div class="c0066ff pt-3 font-weight-bold">3. ROTATION MUSIC (+ $5.00)</div>
-                <div>You Pick Many Music and Rotated for Your Videos</div>
+                <div class="c0066ff pt-3 font-weight-bold">2. ONE MUSIC TRACK</div>
+                <div>You use the same Music for all Your Videoe</div>
+                <div class="c0066ff pt-3 font-weight-bold">3. ROTATED MUSIC TRACKS</div>
+                <div>You pick many Music Tracks and they are rotated for each new individual video</div>
             </div>
         </div>
         <div class="float-r align-items-end">
-            <div style="float: left; margin-right: 10px"><a href="/get-started/step1"><button class="btn btn-primary" type="button"><i class="arrow-left"></i> Previous Step</button></a></div>
+            <div style="float: left; margin-right: 10px"><a href="/getStarted/step1"><button class="btn btn-primary" type="button"><i class="arrow-left"></i> Previous Step</button></a></div>
             <button class="btn btn-primary" type="submit">NEXT: Preferences <i class="arrow-right"></i></button>
         </div>
         <div class="clear"></div>

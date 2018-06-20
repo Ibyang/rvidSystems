@@ -67,7 +67,7 @@
               addRemoveLinks: true,
               dictRemoveFile: 'Remove Image',
               dictFileTooBig: 'Image is larger than 5MB',
-              dictDefaultMessage: 'Click Here To Upload',
+              dictDefaultMessage: 'Drag Here to Upload',
               dictInvalidFileType: 'You can\'t upload files of this type.',
               acceptedFiles: ".jpeg,.jpg,.png,.gif",
               timeout: 10000,

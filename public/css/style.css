@@ -510,7 +510,8 @@ a { text-decoration: none !important; }
 
 .uploadOverlay4{
     position: absolute;
-    top: 240px;
+    top: 265px;
+    /*top: 190px;*/
     margin-left: 360px;
     text-align: right;
 }

@@ -1,8 +1,8 @@
  <div class="container register-form">
      {{--<form class="register-info" method="POST" action="{{ route('registerAgent.store') }}">--}}
-
-     @if(!empty($details))
-         <form class="register-info" method="POST" action="{{ route('registerAgent.update', $details->ID) }}">
+     @if(isset($details))
+         {{--<form class="register-info" method="POST" action="{{ route('registerAgent.update', $details->ID) }}">--}}
+         <form class="register-info" method="POST" action="{{ route('processStep1') }}">
              <h4>Add Your Details</h4>
              {{ csrf_field() }}
              <input name="_method" type="hidden" value="PATCH">

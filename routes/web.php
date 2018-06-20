@@ -294,6 +294,9 @@ Route::group(['middleware' => 'guest'], function() {
     //passing values via enter of Email field
     Route::post('/get-started/step1', 'RegisterController@getStep1')->name('get-started-step1');
 
+    //redirect to Step 1 of Registration
+    Route::get('/getStarted/step1', 'RegisterController@getStep1')->name('getStarted-step1');
+
     //redirect to Step 2 of Registration
     Route::get('/get-started/step2', 'RegisterController@getStep2')->name('get-started-step2');
 
@@ -515,6 +518,9 @@ Route::group(['middleware' => 'guest'], function() {
 
     //for uploading of Image files
     Route::post('/uploadImage', 'FileController@uploadImage')->name('uploadImage');
+
+    //for uploading of MainImageFile using dropZone
+    Route::post('/uploadMainImage', 'RegisterController@uploadMainImage')->name('uploadMainImage');
 
     //for uploading of Image files
     Route::post('/uploadAudio', 'FileController@uploadAudio')->name('uploadAudio');

@@ -8,7 +8,9 @@
                         @endif
                         <div class="text-right pt-2 pb-2">
                             <input type='file' id="logoImage" name="logoImage" class="FileUpload"/>
-                            <div class="uploadOverlayLogo">Add/Change <span>+</span></div>
+                            <div style="clear: both"></div>
+                            {{--<div class="uploadOverlayLogo">Add/Change <span>+</span></div>--}}
+                            <div>Add/Change <span>+</span></div>
                                 {{--<a href="">Add/Change <span>+</span></a>--}}
                         </div>
                     </div>
@@ -16,7 +18,8 @@
                     <div class="col header-title pt-3 pl-5">
                         <b>Logo</b><br><br>
                         Add in your logo.<br>
-                        The best is JPEG at 100-200mb
+                        Minimum: 1000px wide - recommended width 2000px wide - resolution<br>
+                        Max file size: 2Mb
                     </div>
                 </div>
                

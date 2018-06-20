@@ -1,11 +1,11 @@
     <h3><div class="register-icon reg-voice mb-2"></div><span class="pl-1">Voice</span></h3>
                     <div class="row">
                         <div class="col-sm">
-                            Voice Format
+                            Voice Selector
                             <select name="stateVoiceFormat" class="form-control col-8">
-                                <option value="Random Voice(Standard)">Random Voice (Standard)</option>
-                                <option value="One Voice">One Voice</option>
-                                <option value="Rotation Voice">Rotation Voice</option>
+                                <option value="Random Voice" {{{ (isset($template['voice_format']) && $template['voice_format'] == 'Random Voice') ? "selected=\"selected\"" : "" }}}>Random Voice</option>
+                                <option value="One Voice" {{{ (isset($template['voice_format']) && $template['voice_format'] == 'One Voice') ? "selected=\"selected\"" : "" }}}>One Voice</option>
+                                <option value="Rotated Voice" {{{ (isset($template['voice_format']) && $template['voice_format'] == 'Rotated Voice') ? "selected=\"selected\"" : "" }}}>Rotated Voice</option>
                             </select>
                             <ul class="reg-video-format">
                                 <li>
@@ -102,11 +102,11 @@
                         <div class="col-sm">
                             You can Select from 3 options
                             <div class="c0066ff font-weight-bold">1. RANDOM VOICE (Standard)</div>
-                            <div>We Pick Random Voices for Your Videos</div>
-                            <div class="c0066ff pt-3 font-weight-bold">2. ONE VOICE (+ $5.00)</div>
-                            <div>You Pick One Voice for Your Videos</div>
-                            <div class="c0066ff pt-3 font-weight-bold">3. ROTATION VOICE (+ $5.00)</div>
-                            <div>You Pick Many Voice and Rotated for Your Videos</div>
+                            <div>We pick random voices for your videos </div>
+                            <div class="c0066ff pt-3 font-weight-bold">2. ONE VOICE </div>
+                            <div>You use the same Voice for all Your Videos</div>
+                            <div class="c0066ff pt-3 font-weight-bold">3. ROTATED VOICE </div>
+                            <div>You pick many voices and they are rotated for each new individual video</div>
                         </div>
                     </div>
 

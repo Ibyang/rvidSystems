@@ -32,19 +32,27 @@ class RegisterController extends Controller
     public function index()
     {
         //
-        $email = Input::get('email');
-        $details = Agent::where('email', $email)->first();
+//        $email = Input::get('email');
+//        if($email != null)
+//            $details = Agent::where('email', $email)->first();
+//        else
+//            $details = null;
+////        dd($details);
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.get-started', compact('email', 'details', 'states', 'groups', 'agencies'));
+        return view('frontend.pages.get-started', compact('email', 'states', 'groups', 'agencies'));
     }
 
     public function getStarted(Request $request)
     {
         //
         $email = Input::get('email');
-        $details = Agent::where('email', $email)->first();
+        if($email != null)
+            $details = Agent::where('email', $email)->first();
+        else
+            $details = null;
+        //dd($details);
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
@@ -55,12 +63,20 @@ class RegisterController extends Controller
     public function getStep1(Request $request)
     {
         $email = Input::get('email');
-        $details = Agent::where('email', $email)->first();
+        if($email != null)
+            $details = Agent::where('email', $email)->first();
+        else
+            $details = null;
+//        dd($details);
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
         $agent = $request->session()->get('agent_arr');
-        return view('frontend.register.register-step1', compact('email', 'agent', 'details', 'states', 'groups', 'agencies'));
+//        dd($email);
+//        if(isset($details) || $details != null)
+            return view('frontend.register.register-step1', compact('email', 'agent', 'details', 'states', 'groups', 'agencies'));
+//        else
+//            return view('frontend.register.register-step1', compact('email', 'agent', 'states', 'groups', 'agencies'));
     }
 
     public function getStep2(Request $request)
@@ -195,6 +211,44 @@ class RegisterController extends Controller
 
 
         return redirect()->route('get-started-step2');
+    }
+
+    public function uploadMainImage(Request $request)
+    {
+        $username = Session::get('fullname');
+
+        $temp = $request->session()->get('template');
+
+        //for creating subfolder for a particular client
+        $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
+        if (!File::exists($path)) {
+            File::makeDirectory($path, 0777, true);
+        }
+        //move to folder if there is file uploaded for Main Image
+        if ($file = $request->hasFile('mainImage')) {
+
+            //for Main Image
+            $mImage = $request->file('mainImage');
+            $fnameMainImage = time() . '_' . $mImage->getClientOriginalName();
+
+            $directory = 'storage/client_images/' . $username . '/general_images/';
+//            $directory = 'images/';
+
+            $upload_success = $mImage->move($directory, $fnameMainImage);
+//            $upload_success = $mImage->storeAs($directory, $fnameMainImage, 'public');
+
+            if($upload_success){
+                return response()->json($upload_success, 200);
+            }
+            else
+            {
+                return response()->json('error', 400);
+            }
+        }
+        else{
+            $fnameMainImage = $temp['main_image'];
+        }
+
     }
 
     public function processStep2(Request $request)
