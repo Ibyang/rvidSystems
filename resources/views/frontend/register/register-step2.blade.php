@@ -1,8 +1,21 @@
 @extends('frontend.layouts.main')
 
 <link href="{{ asset('assets/vendors/dropzone/css/dropzone.css') }}" rel="stylesheet" type="text/css" />
+
 <style>
-    .dropzone { text-align: center; }
+    .dropzone { text-align: center;}
+
+    .dropzone .dz-preview .dz-details, .dropzone-previews .dz-preview .dz-details {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    .dz-details img {
+        width: auto !important;
+        height: auto !important;
+        position: relative !important;
+    }
+
 </style>
 
 @section('content')
@@ -44,13 +57,23 @@
 
 {{-- page level scripts --}}
 {{--@section('footer_scripts')--}}
-    {{--<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>--}}
+{{--    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>--}}
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
     <script type="text/javascript" src=" {{ asset('assets/vendors/dropzone/js/dropzone.js') }}"></script>
 
     <script>
 
+        var fileMainImage = "{!! $template['main_image'] !!}";
+        var fileLogoImage = "{!! $template['logo'] !!}";
+        var path = "{!! $template['path'] !!}";
+
+        //dropZone codes for Main Image
         var FormDropzone = function() {
             var name="";
             Dropzone.options.myDropzone = {
@@ -67,6 +90,8 @@
                 dictDefaultMessage: 'Drag Image Here',
                 dictInvalidFileType: 'You can\'t upload files of this type.',
                 acceptedFiles: ".jpeg,.jpg,.png,.gif",
+                // previewsContainer: "#preview_image",
+                // previewTemplate: document.getElementById('preview_image').innerHTML,
                 timeout: 10000,
                 renameFile: function (mainImage) {
                     name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + mainImage.name;
@@ -75,6 +100,19 @@
                 },
                 init: function() {
 
+                    if(fileMainImage != "") {
+                        console.log("the value of fileMainImage is ", fileMainImage);
+                        var mockFile = { name: fileMainImage, size: 12.3, type: 'image/jpeg' };
+                        this.emit("addedfile", mockFile);
+                        this.emit("thumbnail", mockFile, path + fileMainImage);
+                        //this.createThumbnailFromUrl(file, fullpath, callback, crossOrigin);
+                        this.emit("complete", mockFile);
+                        // this.addFile.call(this, mockFile);
+                        // this.options.thumbnail.call(this, mockFile, fullpath);
+                    }
+
+
+                    $('.dropzone').css('background-image', 'url("../../assets/vendors/dropzone/images/step-needed.jpg")');
                     this.on("maxfilesexceeded", function(mainImage){
                         alert("You are only allowed to upload 1 Image!");
                         this.removeFile(mainImage);
@@ -84,24 +122,94 @@
                         $.ajax({
                             headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
                             type: 'GET',
-                            url: '/imageDelete/' + mainImage.customName,
+                            url: '/imageMainDelete/' + mainImage.name,
                             dataType: 'json',
                         });
+                        $('.dropzone').css('background-image', 'url("../../assets/vendors/dropzone/images/step-needed.jpg")');
+                        filename = null;
+                        fullpath = null;
+                        // $('.dropzone').css('background', 'none');
                     });
-
-                    // this.on("success", function(file, responseText) {
-                    //     //
-                    //     var divbutton = document.getElementById("backdiv");
-                    //     divbutton.style.display = "block";
-                    // });
 
                 },
                 success: function (mainImage, done) {
+                    // $('.dropzone').css('background-image', 'none');
+                    // $('.dropzone').css('background', 'white');
                     mainImage["customName"] = mainImage.name;
                     console.log("the file name is ", mainImage);
                 }
             };
         }();
+
+
+        //dropZone codes for Logo Image
+        var FormDropzone = function() {
+            var name="";
+            Dropzone.options.myDropzoneLogo = {
+                //uploadMultiple: true,
+                //parallelUploads: 10,
+                maxFiles: 1,
+                paramName: 'logoImage',
+                maxFilesize: 5, // MB
+                addRemoveLinks: true,
+                thumbnailWidth: 250,//the "size of image" width at px
+                thumbnailHeight: 250,//the "size of image" height at px
+                dictRemoveFile: 'Remove Image',
+                dictFileTooBig: 'Image is larger than 5MB',
+                dictDefaultMessage: 'Drag Image Here',
+                dictInvalidFileType: 'You can\'t upload files of this type.',
+                acceptedFiles: ".jpeg,.jpg,.png,.gif",
+                // previewsContainer: "#preview_image",
+                // previewTemplate: document.getElementById('preview_image').innerHTML,
+                timeout: 10000,
+                renameFile: function (logoImage) {
+                    name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + logoImage.name;
+                    console.log("the name is ", name);
+                    return name;
+                },
+                init: function() {
+
+                    //code to pre-load the image to the image container
+                    if(fileLogoImage != "") {
+                        var mockFile = {name: fileLogoImage, size: 12.3, type: 'image/jpeg'};
+                        this.emit("addedfile", mockFile);
+                        this.emit("thumbnail", mockFile, path + fileLogoImage);
+                        //this.createThumbnailFromUrl(file, fullpath, callback, crossOrigin);
+                        this.emit("complete", mockFile);
+                    }
+
+                    this.on("maxfilesexceeded", function(logoImage){
+                        alert("You are only allowed to upload 1 Image!");
+                        this.removeFile(logoImage);
+                    });
+
+                    this.on("removedfile", function (logoImage) {
+                        $.ajax({
+                            headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                            type: 'GET',
+                            url: '/imageLogoDelete/' + logoImage.name,
+                            dataType: 'json',
+                        });
+                        $('.dropzone').css('background-image', 'url("../../assets/vendors/dropzone/images/step-needed.jpg")');
+                        // $('.dropzone').css('background-image', 'url("./../images/step-needed.jpg")');
+                        // $('.dropzone').css('background', 'none');
+                    });
+
+                },
+                success: function (logoImage, done) {
+
+                    // this.on("thumbnail", function (logoImage) {
+                    //     $('.dropzone').css('background-image', 'none');
+                    // });
+                    // $('.dropzone').css('background-image', 'none');
+                    // $('.dropzone').css('background', 'white');
+                    logoImage["customName"] = logoImage.name;
+                    console.log("the file name is ", logoImage);
+                }
+            };
+        }();
+
+
 
     </script>
 
@@ -212,53 +320,25 @@
             // $('#image1').attr('style', "max-width=460px");
             // $('#image1').attr('style', "max-height=234px");
 
-            var FormDropzone = function() {
-                var name="";
-                Dropzone.options.myDropzone = {
-                    //uploadMultiple: true,
-                    //parallelUploads: 10,
-                    paramName: 'mainImage',
-                    maxFilesize: 5, // MB
-                    addRemoveLinks: true,
-                    dictRemoveFile: 'Remove Image',
-                    dictFileTooBig: 'Image is larger than 5MB',
-                    dictDefaultMessage: 'Click Here To Upload',
-                    dictInvalidFileType: 'You can\'t upload files of this type.',
-                    acceptedFiles: ".jpeg,.jpg,.png,.gif",
-                    timeout: 10000,
-                    renameFile: function (mainImage) {
-                        name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + mainImage.name;
-                        console.log("the name is ", name);
-                        return name;
-                    },
-                    init: function() {
-
-                        this.on("removedfile", function (mainImage) {
-                            $.ajax({
-                                headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
-                                type: 'GET',
-                                url: '/imageDelete/' + mainImage.customName,
-                                dataType: 'json',
-                            });
-                        });
-
-                        // this.on("success", function(file, responseText) {
-                        //     //
-                        //     var divbutton = document.getElementById("backdiv");
-                        //     divbutton.style.display = "block";
-                        // });
-
-                    },
-                    success: function (mainImage, done) {
-                        mainImage["customName"] = mainImage.name;
-                        console.log("the file name is ", mainImage);
-                    }
-                };
-            }();
+            // $('.dropzone').css('background-image', 'url("../../assets/vendors/dropzone/images/step-needed.jpg")');
+            // $('.dropzone').css('background', 'white');
 
 
+            //passing values from links of main templates
+            $('#mainTemplateModal').on('show.bs.modal', function(e) {
+                var mainTemplate = $(e.relatedTarget).attr('data-dbid');
+                $("#mainTemplate").attr('src', '/storage/register/' + mainTemplate);
+            });
 
-            //for Main Image 1
+
+            //passing values from links of end templates
+            $('#endTemplateModal').on('show.bs.modal', function(e) {
+                var endTemplate = $(e.relatedTarget).attr('data-dbid');
+                $("#endTemplate").attr('src', '/storage/register/' + endTemplate);
+            });
+
+
+                //for Main Image 1
             $("#mainImage").change(function(){
                 readURLMainImage1(this);
             });

@@ -213,6 +213,7 @@ class RegisterController extends Controller
         return redirect()->route('get-started-step2');
     }
 
+    //module to upload MainImage using DropZone
     public function uploadMainImage(Request $request)
     {
         $username = Session::get('fullname');
@@ -237,6 +238,9 @@ class RegisterController extends Controller
             $upload_success = $mImage->move($directory, $fnameMainImage);
 //            $upload_success = $mImage->storeAs($directory, $fnameMainImage, 'public');
 
+            Session::put('mainImagePath', $directory);
+            Session::put('mainImageFile', $fnameMainImage);
+
             if($upload_success){
                 return response()->json($upload_success, 200);
             }
@@ -244,12 +248,81 @@ class RegisterController extends Controller
             {
                 return response()->json('error', 400);
             }
+
+
         }
         else{
             $fnameMainImage = $temp['main_image'];
         }
 
     }
+
+
+    public function imageMainDelete($mainImage)
+    {
+        $username = Session::get('fullname');
+
+        $file = 'storage/client_images/' . $username . '/general_images/' . $mainImage;
+        unlink($file);
+
+        session()->forget('mainImageFile');
+
+    }
+
+    public function uploadLogoImage(Request $request)
+    {
+        $username = Session::get('fullname');
+
+        $temp = $request->session()->get('template');
+
+        //for creating subfolder for a particular client
+        $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
+        if (!File::exists($path)) {
+            File::makeDirectory($path, 0777, true);
+        }
+        //move to folder if there is file uploaded for Main Image
+        if ($file = $request->hasFile('logoImage')) {
+
+            //for Main Image
+            $logoImage = $request->file('logoImage');
+            $fnamelogoImage = 'logo_' . $logoImage->getClientOriginalName();
+
+            $directory = 'storage/client_images/' . $username . '/general_images/';
+//            $directory = 'images/';
+
+            $upload_success = $logoImage->move($directory, $fnamelogoImage);
+//            $upload_success = $mImage->storeAs($directory, $fnameMainImage, 'public');
+
+            Session::put('logoImagePath', $directory);
+            Session::put('logoImageFile', $fnamelogoImage);
+
+            if($upload_success){
+                return response()->json($upload_success, 200);
+            }
+            else
+            {
+                return response()->json('error', 400);
+            }
+
+        }
+        else{
+            $fnameMainImage = $temp['main_image'];
+        }
+
+    }
+
+
+    public function imageLogoDelete($logoImage)
+    {
+        $username = Session::get('fullname');
+
+        $file = 'storage/client_images/' . $username . '/general_images/' . $logoImage;
+        unlink($file);
+
+        session()->forget('logoImageFile');
+
+    }
+
 
     public function processStep2(Request $request)
     {
@@ -259,57 +332,57 @@ class RegisterController extends Controller
         $temp = $request->session()->get('template');
 
         //for creating subfolder for a particular client
-        $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
-        if (!File::exists($path)) {
-            File::makeDirectory($path, 0775, true);
-        }
-        //move to folder if there is file uploaded for Main Image
-        if ($file = $request->hasFile('mainImage')) {
-            //for Main Image
-            $mainImage = $request->file('mainImage');
-            $fnameMainImage = time() . '_' . $mainImage->getClientOriginalName();
-
-            $mainImage->move($path, $fnameMainImage);
-        }
-        else{
-            $fnameMainImage = $temp['main_image'];
-        }
+//        $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
+//        if (!File::exists($path)) {
+//            File::makeDirectory($path, 0775, true);
+//        }
+//        //move to folder if there is file uploaded for Main Image
+//        if ($file = $request->hasFile('mainImage')) {
+//            //for Main Image
+//            $mainImage = $request->file('mainImage');
+//            $fnameMainImage = time() . '_' . $mainImage->getClientOriginalName();
+//
+//            $mainImage->move($path, $fnameMainImage);
+//        }
+//        else{
+//            $fnameMainImage = $temp['main_image'];
+//        }
 
         //move to folder if there is file uploaded for Main Image 2 (Optional)
-        if ($file = $request->hasFile('mainImage2')) {
-            //for Main Image 2 (Optional)
-            $mainImage2 = $request->file('mainImage2');
-            $fnameMainImage2 = time() . '_' . $mainImage2->getClientOriginalName();
-
-            $mainImage2->move($path, $fnameMainImage2);
-        }
-        else{
-            $fnameMainImage2 = $temp['extra_image1'];
-        }
+//        if ($file = $request->hasFile('mainImage2')) {
+//            //for Main Image 2 (Optional)
+//            $mainImage2 = $request->file('mainImage2');
+//            $fnameMainImage2 = time() . '_' . $mainImage2->getClientOriginalName();
+//
+//            $mainImage2->move($path, $fnameMainImage2);
+//        }
+//        else{
+//            $fnameMainImage2 = $temp['extra_image1'];
+//        }
 
         //move to folder if there is file uploaded for Main Image 3 (Optional)
-        if ($file = $request->hasFile('mainImage3')) {
-            //for Main Image 3 (Optional)
-            $mainImage3 = $request->file('mainImage3');
-            $fnameMainImage3 = time() . '_' . $mainImage3->getClientOriginalName();
-
-            $mainImage3->move($path, $fnameMainImage3);
-        }
-        else{
-            $fnameMainImage3 = $temp['extra_image2'];
-        }
+//        if ($file = $request->hasFile('mainImage3')) {
+//            //for Main Image 3 (Optional)
+//            $mainImage3 = $request->file('mainImage3');
+//            $fnameMainImage3 = time() . '_' . $mainImage3->getClientOriginalName();
+//
+//            $mainImage3->move($path, $fnameMainImage3);
+//        }
+//        else{
+//            $fnameMainImage3 = $temp['extra_image2'];
+//        }
 
         //for uploading of logo
-        if ($file = $request->hasFile('logoImage')) {
-            //for Main Image 3 (Optional)
-            $logoImage = $request->file('logoImage');
-            $fnamelogoImage = 'logo_' . $logoImage->getClientOriginalName();
-
-            $logoImage->move($path, $fnamelogoImage);
-        }
-        else{
-            $fnamelogoImage = $temp['logo'];
-        }
+//        if ($file = $request->hasFile('logoImage')) {
+//            //for Main Image 3 (Optional)
+//            $logoImage = $request->file('logoImage');
+//            $fnamelogoImage = 'logo_' . $logoImage->getClientOriginalName();
+//
+//            $logoImage->move($path, $fnamelogoImage);
+//        }
+//        else{
+//            $fnamelogoImage = $temp['logo'];
+//        }
 
         //for main frame template selection
         $mainFrameSelections = Input::get('main_frame');
@@ -362,13 +435,15 @@ class RegisterController extends Controller
             $musicboxes = '';
 
         $path2 = '/storage/client_images/' . $username . '/general_images/';
+        $fnameMainImage = Session::get('mainImageFile');
+        $fnamelogoImage = Session::get('logoImageFile');
 
         $template = array(
             //'agent_ID' => $userId,
             'path' => $path2,
             'main_image' => $fnameMainImage,
-            'extra_image1' => $fnameMainImage2,
-            'extra_image2' => $fnameMainImage3,
+//            'extra_image1' => $fnameMainImage2,
+//            'extra_image2' => $fnameMainImage3,
             'logo' => $fnamelogoImage,
             'main_frame_template' => Input::get('stateMainFrame'),
             'main_frame_template_format' => $MFboxes,

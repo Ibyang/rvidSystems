@@ -1,26 +1,28 @@
-<style>
-    img {
-        width: 100%;
-        height: auto;
-    }
-</style>
-                <h3><div class="register-icon reg-picture mb-2"></div><span class="pl-2">Pictures</span></h3>
+
+                <br><h3><div class="register-icon reg-picture mb-2" style="padding-top: 20px;"></div><span class="pl-2">Pictures</span></h3>
                 <div class="row">
                     <div class="col reg-step-link">
-                        @if(!empty($template['main_image']))
-                            {{--<img id="image1" src="{{ $template['path'] . $template['main_image'] }}" width="460" height="235" style='border: 10px solid grey; margin-bottom: 10px;'>--}}
-                            <img id="image1" src="{{ $template['path'] . $template['main_image'] }}">
-                        @else
-                            <img id="image1" src="{{ asset('storage/register/step-needed.jpg') }}">
-                            {{--<img id="image1" src="{{ asset('storage/register/step-main.jpg') }}">--}}
-                        @endif
+                            @if(!empty($template['main_image']))
+                                <img id="image1" src="{{ $template['path'] . $template['main_image'] }}" width="460" height="235" style='border: 10px solid grey; margin-bottom: 10px;'>
+{{--                                <img id="image1" src="{{ $template['path'] . $template['main_image'] }}">--}}
+                            {{--@else--}}
+                                {{--<img id="image1" src="{{ asset('storage/register/step-needed.jpg') }}">--}}
+                                {{--<img id="image1" src="{{ asset('storage/register/step-main.jpg') }}">--}}
+                            @endif
+                        {{--<div id="preview_image">--}}
+                            {{--<img id="image1" src="{{ asset('storage/register/step-needed.jpg') }}">--}}
+                                {{--<img id="image1" src="{{ asset('storage/register/step-main.jpg') }}">--}}
+                        {{--</div>--}}
+
                         <div class="text-right pt-2 pb-2">
 
                             <form action="{{ route('uploadMainImage') }}" class="dropzone" id="myDropzone" enctype="multipart/form-data">
                                 {{ csrf_field() }}
+                                {{--<img id="image1" src="{{ asset('storage/register/step-needed.jpg') }}">--}}
                                 <div class="fallback">
                                     <input id="mainImage" name="mainImage" type="file" class="FileUpload"/>
                                 </div>
+
                             </form>
 
                             {{--<input type='file' id="mainImage" name="mainImage" class="FileUpload"/>--}}

@@ -43,7 +43,7 @@
                            <div class="row">
                                <div class="col-sm">
                                    <img src="{{ asset('storage/register/main-frame-1.jpg') }}"><br>
-                                   <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
+                                   <a href="" data-toggle="modal" data-target="#mainTemplateModal" data-dbid="main-frame-1.jpg" class="d-inline-block font12" >< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                        <input type="checkbox" class="custom-control-input" name="main_frame[]" id="customCheck1" value="1"
                                             {{{ (isset($mainframe_list) && (in_array('1', $mainframe_list))) ? "checked" : ""}}}>
@@ -52,7 +52,7 @@
                                </div>
                                <div class="col-sm">
                                    <img src="{{ asset('storage/register/main-frame-2.jpg') }}"><br>
-                                   <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
+                                   <a href="" data-toggle="modal" data-target="#mainTemplateModal" data-dbid="main-frame-2.jpg" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                        <input type="checkbox" class="custom-control-input" name="main_frame[]" id="customCheck2" value="2"
                                             {{{ (isset($mainframe_list) && (in_array('2', $mainframe_list))) ? "checked" : ""}}}>
@@ -63,7 +63,7 @@
                            <div class="row mt-3">
                                <div class="col-sm">
                                    <img src="{{ asset('storage/register/main-frame-3.jpg') }}"><br>
-                                   <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
+                                   <a href="" data-toggle="modal" data-target="#mainTemplateModal" data-dbid="main-frame-3.jpg" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                        <input type="checkbox" class="custom-control-input" name="main_frame[]" id="customCheck3" value="3"
                                              {{{ (isset($mainframe_list) && (in_array('3', $mainframe_list))) ? "checked" : ""}}}>
@@ -72,7 +72,7 @@
                                </div>
                                <div class="col-sm">
                                    <img src="{{ asset('storage/register/main-frame-4.jpg') }}"><br>
-                                   <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
+                                   <a href="" data-toggle="modal" data-target="#mainTemplateModal" data-dbid="main-frame-4.jpg" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                        <input type="checkbox" class="custom-control-input" name="main_frame[]" id="customCheck4" value="4"
                                              {{{ (isset($mainframe_list) && (in_array('4', $mainframe_list))) ? "checked" : ""}}}>
@@ -127,7 +127,7 @@
                            <div class="row">
                                <div class="col-sm">
                                    <img src="{{ asset('storage/register/main-frame-1.jpg') }}"><br>
-                                   <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
+                                   <a href="" data-toggle="modal" data-target="#endTemplateModal" data-dbid="main-frame-1.jpg" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                        <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck9" value="1"
                                                {{{ (isset($endframe_list) && (in_array('1', $endframe_list))) ? "checked" : ""}}}>
@@ -136,7 +136,7 @@
                                </div>
                                <div class="col-sm">
                                    <img src="{{ asset('storage/register/main-frame-2.jpg') }}"><br>
-                                   <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
+                                   <a href="" data-toggle="modal" data-target="#endTemplateModal" data-dbid="main-frame-2.jpg" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                        <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck10" value="2"
                                                {{{ (isset($endframe_list) && (in_array('2', $endframe_list))) ? "checked" : ""}}}>
@@ -147,7 +147,7 @@
                            <div class="row mt-3">
                                <div class="col-sm">
                                    <img src="{{ asset('storage/register/main-frame-3.jpg') }}"><br>
-                                   <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
+                                   <a href="" data-toggle="modal" data-target="#endTemplateModal" data-dbid="main-frame-3.jpg" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                        <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck11" value="3"
                                                {{{ (isset($endframe_list) && (in_array('3', $endframe_list))) ? "checked" : ""}}}>
@@ -156,7 +156,7 @@
                                </div>
                                <div class="col-sm">
                                    <img src="{{ asset('storage/register/main-frame-4.jpg') }}"><br>
-                                   <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
+                                   <a href="" data-toggle="modal" data-target="#endTemplateModal" data-dbid="main-frame-4.jpg" class="d-inline-block font12">< Click to Enlarge ></a>
                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                        <input type="checkbox" class="custom-control-input" name="end_frame[]" id="customCheck12" value="4"
                                                {{{ (isset($endframe_list) && (in_array('4', $endframe_list))) ? "checked" : ""}}}>
@@ -165,5 +165,56 @@
                                </div>
                            </div>
                            <input type="hidden" name="end_frame_order">
+                       </div>
+                   </div>
+
+                   <!-- Display Modal to view the Main template in an Enlarge Mode -->
+                   <div class="modal fade" id="mainTemplateModal"
+                        tabindex="-1" role="dialog"
+                        aria-labelledby="VideoModalLabel">
+                       <div class="modal-dialog" role="document" style="max-width: 700px;">
+                           <div class="modal-content">
+                               <div class="modal-header">
+                                   <h4 class="modal-title">Main Template</h4>
+                                   <button type="button" class="close"
+                                           data-dismiss="modal"
+                                           aria-label="Close">
+                                       <span aria-hidden="true">&times;</span></button>
+                               </div>
+                               <div class="modal-body">
+                                   <img src="" id="mainTemplate">
+                               </div>
+                               <div class="modal-footer">
+                                   <button type="button"
+                                           class="btn btn-default"
+                                           data-dismiss="modal">Close</button>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
+
+                   <!-- Display Modal to view the End template in an Enlarge Mode -->
+                   <div class="modal fade" id="endTemplateModal"
+                        tabindex="-1" role="dialog"
+                        aria-labelledby="VideoModalLabel">
+                       <div class="modal-dialog" role="document" style="max-width: 700px;">
+                           <div class="modal-content">
+                               <div class="modal-header">
+                                   <h4 class="modal-title">End Template</h4>
+                                   <button type="button" class="close"
+                                           data-dismiss="modal"
+                                           aria-label="Close">
+                                       <span aria-hidden="true">&times;</span></button>
+                               </div>
+                               <div class="modal-body">
+                                   <img src="" id="endTemplate">
+                               </div>
+                               <div class="modal-footer">
+                                   <button type="button"
+                                           class="btn btn-default"
+                                           data-dismiss="modal">Close</button>
+                               </div>
+                           </div>
                        </div>
                    </div>

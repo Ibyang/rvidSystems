@@ -491,6 +491,12 @@ Route::group(['middleware' => 'guest'], function() {
     Route::post('/account/updateSurgeVideo', 'MyAccountController@updateSurgeVideo')->name('account-update-surge-video');
 //});
 
+    //for removing Main Image from the dropZone container
+    Route::get('/imageMainDelete/{mainImage}', 'RegisterController@imageMainDelete');
+
+    //for removing Logo Image from the dropZone container
+    Route::get('/imageLogoDelete/{logoImage}', 'RegisterController@imageLogoDelete');
+
 
     Auth::routes();
 
@@ -521,6 +527,9 @@ Route::group(['middleware' => 'guest'], function() {
 
     //for uploading of MainImageFile using dropZone
     Route::post('/uploadMainImage', 'RegisterController@uploadMainImage')->name('uploadMainImage');
+
+    //for uploading of MainImageFile using dropZone
+    Route::post('/uploadLogoImage', 'RegisterController@uploadLogoImage')->name('uploadLogoImage');
 
     //for uploading of Image files
     Route::post('/uploadAudio', 'FileController@uploadAudio')->name('uploadAudio');
