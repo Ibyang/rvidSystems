@@ -497,6 +497,11 @@ Route::group(['middleware' => 'guest'], function() {
     //for removing Logo Image from the dropZone container
     Route::get('/imageLogoDelete/{logoImage}', 'RegisterController@imageLogoDelete');
 
+    //for uploading standard images in dropZone container
+    Route::post('/uploadStandardImage', 'MyVideoController@uploadStandardImage')->name('uploadStandardImage');
+
+    //for removing Images from DropBox container
+    Route::get('/deleteStandardImage/{simage}', 'MyVideoController@deleteStandardImage');
 
     Auth::routes();
 

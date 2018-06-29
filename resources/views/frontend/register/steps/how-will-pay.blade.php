@@ -11,8 +11,8 @@
                     <div class="col-sm">
                         <div class="block-grey">
                             <div class="custom-control custom-checkbox premium">
-                                  <input type="checkbox" class="custom-control-input" id="invoice" value="1" name="invoice">
-                                  <label class="custom-control-label" for="invoice">Invoice</label>
+                                  <input type="checkbox" class="custom-control-input" id="chkInvoice" name="invoice" value="1">
+                                  <label class="custom-control-label" for="chkInvoice">Invoice</label>
                             </div>
                         </div>
                     </div>  
@@ -21,7 +21,7 @@
                     <div class="col-sm"><input type="text" class="form-control" name="cardnumber" id="cardnumber" placeholder="Card Number"></div>
                     <div class="col-sm step-three-register">
                         <div class="custom-control custom-checkbox premium">
-                              <input type="checkbox" class="custom-control-input" id="invoice_apply" value="1" name="invoice_apply">
+                              <input type="checkbox" class="custom-control-input" id="invoice_apply" name="invoice_apply">
                               <label class="custom-control-label" for="invoice_apply">$5 per invoice applied to costs</label>
                         </div>
                     </div>

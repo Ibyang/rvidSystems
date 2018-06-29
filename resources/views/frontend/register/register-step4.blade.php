@@ -63,14 +63,32 @@
                 $("#btnAccept").attr("disabled", !this.checked);
             }
 
-            //for selecting only one checkbox at a time
-            $('input[type="checkbox"]').on('change', function() {
-                $('input[name="' + this.name + '"]').not(this).prop('checked', false);
-            });
-
             $("#accept_terms").click(function() {
                 $("#btnAccept").attr("disabled", !this.checked);
             });
+
+            $("#chkInvoice").click(function() {
+                if($("#chkInvoice").is(':checked')){
+                    alert('checkbox is checked');
+                    $("#invoice_apply").attr("checked", true);
+                }
+                else{
+                    $("#invoice_apply").attr("checked", false);
+                }
+            });
+
+
+
+            //for selecting only one checkbox at a time
+            // $('input[type="checkbox"]').on('change', function() {
+            //     $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+            // });
+
+
+
+
+
+
 
             // $("#btnAccept").click(function() {
             //     if ($("input[type='checkbox'][name='subscription1']:checked").length == 0){

@@ -17,9 +17,19 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm">
-                            <textarea cols="10" rows="5" class="form-control" name="invoice_address" id="invoice_address">{{$agent['address']}}</textarea>
+                            <input type="text" class="form-control" name="address" id="address" value="{{$agent['address']}}">
+                            {{--<textarea cols="10" rows="5" class="form-control" name="invoice_address" id="invoice_address">{{$agent['address']}}</textarea>--}}
                         </div>
                         <div class="col-sm"><input type="text" class="form-control" name="mobile" id="mobile" value="{{$agent['mobile']}}"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm">
+                            <input type="text" class="form-control" name="address2" id="address2" placeholder="Address2" value="{{$agent['address2']}}">
+                            {{--<textarea cols="10" rows="5" class="form-control" name="invoice_address" id="invoice_address">{{$agent['address']}}</textarea>--}}
+                        </div>
+                        <div class="col-sm">
+
+                        </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm">

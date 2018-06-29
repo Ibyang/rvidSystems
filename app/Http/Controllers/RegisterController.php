@@ -181,9 +181,11 @@ class RegisterController extends Controller
             'name_agency' => Input::get('name_agency'),
             //'role_title' => Input::get('role_title'),
             'address' => Input::get('address'),
+            'address2' => Input::get('address2'),
             'suburb' => Input::get('suburb'),
             //'postcode' => Input::get('postcode'),
             'state' => Input::get('state'),
+            'postcode' => Input::get('postcode')
         );
 
         Session::put('agent_arr', $agent_arr);

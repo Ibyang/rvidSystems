@@ -83,8 +83,13 @@
                 paramName: 'mainImage',
                 maxFilesize: 5, // MB
                 addRemoveLinks: true,
-                thumbnailWidth: 250,//the "size of image" width at px
-                thumbnailHeight: 250,//the "size of image" height at px
+                // thumbnailWidth: 250,
+                // thumbnailHeight: 250,
+                // thumbnailWidth: 576,
+                // thumbnailHeight: 864,
+                thumbnailWidth: 450,
+                thumbnailHeight: 299,
+                thumbnailMethod: "contain",
                 dictRemoveFile: 'Remove Image',
                 dictFileTooBig: 'Image is larger than 5MB',
                 dictDefaultMessage: 'Drag Image Here',
@@ -112,7 +117,7 @@
                     }
 
 
-                    $('.dropzone').css('background-image', 'url("../../assets/vendors/dropzone/images/step-needed.jpg")');
+                    // $('.dropzone').css('background-image', 'url("../../assets/vendors/dropzone/images/step-needed.jpg")');
                     this.on("maxfilesexceeded", function(mainImage){
                         alert("You are only allowed to upload 1 Image!");
                         this.removeFile(mainImage);
@@ -152,8 +157,11 @@
                 paramName: 'logoImage',
                 maxFilesize: 5, // MB
                 addRemoveLinks: true,
-                thumbnailWidth: 250,//the "size of image" width at px
-                thumbnailHeight: 250,//the "size of image" height at px
+                // thumbnailWidth: 250,//the "size of image" width at px
+                // thumbnailHeight: 250,//the "size of image" height at px
+                thumbnailWidth: 450,
+                thumbnailHeight: 299,
+                thumbnailMethod: "contain",
                 dictRemoveFile: 'Remove Image',
                 dictFileTooBig: 'Image is larger than 5MB',
                 dictDefaultMessage: 'Drag Image Here',
@@ -181,6 +189,10 @@
                     this.on("maxfilesexceeded", function(logoImage){
                         alert("You are only allowed to upload 1 Image!");
                         this.removeFile(logoImage);
+                    });
+
+                    this.on("addedfile", function(logoImage){
+                       alert("File Added");
                     });
 
                     this.on("removedfile", function (logoImage) {

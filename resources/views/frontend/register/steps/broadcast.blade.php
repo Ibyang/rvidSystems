@@ -1,5 +1,22 @@
 <h3 class="col-8 ml-0">Broadcast</h3>
-    BROADCAST TO OTHER AGENTS IN YOUR AREA <a href="">What is this?</a>
+<span class="reg-title">BROADCAST TO OTHER AGENTS IN YOUR AREA   </span><a data-toggle="collapse" href="#broadcastExpanded" role="button" aria-expanded="false" aria-controls="collapseExample">What is this?</a>
+
+<div class="collapse" id="broadcastExpanded" style="width: 65%;">
+    <div class="rules-arrow" style="margin-left: 73%"></div>
+    <div class="ExpandForm p-3" style="background-color: white">
+        <h6>What Broadcast</h6>
+        <p style="text-align: justify; font-size: small">
+            <b>Broadcast</b> is a service provided by the REVid System and available on request. Broadcast compiles and
+            send a weekly email broadcast of your new REVid Videos to the REVid member real estate agents in the nominated
+            suburb locations.<br><br>
+            It allows your real estate peers to see your property video and helps keep the industry actively informed as to new
+            listings whilst promoting your brand and property.<br><br>
+            You Add+/Remove- Suburbs to update your Broadcast List as required. <br><br>
+            This is a value-added service and a fee applies.
+        </p>
+    </div>
+</div><br>
+
 
     <div class="custom-control custom-checkbox standard">
         <input type="checkbox" class="custom-control-input" id="customCheck27" value="1" name="broadcast_status"

@@ -60,7 +60,7 @@
       var FormDropzone = function() {
           var name="";
           Dropzone.options.myDropzone = {
-              autoProcessQueue: false,
+              // autoProcessQueue: false,
               uploadMultiple: true,
               parallelUploads: 10,
               paramName: 'file',
@@ -106,7 +106,6 @@
 
                   this.on("success", function(file, responseText) {
                       //
-                      $(".dz-progress").remove();
                       var divbutton = document.getElementById("backdiv");
                       divbutton.style.display = "block";
                   });

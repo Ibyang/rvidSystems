@@ -1,5 +1,8 @@
 @extends('frontend.layouts.main')
 
+<link href="{{ asset('assets/vendors/dropzone/css/dropzone3.css') }}" rel="stylesheet" type="text/css" />
+{{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">--}}
+
 @section('content')
 <div class="container">
     <div class="row my-account-container">
@@ -13,95 +16,83 @@
 
             @include('frontend.pages.preferences.video-system.steps')
 
-            <form id="frmStep1" method="POST" action="{{ route('account-video-system-processStep1')}}" enctype="multipart/form-data">
-                {{ csrf_field() }}
+            {{--<form id="frmStep1" method="POST" action="{{ route('account-video-system-processStep1')}}" enctype="multipart/form-data">--}}
+{{--                {{ csrf_field() }}--}}
                 <div class="row video-system-1">
-                    <div class="col-sm-5 p-0">
+                    <div class="col-sm-12 p-0">
                          <div class="row">
                             <div class="col-sm pl-0"><h3>Story Board</h3></div>
                             <div class="col-sm pr-0"><a href="">What is this?</a></div>
                          </div>
-                         <div class="story-board-block pl-3 pr-3" >
-                             <button class="btn" id="btnSaveStoryboard" onclick="event.preventDefault();"><i class="standard-video sv-save"></i>SAVE</button>
+                         <div class="story-board-block pl-3 pr-3" id="divStory">
+                             <button class="btn" id="btnSaveStoryboard" style="width: 30%"><i class="standard-video sv-save"></i>SAVE</button>
 
-                             <div id="storyContent">
-                                 @if(count($pics) > 0)
-                                     <input type="file" multiple>
-                                     <p>Add or Drag and Drop <br><span class="c-6600cc"><b>+</b></span><br>Picture</p>
-                                     <select name="transition" style="margin-bottom: 10px;">
-                                         <option value="Fade">Fade</option>
-                                         <option value='Slide'>Slide</option>
-                                         <option value='Flip'>Flip</option>
-                                         <option value='Wipe'>Wipe</option>
-                                         <option value='Split'>Split</option>
-                                         <option value='Zoom'>Zoom</option>
-                                         <option value='Page Peel'>Page Peel</option>
-                                     </select>
-                                 @endif
-                             </div>
+                             @for($ctr=1; $ctr<=10; $ctr++)
+                                 <form method="POST" action="{{ route('uploadStandardImage') }}" enctype="multipart/form-data" class="dropzone" id="dropzone{{ $ctr }}">
+                                     {{ csrf_field() }}
+                                     <div class="fallback">
+                                        {{--<input id="image_{{ $ctr }}" name="image_{{ $ctr }}" type="file" class="FileUpload"/>--}}
+                                        <input name="file" type="file" class="FileUpload"/>
+                                        <input type="hidden" name="sortorder" id="sort_order" value="{{ $ctr }}">
+                                     </div>
+                                 </form>
+                             @endfor
 
-                             <div id="moveStoryContent">
-                                 @if(count($pics) > 0)
-                                     @foreach($pics as $pic)
-                                         <input type="file" multiple>
-                                         @if($pic['new_filename'] != NULL)
-                                             <img src="{{ $path2 . $pic['new_filename'] }}" width='268px' height='110px' style='border: 10px solid #ededed; margin-bottom: 10px;'>
-                                         @else
-                                             <img src="{{ $path2 . $pic['old_filename'] }}" width='268px' height='110px' style='border: 10px solid #ededed; margin-bottom: 10px;'>
-                                         @endif
-                                         {{--<p>Add or Drag and Drop <br><span class="c-6600cc"><b>+</b></span><br>Picture</p>--}}
-                                         <select name="transition" style="margin-bottom: 10px;">
-                                             <option value="Fade" {{ $pic['effect_style'] === 'Fade' ? 'selected' : '' }}>Fade</option>
-                                             <option value="Slide" {{ $pic['effect_style'] === 'Slide' ? 'selected' : '' }}>Slide</option>
-                                             <option value="Flip" {{ $pic['effect_style'] === 'Flip' ? 'selected' : '' }}>Flip</option>
-                                             <option value="Wipe" {{ $pic['effect_style'] === 'Wipe' ? 'selected' : '' }}>Wipe</option>
-                                             <option value="Split" {{ $pic['effect_style'] === 'Split' ? 'selected' : '' }}>Split</option>
-                                             <option value="Zoom" {{ $pic['effect_style'] === 'Zoom' ? 'selected' : '' }}>Zoom</option>
-                                             <option value="Page Peel" {{ $pic['effect_style'] === 'Page Peel' ? 'selected' : '' }}>Page Peel</option>
-                                         </select>
-                                     @endforeach
-                                 @endif
-                             </div>
+                             <div id="moreDropZone"></div>
+                             {{--<form method="post" action="{{url('/uploadImage')}}" enctype="multipart/form-data" class="dropzone" id="dropzone1">--}}
+                                 {{--<div class="fallback">--}}
+                                     {{--<input id="image_1" name="image_2" type="file" class="FileUpload"/>--}}
+                                 {{--</div>--}}
+                             {{--</form>--}}
+
+                             {{--<form method="post" action="{{url('/uploadImage')}}" enctype="multipart/form-data" class="dropzone" id="dropzone2">--}}
+                                 {{--<div class="fallback">--}}
+                                     {{--<input id="image_1" name="image_2" type="file" class="FileUpload"/>--}}
+                                 {{--</div>--}}
+                             {{--</form>--}}
+
+                             {{--<form method="post" action="{{url('/uploadImage')}}" enctype="multipart/form-data" class="dropzone" id="dropzone3">--}}
+                                 {{--<div class="fallback">--}}
+                                     {{--<input id="image_1" name="image_2" type="file" class="FileUpload"/>--}}
+                                 {{--</div>--}}
+                             {{--</form>--}}
+
+                             {{--<form method="post" action="{{url('/uploadImage')}}" enctype="multipart/form-data" class="dropzone" id="dropzone4">--}}
+                                 {{--<div class="fallback">--}}
+                                     {{--<input id="image_1" name="image_2" type="file" class="FileUpload"/>--}}
+                                 {{--</div>--}}
+                             {{--</form>--}}
+
+                             {{--<form method="post" action="{{url('/uploadImage')}}" enctype="multipart/form-data"--}}
+                                   {{--class="dropzone" id="dropzone5">--}}
+                             {{--</form>--}}
+
+                             {{--<form method="post" action="{{url('/uploadImage')}}" enctype="multipart/form-data"--}}
+                                   {{--class="dropzone" id="dropzone6">--}}
+                             {{--</form>--}}
+
+                             {{--<form method="post" action="{{url('/uploadImage')}}" enctype="multipart/form-data"--}}
+                                   {{--class="dropzone" id="dropzone7">--}}
+                             {{--</form>--}}
+
+                             {{--<form method="post" action="{{url('/uploadImage')}}" enctype="multipart/form-data"--}}
+                                   {{--class="dropzone" id="dropzone8">--}}
+                             {{--</form>--}}
+
+                             {{--<form method="post" action="{{url('/uploadImage')}}" enctype="multipart/form-data"--}}
+                                   {{--class="dropzone" id="dropzone9">--}}
+                             {{--</form>--}}
+
+                             {{--<form method="post" action="{{url('/uploadImage')}}" enctype="multipart/form-data"--}}
+                                   {{--class="dropzone" id="dropzone10">--}}
+                             {{--</form>--}}
+
                          </div>
 
                          <div class="text-right">
-                             <a class="c0066ff"><b>Add +</b></a>
+                             <a class="c0066ff" id="addDropZone"><b>+ Add another image file</b></a><br><br>
+                             <span>Estimated Total Video Duration:  <span id="duration" style="font-weight: bold"></span></span>
                          </div>
-                    </div>
-                    <div class="col-sm-7 pr-0">
-                        <div class="row">
-                            <div class="col-sm pl-0"><h3>Open Pictures</h3></div>
-                            <div class="col-sm pr-0"><a href="">What is this?</a></div>
-                        </div>
-                        <div class="video-system-pic-block h-100">
-                                <div class="row mt-1">
-                                    <div class="col-sm pr-1 pl-1">
-                                        {{--<form method="POST" action="{{ route('account-video-system-storePics') }}" id="frmImages" enctype="multipart/form-data">--}}
-{{--                                            {{ csrf_field() }}--}}
-                                            <input type="file" name="image_files[]" id="image_files" accept=".jpg,.jpeg,.png,.gif" multiple>
-                                            <button class="btn" id="btnBrowse"><i class="standard-video sv-browse"></i>Browse</button>
-                                        {{--</form>--}}
-                                    </div>
-                                    <div class="col-sm pr-1 pl-1">
-                                        <button class="btn" id="btnStoryboard" onclick="event.preventDefault();"><i class="standard-video sv-move"></i>Move Storyboard</button>
-                                    </div>
-                                </div>
-                                <ul class="video-system-ul" id="image_preview">
-                                        @for ($i=0; $i<10; $i++)
-                                          <li>
-                                             <div><img id="img_{{ $i }}" src="{{ asset('storage/register/step-blank.jpg') }}" width="183" height="100"/></div>
-                                             <div class="my-account-subcription step-three-register">
-                                                 <div class="custom-control custom-checkbox standard">
-                                                    <input type="checkbox" class="custom-control-input" name="image_1" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1"></label>
-                                                 </div>
-                                            </div>
-                                          </li>
-                                        @endfor
-                                </ul>
-                                <ul class="video-system-ul" id="image_preview1">
-                                </ul>
-                        </div>
                     </div>
                 </div>
                 <div class="float-r mt-70 mb-5">
@@ -110,99 +101,840 @@
                     <button class="btn btn-primary" id="btnStep1Save">SAVE : Next Step 2<i class="arrow-right"></i></button>
                 </div>
                 <div class="clear"></div>
-            </form>
+            {{--</form>--}}
         </div>
     </div>
 </div>
 @endsection
 
-<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+{{--<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>--}}
+
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
+
+{{--<script type="text/javascript" src=" {{ asset('assets/vendors/dropzone/js/dropzone.js') }}"></script>--}}
+
+{{--<script src="{{ asset('assets/js/script.js') }}"></script>--}}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
 
 <script type="text/javascript">
 
+
+
     $(document).ready(function() {
 
-        $('#storyContent').show();
-        var images = [];
+        // Dropzone.autoDiscover = false;
 
-        $("#image_files").change(function(){
+        //var sortorder = 0;
 
-            //new codes
-            $('#image_preview').hide();
-            var fileCount = $(this)[0].files;
-            var input = document.getElementById('image_files');
-            var userid = document.getElementById('userid');
-            var ctr = 0;
-            $($(this)[0].files).each(function () {
-                var file = $(this);
-                var reader = new FileReader();
-                reader.onload = function (e) {
+        // sortorder = $('#sort_order').val();
+        // console.log("the initial sortorder is ", sortorder);
 
-                    console.log(input.files[ctr].name);
-                    // for(i=0; i<fileCount; i++){
-                    //     $('#img_'+i).attr('src', e.target.result);
-                    // }
-                    $('#image_preview1').add();
-                    $('#image_preview1').append("<li><div><img src='"+e.target.result+"' width='183px' height='100px'></div>" +
-                        "<div class='my-account-subcription step-three-register'>" +
-                        "<div class='custom-control custom-checkbox standard'>" +
-                        "<input type='checkbox' class='custom-control-input' name='img[]' value='" + e.target.result + '|' + input.files[ctr].name + "' id='chkimg" + ctr + "' checked>" +
-                        "<label class='custom-control-label' for='chkimg" + ctr + "'></label>" +
-                        "</div></div></li>");
-
-                    images.push(e.target.result);
-                    ctr = ctr + 1;
-                }
-                reader.readAsDataURL(file[0]);
-
-            });
-
-            // $('#frmImages').submit();
-
+        $('#btnSaveStoryboard').click(function() {
+            if(ctr_uploaded_images < 10)
+                alert("You are required to upload 10 images...");
+            else
+                window.location.href = "http://yahoo.com";
         });
 
-        $('#btnStoryboard').click(function() {
 
-           $('#image_preview1').hide();
-           //$('#image_preview').add();
-           $('#image_preview').show();
-           var files_arr = [];
+        $('#addDropZone').click(function () {
 
-           var searchIDs = $('input:checked').map(function() {
-               return $(this).val();
-           });
-           //console.log(searchIDs.get());
-            var array_cnt = searchIDs.length;
+            // Dropzone.autoDiscover = false;
 
-            $('#storyContent').remove();
-            //$('#moveStoryContent').empty();
-            for(i=0; i<array_cnt; i++){
-                var result = searchIDs[i].split('|');
-                var src = result[0];
-                var filename = result[1];
-                files_arr.push(filename);
-                console.log("the value of src is ", src);
-                console.log("the value of filename is ", filename);
+            {{--$('.story-board-block').append(--}}
+            {{--'<form method="POST" action="{{ route('uploadStandardImage') }}" enctype="multipart/form-data" class="dropzone" id="dropzone11">' +--}}
+            {{--'<div class="fallback">' +--}}
+            {{--'<input name="file" type="file" class="FileUpload"/>' +--}}
+            {{--'</div></form>'--}}
+            {{--)--}}
+            $('#divStory').append(
+                // $("#moreDropZone").dropzone({ url: "/file/post", maxFiles: 1, autoProcessQueue: false, addRemoveLinks: true, acceptedFiles: 'image/*' })
+                $("#moreDropZone").addClass("dropzone").dropzone({ url: "/upload", maxFilesize: 2, maxFiles: 10, capture: "camera", dictDefaultMessage: "Please drop files to be uploaded here" })
+            )
 
-                $('#moveStoryContent').append("<input type='file' name='images[]' value='" + filename + "' multiple>" +
-                                              "<img src='"+ src +"' width='268px' height='110px' style='border: 10px solid #ededed; margin-bottom: 10px;'>" +
-                                              "<select name='transition[]' style='margin-bottom: 10px;'>" +
-                                              "<option value='Fade'>Fade</option>" +
-                                              "<option value='Slide'>Slide</option>" +
-                                              "<option value='Flip'>Flip</option>" +
-                                              "<option value='Wipe'>Wipe</option>" +
-                                              "<option value='Split'>Split</option>" +
-                                              "<option value='Zoom'>Zoom</option>" +
-                                              "<option value='Page Peel'>Page Peel</option>" +
-                                              "</select>");
-            }
-            $('#selectedImages').val(files_arr);
+            // var myDropzone = new Dropzone('div#divStory', { url: "/file/post", maxFiles: 1, autoProcessQueue: false, addRemoveLinks: true, acceptedFiles: 'image/*' });
+
+            // $("#divStory").addClass("dropzone").dropzone({ url: "/upload", maxFilesize: 2, maxFiles: 10, capture: "camera", dictDefaultMessage: "Please drop files to be uploaded here" });
+
+
         });
-
-        $('#btnSaveStoryboard').click(function () {
-            $('#frmStep1').submit();
-        })
 
     });
 
+
+
+    var ctr_uploaded_images = 0;
+    var duration_seconds = 0;
+
+    //dropzone settings for dynamically created instance of DropZone.js
+    Dropzone.options.dropzone =
+        {
+            maxFiles: 1,
+            maxFilesize: 12,
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 5000,
+            thumbnailWidth: 640,
+            thumbnailHeight: 480,
+            thumbnailMethod: "contain",
+            dictRemoveFile: 'Remove Image',
+            dictFileTooBig: 'Image is larger than 5MB',
+            dictDefaultMessage: '<br><br>Click here to upload or Drag and Drop<br><br>Property Image 10 ',
+            renameFile: function (file) {
+                name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+                return name;
+            },
+            init: function(){
+                this.on("maxfilesexceeded", function(file){
+                    alert("You are only allowed to upload 1 Image!");
+                    this.removeFile(file);
+                });
+
+                this.on("sending", function(file, xhr, formData){
+                    formData.append('sortorder', 10);
+                    formData.append('duration', 5);
+                });
+
+                this.on("removedfile", function (file) {
+                    ctr_uploaded_images--;
+                    duration_seconds = duration_seconds - 5;
+
+                    $.ajax({
+                        headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                        type: 'GET',
+                        url: '/deleteStandardImage/' + name,
+                        dataType: 'json'
+                    });
+                });
+
+                this.on("addedfile", function(file) {
+                    ctr_uploaded_images++;
+                    duration_seconds = duration_seconds + 5;
+                });
+            },
+            success: function(file, response)
+            {
+                var date = new Date(null);
+                date.setSeconds(duration_seconds); // specify value for SECONDS here
+                var timeString = date.toISOString().substr(11, 8);
+
+                $("#duration").text(timeString);
+
+                console.log(response);
+            },
+            error: function(file, response)
+            {
+                return false;
+            }
+        };
+
+    Dropzone.options.dropzone1 =
+        {
+            maxFiles: 1,
+            maxFilesize: 15,
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 5000,
+            thumbnailWidth: 640,
+            thumbnailHeight: 480,
+            thumbnailMethod: "contain",
+            dictRemoveFile: 'Remove Image',
+            dictFileTooBig: 'Image is larger than 5MB',
+            dictDefaultMessage: '<br><br>Click here to upload or Drag and Drop<br><br>Property Image 1 ',
+            dictInvalidFileType: 'You can\'t upload files of this type.',
+            renameFile: function (file) {
+                name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+                return name;
+            },
+            // resizeWidth: 640,
+            // resizeHeight: 254,
+            init: function(){
+                var sortorder = $('#sort_order').val();
+
+                this.on("maxfilesexceeded", function(file){
+                    alert("You are only allowed to upload 1 Image!");
+                    this.removeFile(file);
+                });
+
+
+                // console.log("the initial sortorder is ", sortorder);
+                this.on("sending", function(file, xhr, formData){
+                    formData.append('sortorder', 1);
+                    formData.append('duration', 5);
+                });
+
+
+                this.on("removedfile", function (file) {
+                    ctr_uploaded_images--;
+                    duration_seconds = duration_seconds - 5;
+                    $.ajax({
+                        headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                        type: 'GET',
+                        url: '/deleteStandardImage/' + name,
+                        dataType: 'json'
+                    });
+                });
+
+                this.on("addedfile", function(file) {
+                    ctr_uploaded_images++;
+                    duration_seconds = duration_seconds + 5;
+                });
+
+                // this.on("addedfile", function(file) {
+                //     var temp = file.previewTemplate;
+                //     var FR= new FileReader();
+                //     FR.onload = function(e) {
+                //         console.log( e.target.result); //This is the base64 data of file(gif) dropped
+                //         //if you want to display it somewhere in your previewTemplate
+                //         temp.find('.dz-preview').attr('src',e.target.result); //setting as src of some img tag with class 'my-preview'
+                //     };
+                //     FR.readAsDataURL( file );
+                //
+                // })
+
+
+            },
+            success: function(file, response)
+            {
+                //convert given seconds to corresponding time format
+                var date = new Date(null);
+                date.setSeconds(duration_seconds); // specify value for SECONDS here
+                var timeString = date.toISOString().substr(11, 8);
+
+                $("#duration").text(timeString);
+                console.log(response);
+            },
+            error: function(file, response)
+            {
+                return false;
+            }
+        };
+
+
+    Dropzone.options.dropzone2 =
+        {
+            maxFiles: 1,
+            maxFilesize: 12,
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 5000,
+            thumbnailWidth: 640,
+            thumbnailHeight: 480,
+            thumbnailMethod: "contain",
+            dictRemoveFile: 'Remove Image',
+            dictFileTooBig: 'Image is larger than 5MB',
+            dictDefaultMessage: '<br><br>Click here to upload or Drag and Drop<br><br>Property Image 2 ',
+            renameFile: function (file) {
+                name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+                return name;
+            },
+            init: function(){
+                this.on("maxfilesexceeded", function(file){
+                    alert("You are only allowed to upload 1 Image!");
+                    this.removeFile(file);
+                });
+
+
+                this.on("sending", function(file, xhr, formData){
+                    formData.append('sortorder', 2);
+                    formData.append('duration', 5);
+                });
+
+                this.on("removedfile", function (file) {
+                    ctr_uploaded_images--;
+                    duration_seconds = duration_seconds - 5;
+
+                    $.ajax({
+                        headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                        type: 'GET',
+                        url: '/deleteStandardImage/' + name,
+                        dataType: 'json'
+                    });
+                });
+
+
+                this.on("addedfile", function(file) {
+                    ctr_uploaded_images++;
+                    duration_seconds = duration_seconds + 5;
+                });
+
+            },
+            success: function(file, response)
+            {
+                var date = new Date(null);
+                date.setSeconds(duration_seconds); // specify value for SECONDS here
+                var timeString = date.toISOString().substr(11, 8);
+
+                $("#duration").text(timeString);
+                console.log(response);
+            },
+            error: function(file, response)
+            {
+                return false;
+            }
+        };
+
+    Dropzone.options.dropzone3 =
+        {
+            maxFiles: 1,
+            maxFilesize: 12,
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 5000,
+            thumbnailWidth: 640,
+            thumbnailHeight: 480,
+            thumbnailMethod: "contain",
+            dictRemoveFile: 'Remove Image',
+            dictFileTooBig: 'Image is larger than 5MB',
+            dictDefaultMessage: '<br><br>Click here to upload or Drag and Drop<br><br>Property Image 3 ',
+            renameFile: function (file) {
+                name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+                return name;
+            },
+            init: function(){
+                this.on("maxfilesexceeded", function(file){
+                    alert("You are only allowed to upload 1 Image!");
+                    this.removeFile(file);
+                });
+
+                this.on("sending", function(file, xhr, formData){
+                    formData.append('sortorder', 3);
+                    formData.append('duration', 5);
+                });
+
+                this.on("removedfile", function (file) {
+                    ctr_uploaded_images--;
+                    duration_seconds = duration_seconds - 5;
+
+                    $.ajax({
+                        headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                        type: 'GET',
+                        url: '/deleteStandardImage/' + name,
+                        dataType: 'json'
+                    });
+                });
+
+
+                this.on("addedfile", function(file) {
+                    ctr_uploaded_images++;
+                    duration_seconds = duration_seconds + 5;
+                });
+            },
+            success: function(file, response)
+            {
+                var date = new Date(null);
+                date.setSeconds(duration_seconds); // specify value for SECONDS here
+                var timeString = date.toISOString().substr(11, 8);
+
+                $("#duration").text(timeString);
+
+                console.log(response);
+            },
+            error: function(file, response)
+            {
+                return false;
+            }
+        };
+
+    Dropzone.options.dropzone4 =
+        {
+            maxFiles: 1,
+            maxFilesize: 12,
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 5000,
+            thumbnailWidth: 640,
+            thumbnailHeight: 480,
+            thumbnailMethod: "contain",
+            dictRemoveFile: 'Remove Image',
+            dictFileTooBig: 'Image is larger than 5MB',
+            dictDefaultMessage: '<br><br>Click here to upload or Drag and Drop<br><br>Property Image 4 ',
+            renameFile: function (file) {
+                name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+                return name;
+            },
+            init: function(){
+                this.on("maxfilesexceeded", function(file){
+                    alert("You are only allowed to upload 1 Image!");
+                    this.removeFile(file);
+                });
+
+                this.on("sending", function(file, xhr, formData){
+                    formData.append('sortorder', 4);
+                    formData.append('duration', 5);
+                });
+
+                this.on("removedfile", function (file) {
+                    ctr_uploaded_images--;
+                    duration_seconds = duration_seconds - 5;
+
+                    $.ajax({
+                        headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                        type: 'GET',
+                        url: '/deleteStandardImage/' + name,
+                        dataType: 'json'
+                    });
+                });
+
+                this.on("addedfile", function(file) {
+                    ctr_uploaded_images++;
+                    duration_seconds = duration_seconds + 5;
+                });
+            },
+            success: function(file, response)
+            {
+                var date = new Date(null);
+                date.setSeconds(duration_seconds); // specify value for SECONDS here
+                var timeString = date.toISOString().substr(11, 8);
+
+                $("#duration").text(timeString);
+
+                console.log(response);
+            },
+            error: function(file, response)
+            {
+                return false;
+            }
+        };
+
+    Dropzone.options.dropzone5 =
+        {
+            maxFiles: 1,
+            maxFilesize: 12,
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 5000,
+            thumbnailWidth: 640,
+            thumbnailHeight: 480,
+            thumbnailMethod: "contain",
+            dictRemoveFile: 'Remove Image',
+            dictFileTooBig: 'Image is larger than 5MB',
+            dictDefaultMessage: '<br><br>Click here to upload or Drag and Drop<br><br>Property Image 5 ',
+            renameFile: function (file) {
+                name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+                return name;
+            },
+            init: function(){
+                this.on("maxfilesexceeded", function(file){
+                    alert("You are only allowed to upload 1 Image!");
+                    this.removeFile(file);
+                });
+
+                this.on("sending", function(file, xhr, formData){
+                    formData.append('sortorder', 5);
+                    formData.append('duration', 5);
+                });
+
+                this.on("removedfile", function (file) {
+                    ctr_uploaded_images--;
+                    duration_seconds = duration_seconds - 5;
+
+                    $.ajax({
+                        headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                        type: 'GET',
+                        url: '/deleteStandardImage/' + name,
+                        dataType: 'json'
+                    });
+                });
+
+
+                this.on("addedfile", function(file) {
+                    ctr_uploaded_images++;
+                    duration_seconds = duration_seconds + 5;
+                });
+
+            },
+            success: function(file, response)
+            {
+                var date = new Date(null);
+                date.setSeconds(duration_seconds); // specify value for SECONDS here
+                var timeString = date.toISOString().substr(11, 8);
+
+                $("#duration").text(timeString);
+
+                console.log(response);
+            },
+            error: function(file, response)
+            {
+                return false;
+            }
+        };
+
+    Dropzone.options.dropzone6 =
+        {
+            maxFiles: 1,
+            maxFilesize: 12,
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 5000,
+            thumbnailWidth: 640,
+            thumbnailHeight: 480,
+            thumbnailMethod: "contain",
+            dictRemoveFile: 'Remove Image',
+            dictFileTooBig: 'Image is larger than 5MB',
+            dictDefaultMessage: '<br><br>Click here to upload or Drag and Drop<br><br>Property Image 6 ',
+            renameFile: function (file) {
+                name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+                return name;
+            },
+            init: function(){
+                this.on("maxfilesexceeded", function(file){
+                    alert("You are only allowed to upload 1 Image!");
+                    this.removeFile(file);
+                });
+
+                this.on("sending", function(file, xhr, formData){
+                    formData.append('sortorder', 6);
+                    formData.append('duration', 5);
+                });
+
+                this.on("removedfile", function (file) {
+                    ctr_uploaded_images--;
+                    duration_seconds = duration_seconds - 5;
+
+                    $.ajax({
+                        headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                        type: 'GET',
+                        url: '/deleteStandardImage/' + name,
+                        dataType: 'json'
+                    });
+                });
+
+
+                this.on("addedfile", function(file) {
+                    ctr_uploaded_images++;
+                    duration_seconds = duration_seconds + 5;
+                });
+            },
+            success: function(file, response)
+            {
+                var date = new Date(null);
+                date.setSeconds(duration_seconds); // specify value for SECONDS here
+                var timeString = date.toISOString().substr(11, 8);
+
+                $("#duration").text(timeString);
+
+                console.log(response);
+            },
+            error: function(file, response)
+            {
+                return false;
+            }
+        };
+
+    Dropzone.options.dropzone7 =
+        {
+            maxFiles: 1,
+            maxFilesize: 12,
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 5000,
+            thumbnailWidth: 640,
+            thumbnailHeight: 480,
+            thumbnailMethod: "contain",
+            dictRemoveFile: 'Remove Image',
+            dictFileTooBig: 'Image is larger than 5MB',
+            dictDefaultMessage: '<br><br>Click here to upload or Drag and Drop<br><br>Property Image 7 ',
+            renameFile: function (file) {
+                name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+                return name;
+            },
+            init: function(){
+                this.on("maxfilesexceeded", function(file){
+                    alert("You are only allowed to upload 1 Image!");
+                    this.removeFile(file);
+                });
+
+                this.on("sending", function(file, xhr, formData){
+                    formData.append('sortorder', 7);
+                    formData.append('duration', 5);
+                });
+
+                this.on("removedfile", function (file) {
+                    ctr_uploaded_images--;
+                    duration_seconds = duration_seconds - 5;
+
+                    $.ajax({
+                        headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                        type: 'GET',
+                        url: '/deleteStandardImage/' + name,
+                        dataType: 'json'
+                    });
+                });
+
+
+                this.on("addedfile", function(file) {
+                    ctr_uploaded_images++;
+                    duration_seconds = duration_seconds + 5;
+                });
+
+            },
+            success: function(file, response)
+            {
+                var date = new Date(null);
+                date.setSeconds(duration_seconds); // specify value for SECONDS here
+                var timeString = date.toISOString().substr(11, 8);
+
+                $("#duration").text(timeString);
+
+                console.log(response);
+            },
+            error: function(file, response)
+            {
+                return false;
+            }
+        };
+
+    Dropzone.options.dropzone8 =
+        {
+            maxFiles: 1,
+            maxFilesize: 12,
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 5000,
+            thumbnailWidth: 640,
+            thumbnailHeight: 480,
+            thumbnailMethod: "contain",
+            dictRemoveFile: 'Remove Image',
+            dictFileTooBig: 'Image is larger than 5MB',
+            dictDefaultMessage: '<br><br>Click here to upload or Drag and Drop<br><br>Property Image 8 ',
+            renameFile: function (file) {
+                name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+                return name;
+            },
+            init: function(){
+                this.on("maxfilesexceeded", function(file){
+                    alert("You are only allowed to upload 1 Image!");
+                    this.removeFile(file);
+                });
+
+                this.on("sending", function(file, xhr, formData){
+                    formData.append('sortorder', 8);
+                    formData.append('duration', 5);
+                });
+
+                this.on("removedfile", function (file) {
+                    ctr_uploaded_images--;
+                    duration_seconds = duration_seconds - 5;
+
+                    $.ajax({
+                        headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                        type: 'GET',
+                        url: '/deleteStandardImage/' + name,
+                        dataType: 'json'
+                    });
+                });
+
+
+                this.on("addedfile", function(file) {
+                    ctr_uploaded_images++;
+                    duration_seconds = duration_seconds + 5;
+                });
+
+            },
+            success: function(file, response)
+            {
+                var date = new Date(null);
+                date.setSeconds(duration_seconds); // specify value for SECONDS here
+                var timeString = date.toISOString().substr(11, 8);
+
+                $("#duration").text(timeString);
+                console.log(response);
+            },
+            error: function(file, response)
+            {
+                return false;
+            }
+        };
+
+
+    Dropzone.options.dropzone9 =
+        {
+            maxFiles: 1,
+            maxFilesize: 12,
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 5000,
+            thumbnailWidth: 640,
+            thumbnailHeight: 480,
+            thumbnailMethod: "contain",
+            dictRemoveFile: 'Remove Image',
+            dictFileTooBig: 'Image is larger than 5MB',
+            dictDefaultMessage: '<br><br>Click here to upload or Drag and Drop<br><br>Property Image 9 ',
+            renameFile: function (file) {
+                name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+                return name;
+            },
+            init: function(){
+                this.on("maxfilesexceeded", function(file){
+                    alert("You are only allowed to upload 1 Image!");
+                    this.removeFile(file);
+                });
+
+                this.on("sending", function(file, xhr, formData){
+                    formData.append('sortorder', 9);
+                    formData.append('duration', 5);
+                });
+
+                this.on("removedfile", function (file) {
+                    ctr_uploaded_images--;
+                    duration_seconds = duration_seconds - 5;
+
+                    $.ajax({
+                        headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                        type: 'GET',
+                        url: '/deleteStandardImage/' + name,
+                        dataType: 'json'
+                    });
+                });
+
+
+                this.on("addedfile", function(file) {
+                    ctr_uploaded_images++;
+                    duration_seconds = duration_seconds + 5;
+                });
+
+
+            },
+            success: function(file, response)
+            {
+                var date = new Date(null);
+                date.setSeconds(duration_seconds); // specify value for SECONDS here
+                var timeString = date.toISOString().substr(11, 8);
+
+                $("#duration").text(timeString);
+
+                console.log(response);
+            },
+            error: function(file, response)
+            {
+                return false;
+            }
+        };
+
+
+    Dropzone.options.dropzone10 =
+        {
+            maxFiles: 1,
+            maxFilesize: 12,
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+                return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 5000,
+            thumbnailWidth: 640,
+            thumbnailHeight: 480,
+            thumbnailMethod: "contain",
+            dictRemoveFile: 'Remove Image',
+            dictFileTooBig: 'Image is larger than 5MB',
+            dictDefaultMessage: '<br><br>Click here to upload or Drag and Drop<br><br>Property Image 10 ',
+            renameFile: function (file) {
+                name = new Date().getTime() + Math.floor((Math.random() * 100) + 1) + '_' + file.name;
+                return name;
+            },
+            init: function(){
+                this.on("maxfilesexceeded", function(file){
+                    alert("You are only allowed to upload 1 Image!");
+                    this.removeFile(file);
+                });
+
+                this.on("sending", function(file, xhr, formData){
+                    formData.append('sortorder', 10);
+                    formData.append('duration', 5);
+                });
+
+                this.on("removedfile", function (file) {
+                    ctr_uploaded_images--;
+                    duration_seconds = duration_seconds - 5;
+
+                    $.ajax({
+                        headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
+                        type: 'GET',
+                        url: '/deleteStandardImage/' + name,
+                        dataType: 'json'
+                    });
+                });
+
+                this.on("addedfile", function(file) {
+                    ctr_uploaded_images++;
+                    duration_seconds = duration_seconds + 5;
+                });
+            },
+            success: function(file, response)
+            {
+                var date = new Date(null);
+                date.setSeconds(duration_seconds); // specify value for SECONDS here
+                var timeString = date.toISOString().substr(11, 8);
+
+                $("#duration").text(timeString);
+
+                console.log(response);
+            },
+            error: function(file, response)
+            {
+                return false;
+            }
+        };
+
+
+
+
+
 </script>
+

@@ -1033,6 +1033,80 @@ class MyVideoController extends Controller
         return view('frontend.pages.preferences.video-system.standard-video-finish', compact('fullname', 'agent', 'logo_pic', 'path2', 'pics', 'cnt_pics'));
     }
 
+    //process for uploading Image
+
+    public function uploadStandardImage(Request $request)
+    {
+
+        $userid = Auth::user()->id;
+        $fullname = Auth::user()->name;
+        $videoid = Session::get('videoID');
+
+        $sortorder = Input::get('sortorder');
+        $duration = Input::get('duration');
+
+        $path = public_path('storage\client_images\\' . $fullname . '\\standard_pictures\\Video' . $videoid . '\\');
+        if(!File::exists($path)){
+            File::makeDirectory($path, 0775, true);
+        }
+
+        //for Standard Images upload using dropZone.js
+        if($file = $request->hasFile('file')) {
+
+            $file = $request->file('file');
+//            $fname = date('Ym') . $videoid . '_' . $file->getClientOriginalName();
+            $fname = $file->getClientOriginalName();
+
+            $directory = 'storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
+
+            $upload_success = $file->move($directory, $fname);
+
+
+            if($upload_success)
+            {
+                //create record to store to the database
+                $picdetails_arr = array(
+                    'agent_ID' => $userid,
+                    'video_ID' => $videoid,
+                    'old_filename' => $fname,
+                    'sort_order' => $sortorder,
+                    'duration' => $duration
+                );
+                standardVideoPicture::create($picdetails_arr);
+
+                return response()->json($upload_success, 200);
+            }
+            else
+            {
+                return response()->json('error', 400);
+            }
+
+        }
+
+    }
+
+
+    public function deleteStandardImage($simage)
+    {
+
+        $fullname = Auth::user()->name;
+        $videoid = Session::get('videoID');
+
+        $uploaded_image = standardVideoPicture::where('old_filename', $simage)->first();
+
+        if (!empty($uploaded_image)) {
+
+            //remove from the Storage
+            $file = 'storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/' . $simage;
+            unlink($file);
+
+            //remove from the DB
+            $file_image = standardVideoPicture::where('ID', $uploaded_image->ID)->delete();
+        }
+
+    }
+
+
     //process for the Steps of Ztandard Video System
     public function VideoSystemProcessStep1(Request $request)
     {

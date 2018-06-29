@@ -1,5 +1,7 @@
 @extends('frontend.layouts.main')
 
+<link href="{{ asset('assets/vendors/dropzone/css/dropzone.css') }}" rel="stylesheet" type="text/css" />
+
 @section('content')
 <div class="container ">
     <div class="row my-account-container">
@@ -260,9 +262,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm pl-0">LookFirst</div>
-                            <div class="col-sm"><button type="button" class="btn btn-primary">FREE</button></div>
+                        {{--<div class="row">--}}
+                            {{--<div class="col-sm pl-0">LookFirst</div>--}}
+                            {{--<div class="col-sm"><button type="button" class="btn btn-primary">FREE</button></div>--}}
                             {{--<div class="col-sm">--}}
                                 {{--<p class="d-inline-block font-weight-bold">$0</p>--}}
                                 {{--<div class="d-inline-block custom-control custom-checkbox basic">--}}
@@ -270,14 +272,14 @@
                                       {{--<label class="custom-control-label" for="customCheck16"></label>--}}
                                   {{--</div>--}}
                             {{--</div>--}}
-                            <div class="col-sm-3 text-right my-account-subcription">
-                                <p class="d-inline-block font-weight-bold">$0</p>
-                                <div class="d-inline-block custom-control custom-checkbox basic">
-                                    <input type="checkbox" class="custom-control-input" name="apply_lookfirst" value="1" id="customCheck16" checked>
-                                    <label class="custom-control-label" for="customCheck16" style="display: block"></label>
-                                </div>
-                            </div>
-                        </div>
+                            {{--<div class="col-sm-3 text-right my-account-subcription">--}}
+                                {{--<p class="d-inline-block font-weight-bold">$0</p>--}}
+                                {{--<div class="d-inline-block custom-control custom-checkbox basic">--}}
+                                    {{--<input type="checkbox" class="custom-control-input" name="apply_lookfirst" value="1" id="customCheck16" checked>--}}
+                                    {{--<label class="custom-control-label" for="customCheck16" style="display: block"></label>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
                 <div class="row">

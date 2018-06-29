@@ -1,5 +1,7 @@
 @extends('frontend.layouts.main')
 
+<link href="{{ asset('assets/vendors/selectize/css/selectize.css') }}" rel="stylesheet" type="text/css" />
+
 @section('content')
 
     <div class="container" id="content">
@@ -42,17 +44,45 @@
 
 {{-- page level scripts --}}
 {{--@section('footer_scripts')--}}
-    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+{{--    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>--}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="{{ asset('assets/vendors/selectize/js/standalone/selectize.js') }}" type="text/javascript"></script>
 
     <script type="text/javascript">
+
         $(document).ready(function() {
+
+            $('#grouplist').selectize({
+                create: true,
+                sortField: {
+                    field: 'text',
+                    direction: 'asc'
+                }
+            });
+
+            $('#agencylist').selectize({
+                create: true,
+                sortField: {
+                    field: 'text',
+                    direction: 'asc'
+                }
+            });
+
+            function combo(grouplist, group)
+            {
+                group = document.getElementById(group);
+                var idx = grouplist.selectedIndex;
+                var content = grouplist.options[idx].innerHTML;
+                group.value = content;
+            }
 
             var suburbValue = $('#suburbValue').val();
             if(suburbValue != '' && suburbValue != undefined){
                 $('select[name="suburb"]').append('<option value="'+ suburbValue +'">'+ suburbValue +'</option>');
             }
             else {
-                $('select[name="suburb"]').append('<option value="">Please Select State</option>');
+                $('select[name="suburb"]').append('<option value="">Suburb</option>');
             }
 
             //for dynamic populating suburb dropdown when state is selected
