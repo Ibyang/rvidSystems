@@ -13,6 +13,7 @@ use App\AgentTemplate;
 use App\AgentEmail;
 use App\standardVideoPicture;
 use App\premiumVideoPicture;
+use App\templateStatement;
 use Carbon\Carbon;
 use phpDocumentor\Reflection\Types\Integer;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +33,8 @@ class MyVideoController extends Controller
     public function index()
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $passwd = Auth::user()->passwd;
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
@@ -84,7 +86,8 @@ class MyVideoController extends Controller
     public function VideoTracker()
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userId = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -118,7 +121,8 @@ class MyVideoController extends Controller
     public function VoiceOvers()
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $passwd = Auth::user()->passwd;
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
@@ -137,7 +141,8 @@ class MyVideoController extends Controller
     public function ExploreMusic()
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $passwd = Auth::user()->passwd;
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
@@ -156,7 +161,8 @@ class MyVideoController extends Controller
     public function ExplorePicture()
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $passwd = Auth::user()->passwd;
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
@@ -174,7 +180,8 @@ class MyVideoController extends Controller
     public function ExploreTemplate()
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $passwd = Auth::user()->passwd;
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
@@ -201,7 +208,8 @@ class MyVideoController extends Controller
     public function GenericVideoOrder()
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -217,7 +225,8 @@ class MyVideoController extends Controller
     public function StandardVideoOrder()
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -233,7 +242,8 @@ class MyVideoController extends Controller
     public function PremiumVideoOrder()
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -344,7 +354,8 @@ class MyVideoController extends Controller
 
         $preference = AgentPreferences::where('agent_ID', $user_id)->first();
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
 
         $email_list = $preference->email_distribution;
         $broadcast_agent = $preference->broadcast_agent;
@@ -408,7 +419,8 @@ class MyVideoController extends Controller
 
         $preference = AgentPreferences::where('agent_ID', $user_id)->first();
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
 
         $email_list = $preference->email_distribution;
         $broadcast_agent = $preference->broadcast_agent;
@@ -687,7 +699,8 @@ class MyVideoController extends Controller
 
         $user_id = Auth::user()->id;
 
-        $username = Auth::user()->name;
+        $uname = Auth::user()->name;
+        $username = preg_replace('/\s/', '', $uname);
         $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
 
         //move to folder if there is file uploaded for Main Image
@@ -704,48 +717,48 @@ class MyVideoController extends Controller
 
             //delete old file
             $oldFileMainImage = Input::get('oldFileMainImage');
-            $filename = public_path().'/storage/client_images/' . $user_id . '/general_images/'. $oldFileMainImage;
+            $filename = public_path().'/storage/client_images/' . $username . '/general_images/'. $oldFileMainImage;
             \File::delete($filename);
 
         }
 
-        //move to folder if there is file uploaded for Extra Image
-        if($file = $request->hasFile('mainImage2'))
-        {
-            //for Main Image
-            $mainImage2 = $request->file('mainImage2');
-            $fnameMainImage2 = time() . '_' . $mainImage2->getClientOriginalName();
-
-            $mainImage2->move($path, $fnameMainImage2);
-            AgentTemplate::where('agent_ID', $user_id)->update([
-                'extra_image1' => $fnameMainImage2,
-            ]);
-
-            //delete old file
-            $oldFileMainImage2 = Input::get('oldFileMainImage2');
-            $filename = public_path().'/storage/client_images/' . $user_id . '/general_images/' . $oldFileMainImage2;
-            \File::delete($filename);
-
-        }
-
-        //move to folder if there is file uploaded for Exra Image 2
-        if($file = $request->hasFile('mainImage3'))
-        {
-            //for Main Image
-            $mainImage3 = $request->file('mainImage3');
-            $fnameMainImage3 = time() . '_' . $mainImage3->getClientOriginalName();
-
-            $mainImage3->move($path, $fnameMainImage3);
-            AgentTemplate::where('agent_ID', $user_id)->update([
-                'extra_image2' => $fnameMainImage3,
-            ]);
-
-            //delete old file
-            $oldFileMainImage3 = Input::get('oldFileMainImage3');
-            $filename = public_path().'/storage/client_images/' . $user_id . '/general_images/' . $oldFileMainImage3;
-            \File::delete($filename);
-
-        }
+//        //move to folder if there is file uploaded for Extra Image
+//        if($file = $request->hasFile('mainImage2'))
+//        {
+//            //for Main Image
+//            $mainImage2 = $request->file('mainImage2');
+//            $fnameMainImage2 = time() . '_' . $mainImage2->getClientOriginalName();
+//
+//            $mainImage2->move($path, $fnameMainImage2);
+//            AgentTemplate::where('agent_ID', $user_id)->update([
+//                'extra_image1' => $fnameMainImage2,
+//            ]);
+//
+//            //delete old file
+//            $oldFileMainImage2 = Input::get('oldFileMainImage2');
+//            $filename = public_path().'/storage/client_images/' . $username . '/general_images/' . $oldFileMainImage2;
+//            \File::delete($filename);
+//
+//        }
+//
+//        //move to folder if there is file uploaded for Exra Image 2
+//        if($file = $request->hasFile('mainImage3'))
+//        {
+//            //for Main Image
+//            $mainImage3 = $request->file('mainImage3');
+//            $fnameMainImage3 = time() . '_' . $mainImage3->getClientOriginalName();
+//
+//            $mainImage3->move($path, $fnameMainImage3);
+//            AgentTemplate::where('agent_ID', $user_id)->update([
+//                'extra_image2' => $fnameMainImage3,
+//            ]);
+//
+//            //delete old file
+//            $oldFileMainImage3 = Input::get('oldFileMainImage3');
+//            $filename = public_path().'/storage/client_images/' . $user_id . '/general_images/' . $oldFileMainImage3;
+//            \File::delete($filename);
+//
+//        }
 
         //move to folder if there is file uploaded for Logo Image
         if($file = $request->hasFile('logoImage'))
@@ -765,7 +778,7 @@ class MyVideoController extends Controller
 
             //delete old file
             $oldLogoImage = Input::get('oldLogoImage');
-            $filename = public_path().'/storage/client_images/' . $user_id . '/general_images/' . $oldLogoImage;
+            $filename = public_path().'/storage/client_images/' . $username . '/general_images/' . $oldLogoImage;
             \File::delete($filename);
 
             //return redirect()->route('account-explore-pictures');
@@ -779,7 +792,8 @@ class MyVideoController extends Controller
     public function PremiumVideoDetails() {
 
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -798,7 +812,8 @@ class MyVideoController extends Controller
     public function getPremiumVideoSystem($videoid)
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userId = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -908,10 +923,11 @@ class MyVideoController extends Controller
 
 
     //for Standard Video System Process
-    public function VideoSystemPictures()
+    public function VideoSystemPictures(Request $request)
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -925,18 +941,33 @@ class MyVideoController extends Controller
         //path for uploaded images
         $path2 = '/storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
 
-        $pics = standardVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->get(['ID', 'video_ID', 'effect_style', 'old_filename', 'new_filename']);
-        Session::put('pics', $pics);
+//        $pics = standardVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->orderBy('sort_order', 'asc')->get(['ID', 'video_ID', 'effect_style', 'sort_order', 'old_filename', 'new_filename']);
+//        Session::put('pics', $pics);
+
+        //capturing images uploaded in dropzone
+        $img1 = $request->session()->get('img1');
+        $img2 = $request->session()->get('img2');
+        $img3 = $request->session()->get('img3');
+        $img4 = $request->session()->get('img4');
+        $img5 = $request->session()->get('img5');
+        $img6 = $request->session()->get('img6');
+        $img7 = $request->session()->get('img7');
+        $img8 = $request->session()->get('img8');
+        $img9 = $request->session()->get('img9');
+        $img10 = $request->session()->get('img10');
+
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.preferences.video-system.standard-video-pictures', compact('fullname', 'agent', 'logo_pic', 'pics', 'path2', 'userid'));
+        return view('frontend.pages.preferences.video-system.standard-video-pictures', compact('fullname', 'agent', 'logo_pic', 'path2', 'userid', 'img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img6', 'img7', 'img8', 'img9', 'img10'));
+//        return view('frontend.pages.preferences.video-system.standard-video-pictures', compact('fullname', 'agent', 'logo_pic', 'pics', 'path2', 'userid'));
     }
 
     public function VideoSystemScript()
     {
 
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -953,8 +984,15 @@ class MyVideoController extends Controller
         $pics = standardVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->get(['ID', 'video_ID', 'old_filename', 'new_filename', 'statement']);
         Session::put('pics', $pics);
 
+        //for getting template Statements
+        $num_images = (int)Input::get('num_images');
+
+        $statement = templateStatement::where('no_images', $num_images)->get(['statements'])->first();
+        $stat = $statement->statements;
+        $stats = explode(';', $stat);
+
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.preferences.video-system.standard-video-script', compact('fullname', 'agent', 'logo_pic', 'videoid', 'pics', 'path2'));
+        return view('frontend.pages.preferences.video-system.standard-video-script', compact('fullname', 'agent', 'logo_pic', 'videoid', 'pics', 'path2', 'stats', 'num_images'));
 
     }
 
@@ -962,7 +1000,8 @@ class MyVideoController extends Controller
     {
 
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -988,7 +1027,8 @@ class MyVideoController extends Controller
     {
 
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -1012,7 +1052,8 @@ class MyVideoController extends Controller
     {
 
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
         $videoid = Session::get('videoID');
@@ -1020,7 +1061,6 @@ class MyVideoController extends Controller
         //path for logo pic
         $path = '/storage/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
-
 
 
         //path for uploaded images
@@ -1039,11 +1079,25 @@ class MyVideoController extends Controller
     {
 
         $userid = Auth::user()->id;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $videoid = Session::get('videoID');
 
         $sortorder = Input::get('sortorder');
         $duration = Input::get('duration');
+
+//        $image1 = Input::get('image1');
+//        $image2 = Input::get('image2');
+//        $image3 = Input::get('image3');
+//        $image4 = Input::get('image4');
+//        $image5 = Input::get('image5');
+//        $image6 = Input::get('image6');
+//        $image7 = Input::get('image7');
+//        $image8 = Input::get('image8');
+//        $image9 = Input::get('image9');
+//        $image10 = Input::get('image10');
+
+
 
         $path = public_path('storage\client_images\\' . $fullname . '\\standard_pictures\\Video' . $videoid . '\\');
         if(!File::exists($path)){
@@ -1058,9 +1112,7 @@ class MyVideoController extends Controller
             $fname = $file->getClientOriginalName();
 
             $directory = 'storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
-
             $upload_success = $file->move($directory, $fname);
-
 
             if($upload_success)
             {
@@ -1074,6 +1126,26 @@ class MyVideoController extends Controller
                 );
                 standardVideoPicture::create($picdetails_arr);
 
+                if($sortorder == 1)
+                    Session::put('img1', $fname);
+                else if($sortorder == 2)
+                    Session::put('img2', $fname);
+                else if($sortorder == 3)
+                    Session::put('img3', $fname);
+                else if($sortorder == 4)
+                    Session::put('img4', $fname);
+                else if($sortorder == 5)
+                    Session::put('img5', $fname);
+                else if($sortorder == 6)
+                    Session::put('img6', $fname);
+                else if($sortorder == 7)
+                    Session::put('img7', $fname);
+                else if($sortorder == 8)
+                    Session::put('img8', $fname);
+                else if($sortorder == 9)
+                    Session::put('img9', $fname);
+                else if($sortorder == 10)
+                    Session::put('img10', $fname);
                 return response()->json($upload_success, 200);
             }
             else
@@ -1086,10 +1158,11 @@ class MyVideoController extends Controller
     }
 
 
-    public function deleteStandardImage($simage)
+    public function deleteStandardImage($simage, $img)
     {
 
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $videoid = Session::get('videoID');
 
         $uploaded_image = standardVideoPicture::where('old_filename', $simage)->first();
@@ -1104,6 +1177,27 @@ class MyVideoController extends Controller
             $file_image = standardVideoPicture::where('ID', $uploaded_image->ID)->delete();
         }
 
+        if($img = 1)
+            Session::forget('img1');
+        else if($img = 2)
+            Session::forget('img2');
+        else if($img = 3)
+            Session::forget('img3');
+        else if($img = 4)
+            Session::forget('img4');
+        else if($img = 5)
+            Session::forget('img5');
+        else if($img = 6)
+            Session::forget('img6');
+        else if($img = 7)
+            Session::forget('img7');
+        else if($img = 8)
+            Session::forget('img8');
+        else if($img = 9)
+            Session::forget('img9');
+        else if($img = 10)
+            Session::forget('img10');
+
     }
 
 
@@ -1112,7 +1206,8 @@ class MyVideoController extends Controller
     {
 
         $userid = Auth::user()->id;
-        $username = Auth::user()->name;
+        $uname = Auth::user()->name;
+        $username = preg_replace('/\s/', '', $uname);
         $effects = Input::get('transition');
         //$ctr_effects = count($effects);
 
@@ -1164,7 +1259,8 @@ class MyVideoController extends Controller
     public function VideoSystemProcessStep2(){
 
         $userid = Auth::user()->id;
-        $username = Auth::user()->name;
+        $uname = Auth::user()->name;
+        $username = preg_replace('/\s/', '', $uname);
         $statements = Input::get('selectedStatements');
         $arr_statements = explode(',', $statements);
         $pics = Session::get('pics');
@@ -1180,7 +1276,9 @@ class MyVideoController extends Controller
             $picID = $pics[$i]['ID'];
 
             //code for changing filename after uploading
-            $fname_statements = preg_replace('/\s+/', '_', $arr_statements[$i]);
+            $fname_statement = str_replace("'", "", $arr_statements[$i]);
+            $fname_statements = preg_replace('/\s+/', '_', $fname_statement);
+//            $fname_statements = str_replace(array('\'', '"'), '', $fname_statement);
             $path2 = '../public/storage/client_images/' . $username . '/standard_pictures/Video' . $videoID . '/';
             $path = public_path('storage\client_images\\' . $username . '\\standard_pictures\\Video' . $videoID . '\\');
             $picname = $pics[$i]['old_filename'];
@@ -1189,6 +1287,9 @@ class MyVideoController extends Controller
             $ext = File::extension($picname);
             $file = basename($imagePath, ".".$ext);
             $newfilename = $file . '_' . $fname_statements . '.' . $ext;
+
+
+
             $oldimagePath = $path2 . $picname;
             $newimagePath = $path2 . $newfilename;
 //
@@ -1229,10 +1330,19 @@ class MyVideoController extends Controller
         $userid = Auth::user()->id;
 
         //for voice format selection
-        $voiceSelection = Input::get('voiceSelection');
-        if ($voiceSelection != null)
-            $voiceboxes = implode(',', $voiceSelection);
 
+        $voice_format = Input::get('stateVoiceFormat');
+        $voiceSelection = Input::get('voiceSelection');
+        if($voice_format == 'Random Voice'){
+
+            $voiceboxes = voiceFiles::where('agent_ID', $userid)->get(['voice_over_name'])->first();
+        }
+        else{
+            if ($voiceSelection != null)
+                $voiceboxes = implode(',', $voiceSelection);
+            else
+                $voiceboxes = '';
+        }
 
         //for music file format selection
         $musicSelection = Input::get('musicSelection');
@@ -1244,8 +1354,13 @@ class MyVideoController extends Controller
 
         if($voice_music_data != NULL){
 
+//            AgentVideoOrders::where('agent_ID', $userid)->where('ID', $videoid)->update([
+//                'voice_over' => $musicboxes
+//            ]);
+
+
             AgentTemplate::where('agent_ID', $userid)->update([
-                'voice_format' => Input::get('stateVoiceFormat'),
+                'voice_format' => $voice_format,
                 'voice_file_selection' => $voiceboxes,
                 'music_style' => Input::get('stateMusicStyle'),
                 'music_file_format' => $musicboxes
@@ -1300,7 +1415,9 @@ class MyVideoController extends Controller
     public function PremiumVideoSystemPictures()
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
+
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -1326,7 +1443,8 @@ class MyVideoController extends Controller
     {
 
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -1353,7 +1471,8 @@ class MyVideoController extends Controller
     {
 
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -1383,7 +1502,8 @@ class MyVideoController extends Controller
     {
 
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
 
@@ -1411,7 +1531,8 @@ class MyVideoController extends Controller
     {
 
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
         $videoid = Session::get('videoID');
@@ -1439,7 +1560,8 @@ class MyVideoController extends Controller
     {
 
         $userid = Auth::user()->id;
-        $username = Auth::user()->name;
+        $uname = Auth::user()->name;
+        $username = preg_replace('/\s/', '', $uname);
         $effects = Input::get('transition');
         $ctr_effects = count($effects);
 

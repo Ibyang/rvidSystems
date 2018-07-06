@@ -39,7 +39,10 @@
                     <div class="col-sm-5 story-board-block pr-0">
                          <button class="btn"><i class="standard-video sv-save"></i>SAVE</button>
 
+{{--                    @foreach($stats as $stat)--}}
+                        <?php $ctr=0; ?>
                          @foreach($pics as $pic)
+
                              <!--div class="story-text">
                                  <div class="row h-100">
                                     <div class="col my-auto">
@@ -48,36 +51,51 @@
                                 </div>
                              </div-->
                                  @if($pic['statement'] != NULL)
-                                    <div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none">{{ $pic['statement'] }}</div>
+                                    {{--<div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none">{{ $pic['statement'] }}</div>--}}
                                  @else
                                      <div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none"></div>
                                  @endif
                                  {{--<div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee">Drag Your Statement Here</div>--}}
-                                 @if($pic['new_filename'] != NULL)
-                                    <img draggable="true" src={{ $path2 . $pic['new_filename'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; width:150px; height:150px'>
-                                 @else
-                                    <img draggable="true" src={{ $path2 . $pic['old_filename'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; width:150px; height:150px'>
-                                 @endif
+                                 <div class="script-container">
+
+                                         @if($pic['new_filename'] != NULL)
+                                             <img draggable="true" src={{ $path2 . $pic['new_filename'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; max-width:100%; height:auto'>
+                                             <div class="text-container">
+                                                 {{ $pic['statement'] }}
+                                             </div>
+                                         @else
+                                           <div>
+                                             <img draggable="true" src={{ $path2 . $pic['old_filename'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; max-width:100%; height:auto'>
+                                             <div class="text-container">
+                                                 @if( $ctr < $num_images )
+                                                    {{ $stats[$ctr] }}
+                                                 @endif
+                                             </div>
+                                           </div>
+                                         @endif
+                                 </div>
                                  <input type="hidden" name="imageID" value="{{ $pic['ID'] }}">
                                  <input type="hidden" name="filename[]" id="filename" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                 <select name="statement[]" class="mt-3 mb-3">
-                                     <option>Introductory Statement</option>
-                                     <option>General Descriptor</option>
-                                     <option>Property Layout</option>
-                                     <option>Signature Inclusion</option>
-                                     <option>Lifestyle Descriptor</option>
-                                     <option>Uniqueness Descriptor</option>
-                                     <option>Additional Features</option>
-                                     <option>Buy Descriptions</option>
-                                     <option>Closing Statement</option>
-                                 </select>
+                                 {{--<select name="statement[]" class="mt-3 mb-3">--}}
+                                     {{--<option>Introductory Statement</option>--}}
+                                     {{--<option>General Descriptor</option>--}}
+                                     {{--<option>Property Layout</option>--}}
+                                     {{--<option>Signature Inclusion</option>--}}
+                                     {{--<option>Lifestyle Descriptor</option>--}}
+                                     {{--<option>Uniqueness Descriptor</option>--}}
+                                     {{--<option>Additional Features</option>--}}
+                                     {{--<option>Buy Descriptions</option>--}}
+                                     {{--<option>Closing Statement</option>--}}
+                                 {{--</select>--}}
 
 
                              {{--<p><br><span class="c-6600cc"><b>+</b></span><br>Picture</p>--}}
                              {{--<select name="" class="mb-3">--}}
                                 {{--<option>Property Layout</option>    --}}
                              {{--</select>--}}
+                            <?php $ctr++; ?>
                          @endforeach
+                    {{--@endforeach--}}
                     </div>
                     <div class="col-sm-7 video-system-pic-block">
                          <button class="btn mt-3"><i class="standard-video sv-move"></i>Move to Storyboard</button>
@@ -114,7 +132,7 @@
                                 <li ondragstart="dragStart(event)" draggable="true" id="This property is close to public transport">This property is close to public transport</li>
                                 <li ondragstart="dragStart(event)" draggable="true" id="This property is close to shops and transport">This property is close to shops and transport</li>
                                 <li ondragstart="dragStart(event)" draggable="true" id="This property is in need of love and care">This property is in need of love and care</li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is a renovator’s dream">This property is a renovator’s dream</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is a renovator's dream">This property is a renovator's dream</li>
                                 <li ondragstart="dragStart(event)" draggable="true" id="This property will set you up for life">This property will set you up for life</li>
                                 <li ondragstart="dragStart(event)" draggable="true" id="This property gives a taste of City living">This property gives a taste of City living</li>
                                 <li ondragstart="dragStart(event)" draggable="true" id="This property is beautifully presented">This property is beautifully presented</li>
@@ -148,6 +166,7 @@
                 <div class="float-r mt-3 mb-5">
                     <input type="hidden" name="selectedStatements" id="selectedStatements">
                     <input type="hidden" name="pics" id="pics" value="{{ $pics }}">
+                    <div style="float: left; margin-right: 10px"><a href="/account/preferences/video-system/1"><button class="btn btn-primary" type="button"><i class="arrow-left"></i> Previous Step</button></a></div>
                     <button class="btn btn-primary" type="submit">SAVE : Next Step 3<i class="arrow-right"></i></button>
                 </div>
                 <div class="clear"></div>

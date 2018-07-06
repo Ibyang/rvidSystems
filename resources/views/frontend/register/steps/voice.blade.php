@@ -27,8 +27,8 @@
                                         <div class="col-sm-3 my-account-subcription step-three-register">
                                             <span>OK to use</span>
                                             <div class="custom-control custom-checkbox standard ml-3">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck15" name="voiceSelection[]" value="voice1"
-                                                        {{{ (!empty($voice_list) && (in_array('voice1', $voice_list))) ? "checked" : ""}}}>
+                                                <input type="checkbox" class="custom-control-input" id="customCheck15" name="voiceSelection[]" value="grant.wav"
+                                                        {{{ (!empty($voice_list) && (in_array('grant.wav', $voice_list))) ? "checked" : ""}}}>
                                                 <label class="custom-control-label" for="customCheck15"></label>
                                             </div>
                                         </div>
@@ -52,8 +52,8 @@
                                         <div class="col-sm-3 my-account-subcription step-three-register">
                                             <span>OK to use</span>
                                             <div class="custom-control custom-checkbox standard ml-3">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck16" name="voiceSelection[]" value="voice2"
-                                                        {{{ (!empty($voice_list) && (in_array('voice2', $voice_list))) ? "checked" : ""}}}>
+                                                <input type="checkbox" class="custom-control-input" id="customCheck16" name="voiceSelection[]" value="luke.wav"
+                                                        {{{ (!empty($voice_list) && (in_array('luke.wav', $voice_list))) ? "checked" : ""}}}>
                                                 <label class="custom-control-label" for="customCheck16"></label>
                                             </div>
                                         </div>
@@ -77,8 +77,8 @@
                                         <div class="col-sm-3 my-account-subcription step-three-register">
                                             <span>OK to use</span>
                                             <div class="custom-control custom-checkbox standard ml-3">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck17" name="voiceSelection[]" value="voice3"
-                                                        {{{ (!empty($voice_list) && (in_array('voice3', $voice_list))) ? "checked" : ""}}}>
+                                                <input type="checkbox" class="custom-control-input" id="customCheck17" name="voiceSelection[]" value="mark.wav"
+                                                        {{{ (!empty($voice_list) && (in_array('mark.wav', $voice_list))) ? "checked" : ""}}}>
                                                 <label class="custom-control-label" for="customCheck17"></label>
                                             </div>
                                         </div>
@@ -103,8 +103,8 @@
                                         <div class="col-sm-3 my-account-subcription step-three-register">
                                             <span>OK to use</span>
                                             <div class="custom-control custom-checkbox standard ml-3">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck18" name="voiceSelection[]" value="voice4"
-                                                        {{{ (!empty($voice_list) && (in_array('voice4', $voice_list))) ? "checked" : ""}}}>
+                                                <input type="checkbox" class="custom-control-input" id="customCheck18" name="voiceSelection[]" value="karin.wav"
+                                                        {{{ (!empty($voice_list) && (in_array('karin.wav', $voice_list))) ? "checked" : ""}}}>
                                                 <label class="custom-control-label" for="customCheck18"></label>
                                             </div>
                                         </div>
@@ -129,8 +129,8 @@
                                         <div class="col-sm-3 my-account-subcription step-three-register">
                                             <span>OK to use</span>
                                             <div class="custom-control custom-checkbox standard ml-3">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck19" name="voiceSelection[]" value="voice5"
-                                                        {{{ (!empty($voice_list) && (in_array('voice5', $voice_list))) ? "checked" : ""}}}>
+                                                <input type="checkbox" class="custom-control-input" id="customCheck19" name="voiceSelection[]" value="louisa.wav"
+                                                        {{{ (!empty($voice_list) && (in_array('louisa.wav', $voice_list))) ? "checked" : ""}}}>
                                                 <label class="custom-control-label" for="customCheck19"></label>
                                             </div>
                                         </div>
@@ -155,15 +155,15 @@
                                         <div class="col-sm-3 my-account-subcription step-three-register">
                                             <span>OK to use</span>
                                             <div class="custom-control custom-checkbox standard ml-3">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck20" name="voiceSelection[]" value="voice6"
-                                                        {{{ (!empty($voice_list) && (in_array('voice5', $voice_list))) ? "checked" : ""}}}>
+                                                <input type="checkbox" class="custom-control-input" id="customCheck20" name="voiceSelection[]" value="odette.wav"
+                                                        {{{ (!empty($voice_list) && (in_array('odette.wav', $voice_list))) ? "checked" : ""}}}>
                                                 <label class="custom-control-label" for="customCheck20"></label>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
-                            <a href="">More +</a>
+                            {{--<a href="">More +</a>--}}
                         </div>
                         <div class="col-sm">
                             You can Select from 3 options

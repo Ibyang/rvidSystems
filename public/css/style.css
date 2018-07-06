@@ -564,3 +564,20 @@ a { text-decoration: none !important; }
     padding-right: 20px;
 }
 
+/* additional format for script*/
+
+.script-container {
+    position: relative;
+}
+
+.text-container {
+    position: absolute;
+    left: 15px;
+    top: 35%;
+    width: 90%;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+}
+

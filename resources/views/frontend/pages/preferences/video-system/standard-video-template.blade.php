@@ -137,124 +137,8 @@
                     </div>
                 </form>
 
-                Mid Template (2)
-                <div class="row">
-                    <div class="col"><img src="{{ asset('storage/account/video-system-frame.jpg') }}" class="img-fluid"></div>
-                </div>
-                <div class="d-flex flex-row-reverse">
-                    <div class="p-2"><a data-toggle="collapse" href="#Expanded2" role="button" aria-expanded="false" aria-controls="collapseExample">Change</a></div>
-                </div>
 
-                <form id="frmMiddleFrame" method="POST" action="{{ route('editMiddleFrame') }}">
-                    {{ csrf_field() }}
-                    <div class="collapse" id="Expanded2" style="background-color: #F4F4F4">
-                        <div class="rules-arrow"></div>
-                        <div class="ExpandForm p-3">
-                            <div class="row register-form">
-                                <div class="col-sm">
-                                    Select Middle Frame
-                                    <select name="stateMiddleFrame" id="stateMiddleFrame" class="form-control mt-3 mb-3 col-10">
-                                        <option value="Use One Template as Selected" {{ $template['middle_frame_template'] === 'Use One Template as Selected' ? 'selected' : '' }}>Use One Template as Selected</option>
-                                        <option value="Randomly Use Selected Templates" {{ $template['middle_frame_template'] === 'Randomly Use Selected Templates' ? 'selected' : '' }}>Randomly Use Selected Templates</option>
-                                        <option value="No Preference(Random)" {{ $template['middle_frame_template'] === 'No Preference(Random)' ? 'selected' : '' }}>No Preference(Random)</option>
-                                    </select>
-                                </div>
-                                <div class="col-sm">
-                                    Select Colours
-                                    <select name="stateMiddleFrameColour" id="stateMiddleFrameColour" class="form-control mt-3 mb-3 col-10">
-                                        <option value="Agency Group Templates" {{ $template['middle_frame_colours'] === 'Agency Group Templates' ? 'selected' : '' }}>Agency Group Templates</option>
-                                        <option value="Themed Templates" {{ $template['middle_frame_colours'] === 'Themed Templates' ? 'selected' : '' }}>Themed Templates</option>
-                                        <option value="Customise Your Template" {{ $template['middle_frame_colours'] === 'Customise Your Template' ? 'selected' : '' }}>Customise Your Template</option>
-                                    </select>
-                                    <select name="stateMiddleFrameColourSub" id="stateMiddleFrameColourSub" class="form-control mt-3 mb-3 col-10">
-                                        {{--<option value="Theme 1"><5 Selections HERE + "Random"</option>--}}
-                                    </select>
-                                    <div id="stateMiddleFrameColourSelection" style='display:none;'>
-                                        <div class="row">
-                                            <div class="col"><input type="radio" name="color">#cccccc</div>
-                                            <div class="col">Change +</div>
-                                            {{--<div class="col"> <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck7" value="MiddleFrameTemplate3"></div>--}}
-                                            <div class="col"><input type="radio" name="color">#660cc</div>
-                                            <div class="col">Change +</div>
-                                            {{--<div class="col"> <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck7" value="MiddleFrameTemplate3"></div>--}}
-                                        </div>
-                                        <div class="row">
-                                            <div class="col"><input type="radio" name="color">#cccccc</div>
-                                            <div class="col">Change +</div>
-                                            {{--<div class="col"> <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck7" value="MiddleFrameTemplate3"></div>--}}
-                                            <div class="col"><input type="radio" name="color">#33333</div>
-                                            <div class="col">Change +</div>
-                                            {{--<div class="col"> <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck7" value="MiddleFrameTemplate3"></div>--}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h3>Video Frame (Middle Frame)</h3>
-                            You have 4 Middle Frame Template Formats
-                            <div class="row">
-                                <div class="col-sm">
-                                    {{--                                <img src="{{ asset('storage/account/video-frame-1.jpg') }}" class="img-fluid"><br>--}}
-                                    <img src="{{ asset('storage/register/main-frame-1.jpg') }}" class="img-fluid"><br>
-                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
-                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                        <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck5" value="main-frame-1.jpg"
-                                               @if(in_array('main-frame-1.jpg', $middleframe_list))
-                                               checked
-                                                @endif>
-                                        <label class="custom-control-label font12" for="customCheck5">Select</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm">
-                                    {{--                                <img src="{{ asset('storage/account/video-frame-2.jpg') }}" class="img-fluid"><br>--}}
-                                    <img src="{{ asset('storage/register/main-frame-2.jpg') }}" class="img-fluid"><br>
-                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
-                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                        <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck6" value="main-frame-2.jpg"
-                                               @if(in_array('main-frame-2.jpg', $middleframe_list))
-                                               checked
-                                                @endif>
-                                        <label class="custom-control-label font12" for="customCheck6">Select</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-sm">
-                                    {{--                                <img src="{{ asset('storage/account/video-frame-3.jpg') }}" class="img-fluid"><br>--}}
-                                    <img src="{{ asset('storage/register/main-frame-3.jpg') }}" class="img-fluid"><br>
-                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
-                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                        <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck7" value="main-frame-3.jpg"
-                                               @if(in_array('main-frame-3.jpg', $middleframe_list))
-                                               checked
-                                                @endif>
-                                        <label class="custom-control-label font12" for="customCheck7">Select</label>
-                                    </div>
-                                </div>
-                                <div class="col-sm">
-                                    {{--                                <img src="{{ asset('storage/account/video-frame-4.jpg') }}" class="img-fluid"><br>--}}
-                                    <img src="{{ asset('storage/register/main-frame-4.jpg') }}" class="img-fluid"><br>
-                                    <a href="" class="d-inline-block font12">< Click to Enlarge ></a>
-                                    <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                        <input type="checkbox" class="custom-control-input" name="middle_frame[]" id="customCheck8" value="main-frame-4.jpg"
-                                               @if(in_array('main-frame-4.jpg', $middleframe_list))
-                                               checked
-                                                @endif>
-                                        <label class="custom-control-label font12" for="customCheck8">Select</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row-mt-3">
-                                <input type="hidden" name="middleFrameColor" id="middleFrameColor" value="{{ $template['middle_frame_colours'] }}">
-                                <input type="hidden" name="middleFrameColorSub" id="middleFrameColorSub" value="{{ $template['middle_frame_colours_sub'] }}">
-                                <input type="hidden" name="pageName" id="pageName" value="standardVideoTemplate">
-                                <input type="submit" class="form-control" value="Update Details">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
-                End Template (3)
+                End Template (2)
                 <div class="row">
                     <div class="col"><img src="{{ asset('storage/account/video-system-end-frame.jpg') }}" class="img-fluid"></div>
                 </div>
@@ -401,17 +285,6 @@
         }
 
 
-        var stateMiddleColour = $('#middleFrameColor').val();
-        var stateMiddleColorSub = $('#middleFrameColorSub').val();
-
-        if(stateMiddleColour === 'Agency Group Templates' || stateMiddleColour === 'Themed Templates'){
-            $('#stateMiddleFrameColourSub').append('<option value="' + stateMiddleColorSub + '">' + stateMiddleColorSub + '</option>');
-        }
-        else{
-            $('#stateMiddleFrameColourSelection').show();
-            $('#stateMiddleFrameColourSub').hide();
-        }
-
         var stateEndColour = $('#endFrameColor').val();
         var stateEndColorSub = $('#endFrameColorSub').val();
 
@@ -422,30 +295,6 @@
             $('#stateEndFrameColourSelection').show();
             $('#stateEndFrameColourSub').hide();
         }
-
-
-
-        // if($('#stateMainFrameColour').val()=='Agency Group Templates') {
-        //     $('#stateMainFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
-        //     $('#stateMainFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
-        //     $('#stateMainFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
-        //     $('#stateMainFrameColourSelection').hide();
-        // }
-        //
-        // if($('#stateMiddleFrameColour').val()=='Agency Group Templates'){
-        //     $('#stateMiddleFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
-        //     $('#stateMiddleFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
-        //     $('#stateMiddleFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
-        //     $('#stateMiddleFrameColourSelection').hide();
-        // }
-        //
-        // if($('#stateEndFrameColour').val()=='Agency Group Templates'){
-        //     $('#stateEndFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
-        //     $('#stateEndFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
-        //     $('#stateEndFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
-        //     $('#stateEndFrameColourSelection').hide();
-        // }
-
 
 
         //auto populating values of the dropdown Sub Colour based on the selection of the Colour Item
@@ -470,26 +319,6 @@
             }
         });
 
-        //for Middle Main Frame
-        $('#stateMiddleFrameColour').on('change', function(){
-            $('#stateMiddleFrameColourSub').html('');
-            if($('#stateMiddleFrameColour').val()=='Agency Group Templates'){
-                $('#stateMiddleFrameColourSub').show();
-                $('#stateMiddleFrameColourSub').append('<option value="Agency Group 1">Agency Group 1</option>');
-                $('#stateMiddleFrameColourSub').append('<option value="Agency Group 2">Agency Group 2</option>');
-                $('#stateMiddleFrameColourSub').append('<option value="Agency Group 3">Agency Group 3</option>');
-                $('#stateMiddleFrameColourSelection').hide();
-            }else if($('#stateMiddleFrameColour').val()=='Themed Templates'){
-                $('#stateMiddleFrameColourSub').show();
-                $('#stateMiddleFrameColourSub').append('<option value="Professional">Professional</option>');
-                $('#stateMiddleFrameColourSub').append('<option value="Fun + Friendly">Fun + Friendly</option>');
-                $('#stateMiddleFrameColourSub').append('<option value="Random">Random</option>');
-                $('#stateMiddleFrameColourSelection').hide();
-            }else if($('#stateMiddleFrameColour').val()=='Customise Your Template'){
-                $('#stateMiddleFrameColourSelection').show();
-                $('#stateMiddleFrameColourSub').hide();
-            }
-        });
 
         //for End Main Frame
         $('#stateEndFrameColour').on('change', function(){

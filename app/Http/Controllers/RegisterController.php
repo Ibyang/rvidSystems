@@ -13,6 +13,7 @@ use App\AgentBroadcast;
 use App\AgentPreferences;
 use App\AgentTemplate;
 use App\Content;
+use App\voiceFiles;
 use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -218,7 +219,8 @@ class RegisterController extends Controller
     //module to upload MainImage using DropZone
     public function uploadMainImage(Request $request)
     {
-        $username = Session::get('fullname');
+
+        $username = preg_replace('/\s/', '', Session::get('fullname'));
 
         $temp = $request->session()->get('template');
 
@@ -262,7 +264,8 @@ class RegisterController extends Controller
 
     public function imageMainDelete($mainImage)
     {
-        $username = Session::get('fullname');
+//        $username = Session::get('fullname');
+        $username = preg_replace('/\s/', '', Session::get('fullname'));
 
         $file = 'storage/client_images/' . $username . '/general_images/' . $mainImage;
         unlink($file);
@@ -273,7 +276,8 @@ class RegisterController extends Controller
 
     public function uploadLogoImage(Request $request)
     {
-        $username = Session::get('fullname');
+//        $username = Session::get('fullname');
+        $username = preg_replace('/\s/', '', Session::get('fullname'));
 
         $temp = $request->session()->get('template');
 
@@ -316,7 +320,8 @@ class RegisterController extends Controller
 
     public function imageLogoDelete($logoImage)
     {
-        $username = Session::get('fullname');
+//        $username = Session::get('fullname');
+        $username = preg_replace('/\s/', '', Session::get('fullname'));
 
         $file = 'storage/client_images/' . $username . '/general_images/' . $logoImage;
         unlink($file);
@@ -329,7 +334,8 @@ class RegisterController extends Controller
     public function processStep2(Request $request)
     {
 
-        $username = Session::get('fullname');
+//        $username = Session::get('fullname');
+        $username = preg_replace('/\s/', '', Session::get('fullname'));
 
         $temp = $request->session()->get('template');
 
@@ -421,12 +427,22 @@ class RegisterController extends Controller
         else
             $chkRandomiseEF = 1;
 
-        //for voice format selection
-        $voiceSelection = Input::get('voiceSelection');
-        if ($voiceSelection != null)
-            $voiceboxes = implode(',', $voiceSelection);
-        else
-            $voiceboxes = '';
+
+        $stateVoiceFormat = Input::get('stateVoiceFormat');
+        if($stateVoiceFormat == 'Random Voice') {
+            //for picking a random voice over to be used on the video
+            $input = array("grant.wav", "luke.wav", "mark.wav", "karin.wav", "louisa.wav", "odette.wav");
+            $voiceboxes = array_rand($input, 1);
+
+        }
+        else{
+            //for voice format selection
+            $voiceSelection = Input::get('voiceSelection');
+            if ($voiceSelection != null)
+                $voiceboxes = implode(',', $voiceSelection);
+            else
+                $voiceboxes = '';
+        }
 
 
         //for music file format selection
@@ -687,6 +703,7 @@ class RegisterController extends Controller
                 $template = $request->session()->get('template');
                 $logofilename = $template['logo'];
 
+
                 $surge_offer = $request->session()->get('surge_offer');
                 $broadcast_status = $request->session()->get('broadcast_status');
                 $email_list = $request->session()->get('email_list');
@@ -698,6 +715,7 @@ class RegisterController extends Controller
                 $user = User::create($pass_arr);
                 $userId = $user->id;
 
+//                $template['voice_file_selection'] = $rand_voice;
                 $template['agent_ID'] = $userId;
                 $request->session()->put('template', $template);
 //                Session::put('template', $template);
@@ -708,6 +726,17 @@ class RegisterController extends Controller
                 User::where('ID', $userId)->update([
                      'logo_user' => $template['logo']
                 ]);
+
+                $voice_format = $template['voice_format'];
+                if($voice_format == "Random Voice"){
+
+                    $voice_arr = array(
+                      'agent_ID' => $userId,
+                      'voice_over_name' => $template['voice_file_selection']
+                    );
+                    voiceFiles::create($voice_arr);
+                }
+
 
                 //Saving of Step 3 Details
                 $surge_arr = array(

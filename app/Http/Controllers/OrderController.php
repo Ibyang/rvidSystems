@@ -262,7 +262,8 @@ class OrderController extends Controller
 
     public function viewStandardVideoMaterials($userid, $videoid)
     {
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
 
@@ -277,7 +278,8 @@ class OrderController extends Controller
 
     public function viewPremiumVideoMaterials($userid, $videoid)
     {
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $role = Auth::user()->role;
         $pic = Auth::user()->profile_pic;
 

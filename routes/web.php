@@ -501,7 +501,7 @@ Route::group(['middleware' => 'guest'], function() {
     Route::post('/uploadStandardImage', 'MyVideoController@uploadStandardImage')->name('uploadStandardImage');
 
     //for removing Images from DropBox container
-    Route::get('/deleteStandardImage/{simage}', 'MyVideoController@deleteStandardImage');
+    Route::get('/deleteStandardImage/{simage}/{img}', 'MyVideoController@deleteStandardImage');
 
     Auth::routes();
 

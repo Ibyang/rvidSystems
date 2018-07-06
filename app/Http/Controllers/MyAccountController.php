@@ -29,7 +29,8 @@ class MyAccountController extends Controller
     public function index()
     {
         $email = Auth::user()->email;
-        $fullname = Auth::user()->name;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
         $passwd = Auth::user()->passwd;
         $userid = Auth::user()->id;
         $logo = Auth::user()->logo_user;
@@ -141,7 +142,8 @@ class MyAccountController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $username = Auth::user()->name;
+        $uname = Auth::user()->name;
+        $username = preg_replace('/\s/', '', $uname);
         $path = '/storage/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
@@ -165,7 +167,8 @@ class MyAccountController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $username = Auth::user()->name;
+        $uname = Auth::user()->name;
+        $username = preg_replace('/\s/', '', $uname);
         $path = '/storage/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
@@ -183,7 +186,8 @@ class MyAccountController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $username = Auth::user()->name;
+        $uname = Auth::user()->name;
+        $username = preg_replace('/\s/', '', $uname);
         $path = '/storage/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
@@ -202,7 +206,8 @@ class MyAccountController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $username = Auth::user()->name;
+        $uname = Auth::user()->name;
+        $username = preg_replace('/\s/', '', $uname);
         $path = '/storage/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
@@ -221,7 +226,8 @@ class MyAccountController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $username = Auth::user()->name;
+        $uname = Auth::user()->name;
+        $username = preg_replace('/\s/', '', $uname);
         $path = '/storage/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
@@ -307,7 +313,8 @@ class MyAccountController extends Controller
         $video_id = Input::get('video_id');
 
         //path for logo pic
-        $username = Auth::user()->name;
+//        $username = Auth::user()->name;
+        $username = preg_replace('/\s/', '', Session::get('fullname'));
         $path = '/storage/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
