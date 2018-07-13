@@ -12,6 +12,7 @@ use App\AgentEmail;
 use App\AgentBroadcast;
 use App\AgentPreferences;
 use App\AgentTemplate;
+use App\AgencyTemplate;
 use App\Content;
 use App\voiceFiles;
 use PDF;
@@ -96,6 +97,8 @@ class RegisterController extends Controller
         $template = $request->session()->get('template');
         $agent = $request->session()->get('agent_arr');
 
+        $agency = $agent['group'];
+
         if(isset($template))
         {
             $mainframe_list = explode(',', $template['main_frame_template_format']);
@@ -106,7 +109,9 @@ class RegisterController extends Controller
             $music_list = explode(',', $template['music_file_format']);
         }
 
-        return view('frontend.register.register-step2', compact('agent', 'template', 'mainframe_list', 'middleframe_list', 'endframe_list', 'voice_list', 'music_list'));
+        $temp = AgencyTemplate::where('agency_name', $agency)->first();
+
+        return view('frontend.register.register-step2', compact('agent', 'template', 'mainframe_list', 'middleframe_list', 'endframe_list', 'voice_list', 'music_list', 'temp'));
 
     }
 

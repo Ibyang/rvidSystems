@@ -337,16 +337,22 @@
 
 
             //passing values from links of main templates
+
+            var folder_name = $('#folder_name').val();
+
             $('#mainTemplateModal').on('show.bs.modal', function(e) {
                 var mainTemplate = $(e.relatedTarget).attr('data-dbid');
-                $("#mainTemplate").attr('src', '/storage/register/' + mainTemplate);
+
+                $("#mainTemplate").attr('src', '/storage/template_materials/' + folder_name + '/' + mainTemplate);
             });
 
 
             //passing values from links of end templates
             $('#endTemplateModal').on('show.bs.modal', function(e) {
                 var endTemplate = $(e.relatedTarget).attr('data-dbid');
-                $("#endTemplate").attr('src', '/storage/register/' + endTemplate);
+
+                // $("#endTemplate").attr('src', '/storage/register/' + endTemplate);
+                $("#endTemplate").attr('src', '/storage/template_materials/' + folder_name + '/' + endTemplate);
             });
 
 
@@ -471,6 +477,55 @@
                 else
                     $("#statementMF").removeAttr("disabled");
             });
+
+            $('#checkboxGroup input[type=checkbox]').change(function() {
+                if (this.checked) {
+                    $('#checkboxGroup input[type=checkbox]').not(
+                        $(this)).prop('checked', false);
+                }
+            });
+
+            $('#mainframe1').click(function() {
+                if ($(this).is(":checked"))
+
+                    // it is checked
+                    alert("Template 1 is selected")
+
+            });
+
+            $('#mainframe2').click(function() {
+                if ($(this).is(":checked"))
+
+                // it is checked
+                    alert("Template 2 is selected")
+
+            });
+
+            $('#mainframe3').click(function() {
+                if ($(this).is(":checked"))
+
+                // it is checked
+                    alert("Template 3 is selected")
+
+            });
+
+            $('#mainframe4').click(function() {
+                if ($(this).is(":checked"))
+
+                // it is checked
+                    alert("Template 4 is selected")
+
+            });
+
+            // $('input[type="checkbox"]').on('change', function() {
+            //     $('input[name="main_frame"]').not(this).prop('checked', false);
+            // });
+            //
+            //
+            // $('input[type="checkbox"]').on('change', function() {
+            //     $('input[name="end_frame"]').not(this).prop('checked', false);
+            // });
+
 
 
         });
