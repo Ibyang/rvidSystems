@@ -1,48 +1,28 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div class="container" id="content">
-        <div class="border-bot3">
-            <h1 class="c-6600cc">How the System Works</h1>
-            <div class="row">
-                <div class="col-sm">
-                    <a href= {{ route('how-system-works-video') }}><img src={{ asset('storage/how-system-works.jpg') }} /></a>
-                </div>
-                <div class="col-sm">
-                    <ul class="list">
-                        <li>It’s "Video" for social media marketing,
-                            online marketing, on-site presentations
-                            and email to prospective clients.</li>
-                        <li>Low cost video options</li>
-                    </ul>
-                    $75 Generic<br>
-                    $125 Standard<br>
-                    $145 Premium
-                </div>
-                <div class="col-sm">
-                    <ul class="list">
-                        <li>Easy + Quick with No Fuss</li>
-                        <li>Valuable; you get video’s (3 versions)Plus</li>
-                    </ul>
 
-                    with your monthly membership
-                </div>
+    <div class="container pb-0" id="content">
+        <h1 class="c-6600cc">How the System Works</h1>
+
+        <div class="row">
+            <div class="col-md-auto"><a href= {{ route('how-system-works-video') }}><img src={{ asset('storage/how-system-works.jpg') }} /></a></div>
+            <div class="col-sm line-height19 text-justify">
+                <p>The  system  provides  you  with  3  core  functions.  It  lets  you  Set-up  and  Manage  your  professional  Details,  including  Templates,  Selections  (such  as  voice  or  music  types)  and  Preferences.  It  acts  as  the  platform  to  <b>Order  and  Manage</b>  your  Video  productions  and  administrates,  tracks  and  delivers.  It  gives  you  <b>Value-added  Service  Options</b>;  such  as  Rush!  Or  Surge,  Uploads  to  Sites  or  Social  Media  and  Email  and  Broadcast  systems  you  can  take  advantage  of.</p>
+                <p>REVid  then  uses  the  system  to  <b>Communicate  and  Manage</b>  with  you  as  we  produce  your  Video  and  execute  your  selected  options.  <b>It’s  all  online  and  onsite</b></p>
             </div>
         </div>
 
-        @include('frontend.pages.frontpage.info')
+        @include('frontend.register.register-join-info')
 
-    </div>
-    @include('frontend.pages.frontpage.info-form')
-
-    @include('frontend.pages.frontpage.use-revid')
-
-    <div class="container">
         @include('frontend.register.register-info')
-    </div>
 
-    @include('frontend.register.register-form')
+        @include('frontend.register.register-form')
+
+    </div>
+    @include('frontend.pages.frontpage.why-use-revid')
 
     @include('frontend.pages.frontpage.footer')
+    </div>
 
 @endsection

@@ -13,7 +13,7 @@
 
             @include('frontend.pages.preferences.video-system.steps')
 
-            <form id="frmStep1" method="POST" action="{{ route('account-video-system-processStep2')}}" enctype="multipart/form-data">
+            <form id="frmManualStep2" method="POST" action="{{ route('account-video-system-processStep2')}}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
 
@@ -40,8 +40,15 @@
                          <button class="btn"><i class="standard-video sv-save"></i>SAVE</button>
 
 {{--                    @foreach($stats as $stat)--}}
-                        <?php $ctr=0; ?>
-                         @foreach($pics as $pic)
+                                {{--<div id="{{ $pic['ID'] }}">--}}
+                                    {{--<img src="{{ $path2 . $pic['old_filename'] }}" class="w-100" style='border: 10px solid #ededed; opacity: 0.5; max-width:100%; height:auto; cursor: move'>--}}
+                                    {{--<div class="text-container">--}}
+                                    {{--@if( $ctr < $num_images )--}}
+                                    {{--{{ $stats[$ctr] }}--}}
+                                    {{--@endif--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+
 
                              <!--div class="story-text">
                                  <div class="row h-100">
@@ -50,32 +57,53 @@
                                     </div>
                                 </div>
                              </div-->
-                                 @if($pic['statement'] != NULL)
+                                 {{--@if($pic['statement'] != NULL)--}}
                                     {{--<div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none">{{ $pic['statement'] }}</div>--}}
-                                 @else
-                                     <div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none"></div>
-                                 @endif
-                                 {{--<div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee">Drag Your Statement Here</div>--}}
-                                 <div class="script-container">
+                                 {{--@else--}}
+                                     {{--<div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none"></div>--}}
+                                 {{--@endif--}}
 
-                                         @if($pic['new_filename'] != NULL)
-                                             <img draggable="true" src={{ $path2 . $pic['new_filename'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; max-width:100%; height:auto'>
-                                             <div class="text-container">
-                                                 {{ $pic['statement'] }}
-                                             </div>
-                                         @else
-                                           <div>
-                                             <img draggable="true" src={{ $path2 . $pic['old_filename'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; max-width:100%; height:auto'>
-                                             <div class="text-container">
-                                                 @if( $ctr < $num_images )
-                                                    {{ $stats[$ctr] }}
-                                                 @endif
-                                             </div>
-                                           </div>
-                                         @endif
+                                 {{--<div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee">Drag Your Statement Here</div>--}}
+                                <div class="script-container">
+                                     <div id="sortableContainer">
+                                         @foreach($pics as $pic)
+                                             @if($pic['statement'] != NULL)
+                                                <div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none">{{ $pic['statement'] }}</div>
+                                             @else
+                                                <div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none"></div>
+                                             @endif
+
+                                             @if($pic['new_filename'] != NULL)
+                                                 <div id="{{ $pic['ID'] }}">
+                                                     <img src={{ $path2 . $pic['new_filename'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; max-width:100%; height:auto; cursor: move'>
+                                                     <div class="text-container">
+                                                         {{ $pic['statement'] }}
+                                                     </div>
+                                                 </div>
+                                                 {{--<img draggable="true" src={{ $path2 . $pic['new_filename'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; max-width:100%; height:auto'>--}}
+                                             @else
+                                                  <div id="{{ $pic['ID'] }}">
+                                                      <img src="{{ $path2 . $pic['old_filename'] }}" class="w-100" style='border: 10px solid #ededed; opacity: 0.5; max-width:100%; height:auto; cursor: move'>
+                                                  </div>
+                                                         {{--@if( $ctr < $num_images )--}}
+                                                            {{--<span class="text-container" style="margin-top: 10px">--}}
+                                                                {{--<p>{{ $stats[$ctr] }}</p>--}}
+                                                            {{--</span>--}}
+                                                         {{--@endif--}}
+                                             @endif
+                                             <input type="hidden" name="imageID" value="{{ $pic['ID'] }}">
+                                             <input type="hidden" name="filename[]" id="filename" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                         @endforeach
+                                    </div>
+
+                                    @for($ctr=0; $ctr<$num_images; $ctr++)
+                                        {{--@if( $ctr < $num_images )--}}
+                                        <div style="margin-top:10px; padding:0; line-height: 10px">{{ $stats[$ctr] }}</div>
+                                        {{--@endif--}}
+                                    @endfor
+
                                  </div>
-                                 <input type="hidden" name="imageID" value="{{ $pic['ID'] }}">
-                                 <input type="hidden" name="filename[]" id="filename" ondrop="drop(event)" ondragover="allowDrop(event)">
+
                                  {{--<select name="statement[]" class="mt-3 mb-3">--}}
                                      {{--<option>Introductory Statement</option>--}}
                                      {{--<option>General Descriptor</option>--}}
@@ -93,8 +121,17 @@
                              {{--<select name="" class="mb-3">--}}
                                 {{--<option>Property Layout</option>    --}}
                              {{--</select>--}}
-                            <?php $ctr++; ?>
-                         @endforeach
+                         {{--@endforeach--}}
+
+
+                       {{--@for($ctr=0; $ctr<$num_images; $ctr++)--}}
+                          {{--@if( $ctr < $num_images )--}}
+                          {{--<div style="position: relative; margin-top:10px; padding:0; line-height: 10px">{{ $stats[$ctr] }}</div>--}}
+                          {{--@endif--}}
+                       {{--@endfor--}}
+
+
+
                     {{--@endforeach--}}
                     </div>
                     <div class="col-sm-7 video-system-pic-block">
@@ -164,10 +201,12 @@
                     </div>
                 </div>
                 <div class="float-r mt-3 mb-5">
+                    <input type="hidden" name="sortOrder" id="sortOrder">
                     <input type="hidden" name="selectedStatements" id="selectedStatements">
                     <input type="hidden" name="pics" id="pics" value="{{ $pics }}">
                     <div style="float: left; margin-right: 10px"><a href="/account/preferences/video-system/1"><button class="btn btn-primary" type="button"><i class="arrow-left"></i> Previous Step</button></a></div>
-                    <button class="btn btn-primary" type="submit">SAVE : Next Step 3<i class="arrow-right"></i></button>
+                    {{--<button class="btn btn-primary" type="submit">SAVE : Next Step 3<i class="arrow-right"></i></button>--}}
+                    <button class="btn btn-primary" type="button" id="bntSaveScript">SAVE : Next Step 3<i class="arrow-right"></i></button>
                 </div>
                 <div class="clear"></div>
             </form>
@@ -176,8 +215,12 @@
 </div>
 @endsection
 
-<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+{{--<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>--}}
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>--}}
+{{--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--}}
+
+<script src="http://code.jquery.com/jquery-2.1.3.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 
 <script type="text/javascript">
 
@@ -251,6 +294,27 @@
     // end of handleDragStop
 
     $(document).ready(function() {
+
+        // Initialize sortable
+        $("#sortableContainer").sortable();
+
+        //functionality when Next Button is clicked
+        $("#bntSaveScript").click(function () {
+            var imageids_arr = [];
+
+            $('#sortableContainer div').each(function(){
+                var id = $(this).attr('id');
+                //var split_id = id.split("_");
+                imageids_arr.push(id);
+            });
+
+            console.log("the value of imageids array is ", imageids_arr);
+            $('#sortOrder').val(imageids_arr);
+
+            $('#frmManualStep2').submit();
+
+        });
+
         //for highlighting when clicking an item from the list
         $("li").click(function() {
             $(this).siblings("li").css("backgroundColor", "");
@@ -261,7 +325,7 @@
 
         $("#statement1").dblclick(function() {
             drop(event);
-        })
+        });
 
         $('#text-block').sortable({
             placeholder: 'ui-state-highlight'
@@ -289,7 +353,7 @@
 
             handleDragStop2(e);
 
-        });;
+        });
 
 
     });

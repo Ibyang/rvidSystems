@@ -1,20 +1,46 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div class="container ">
+
+    <div class="container">
+
+        <div class="row m-0">
+            <div class="col-sm-4 pr-4 pl-0">
+                <div class="border-bot3 pb-4 mb-2">
+                    <div class="d-inline-block align-top">
+                        <img src="{{ asset('storage/my-account-icon2.jpg') }}">
+                    </div>
+                    <div class="d-inline-block">
+                        <h4 class="font-weight-bold color-424244">{{ Auth::user()->name }}</h4>
+                        <div class="account-position line-height20">Professionals Real Estate <br>Bassendean</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="border-bot3 mb-2">
+                    <h4 class="font-weight-bold color-424244 mb-1">Terms and Conditions</h4>
+                    <div class="row mt-4 mb-3">
+                        <div class="col-sm-3 align-self-center color-666">Version 1.1</div>
+                        <div class="col-sm-3 align-self-center color-666">Dated 1 Jan 2018</div>
+                        <div class="col-sm align-self-center color-666"><i class="dl-pdf"></i> Download PDF</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="row my-account-container">
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 @auth
                     @include('frontend.layouts.parts.sidebar')
                 @endauth
             </div>
-            <div class="col-lg-9 my-account-form">
-                <br><h3 class="border-title">Terms and Conditions</h3>
-                <div class="row">
-                    <div class="col">Version 1.1</div>
-                    <div class="col">Dated 1 Jan 2018</div>
-                    <div class="col"><a href="{{ url('account/getDocumentPDF/1') }}">Download PDF</a></div>
-                    <div class="col"></div>
+            <div class="col-lg-8 my-account-form">
+                <h4 class="font-weight-bold color-424244 mb-1">Terms and Conditions</h4>
+                <div class="row mt-4 mb-3">
+                    <div class="col-sm-3 align-self-center color-666">Version 1.1</div>
+                    <div class="col-sm-3 align-self-center color-666">Dated 1 Jan 2018</div>
+                    <div class="col-sm align-self-center color-666"><i class="dl-pdf"></i> Download PDF</div>
                 </div>
                 <div class="border-999">
                     @if($content->content_text != null)
@@ -40,12 +66,16 @@
     </div>
 @endsection
 
-<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+{{-- page level scripts --}}
+@section('footer_scripts')
 
-<script type="text/javascript">
+    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
 
-    $(document).ready(function() {
+        $(document).ready(function() {
 
-    });
+        });
 
-</script>
+    </script>
+
+@stop

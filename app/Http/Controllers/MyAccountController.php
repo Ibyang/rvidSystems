@@ -41,6 +41,9 @@ class MyAccountController extends Controller
         $path = '/storage/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
+        //clear all session data
+        Session::flush();
+
         $states = State::get(['state_code', 'state_name']);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         $invoice = AgentInvoice::where('email', $email)->first();

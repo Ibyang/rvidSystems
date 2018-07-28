@@ -1262,6 +1262,10 @@ class MyVideoController extends Controller
         $uname = Auth::user()->name;
         $username = preg_replace('/\s/', '', $uname);
         $statements = Input::get('selectedStatements');
+        $sort_images = Input::get('sortOrder');
+        $arr_sortimages = explode(',', $sort_images);
+//        dd($sort_images);
+
         $arr_statements = explode(',', $statements);
         $pics = Session::get('pics');
         //$arr_pics_details = explode(',', $pics);
@@ -1279,34 +1283,121 @@ class MyVideoController extends Controller
             $fname_statement = str_replace("'", "", $arr_statements[$i]);
             $fname_statements = preg_replace('/\s+/', '_', $fname_statement);
 //            $fname_statements = str_replace(array('\'', '"'), '', $fname_statement);
-            $path2 = '../public/storage/client_images/' . $username . '/standard_pictures/Video' . $videoID . '/';
-            $path = public_path('storage\client_images\\' . $username . '\\standard_pictures\\Video' . $videoID . '\\');
-            $picname = $pics[$i]['old_filename'];
-            $imagePath = $path . $picname;
-//            $ext = pathinfo($imagePath, PATHINFO_EXTENSION);
-            $ext = File::extension($picname);
-            $file = basename($imagePath, ".".$ext);
-            $newfilename = $file . '_' . $fname_statements . '.' . $ext;
+//            $path2 = '../public/storage/client_images/' . $username . '/standard_pictures/Video' . $videoID . '/';
+//            $path = public_path('storage\client_images\\' . $username . '\\standard_pictures\\Video' . $videoID . '\\');
+//            $picname = $pics[$i]['old_filename'];
+//            $imagePath = $path . $picname;
+//            $ext = File::extension($picname);
+//            $file = basename($imagePath, ".".$ext);
+//            $newfilename = $file . '_' . $fname_statements . '.' . $ext;
 
-
-
-            $oldimagePath = $path2 . $picname;
-            $newimagePath = $path2 . $newfilename;
+//            $oldimagePath = $path2 . $picname;
+//            $newimagePath = $path2 . $newfilename;
 //
             if($arr_statements[$i]){
                 standardVideoPicture::where('ID', $picID)->update([
-                    'statement' => $arr_statements[$i],
-                    'new_filename' => $newfilename
+                    'statement' => $arr_statements[$i]
+//                    'new_filename' => $newfilename
                 ]);
             }
-//            Storage::move($imagePath, $newimagePath);
-            rename($oldimagePath, $newimagePath);
+
+//            rename($oldimagePath, $newimagePath);
 
         }
 
         videoProgress::where('video_ID', $videoid)->update([
             'script_progress' => 15
         ]);
+
+        //for updating the order of images
+        $position = 1;
+        /*$ctr = 1;
+        foreach($arr_sortimages as $sorder){
+            standardVideoPicture::where('ID', $sorder[$ctr])->update([
+                'sort_order' => $position
+            ]);
+            $position++;
+            $ctr = $ctr + 2;
+        }*/
+        $ctr_sortimages = count($arr_sortimages);
+
+        for($ctr=1; $ctr<=$ctr_sortimages;){
+
+            if($position == 1)
+                $fname = 'A';
+            else if($position == 2)
+                $fname = 'B';
+            else if($position == 3)
+                $fname = 'C';
+            else if($position == 4)
+                $fname = 'D';
+            else if($position == 5)
+                $fname = 'E';
+            else if($position == 6)
+                $fname = 'F';
+            else if($position == 7)
+                $fname = 'G';
+            else if($position == 8)
+                $fname = 'H';
+            else if($position == 9)
+                $fname = 'I';
+            else if($position == 10)
+                $fname = 'J';
+            else if($position == 11)
+                $fname = 'K';
+            else if($position == 12)
+                $fname = 'L';
+            else if($position == 13)
+                $fname = 'M';
+            else if($position == 14)
+                $fname = 'N';
+            else if($position == 15)
+                $fname = 'O';
+            else if($position == 16)
+                $fname = 'P';
+            else if($position == 17)
+                $fname = 'Q';
+            else if($position == 18)
+                $fname = 'R';
+            else if($position == 19)
+                $fname = 'S';
+            else if($position == 20)
+                $fname = 'T';
+            else if($position == 21)
+                $fname = 'U';
+            else if($position == 22)
+                $fname = 'V';
+            else if($position == 23)
+                $fname = 'W';
+            else if($position == 24)
+                $fname = 'X';
+            else if($position == 25)
+                $fname = 'Y';
+
+            $path2 = '../public/storage/client_images/' . $username . '/standard_pictures/Video' . $videoid . '/';
+            $path = public_path('storage\client_images\\' . $username . '\\standard_pictures\\Video' . $videoid . '\\');
+
+            $image_oldname = standardVideoPicture::where('ID', $arr_sortimages[$ctr])->first();
+            $old_fname = $image_oldname["old_filename"];
+
+            $extension = File::extension($old_fname);
+            $new_fname = $fname . '.' . $extension;
+
+            $oldimagePath = $path2 . $old_fname;
+            $newimagePath = $path2 . $new_fname;
+
+            rename($oldimagePath, $newimagePath);
+
+            standardVideoPicture::where('ID', $arr_sortimages[$ctr])->update([
+                'sort_order' => $position,
+                'new_filename' => $new_fname
+            ]);
+            $position++;
+            $ctr = $ctr + 2;
+
+
+
+        }
 
         return redirect()->route('account-video-system-template');
     }
@@ -1407,7 +1498,21 @@ class MyVideoController extends Controller
             'total_progress' => $total_progress
         ]);
 
+        //remove all session data
+//        Session::forget('pics');
+//        Session::forget('img1');
+//        Session::forget('img2');
+//        Session::forget('img3');
+//        Session::forget('img4');
+//        Session::forget('img5');
+//        Session::forget('img6');
+//        Session::forget('img7');
+//        Session::forget('img8');
+//        Session::forget('img9');
+//        Session::forget('img10');
+
         return redirect()->route('account-make-video');
+
     }
 
 

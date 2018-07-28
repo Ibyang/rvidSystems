@@ -2,6 +2,10 @@
 
 <link href="{{ asset('assets/vendors/dropzone/css/dropzone.css') }}" rel="stylesheet" type="text/css" />
 
+<div id="css_container"></div>
+
+{{--<link href="{{ asset('storage/vendors/dropzone/css/dropzone.css') }}" rel="stylesheet" type="text/css" />--}}
+
 <style>
     .dropzone { text-align: center;}
 
@@ -15,6 +19,152 @@
         height: auto !important;
         position: relative !important;
     }
+
+    /* for the smallest version template on the page */
+    #small-wrapper {
+        width: 460px;
+        min-height: 259px !important;
+    }
+
+    #sidebar_template {
+        /*width: 90px;*/ /*100 - 20px;*/ /*this part is commented */
+    }
+
+    #sidebar_template .img-cont {
+        padding-top: 0;
+        width: 55px;
+        min-height: 55px !important;
+        margin: 2px auto;
+        position: relative;
+    }
+
+    #sidebar_template h1 {
+        font-size:11px !important;
+    }
+
+    #sidebar_template h2 {
+        font-size:10px !important;
+    }
+
+    #main-container {
+        width: 361px;
+    }
+
+    #main-container .content-header {
+        min-height: 58px !important;
+        padding-top:22px !important;
+        padding-bottom: 0 !important;
+        padding-left: 20px;
+    }
+
+    #main-container .header-icon,
+    #main-container .header-text {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    #main-container .add {
+        min-height: 58px !important;
+        padding-top: 17px !important;
+
+        padding-bottom: 0 !important;
+        font-size: 9px !important;
+        line-height: 1.5em !important;
+    }
+
+    #main-container .grey-txt {font-size: 10px; }
+
+    #main-container .house {
+        border-left: 1px solid #585959 !important;
+    }
+
+    #main-container span.ctr {
+        /*padding:0 2px 0 2px;*/
+        padding: 6px;
+        position: absolute;
+        bottom: -10px;
+    }
+
+    .col-md-12 {
+        padding:5px;
+    }
+
+    .col-md-6 {
+        padding:5px;
+    }
+
+    .col-md-3 {
+        padding:6px;
+    }
+
+    @media (min-width: 992px) {
+        .col-md-3 {
+            width: 20%;
+        }
+    }
+
+
+    /* for the medium resolution template placed in the page */
+
+    /*#medium-wrapper {*/
+        /*width: 720px;*/
+        /*min-height: 406px !important;*/
+    /*}*/
+
+    /*#medium-sidebar {*/
+        /*width: 126px; !*156 - 30px;*!*/
+    /*}*/
+    /*#medium-sidebar .img-cont {*/
+        /*padding-top: 0;*/
+        /*width: 87px;*/
+        /*min-height: 87px !important;*/
+        /*margin: 2px auto;*/
+        /*position: relative;*/
+    /*}*/
+
+    /*#medium-sidebar h1 {*/
+        /*font-size:14px !important;*/
+    /*}*/
+
+    /*#medium-sidebar h2 {*/
+        /*font-size:13px !important;*/
+    /*}*/
+
+    /*#medium-content {*/
+        /*width: 565px;*/
+    /*}*/
+
+    /*#medium-content .content-header {*/
+        /*min-height: 91px !important;*/
+        /*padding-top:35px !important;*/
+        /*padding-bottom: 0;*/
+    /*}*/
+
+    /*#medium-content .header-icon,*/
+    /*#medium-content .header-text {*/
+        /*padding-top: 0;*/
+        /*padding-bottom: 0;*/
+    /*}*/
+    /*#medium-content .add {*/
+        /*padding-top: 26px !important;*/
+        /*padding-bottom: 0;*/
+        /*font-size: 12px !important;*/
+        /*line-height: 1.5em !important;*/
+    /*}*/
+
+    /*#medium-content .grey-txt {font-size: 13px; }*/
+
+    /*#medium-content .house {*/
+        /*border-left: 1px solid #585959 !important;*/
+    /*}*/
+
+    /*#medium-content span.ctr {*/
+        /*!*padding:0 4px 0 4px;*!*/
+        /*padding: 6px;*/
+        /*position: absolute;*/
+        /*bottom: -10px;*/
+    /*}*/
+
+
 
 </style>
 
@@ -61,9 +211,11 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>--}}
 
+    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
 
     <script type="text/javascript" src=" {{ asset('assets/vendors/dropzone/js/dropzone.js') }}"></script>
 
@@ -336,11 +488,15 @@
             // $('.dropzone').css('background', 'white');
 
 
+
             //passing values from links of main templates
 
             var folder_name = $('#folder_name').val();
 
+            var agency = "{!! $agent['group'] !!}";
+
             $('#mainTemplateModal').on('show.bs.modal', function(e) {
+                $('body').addClass('test');
                 var mainTemplate = $(e.relatedTarget).attr('data-dbid');
 
                 $("#mainTemplate").attr('src', '/storage/template_materials/' + folder_name + '/' + mainTemplate);
@@ -349,6 +505,7 @@
 
             //passing values from links of end templates
             $('#endTemplateModal').on('show.bs.modal', function(e) {
+                $('body').addClass('test');
                 var endTemplate = $(e.relatedTarget).attr('data-dbid');
 
                 // $("#endTemplate").attr('src', '/storage/register/' + endTemplate);
@@ -486,10 +643,25 @@
             });
 
             $('#mainframe1').click(function() {
+                $('#css_container').empty();
                 if ($(this).is(":checked"))
 
                     // it is checked
-                    alert("Template 1 is selected")
+                    $('#first_template').show();
+                    $('#default_template').hide();
+                    $('#second_template').hide();
+                    $('#third_template').hide();
+                    $('#fourth_template').hide();
+
+                    console.log("the value of group is ", agency);
+                    var url_link = '/storage/agency_css/' + agency + '/mainframe/1/style/custom.css';
+                    //var url_link2 = '/storage/agency_css/' + agency + '/mainframe/1/style/grid.css';
+                    console.log("url link is " + url_link);
+
+                    // $('#css_container').append('<link rel="stylesheet" href="' + url_link + '" type="text/css" />')
+                    $('#css_container').append('<link href="' + url_link + '" rel="stylesheet" type="text/css" />')
+                    //$('#css_container').append('<link href="' + url_link2 + '" rel="stylesheet" type="text/css" />')
+
 
             });
 
@@ -497,7 +669,18 @@
                 if ($(this).is(":checked"))
 
                 // it is checked
-                    alert("Template 2 is selected")
+                    $('#second_template').show();
+                    $('#default_template').hide();
+                    $('#first_template').hide();
+                    $('#third_template').hide();
+                    $('#fourth_template').hide();
+
+                    //alert("Template 2 is selected")
+                    var url_link = '/storage/agency_css/' + agency + '/mainframe/2/style/custom.css';
+                    //var url_link2 = '/storage/agency_css/' + agency + '/mainframe/1/style/grid.css';
+
+                    // $('#css_container').append('<link rel="stylesheet" href="' + url_link + '" type="text/css" />')
+                    $('#css_container').append('<link href="' + url_link + '" rel="stylesheet" type="text/css" />')
 
             });
 
@@ -505,7 +688,18 @@
                 if ($(this).is(":checked"))
 
                 // it is checked
-                    alert("Template 3 is selected")
+                    $('#third_template').show();
+                    $('#default_template').hide();
+                    $('#first_template').hide();
+                    $('#second_template').hide();
+                    $('#fourth_template').hide();
+                    //alert("Template 3 is selected")
+
+                    var url_link = '/storage/agency_css/' + agency + '/mainframe/3/style/custom.css';
+                    //var url_link2 = '/storage/agency_css/' + agency + '/mainframe/1/style/grid.css';
+
+                    // $('#css_container').append('<link rel="stylesheet" href="' + url_link + '" type="text/css" />')
+                    $('#css_container').append('<link href="' + url_link + '" rel="stylesheet" type="text/css" />')
 
             });
 
@@ -513,8 +707,50 @@
                 if ($(this).is(":checked"))
 
                 // it is checked
-                    alert("Template 4 is selected")
+                    $('#fourth_template').show();
+                    $('#default_template').hide();
+                    $('#first_template').hide();
+                    $('#second_template').hide();
+                    $('#third_template').hide();
+                    //alert("Template 4 is selected")
 
+                    var url_link = '/storage/agency_css/' + agency + '/mainframe/4/style/custom.css';
+                    //var url_link2 = '/storage/agency_css/' + agency + '/mainframe/1/style/grid.css';
+
+                    // $('#css_container').append('<link rel="stylesheet" href="' + url_link + '" type="text/css" />')
+                    $('#css_container').append('<link href="' + url_link + '" rel="stylesheet" type="text/css" />')
+
+            });
+
+            //to display Expand Modal and show the corresponding template
+            $('#expandTemplateModal').on('show.bs.modal', function(e) {
+
+                var templateNum = $(e.relatedTarget).attr('data-dbid');
+
+                if(templateNum == 1){
+                    $('#firstMFTemplateModal').show();
+                    $('#secondMFTemplateModal').hide();
+                    $('#thirdMFTemplateModal').hide();
+                    $('#fourthMFTemplateModal').hide();
+                }
+                else if(templateNum == 2){
+                    $('#secondMFTemplateModal').show();
+                    $('#firstMFTemplateModal').hide();
+                    $('#thirdMFTemplateModal').hide();
+                    $('#fourthMFTemplateModal').hide();
+                }
+                else if(templateNum == 3){
+                    $('#thirdMFTemplateModal').show();
+                    $('#firstMFTemplateModal').hide();
+                    $('#secondMFTemplateModal').hide();
+                    $('#fourthMFTemplateModal').hide();
+                }
+                else if(templateNum == 4){
+                    $('#fourthMFTemplateModal').show();
+                    $('#firstMFTemplateModal').hide();
+                    $('#secondMFTemplateModal').hide();
+                    $('#thirdMFTemplateModal').hide();
+                }
             });
 
             // $('input[type="checkbox"]').on('change', function() {

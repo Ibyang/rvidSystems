@@ -1,4 +1,4 @@
-               <h3><div class="register-icon reg-frame mb-2"></div><span class="pl-1">Video Frame Templates</span></h3>
+        <h3><div class="register-icon reg-frame mb-2"></div><span class="pl-1">Video Frame Templates</span></h3>
                    <div class="row">
                        <div class="col-sm">
                            Select Main Frame

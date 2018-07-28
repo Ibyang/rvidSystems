@@ -1,65 +1,61 @@
-    @if (Request::segment(1) != 'get-started')
-        <h3 class="register-title text-center">Join now! To start using REVid Today!</h3>
+<div class="reg-form-container">
+    @if (Request::segment(2) == '2')
+        <h4 class="color-000 font20">4 Easy Steps (3 to Go!)</h4>
+    @elseif (Request::segment(2) == '3')
+        <h4 class="color-000 font20">4 Easy Steps (2 to Go!)</h4>
+    @elseif (Request::segment(2) == '4')
+        <h4 class="color-000 font20">4 Easy Steps (1 to Go!)</h4>
+    @else
+        <h4 class="color-000 font20">4 Easy Steps</h4>
     @endif
-        <div class="row register-info">
-          <div class="col-md-auto">
-            @if (Request::segment(2) == 'step1')
-                <h4>4 Easy Steps (4 to Go!)</h4>
-            @elseif (Request::segment(2) == 'step2')
-                <h4>4 Easy Steps (3 to Go!)</h4>
-            @elseif (Request::segment(2) == 'step3')
-                <h4>4 Easy Steps (2 to Go!)</h4>
-            @elseif (Request::segment(2) == 'step4')
-                <h4> 4 Easy Steps (1 to Go!)</h4>
-            @elseif (Request::segment(1) == 'get-started')
-                  <h4>Membership + Setup in 4 Easy Steps</h4>
-            @else
-                {{--<h4>Setup in 4 Easy Steps</h4>--}}
-                <h4>4 Easy Steps (4 to Go!)</h4>
-            @endif
-            <div class="row text-center">
-                <div class="col-md-auto">
-                    <i class="register-icon details"></i><br>
-                    <p>STEP 1<br><b>Add Your<br>Details</b></p>
-                </div>
-                <div class="col-md-auto">
-                    <i class="arrow"></i>
-                </div>
-                <div class="col-md-auto">
-                    <i class="register-icon my-tmpt"></i><br>
-                    <p>STEP 2<br><b>Set-up Your <br>Template</b></p>
-                </div>
-                <div class="col-md-auto">
-                    <i class="arrow"></i>
-                </div>
-                <div class="col-md-auto">
-                     <i class="register-icon pref"></i><br>
-                    <p>STEP 3<br><b>Set your <br>Preferences</b></p>
-                </div>
-                <div class="col-md-auto">
-                    <i class="arrow"></i>
-                </div>
-                <div class="col-md-auto">
-                     <i class="register-icon payment"></i><br>
-                     <p>STEP 4<br><b>Add Payment <br>Details</b></p>
+    <div class="row m-0">
+        <div class="col px-1 mb-2">
+            <div class="join-step-container @if (Request::segment(2) != (1 && 2) || Request::segment(2) == '1' || (Request::segment(1) == 'use-revid') ) bg-006 @else bg-eae @endif pt-3 pb-2 px-2">
+                <div class="row">
+                    <div class="col-md-auto pl-4 pr-3 text-center"><i class="join-step-icon @if (Request::segment(2) != (1 && 2) || Request::segment(2) == '1' || (Request::segment(1) == 'use-revid') ) j-s-1h @else j-s-1 @endif "></i></div>
+                    <div class="col-sm font-weight-bold p-0">
+                        <h4 class="@if (Request::segment(2) != (1 && 2) || Request::segment(2) == '1' || (Request::segment(1) == 'use-revid')) color-ffffff @endif">STEP 1</h4>
+                        <div class="@if (Request::segment(2) != (1 && 2) || Request::segment(2) == '1' || (Request::segment(1) == 'use-revid')) color-ffffff @endif">Add Your <br>Details</div>
+                    </div>
+                    <div class="col-md-auto align-self-center"><div class="join-step-arrow @if (Request::segment(2) != (1 && 2) || Request::segment(2) == '1' || (Request::segment(1) == 'use-revid') ) border-fff @endif"></div></div>
                 </div>
             </div>
-          </div>
-          <div class="col-md-auto text-center">
-                <h4>All included in your Membership</h4>
-                <div class="row register-col2">
-                    <div class="col-sm">
-                        <i class="register-icon rvd"></i><br>
-                        <p>REVid<br><b>Ready<br>To Go</b></p>
-                    </div>
-                    <div class="col-sm">
-                        <i class="register-icon db"></i><br>
-                        <p>DriveBy<br><b>Ready<br>To Go</b></p>
-                    </div>
-                    <div class="col-sm">
-                        <i class="register-icon lf"></i><br>
-                        <p>LookFirst<br><b>Ready<br>To Go</b></p>
-                    </div>
-               </div>
         </div>
+        <div class="col px-1 mb-2">
+            <div class="join-step-container @if (Request::segment(2) == '2') bg-006 @else bg-eae @endif pt-3 pb-2 px-2">
+                <div class="row">
+                    <div class="col-md-auto pl-4 pr-3 text-center"><i class="join-step-icon @if (Request::segment(2) == '2') j-s-2h @else j-s-2 @endif "></i></div>
+                    <div class="col-sm font-weight-bold p-0">
+                        <h4 class="@if (Request::segment(2) == '2') color-ffffff @endif">STEP 2</h4>
+                        <div class="@if (Request::segment(2) == '2') color-ffffff @endif">Set-up Your <br>Template</div>
+                    </div>
+                    <div class="col-md-auto align-self-center"><div class="join-step-arrow @if (Request::segment(2) == '2') border-fff @else border-424 @endif "></div></div>
+                </div>
+            </div>
         </div>
+        <div class="col px-1 mb-2">
+            <div class="join-step-container @if (Request::segment(2) == '3') bg-006 @else bg-eae @endif  pt-3 pb-2 px-2">
+                <div class="row">
+                    <div class="col-md-auto pl-4 pr-3 text-center"><i class="join-step-icon @if (Request::segment(2) == '3') j-s-3h @else j-s-3 @endif"></i></div>
+                    <div class="col-sm font-weight-bold p-0">
+                        <h4 class="@if (Request::segment(2) == '3') color-ffffff @endif">STEP 3</h4>
+                        <div class="@if (Request::segment(2) == '3') color-ffffff @endif">Set Your <br>Preferences</div>
+                    </div>
+                    <div class="col-md-auto align-self-center"><div class="join-step-arrow @if (Request::segment(2) == '3') border-fff @else border-424 @endif"></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="col px-1 mb-2">
+            <div class="join-step-container @if (Request::segment(2) == '4') bg-006 @else bg-eae @endif  pt-3 pb-2 px-2">
+                <div class="row">
+                    <div class="col-md-auto pl-4 pr-3 text-center"><i class="join-step-icon @if (Request::segment(2) == '4') j-s-4h @else j-s-4 @endif"></i></div>
+                    <div class="col-sm font-weight-bold p-0">
+                        <h4 class="@if (Request::segment(2) == '4') color-ffffff @endif">STEP 4</h4>
+                        <div class="@if (Request::segment(2) == '4') color-ffffff @endif">Add Payment<br>Details</div>
+                    </div>
+                    <div class="col-md-auto align-self-center"><div class="join-step-arrow @if (Request::segment(2) == '4') border-fff @else border-424 @endif"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

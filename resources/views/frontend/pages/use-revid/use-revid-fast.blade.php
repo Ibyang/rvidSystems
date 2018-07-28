@@ -2,24 +2,35 @@
 
 @section('content')
 
-    <div class="container" id="content">
-        <h1 class="c-6600cc">Why Use REVid?</h1>
+    <div class="container pb-0" id="content">
         <div class="row">
-           <div class="col-12 col-md-auto">
-               <a href="" data-toggle="modal" data-target="#RevidFastVideoModal"><img src={{ asset('storage/why-use-revid-affordable.jpg') }} /></a>
-           </div>
-           <div class="col col-lg-2">
-            <ul class="list">
-                <li>Fast</li>
-            </ul>
-           </div>
+            <div class="col-sm col-md-auto">
+                <h1 class="c-6600cc">Why Use REVid?</h1>
+                <a href="" data-toggle="modal" data-target="#RevidFastVideoModal"><img class="img-fluid" src={{ asset('storage/where-use-revid-fast.jpg') }} /></a>
+            </div>
+            <div class="col-sm">
+                <h1 class="c-6600cc pl-4">Fast</h1>
+                <ul class="list text-justify ml-4">
+                    <li class="mb-0"><b>REvid</b> can produce your Video with <b>2 Hours using the <br>RUSH!</b> function.</li>
+                    <li class="mb-0"><b>REVid</b> can produce your Video with <b>24 hours using the <br>SURGE!</b> function.</li>
+                    <li class="mb-0"><b>Typical</b> (no RUSH! or SURGE!) Video productions take between <b>2 to 3 days</b>.</li>
+                    <li><b>Compared to the alternative</b> of getting a film crew on-site,
+                        establishing directions, writing a script and having it professionally
+                        recorded and then the editing – <b>REVid is lighting FAST!</b></li>
+                </ul>
+            </div>
         </div>
-     
+
+        @include('frontend.register.register-join-info')
+
         @include('frontend.register.register-info')
-        
-    </div>
-    <div class="bg-eae">
+
         @include('frontend.register.register-form')
+
+    </div>
+    @include('frontend.pages.frontpage.why-use-revid')
+
+    @include('frontend.pages.frontpage.footer')
     </div>
 
     <!-- Video Modal for Revid Fast -->
@@ -36,7 +47,7 @@
                         <span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <video controlsList="nodownload" controls id="video1" style="width: 100%" autoplay>
+                    <video controlsList="nodownload" controls id="video1" style="width: 100%" >
                         <source src={{ asset('storage/videos/VIDDYOZE-REVid_V6.mp4') }} type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -52,21 +63,21 @@
 
 @endsection
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{{-- page level scripts --}}
+@section('footer_scripts')
 
-<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
 
-<script type="text/javascript">
+        $(document).ready(function() {
 
-    $(document).ready(function() {
+            $('#RevidFastVideoModal').on('shown.bs.modal', function () {
+                $('body').addClass('test');
+                $('#video1')[0].play();
+            })
 
-        $('#RevidFastVideoModal').on('shown.bs.modal', function () {
-            $('body').addClass('test');
-            $('#RevidFastVideoModal')[0].play();
-        })
+        });
 
-    });
+    </script>
 
-</script>
+@stop
+

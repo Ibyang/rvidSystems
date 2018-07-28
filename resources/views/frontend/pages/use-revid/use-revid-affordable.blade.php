@@ -2,24 +2,33 @@
 
 @section('content')
 
-    <div class="container" id="content">
-        <h1 class="c-6600cc">Why Use REVid?</h1>
+    <div class="container pb-0" id="content">
         <div class="row">
-           <div class="col-12 col-md-auto">
-               <a href="" data-toggle="modal" data-target="#RevidAffordableVideoModal"><img src={{ asset('storage/why-use-revid-affordable.jpg') }} /></a>
-           </div>
-           <div class="col col-lg-2">
-            <ul class="list">
-                <li>Affordable</li>   
-            </ul>
-           </div>
+            <div class="col-sm col-md-auto">
+                <h1 class="c-6600cc">Why Use REVid?</h1>
+                <a href="" data-toggle="modal" data-target="#RevidAffordableVideoModal"><img class="img-fluid" src={{ asset('storage/why-use-revid-affordable.jpg') }} /></a>
+            </div>
+            <div class="col-sm">
+                <h1 class="c-6600cc pl-4">Affordable</h1>
+                <ul class="list text-justify ml-4">
+                    <li><b>Membership</b> (including video storage and hosting costs) <b>from $11/month</b></li>
+                    <li><b>Generic</b> Videos (the <b>main product</b> offer) cost before add-ons is <b>$99 (including GST)</b></li>
+                    <li><b>Standard</b> Videos (you have more active involvement) costs before add-ons <b>$139 (including GST)</b></li>
+                    <li><b>Premium</b> Videos (for special properties) cost <b>$389 (including GST)</b></li>
+                </ul>
+            </div>
         </div>
-     
+
+        @include('frontend.register.register-join-info')
+
         @include('frontend.register.register-info')
-        
-    </div>
-    <div class="bg-eae">
+
         @include('frontend.register.register-form')
+
+    </div>
+    @include('frontend.pages.frontpage.why-use-revid')
+
+    @include('frontend.pages.frontpage.footer')
     </div>
 
     <!-- Video Modal for Revid Affordable -->
@@ -36,7 +45,7 @@
                         <span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <video controlsList="nodownload" controls id="video1" style="width: 100%" autoplay>
+                    <video controlsList="nodownload" controls id="video1" style="width: 100%">
                         <source src={{ asset('storage/videos/VIDDYOZE-REVid_V6.mp4') }} type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -52,21 +61,21 @@
 
 @endsection
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{{-- page level scripts --}}
+@section('footer_scripts')
 
-<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
 
-<script type="text/javascript">
+        $(document).ready(function() {
 
-    $(document).ready(function() {
+            $('#RevidAffordableVideoModal').on('shown.bs.modal', function () {
+                $('body').addClass('test');
+                $('#video1')[0].play();
+            })
 
-        $('#RevidAffordableVideoModal').on('shown.bs.modal', function () {
-            $('body').addClass('test');
-            $('#RevidAffordableVideoModal')[0].play();
-        })
+        });
 
-    });
+    </script>
 
-</script>
+@stop
+

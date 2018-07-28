@@ -8,7 +8,7 @@
     <title>REVid Systems</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+    {{--<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>--}}
   </head>
   <body>
       @include('frontend.pages.frontpage.header')
@@ -19,9 +19,7 @@
 
       @include('frontend.pages.frontpage.info')
 
-      @include('frontend.pages.frontpage.info-form')
-      
-      @include('frontend.pages.frontpage.use-revid')
+      @include('frontend.pages.frontpage.why-use-revid')
 
       @include('frontend.pages.frontpage.footer')
   </body>

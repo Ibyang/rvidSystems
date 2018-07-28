@@ -2,23 +2,37 @@
 
 @section('content')
 
-    <div class="container" id="content">
-        <h1 class="c-6600cc">Why Use REVid?</h1>
+    <div class="container pb-0" id="content">
         <div class="row">
-           <div class="col-12 col-md-auto">
-               <a href="" data-toggle="modal" data-target="#RevidEasyUseVideoModal"><img src={{ asset('storage/why-use-revid-easy.jpg') }} /></a>
-           </div>
-           <div class="col col-lg-2">
-            <ul class="list">
-                <li>Easy to Use</li>   
-            </ul>
-           </div>
+            <div class="col-sm col-md-auto">
+                <h1 class="c-6600cc">Why Use REVid?</h1>
+                <a href="" data-toggle="modal" data-target="#RevidEasyUseVideoModal"><img class="img-fluid" src={{ asset('storage/why-use-revid-easy.jpg') }} /></a>
+            </div>
+            <div class="col-sm">
+                <h1 class="c-6600cc pl-4">Easy to Use</h1>
+                <ul class="list text-justify ml-4 line-height24">
+                    <li class="mb-0">It takes 4 steps to set-up your video templates and select your
+                        preferences – then you are ready to go –all you need to do is login
+                        and order your video.</li>
+                    <li class="mb-0"><b>To Order your Video</b> – simply login and enter (or copy) the existing
+                        online property listing URL into the REVid System – <b>it really is <br>that easy</b>.</li>
+                    <li class="mb-0"><b>Manage your Video Library</b> through the REVid System tools and
+                        functions – making it easy to track progress and function Videos.</li>
+                    <li class="mb-0"><b>Change</b> your templates and preference settings – using the My
+                        Preference and Explore functions.</li>
+                </ul>
+            </div>
         </div>
-    @include('frontend.register.register-info')
-        
-    </div>
-    <div class="bg-eae">
+        @include('frontend.register.register-join-info')
+
+        @include('frontend.register.register-info')
+
         @include('frontend.register.register-form')
+
+    </div>
+    @include('frontend.pages.frontpage.why-use-revid')
+
+    @include('frontend.pages.frontpage.footer')
     </div>
 
     <!-- Video Modal for Revid Easy Use -->
@@ -35,7 +49,7 @@
                         <span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <video controlsList="nodownload" controls id="video1" style="width: 100%" autoplay>
+                    <video controlsList="nodownload" controls id="video1" style="width: 100%">
                         <source src={{ asset('storage/videos/VIDDYOZE-REVid_V6.mp4') }} type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -51,21 +65,20 @@
 
 @endsection
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{{-- page level scripts --}}
+@section('footer_scripts')
 
-<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
 
-<script type="text/javascript">
+        $(document).ready(function() {
 
-    $(document).ready(function() {
+            $('#RevidEasyUseVideoModal').on('shown.bs.modal', function () {
+                $('body').addClass('test');
+                $('#video1')[0].play();
+            })
 
-        $('#RevidEasyUseVideoModal').on('shown.bs.modal', function () {
-            $('body').addClass('test');
-            $('#RevidEasyUseVideoModal')[0].play();
-        })
+        });
 
-    });
+    </script>
 
-</script>
+@stop
