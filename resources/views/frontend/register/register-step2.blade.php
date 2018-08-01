@@ -169,17 +169,12 @@
 </style>
 
 @section('content')
+    <div class="container pb-0" id="content">
+        <h1 class="c-6600cc">Let’s Get Started! Step 2</h1>
 
-    <div class="container" id="content">
-        <h1 class="c-6600cc">Let's Get Started! Step 2</h1>
-        <hr>
         @include('frontend.register.register-info')
+
     </div>
-
-    {{--<div class="bg-eae">--}}
-        {{--@include('frontend.register.template-form')--}}
-    {{--</div>--}}
-
     <div class="bg-eae step-two-register">
         <div class="container" id="content">
 
@@ -201,21 +196,11 @@
         </div>
     </div>
 
+</div>
 @endsection
 
-{{--@extends('frontend.layouts.parts.footer-scripts')--}}
-
 {{-- page level scripts --}}
-{{--@section('footer_scripts')--}}
-{{--    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>--}}
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>--}}
-
-    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+@section('footer_scripts')
 
     <script type="text/javascript" src=" {{ asset('assets/vendors/dropzone/js/dropzone.js') }}"></script>
 
@@ -767,5 +752,5 @@
         });
     </script>
 
-{{--@stop--}}
+@stop
 

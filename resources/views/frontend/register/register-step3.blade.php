@@ -1,23 +1,9 @@
 @extends('frontend.layouts.main')
 
-{{--@section('content')--}}
-
-    {{--<div class="container" id="content">--}}
-        {{--<h1 class="c-6600cc">Let's Get Started! Step 3</h1>--}}
-        {{--<hr>--}}
-        {{--@include('frontend.register.register-info-step3')--}}
-    {{--</div>--}}
-
-    {{--<div class="bg-eae">--}}
-        {{--@include('frontend.register.preferences-form')--}}
-    {{--</div>--}}
-
-{{--@endsection--}}
-
 @section('content')
-    <div class="container" id="content">
+    <div class="container p-0" id="content">
         <h1 class="c-6600cc">Let’s Get Started! Step 3</h1>
-        <hr>
+
         @include('frontend.register.register-info')
 
     </div>
@@ -30,14 +16,13 @@
 
                 @include('frontend.register.steps.surge')
 
-                {{--@include('frontend.register.steps.sites') to enable on phase 2 --}}
+                @include('frontend.register.steps.sites')
 
-                {{--@include('frontend.register.steps.social') to enable phase 2--}}
+                @include('frontend.register.steps.social')
 
                 @include('frontend.register.steps.email')
 
                 @include('frontend.register.steps.broadcast')
-
             </form>
         </div>
     </div>
@@ -45,18 +30,8 @@
     </div>
 @endsection
 
-
-
-{{--@extends('frontend.layouts.parts.footer-scripts')--}}
-
 {{-- page level scripts --}}
-{{--@section('footer_scripts')--}}
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+@section('footer_scripts')
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -161,5 +136,5 @@
         });
     </script>
 
-{{--@stop--}}
+@stop
 

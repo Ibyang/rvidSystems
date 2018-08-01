@@ -5,7 +5,7 @@
         <h4 class="color-000 font20">4 Easy Steps (2 to Go!)</h4>
     @elseif (Request::segment(2) == '4')
         <h4 class="color-000 font20">4 Easy Steps (1 to Go!)</h4>
-    @else
+    @elseif (Request::segment(1) != 'about' && Request::segment(2) != '1')
         <h4 class="color-000 font20">4 Easy Steps</h4>
     @endif
     <div class="row m-0">

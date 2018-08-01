@@ -3,32 +3,32 @@
 @section('content')
 
     <div class="container" id="content">
-        <h3 class="border-title">Privacy Terms</h3>
+
+        <h3 class="header-border font-weight-bold color-424244">Privacy Policy</h3>
         <div class="row">
-            <div class="col">Version 1.1</div>
-            <div class="col">Dated 1 Jan 2018</div>
-            <div class="col"><a href="{{ url('account/getDocumentPDF/3') }}">Download PDF</a></div>
-            <div class="col"></div>
+            <div class="col-2 align-self-center color-666">Version 1.1</div>
+            <div class="col-3 align-self-center color-666">Dated 1 Jan 2018</div>
+            <div class="col-2 align-self-center color-666"><a href="{{ url('account/getDocumentPDF/3') }}" style="color: #666666"><i class="dl-pdf"></i> Download PDF</a></div>
+            <div class="col-sm align-self-center text-right">
+                {{--<div class="d-flex justify-content-end">--}}
+                    {{--<div class="p-2"><div class="arrow-prev"></div></div>--}}
+                    {{--<div class="pl-0 pr-2 py-2">Page</div>--}}
+                    {{--<div class="my-2 arrow-data text-center">1</div>--}}
+                    {{--<div class="p-2">of</div>--}}
+                    {{--<div class="my-2 arrow-data text-center">1</div>--}}
+                    {{--<div class="py-2 pl-2"><div class="arrow-next"></div></div>--}}
+                {{--</div>--}}
+            </div>
         </div>
+
         <div class="border-999">
+            {{--<b>PRIVACY POLICY</b>--}}
+            {{--<br>--}}
+            <br>
             @if($content->content_text != null)
                 {!! $content->content_text !!}
             @endif
-
-            {{--<b>PRIVACY TERMS</b>--}}
-            {{--<br><br>--}}
-            {{--<p class="text-justify"><b>Lorem ipsum dolor sit amet consectetuer adipiscing elit, sed diam nonummy nibh</b>--}}
-            {{--<br><br>--}}
-            {{--Euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis--}}
-            {{--nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.--}}
-            {{--Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt--}}
-            {{--Ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex--}}
-            {{--ea commodo consequat.--}}
-            {{--<br><br>--}}
-            {{--<b>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</b><br><br>--}}
-            {{--Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis--}}
-            {{--dolore te feugait nulla facilisi.</p>--}}
         </div>
     </div>
-    
+
 @endsection

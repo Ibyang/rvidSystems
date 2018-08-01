@@ -5,12 +5,12 @@
 @section('content')
 <div class="container ">
     <div class="row my-account-container">
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         @auth
             @include('frontend.layouts.parts.sidebar')
         @endauth
         </div>
-        <div class="col-lg-9 my-account-form"><br>
+        <div class="col-lg-8 my-account-form"><br>
             <h3>Standard Video Order</h3><br>
             <hr>
             <form method="POST" action="{{ route('postVideoOrder') }}">

@@ -1,18 +1,5 @@
 @extends('frontend.layouts.main')
 
-{{--@section('content')--}}
-
-    {{--<div class="container" id="content">--}}
-        {{--<h1 class="c-6600cc">Let's Get Started! Step 4</h1>--}}
-        {{--<hr>--}}
-        {{--@include('frontend.register.register-info-step4')--}}
-    {{--</div>--}}
-
-    {{--<div class="bg-eae">--}}
-        {{--@include('frontend.register.payment-details-form')--}}
-    {{--</div>--}}
-
-{{--@endsection--}}
 
 @section('content')
     <div class="container" id="content">
@@ -45,11 +32,39 @@
     </div>
 @endsection
 
-{{--@extends('frontend.layouts.parts.footer-scripts')--}}
+
+@section('content')
+    <div class="container p-0" id="content">
+        <h1 class="c-6600cc">Let’s Get Started! Step 4</h1>
+
+        @include('frontend.register.register-info')
+    </div>
+    <div class="bg-eae step-two-register">
+        <div class="container" id="content">
+            <form class="register-form my-account-subcription" action="{{ route('processStep4') }}" method="POST">
+                {{ csrf_field() }}
+
+                @include('frontend.register.steps.payment-details')
+
+                @include('frontend.register.steps.who-will-pay')
+
+                @include('frontend.register.steps.how-will-pay')
+
+            </form>
+            <form id="paypal-form" action="{{ route('postPaymentDetails') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+                {{--<input type="hidden" name="item_id" id="item_id" value="{{ $user_id }}">--}}
+                <input type="hidden" name="item_name" id="item_name">
+                <input type="hidden" name="amount" id="amount">
+            </form>
+        </div>
+    </div>
+
+    </div>
+@endsection
 
 {{-- page level scripts --}}
-{{--@section('footer_scripts')--}}
-    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+@section('footer_scripts')
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -78,15 +93,10 @@
             });
 
 
-
             //for selecting only one checkbox at a time
             // $('input[type="checkbox"]').on('change', function() {
             //     $('input[name="' + this.name + '"]').not(this).prop('checked', false);
             // });
-
-
-
-
 
 
 
@@ -136,9 +146,8 @@
 
             });
 
-
         });
     </script>
 
-{{--@stop--}}
+@stop
 

@@ -1,7 +1,7 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div class="container" id="content">
+    <div class="container pb-0" id="content">
         <div class="border-bot4">
             <div class="row">
                 <div class="col-sm-8 mb-3">

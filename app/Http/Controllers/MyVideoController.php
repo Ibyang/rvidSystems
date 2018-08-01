@@ -1065,7 +1065,7 @@ class MyVideoController extends Controller
 
         //path for uploaded images
         $path2 = '/storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
-        $pics = standardVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get();
+        $pics = standardVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->orderBy('sort_order', 'asc')->get();
 
         $cnt_pics = count($pics);
 

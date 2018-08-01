@@ -84,7 +84,7 @@
                     <div class="col">
                         <form class="form-header" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
-                            <div class="row">
+                            <div class="row col p-0">
                                 <div class="col-sm">
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" Placeholder="Login" required autofocus>
@@ -123,7 +123,7 @@
                     <div class="col-12 col-md-auto">
                         <ul class="sub-nav">
                             <li><a href="/" class="main">Home</a></li>
-                            <li><a href="{{ route('pricing') }}" class="main">Pricing</a></li>
+                            <li><a href="{{ route('help') }}" class="main">Need Help?</a></li>
                             <li><a href="{{ route('what-is-driveby') }}" class="sub">What is<br>DriveBy?</a></li>
                         </ul>
                     </div>

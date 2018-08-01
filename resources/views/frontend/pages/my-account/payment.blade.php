@@ -1,6 +1,6 @@
 <h3>Payment Details</h3>
-
-<form class="form-horizontal register-form" method="POST" action="">
+<div class="mt-4">Invoice To</div>
+<form class="form-horizontal register-form pt-0" method="POST" action="">
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
         <div class="row">
             <div class="col-9 pl-0">
@@ -8,13 +8,13 @@
                     <option>Mastercard</option>
                 </select>
             </div>
-            <div class="col-3 align-self-center">Type</div>
+            <div class="col-3 pl-1 align-self-center">Type</div>
         </div>
     </div>
     <div class="row">
         <div class="col-9 pl-0">
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <input id="card_number" type="text" class="form-control" name="" required autofocus placeholder="Card Number">
+                <input id="name" type="text" class="form-control" name="" required autofocus placeholder="Card Number">
                 @if ($errors->has('name'))
                     <span class="help-block">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-md-auto align-self-center">CCV</div>
                 <div class="col-sm pr-0">
-                    <input id="ccv" type="text" class="form-control">
+                    <input id="name" type="password" class="form-control">
                 </div>
             </div>
         </div>

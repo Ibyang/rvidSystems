@@ -5,7 +5,7 @@
     {{ csrf_field() }}
     <input type="hidden" name="agentID" id="agentID" value=" {{ $invoice->agent_ID }}">
     <input type="hidden" name="invoiceTo" id="invoiceTo">
-    <div class="row">
+    <div class="row m-0">
         <div class="col-9 pl-0">
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <select name="invoice_to" id="invoice_to" class="form-control">
@@ -29,7 +29,7 @@
         {{--</div>--}}
     {{--</div>--}}
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-        <div class="row">
+        <div class="row m-0">
             <div class="col-9 pl-0">
                 <input id="invoice_address" type="text" class="form-control" name="invoice_address" value="{{ $invoice->address }}" required ></input>
                 @if ($errors->has('name'))
@@ -52,8 +52,9 @@
                             @endforeach
                         </select>
                     </div>
-                    <input style="width: 90px" id="invoice_postcode" type="text" class="form-control" name="invoice_postcode" placeholder="Postcode" value="{{ $invoice->postcode }}" required>
-
+                    <div class="col-sm">
+                        <input style="width: 90px" id="invoice_postcode" type="text" class="form-control" name="invoice_postcode" placeholder="Postcode" value="{{ $invoice->postcode }}" required>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,6 +106,6 @@
     {{--</div>--}}
     <div class="row">
         <div class="col-9"></div>
-        <div class="col-3 align-self-center"><a href="" onclick="event.preventDefault(); document.getElementById('form-invoice-details').submit();">Edit Details</a></div>
+        <div class="col-3 pl-1 align-self-center"><a href="" onclick="event.preventDefault(); document.getElementById('form-invoice-details').submit();">Edit Details</a></div>
     </div>
 </form>

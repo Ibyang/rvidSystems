@@ -1,44 +1,33 @@
 @extends('frontend.layouts.main')
 
-{{--@section('content')--}}
-
-    {{--<div class="container" id="content">--}}
-        {{--<h1 class="c-6600cc">Let's Get Started! Step 1</h1>--}}
-        {{--<hr>--}}
-        {{--@include('frontend.register.register-info')--}}
-    {{--</div>--}}
-
-    {{--<div class="bg-eae">--}}
-        {{--@include('frontend.register.register-form')--}}
-    {{--</div>--}}
-
-{{--@endsection--}}
-
 <link href="{{ asset('assets/vendors/selectize/css/selectize.css') }}" rel="stylesheet" type="text/css" />
 
 @section('content')
-    <div class="container" id="content">
-        <h1 class="c-6600cc">Let’s Get Started! Step 1</h1>
-        <hr>
+    <div class="container pb-0" id="content">
+        <h3 class="header-border c-6600cc font-weight-bold">Let’s Get Started! Step 1</h3>
+
+        @include('frontend.pages.pricing-data')
+
+        <h5 class="step-1-title font-weight-bold py-2 mb-4">
+            <div class="d-flex justify-content-between">
+                <div class="color-6600cc">Login or <br>Let’s Get Started! Step 1</div>
+                <div class="align-self-center color-424244 ">4 Easy Steps (4 to Go!)</div>
+            </div>
+        </h5>
+
         @include('frontend.register.register-info')
-
-    </div>
-    <div class="bg-eae step-two-register">
-        <div class="container" id="content">
-            {{--<form class="register-form">--}}
-            @include('frontend.register.register-form')
-            {{--</form>--}}
-        </div>
     </div>
 
-    </div>
+    @include('frontend.register.register-form')
+
+    @include('frontend.pages.frontpage.why-use-revid')
+
+    @include('frontend.pages.frontpage.footer')
+
 @endsection
 
-{{--@extends('frontend.layouts.parts.footer-scripts')--}}
-
 {{-- page level scripts --}}
-{{--@section('footer_scripts')--}}
-    {{--<script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>--}}
+@section('footer_scripts')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -195,5 +184,5 @@
         });
     </script>
 
-{{--@stop--}}
+@stop
 

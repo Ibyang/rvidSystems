@@ -47,7 +47,8 @@ class MyPreferencesController extends Controller
         $path = '/storage/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
-        return view('frontend.pages.account-preferences', compact('suburbs', 'agent', 'userId', 'emails', 'areas', 'preference', 'logo_pic'));
+//        return view('frontend.pages.account-preferences', compact('suburbs', 'agent', 'userId', 'emails', 'areas', 'preference', 'logo_pic'));
+        return view('frontend.pages.preferences.preferences', compact('suburbs', 'agent', 'userId', 'emails', 'areas', 'preference', 'logo_pic'));
     }
 
 

@@ -3,12 +3,12 @@
 @section('content')
 <div class="container ">
     <div class="row my-account-container">
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         @auth
             @include('frontend.layouts.parts.sidebar')
         @endauth
         </div>
-        <div class="col-lg-9 my-account-form">
+        <div class="col-lg-8 my-account-form">
                 <h3 class="my-account-title">Explore Music Selection</h3>
                 Select Music Style
                 <form class="form-horizontal" method="POST" action="{{ route('account-update-music') }}">

@@ -3,14 +3,13 @@
 @section('content')
 <div class="container ">
     <div class="row my-account-container">
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         @auth
             @include('frontend.layouts.parts.sidebar')
         @endauth
         </div>
-        <div class="col-lg-9 my-account-form">
-            <br><h3>My Video Tracker</h3>
-            <hr>
+        <div class="col-lg-8 my-account-form">
+            <br><h3 class="my-account-title>My Video Tracker</h3>
             <h3 class="c-6600cc">Awaiting Action</h3>
             <div class="table-responsive">
               <table class="table video-tracker">
@@ -78,7 +77,7 @@
             <form method="POST" action={{ route('account-update-surge') }}>
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-md-auto pl-0">Sign Up for</div>
+                    <div class="col-md-auto px-0 pt-2">Sign Up for</div>
                     <div class="col p-0">
                         <div class="row m-0">
                             <div class="col-md-auto surge">
@@ -90,7 +89,7 @@
                             <div class="col-md-auto p-0">
                                 <div class="btn btn-primary surge-button">SURGE ALWAYS</div>
                             </div>
-                            <div class="col-md-auto line-height18">Less than 24 hours <br>$15.00 per Video</div>
+                            <div class="col-md-auto line-height18 pr-0">Less than 24 hours <br>$15.00 per Video</div>
                         </div>
                         <div class="row">
                             <div class="col-md-auto surge">
@@ -204,66 +203,64 @@
 </div>
 @endsection
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{{-- page level scripts --}}
+@section('footer_scripts')
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            //for selecting only one checkbox at a time
+            $('input[type="checkbox"]').on('change', function () {
+                $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+            });
+
+            $('#surgeModal').on('show.bs.modal', function(e) {
+
+                $("#customCheck3").prop('checked', false);
+                $("#customCheck4").prop('checked', false);
+                $("#customCheck5").prop('checked', false);
+
+                var vidid = $(e.relatedTarget).attr('data-dbid');
+                console.log('the value of vidid is ', vidid);
+
+                if(vidid) {
+                    var stateSurge = '';
+                    $.ajax({
+                        url: '/getSurgeDetails/' + vidid,
+                        type: "GET",
+                        dataType: "JSON",
+                        success:function(data) {
+                            console.log("data is ", data);
+                            $('#videoid').html(data.video_ID);
+                            $('#vid').val(data.video_ID);
+                            $('#videoAddress').html(data.videoAddress);
+                            stateSurge = data.surge_offer;
+                            console.log("the value of stateSurge is ", stateSurge);
+                            if(stateSurge === 'Less than 24 hours'){
+                                $("#customCheck3").prop('checked', true);
+                                // $("#customCheck4").prop('checked', false);
+                                // $("#customCheck5").prop('checked', false);
+                            }
+                            else if(stateSurge === 'Less than 12 hours'){
+                                // $("#customCheck3").prop('checked', false);
+                                $("#customCheck4").prop('checked', true);
+                                // $("#customCheck5").prop('checked', false);
+                            }
+                            else if(stateSurge === 'Rush 2 hours'){
+                                // $("#customCheck3").prop('checked', false);
+                                // $("#customCheck4").prop('checked', false);
+                                $("#customCheck5").prop('checked', true);
+                            }
+
+                        }
+                    });
+                }
+
+            });
 
 
-<script type="text/javascript">
-    $(document).ready(function() {
-
-        //for selecting only one checkbox at a time
-        $('input[type="checkbox"]').on('change', function () {
-            $('input[name="' + this.name + '"]').not(this).prop('checked', false);
         });
 
-        $('#surgeModal').on('show.bs.modal', function(e) {
-
-            $("#customCheck3").prop('checked', false);
-            $("#customCheck4").prop('checked', false);
-            $("#customCheck5").prop('checked', false);
-
-            var vidid = $(e.relatedTarget).attr('data-dbid');
-            console.log('the value of vidid is ', vidid);
-
-            if(vidid) {
-                var stateSurge = '';
-                $.ajax({
-                    url: '/getSurgeDetails/' + vidid,
-                    type: "GET",
-                    dataType: "JSON",
-                    success:function(data) {
-                        console.log("data is ", data);
-                        $('#videoid').html(data.video_ID);
-                        $('#vid').val(data.video_ID);
-                        $('#videoAddress').html(data.videoAddress);
-                        stateSurge = data.surge_offer;
-                        console.log("the value of stateSurge is ", stateSurge);
-                        if(stateSurge === 'Less than 24 hours'){
-                            $("#customCheck3").prop('checked', true);
-                            // $("#customCheck4").prop('checked', false);
-                            // $("#customCheck5").prop('checked', false);
-                        }
-                        else if(stateSurge === 'Less than 12 hours'){
-                            // $("#customCheck3").prop('checked', false);
-                            $("#customCheck4").prop('checked', true);
-                            // $("#customCheck5").prop('checked', false);
-                        }
-                        else if(stateSurge === 'Rush 2 hours'){
-                            // $("#customCheck3").prop('checked', false);
-                            // $("#customCheck4").prop('checked', false);
-                            $("#customCheck5").prop('checked', true);
-                        }
-
-                    }
-                });
-            }
-
-        });
-
-
-    });
-
-</script>
+    </script>
+@stop
 
