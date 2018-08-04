@@ -48,7 +48,7 @@ class MyAccountController extends Controller
         $states = State::get(['state_code', 'state_name']);
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
         $invoice = AgentInvoice::where('email', $email)->first();
-        return view('frontend.pages.my-account', compact('fullname', 'passwd', 'agent', 'states', 'invoice', 'billing', 'logo_pic'));
+        return view('frontend.pages.my-account', compact('fullname', 'fname', 'passwd', 'agent', 'states', 'invoice', 'billing', 'logo_pic'));
     }
 
 

@@ -26,7 +26,7 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
 
-    {{--<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>--}}
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
     <script src="{{ asset('assets/tooltipster/dist/js/tooltipster.bundle.min.js') }}" type="text/javascript"></script>
 
     <script>

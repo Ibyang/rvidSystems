@@ -483,7 +483,7 @@ Route::group(['middleware' => 'guest'], function() {
     Route::post('/editInvoice', 'MyAccountController@editInvoice')->name('editInvoice');
 
     //route for editing the Subscription section under My Account section
-    Route::post('/editSubscription', 'MyAccountController@editSubscription')->name('editSubscription');
+    Route::post('/account/editSubscription', 'MyAccountController@editSubscription')->name('editSubscription');
 
     //for getting the Invoice Details
     Route::get('/getInvoiceDetails/{vidid}', 'MyAccountController@getInvoiceDetails');

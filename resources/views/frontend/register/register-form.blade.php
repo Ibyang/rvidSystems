@@ -95,6 +95,7 @@
 
                 <div class="form-group">
                     <div class="text-right my-4">
+                        <input type="hidden" name="plantype" id="plantype">
                         <button type="submit" class="btn btn-primary font-weight-bold join-step-next">
                             NEXT: Your Template <i class="arrow-right"></i>
                         </button>
@@ -197,6 +198,7 @@
 
             <div class="form-group">
                 <div class="text-right my-4">
+                    <input type="hidden" name="plantype" id="plantype">
                     <button type="submit" class="btn btn-primary font-weight-bold join-step-next">
                         NEXT: Your Template <i class="arrow-right"></i>
                     </button>

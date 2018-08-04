@@ -4,7 +4,7 @@
     {{ csrf_field() }}
     <input type="hidden" name="email" value=" {{ $agent->email }}">
     <div class="row">
-        <div class="col-9 pl-0"><input type="text" class="form-control" name="name" id="fullname" Placeholder="" value="{{ $fullname }}" required autofocus></div>
+        <div class="col-9 pl-0"><input type="text" class="form-control" name="name" id="fullname" Placeholder="" value="{{ $fname }}" required autofocus></div>
         <div class="col-3 pl-1 align-self-center">Name</div>
     </div>
     <div class="row">
@@ -22,6 +22,6 @@
     <h3>Password</h3>
     <div class="row">
         <div class="col-9 pl-0"><input type="password" class="form-control" name="password" Placeholder="" value="{{ $passwd }}" required autofocus></div>
-        <div class="col-3 pl-1 align-self-center"><a href="">Change</a></div>
+        <div class="col-3 pl-1 align-self-center"><a href="" onclick="event.preventDefault(); document.getElementById('form-details').submit();">Change</a></div>
     </div>
 </form>

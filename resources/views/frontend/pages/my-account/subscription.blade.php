@@ -6,7 +6,7 @@
     </div>
     <p>Upgrade my Subscription + Storage Plan</p>
 
-    <form id="form-subscription-details" method="POST" action="{{ route('editSubscription') }}">
+    <form id="form-subscription-details" method="POST" action="/account/editSubscription">
         {{ csrf_field() }}
         <input type="hidden" name="subscription_type" value="{{ $invoice->subscription_type }}">
         <input type="hidden" name="agentID" value="{{ $invoice->agent_ID }}">

@@ -242,6 +242,8 @@
         {{--var path = "{!! $path2 !!}";--}}
         {{--console.log("the path is ", path);--}}
 
+        var count_images;
+
         Dropzone.options.dropzone =
                 {
                     maxFiles: 25,
@@ -334,6 +336,10 @@
                             ctr_uploaded_images++;
                             duration_seconds = duration_seconds + 5;
 
+                            count_images = this.files.length;
+
+                            console.log("the number of image uploaded " + count_images);
+
                             // console.log("the name of file uploaded is ", name1);
 
                         });
@@ -360,7 +366,7 @@
                         var timeString = date.toISOString().substr(11, 8);
 
                         $("#duration").text(timeString);
-                        $("#num_images").val(ctr_uploaded_images);
+                        $("#num_images").val(count_images);
                         console.log("the filename uploaded is " + file.name);
                     },
                     error: function(file, response)

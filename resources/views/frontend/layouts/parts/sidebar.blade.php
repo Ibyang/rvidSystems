@@ -15,22 +15,25 @@
         </div>
     </li>
     <li>
-        <i class="account-icon my-creator {!! ((Request::segment(2) == 'make-video') ? 'my-creator-active' : 'my-creator') !!}"></i>
+        {{--<i class="account-icon my-creator {!! ((Request::segment(2) == 'make-video') ? 'my-creator-active' : 'my-creator') !!}"></i>--}}
+        <i class="account-icon my-creator"></i>
         <a href=" {{ route('account-make-video') }}" style="text-decoration: none">Make Video</a>
     </li>
     <li>
-        <i class="account-icon {!! ((Request::segment(2) == 'my-videos') ? 'my-videos-active' : 'my-videos') !!}"></i>
+        {{--<i class="account-icon {!! ((Request::segment(2) == 'my-videos') ? 'my-videos-active' : 'my-videos') !!}"></i>--}}
+        <i class="account-icon my-videos"></i>
         <a href="{{ route('account-my-videos') }}" style="text-decoration: none">My Videos</a>
     </li>
     <li>
-        <i class="account-icon my-tracker {!! ((Request::segment(2) == 'video-tracker') ? 'my-tracker-active' : 'my-tracker') !!}"></i>
+        {{--<i class="account-icon my-tracker {!! ((Request::segment(2) == 'video-tracker') ? 'my-tracker-active' : 'my-tracker') !!}"></i>--}}
+        <i class="account-icon my-tracker"></i>
         <a href="{{ route('account-video-tracker') }}" style="text-decoration: none">My Video Tracker</a>
     </li>
     <li>
         <i class="account-icon my-account"></i>
         <a href="{{ route('account-home') }}" style="text-decoration: none">My Account</a>
     </li>
-    <!-- just added this part to integrate the links for the other pages -->
+    
     <li>
         <i class="account-icon my-settings"></i>
         <a href="#">My Settings</a>
@@ -48,7 +51,8 @@
             <a href="{{ route('account-explore-music') }}">Music Selection</a>
         </li>
     <li>
-        <i class="account-icon my-preferences {!! ((Request::segment(2) == 'preferences') ? 'my-preferences-active' : 'my-preferences') !!}"></i>
+        {{--<i class="account-icon my-preferences {!! ((Request::segment(2) == 'preferences') ? 'my-preferences-active' : 'my-preferences') !!}"></i>--}}
+        <i class="account-icon my-preferences"></i>
         <a href="{{ route('account-preferences') }}" style="text-decoration: none">My Preferences</a>
     </li>
 </ul>
