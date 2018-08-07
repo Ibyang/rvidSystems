@@ -24,14 +24,15 @@
                     <div class="col-md-8 pr-0">
                         <div class="row">
                             <div class="col-sm-9"><h3 class="color-6600cc">$75</h3></div>
-                            <div class="col-sm-3"><button type="submit" id="btnGeneric" class="btn btn-primary bg-6600cc" onclick="event.preventDefault(); document.getElementById('frmGeneric').submit();">GO</button></div>
+                            <!-- <div class="col-sm-3"><button type="submit" id="btnGeneric" class="btn btn-primary bg-6600cc" onclick="event.preventDefault(); document.getElementById('frmGeneric').submit();">GO</button></div> -->
+                            <div class="col-sm-3"><a href=" {{ route('getDirectUpload') }} "><button class="btn btn-primary bg-6600cc">GO</button></a></div>
                         </div>
                         <h5 class="mt-2">URL</h5>
-                        <form id="frmGeneric" action="{{ route('getGenericVideo') }}" method="POST">
+                        <!-- <form id="frmGeneric" action="{{ route('getGenericVideo') }}" method="POST">
                             {{ csrf_field() }}
                             <input type="url" class="form-control" name="url_generic" id="url_generic" required>
                             <input type="hidden" name="user_id" id="user_id" value="{{  $userid }}">
-                        </form>
+                        </form> -->
                     </div>
                 </div>
                 <div class="row make-my-video border-top-0066ff mx-0 my-4">

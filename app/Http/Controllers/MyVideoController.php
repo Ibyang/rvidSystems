@@ -14,6 +14,8 @@ use App\AgentEmail;
 use App\standardVideoPicture;
 use App\premiumVideoPicture;
 use App\templateStatement;
+use App\AutomaticDirectUpload;
+use App\State;
 use Carbon\Carbon;
 use phpDocumentor\Reflection\Types\Integer;
 use Illuminate\Support\Facades\Auth;
@@ -259,7 +261,11 @@ class MyVideoController extends Controller
     public function getGenericVideo()
     {
         $user_id = Auth::user()->id;
-        $url_generic = Input::get('url_generic');
+        // $url_generic = Input::get('url_generic');
+        $url_generic = 'SELECTED MANUALLY';
+
+        $did = Session::get('directid');
+
 
         $vidid = (AgentVideoOrders::max('ID'));
         if($vidid == NULL)
@@ -321,9 +327,8 @@ class MyVideoController extends Controller
         $logo_pic = $path . $logo_pic;
 
 
-
         return view('frontend.pages.video-creator.generic-video-order', compact('fullname',  'agent', 'due_arr', 'url_generic', 'vidid',
-                    'preference', 'cost_generic_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost', 'logo_pic'));
+                    'preference', 'cost_generic_video', 'cost_total_preference', 'cost_surge', 'cost_extra', 'total_cost', 'logo_pic', 'did'));
 
     }
 
@@ -471,6 +476,7 @@ class MyVideoController extends Controller
         $total_cost_video = Input::get('total_cost');
         $surgeoffer = Input::get('surgeoffer');
         $surge_value = $surgeoffer[0];
+        $directid = Session::get('directid');
 //        $url_address = Input::get('url_address');
 
 
@@ -512,6 +518,11 @@ class MyVideoController extends Controller
             );
 
             videoProgress::create($progress_arr);
+
+            //for updating the videoID for automatic direct upload table
+            AutomaticDirectUpload::where('ID', $directid)->update([
+                'video_ID' => $videoid
+            ]);
 
 
         }
@@ -1912,5 +1923,72 @@ class MyVideoController extends Controller
         return redirect()->route('account-explore-music');
 
     }
+
+
+    public function getDirectUpload() 
+    {
+
+        $uname = Auth::user()->name;
+        $email = Auth::user()->email;
+        $fullname = preg_replace('/\s/', '', $uname);
+        $logo = Auth::user()->logo_user;
+
+        //path for logo pic
+        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $logo_pic = $path . $logo;
+
+        $states = State::get(['state_code', 'state_name']);
+        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
+        return view('frontend.pages.video-creator.direct-upload', compact('states','logo_pic','agent'));
+    }
+
+
+    //for Direct Uploading Automatic Module
+    //for posting data of details for direct upload
+    public function postDirect(Request $request)
+    {
+
+        $userid = Auth::user()->id;
+        $uname = Auth::user()->name;
+        $username = preg_replace('/\s/', '', $uname);
+
+
+        if($file = $request->file('property_attach')) {
+
+            $path = public_path('storage\client_images\\' . $username . '\\automatic_property_attachments\\');
+                    if(!File::exists($path)){
+                        File::makeDirectory($path, 0775, true);
+                    }
+
+            $direct_filename = $file->getClientOriginalName();
+            $file->move($path, $direct_filename);       
+
+
+            $direct_arr = array(
+                'agent_ID' => $userid,
+                'address1' => Input::get('address1'),
+                'address2' => Input::get('address2'),
+                'address3' => Input::get('address3'),
+                'suburb' => Input::get('suburb'),
+                'state' => Input::get('state'),
+                'postcode' => Input::get('postcode'),
+                'num_bedroom' => Input::get('num_bedroom'),
+                'num_bathrooms' => Input::get('num_bathrooms'),
+                'num_cars' => Input::get('num_cars'),
+                'property_type' => Input::get('property_type'),
+                'property_description_file' => $direct_filename,
+            );
+
+            $direct = AutomaticDirectUpload::create($direct_arr); 
+            $directID = $direct->id;
+
+            Session::put('directid', $directID);
+
+        }
+
+        return redirect()->route('getGenericVideo');
+
+    }
+
 
 }

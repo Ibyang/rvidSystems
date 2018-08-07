@@ -267,6 +267,14 @@ Route::group(['middleware' => 'guest'], function() {
         return view('frontend.pages.privacy-terms', compact('content'));
     })->name('privacy-terms');
 
+
+    //for direct upload
+    // Route::get('/account/make-video/direct-upload', function () {
+    //     $states = State::get(['state_code', 'state_name']);
+    //     return view('frontend.pages.make-video.direct-upload', compact('states'));
+    // })->name('direct-upload');
+
+
     Route::resource('registerAgent', 'RegisterController');
 
 });
@@ -453,7 +461,8 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/account/premium-video-order','MyVideoController@PremiumVideoOrder')->name('account-premium-video-order');
 
     //procoess for Generic Video Order
-    Route::post('/account/getGenericVideo', 'MyVideoController@getGenericVideo')->name('getGenericVideo');
+    // Route::post('/account/getGenericVideo', 'MyVideoController@getGenericVideo')->name('getGenericVideo');
+    Route::get('/account/getGenericVideo', 'MyVideoController@getGenericVideo')->name('getGenericVideo');
 
     //procoess for Standard Video Order
     Route::get('/account/getStandardVideo', 'MyVideoController@getStandardVideo')->name('getStandardVideo');
@@ -515,6 +524,13 @@ Route::group(['middleware' => 'guest'], function() {
 
     //for removing Images from DropBox container
     Route::get('/deleteStandardImage/{simage}/{img}', 'MyVideoController@deleteStandardImage');
+
+
+    //for Direct Upload
+    Route::get('/account/getDirectUpload', 'MyVideoController@getDirectUpload')->name('getDirectUpload');
+
+    Route::post('/account/direct-upload/postdata', 'MyVideoController@postDirect')->name('direct-post-details');
+
 
     Auth::routes();
 

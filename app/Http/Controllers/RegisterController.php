@@ -15,6 +15,7 @@ use App\AgentTemplate;
 use App\AgencyTemplate;
 use App\Content;
 use App\voiceFiles;
+use App\AutomaticDirectUpload;
 use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

@@ -316,7 +316,7 @@
                             to your ACCOUNT<br>
                             UNTIL COMPLETION<br>
                         </div>
-                        <button type="button" class="btn btn-primary bg-009900 btn-no-border px-4 w-100"><b>CONFIRM</b></button>
+                        <button type="submit" id="btnConfirm" class="btn btn-primary bg-009900 btn-no-border px-4 w-100"><b>CONFIRM</b></button>
                     </div>
                 </div>
             </form>

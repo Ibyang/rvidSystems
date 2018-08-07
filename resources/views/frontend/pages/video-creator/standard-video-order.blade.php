@@ -358,7 +358,7 @@
                     <div class="align-self-center"><a href=" {{ route('account-terms-condition') }}" target="_blank">Terms and Conditions</a></div>
                     <div>
                       <input type="hidden" name="videotype" value="Standard">
-                      <button type="button" class="btn btn-primary bg-009900 btn-no-border px-4"><b>CONFIRM</b></button>
+                      <button type="submit" id="btnConfirm" class="btn btn-primary bg-009900 btn-no-border px-4"><b>CONFIRM</b></button>
                     </div>
                 </div>
             </form>
