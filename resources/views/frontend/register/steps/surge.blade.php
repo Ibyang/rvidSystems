@@ -7,19 +7,17 @@
 </div>
 <div class="collapse rules-contents @if (Request::segment(1) != 'account') {{'col-8 pl-0'}} @endif" id="Expanded9">
     <div class="rules-arrow2"></div>
-    <div class="ExpandForm text-justify bg-fff mb-3 @if (Request::segment(1) != 'account') {{'p-3'}} @endif">
+    <!-- <div class="ExpandForm text-justify bg-fff mb-3 @if (Request::segment(1) != 'account') {{'p-3'}} @endif"> -->
+    <div class="ExpandForm p-3" style="background-color: white">
         <b>What is the Surge</b>
 
-        <p class="mt-2">The <b>Surge Offer</b> gives you the option to select 3 choices. The Surge is a demand driven
+        <p style="text-align: justify; font-size: small">The <b>Surge Offer</b> gives you the option to select 3 choices. The Surge is a demand driven
             premium option for your Video production to have preferential delivery with a 24-hour period
-            (Surge) or a 2-hour period (Rush).
-        </p>
-        <p>This <b>Surge Offer</b> is set on <b>SOMETIMES</b> – which means that each time you make a Video
+            (Surge) or a 2-hour period (Rush).<br><br>
+            This <b>Surge Offer</b> is set on <b>SOMETIMES</b> – which means that each time you make a Video
             Order the system will ask you if you want to Surge or Rush and tell you the Cost of the Day
-            (calculated from demand statistics).</p>
-        <p>Alternatively, you can select <b>SURGE ALWAYS ($15 fixed)</b> and <b>RUSH ALWAYS ($45
-                fixed)</b> and be guaranteed the preferential delivery time you want for a fixed cost –
-            regardless of demand.</p>
+            (calculated from demand statistics).<br><br>
+            Alternatively, you can select <b>SURGE ALWAYS ($15 fixed)</b> and <b>RUSH ALWAYS ($45 fixed)</b> and be guaranteed the preferential delivery time you want for a fixed cost – regardless of demand.</p>
     </div>
 </div>
 <div class="row">

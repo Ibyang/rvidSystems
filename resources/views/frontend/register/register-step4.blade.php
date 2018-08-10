@@ -1,67 +1,39 @@
 @extends('frontend.layouts.main')
 
-
-@section('content')
-    <div class="container" id="content">
-        <h1 class="c-6600cc">Let’s Get Started! Step 4</h1>
-
-        @include('frontend.register.register-info')
-    </div>
-    <div class="bg-eae step-two-register">
-        <div class="container" id="content">
-            <form class="register-form my-account-subcription" action="{{ route('processStep4') }}" method="POST">
-                {{ csrf_field() }}
-                <h4 class="reg-title">Your Payment Details</h4>
-
-                @include('frontend.register.steps.subscription')
-
-                @include('frontend.register.steps.who-will-pay')
-
-                @include('frontend.register.steps.how-will-pay')
-
-            </form>
-            <form id="paypal-form" action="{{ route('postPaymentDetails') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-                {{--<input type="hidden" name="item_id" id="item_id" value="{{ $user_id }}">--}}
-                <input type="hidden" name="item_name" id="item_name">
-                <input type="hidden" name="amount" id="amount">
-            </form>
-        </div>
-    </div>
-
-    </div>
-@endsection
-
-
 @section('content')
     <div class="container p-0" id="content">
         <h1 class="c-6600cc">Let’s Get Started! Step 4</h1>
-
+        
         @include('frontend.register.register-info')
-    </div>
-    <div class="bg-eae step-two-register">
-        <div class="container" id="content">
-            <form class="register-form my-account-subcription" action="{{ route('processStep4') }}" method="POST">
-                {{ csrf_field() }}
-
-                @include('frontend.register.steps.payment-details')
-
-                @include('frontend.register.steps.who-will-pay')
-
-                @include('frontend.register.steps.how-will-pay')
-
-            </form>
-            <form id="paypal-form" action="{{ route('postPaymentDetails') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-                {{--<input type="hidden" name="item_id" id="item_id" value="{{ $user_id }}">--}}
-                <input type="hidden" name="item_name" id="item_name">
-                <input type="hidden" name="amount" id="amount">
-            </form>
+        
+        <div class="d-flex justify-content-between join-step-next p-1">
+                <button class="btn btn-primary bg-333 btn-no-border px-4"><i class="arrow-left"></i> BACK</button>
         </div>
     </div>
-
+    <div class="bg-eae step-two-register">
+         <div class="container" id="content">
+                 <form class="register-form my-account-subcription" action="{{ route('processStep4') }}" method="POST">
+                {{ csrf_field() }}
+                   
+                    @include('frontend.register.steps.payment-details')
+                    
+                    @include('frontend.register.steps.how-will-pay')
+                    
+                    @include('frontend.register.steps.who-will-pay')
+                    
+                </form>
+                <form id="paypal-form" action="{{ route('postPaymentDetails') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                    {{--<input type="hidden" name="item_id" id="item_id" value="{{ $user_id }}">--}}
+                    <input type="hidden" name="item_name" id="item_name">
+                    <input type="hidden" name="amount" id="amount">
+                </form>
+        </div>
     </div>
+   
+</div>
 @endsection
+
 
 {{-- page level scripts --}}
 @section('footer_scripts')

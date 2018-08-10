@@ -1,50 +1,68 @@
 @extends('frontend.layouts.main')
 
-<link href="{{ asset('assets/vendors/selectize/css/selectize.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/vendors/selectize/css/selectize.css') }}" rel="stylesheet" type="text/css" />
+
+@extends('frontend.layouts.main')
 
 @section('content')
 
-    <div class="container" id="content">
-        <h1 class="c-6600cc">Get Started Today!</h1>
+    <div class="container pb-0" id="content">
         <div class="row">
-           <div class="col-sm">
-               <a href={{ route('how-to-join') }}><img src={{ asset('storage/get-started.jpg') }} /></a>
+           <div class="col-md-auto">
+               <h1 class="c-6600cc">Get Started Today!</h1>
+                    <a href=""><img class="img-fluid" src={{ asset('storage/get-started.jpg') }} /></a>
            </div>
-           <div class="col-sm">
-            <ul class="list">
-                <li>It’s "Video" for social media marketing,
-                    online marketing, on-site presentations
-                    and email to prospective clients.</li>  
-                <li>Low cost video options</li>
-            </ul>
-                 $75 Generic<br>
-                 $125 Standard<br>
-                 $145 Premium
-           </div>
-           <div class="col-sm">
-            <ul class="list">
-                <li>Easy + Quick with No Fuss</li>
-                <li>Valuable; you get video’s (3 versions)Plus</li>
-            </ul>
-             with your monthly membership
+
+           <div class="col-sm line-height20">
+               <p class="text-justify m-0"><b>Online Membership</b> and Set-up is done in 4 Easy Steps. Once you have set-up your
+                preferences and made your selections – we are ready to make your Videos.</p>
+
+                <div class="d-flex justify-content-between mt-3">
+                    <div>
+                         <ul class="list ml-4">
+                            <li><b>Add your Details</b></li>  
+                            <li class="mt-2"><b>Upload your Brand Images</b></li>
+                         </ul>
+                    </div>
+
+                    <div>
+                         <ul class="list ml-4">
+                            <li><b>Set-Up your Templates and Selections</b></li>  
+                            <li class="mt-2"><b>Choose your Preferences and Payment Options</b></li>
+                         </ul>
+                    </div>
+                </div>
+
+                <ul class="list ml-4">
+                    <li class="text-justify"><b>Ready to Go</b>; you can start straight away and order your video productions. At any
+                    time, you can update your templates, selections and preferences and options; Plus
+                    track your progress and use the systems tools or options as and when needed.</li>
+                </ul>
+                <span class="ml-4"><b>All Included with your monthly membership.</b></span>
            </div>
         </div>
-        <hr>
+
+        @include('frontend.register.register-join-info')
+
         @include('frontend.register.register-info')
-        
+
+        @include('frontend.register.register-form')
+
     </div>
 
-    <div class="bg-eae">
-        @include('frontend.register.register-form')
+        @include('frontend.pages.frontpage.why-use-revid')
+
+        @include('frontend.pages.frontpage.footer')
+
     </div>
 
 @endsection
 
-{{--@extends('frontend.layouts.parts.footer-scripts')--}}
 
 {{-- page level scripts --}}
-{{--@section('footer_scripts')--}}
-{{--    <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>--}}
+@section('footer_scripts')
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script src="{{ asset('assets/vendors/selectize/js/standalone/selectize.js') }}" type="text/javascript"></script>
@@ -196,5 +214,7 @@
         });
     </script>
 
-{{--@stop--}}
+
+@stop
+
 

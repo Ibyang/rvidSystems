@@ -1,8 +1,8 @@
 <h3 class="col-8 pl-0 mt-4">Email</h3>
 <span class="reg-title pr-2">EMAIL DISTRIBUTION</span> <a data-toggle="collapse" href="#emailExpanded" role="button" aria-expanded="false" aria-controls="collapseExample">What is this?</a><br>
 
-<div class="collapse" id="emailExpanded" style="width: 65%;">
-    <div class="rules-arrow" style="margin-left: 35%"></div>
+<div class="collapse" id="emailExpanded">
+    <div class="rules-arrow" style="margin-left: 40%"></div>
     <div class="ExpandForm p-3" style="background-color: white">
         <h6>What is Email Distribution</h6>
         <p style="text-align: justify; font-size: small">
@@ -29,14 +29,8 @@
 </div>
 <div class="my-2"><b>Current List</b></div>
 <div class="row m-0">
-    <div class="col-sm-5 h-100 email-scroll @if (Request::segment(1) == 'account') {{'m-0'}} @endif">
-        {{--<ul>--}}
-        {{--<li>john@professionals.com.au</li>--}}
-        {{--<li>mary@professionals.com.au</li>--}}
-        {{--<li>admin@professionals.com.au</li>--}}
-        {{--<li>other@professionals.com.au</li>--}}
-        {{--<li>other@professionals.com.au</li>--}}
-        {{--</ul>--}}
+    <!-- <div class="col-sm-5 pr-0 @if (Request::segment(1) == 'account') {{'m-0'}} @endif"> -->
+    <div>     
         @if(is_array($emails))
             <select name="email_list" id="email_list" multiple class="form-control">
                 @foreach($emails as $em)
@@ -44,7 +38,7 @@
                 @endforeach
             </select>
         @else
-            <select name="email_list" id="email_list" multiple class="form-control" style="width: 340px">
+            <select name="email_list" id="email_list" multiple class="form-control" style="width: 270px">
                 <option value="">No emails on the list...</option>
             </select>
         @endif

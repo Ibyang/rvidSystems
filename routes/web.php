@@ -199,7 +199,8 @@ Route::group(['middleware' => 'guest'], function() {
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
-        return view('frontend.pages.get-started', compact('states', 'groups', 'agencies'));
+        $social = SocialMedia::where('ID', 1)->first();
+        return view('frontend.pages.get-started', compact('states', 'groups', 'agencies','social'));
     })->name('get-started');
 
     Route::get('/how-system-works', function () {

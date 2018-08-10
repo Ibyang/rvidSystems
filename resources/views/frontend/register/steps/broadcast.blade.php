@@ -1,8 +1,8 @@
 <h3 class="col-8 ml-0 mt-4">Broadcast</h3>
 <span class="reg-title pr-2">BROADCAST TO OTHER AGENTS IN YOUR AREA   </span><a class="c0066ff" data-toggle="collapse" href="#broadcastExpanded" role="button" aria-expanded="false" aria-controls="collapseExample">What is this?</a>
 
-<div class="collapse" id="broadcastExpanded" style="width: 65%;">
-    <div class="rules-arrow" style="margin-left: 73%"></div>
+<div class="collapse" id="broadcastExpanded">
+    <div class="rules-arrow" style="margin-left: 80%"></div>
     <div class="ExpandForm p-3" style="background-color: white">
         <h6>What Broadcast</h6>
         <p style="text-align: justify; font-size: small">
@@ -38,57 +38,28 @@
 </div>
 <div class="my-2"><b>Suburb Selection</b></div>
 <div class="row m-0">
-    <div class="col-sm email-scroll col-sm-5 h-100">
-        {{--<ul>--}}
-        {{--<li>--}}
-        {{--<div class="row">--}}
-        {{--<div class="col-sm">Bassendean</div>--}}
-        {{--<div class="col-sm">WA6054</div>--}}
-        {{--<div class="col-sm">200</div>--}}
-        {{--</div>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<div class="row">--}}
-        {{--<div class="col-sm">Morley</div>--}}
-        {{--<div class="col-sm">WA6062</div>--}}
-        {{--<div class="col-sm">100</div>--}}
-        {{--</div>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<div class="row">--}}
-        {{--<div class="col-sm">Guildford</div>--}}
-        {{--<div class="col-sm">WA6052</div>--}}
-        {{--<div class="col-sm">100</div>--}}
-        {{--</div>--}}
-        {{--</li>--}}
-        {{--<li>--}}
-        {{--<div class="row">--}}
-        {{--<div class="col-sm">Bayswater</div>--}}
-        {{--<div class="col-sm">WA6053</div>--}}
-        {{--<div class="col-sm">100</div>--}}
-        {{--</div>--}}
-        {{--</li>--}}
-        {{--</ul>--}}
-
+    <!-- <div class="col-sm col-sm-5 h-100"> -->
+    <div>    
         @if(count($areas) > 0)
             <?php
             $cnt_area = count($areas);
             $ctr = 0; ?>
-            <select name="suburb_list" id="suburb_list" multiple class="form-control" style="width: 340px">
+            <!-- <select name="suburb_list" id="suburb_list" multiple class="form-control" style="width: 340px"> -->
+            <select name="suburb_list" id="suburb_list" multiple class="form-control" style="width: 270px">
                 @foreach($areas as $area)
                     <option value="{{ $area }}">{{ $area }}</option>
                 @endforeach
             </select>
         @else
-            <select name="suburb_list" id="suburb_list" multiple class="form-control" style="width: 340px">
-                <option value="">No emails on the list...</option>
+            <select name="suburb_list" id="suburb_list" multiple class="form-control" style="width: 270px">
+                <!-- <option value="">No emails on the list...</option> -->
             </select>
         @endif
 
     </div>
     <div class="col-sm reg-step-link">
-        {{--<a href=""><span>Remove -</span></a>--}}
-        <span id="removeSuburbLink" style="color: red; cursor: pointer">Remove -</span>
+        <a href=""><span>Remove -</span></a>
+        <!-- <span id="removeSuburbLink" style="color: red; cursor: pointer">Remove -</span> -->
     </div>
 </div>
 @if (Request::segment(1) != 'account')

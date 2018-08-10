@@ -3,32 +3,35 @@
 @section('content')
     <div class="container p-0" id="content">
         <h1 class="c-6600cc">Let’s Get Started! Step 3</h1>
-
+        
         @include('frontend.register.register-info')
-
+        
+        <div class="d-flex justify-content-between join-step-next p-1">
+                <button class="btn btn-primary bg-333 btn-no-border px-4"><i class="arrow-left"></i> BACK</button>
+        </div>
     </div>
     <div class="bg-eae step-two-register">
-        <div class="container" id="content">
-            <form class="step-three-register register-form" method="POST" action="{{ route('processStep3') }}">
+         <div class="container" id="content">
+                <form class="step-three-register register-form" method="POST" action="{{ route('processStep3') }}">
                 {{ csrf_field() }}
                 <input type="hidden" id="emails_arr" name="emails_arr">
                 <input type="hidden" id="areas_arr" name="areas_arr">
+                    @include('frontend.register.steps.surge')
 
-                @include('frontend.register.steps.surge')
+                    <!-- @include('frontend.register.steps.sites') -->
 
-                @include('frontend.register.steps.sites')
-
-                @include('frontend.register.steps.social')
-
-                @include('frontend.register.steps.email')
-
-                @include('frontend.register.steps.broadcast')
-            </form>
+                    <!-- @include('frontend.register.steps.social') -->
+                    
+                    @include('frontend.register.steps.email')
+                    
+                    @include('frontend.register.steps.broadcast')
+                </form>
         </div>
     </div>
-
-    </div>
+   
+</div>
 @endsection
+
 
 {{-- page level scripts --}}
 @section('footer_scripts')

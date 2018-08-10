@@ -26,6 +26,7 @@
 
 @endsection
 
+
 {{-- page level scripts --}}
 @section('footer_scripts')
 
@@ -46,6 +47,12 @@
 
 
         $(document).ready(function() {
+
+
+            //code to capture the pricing type selected
+
+
+
 
             $('#grouplist').selectize({
                 create: true,
