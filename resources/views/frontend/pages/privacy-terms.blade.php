@@ -31,4 +31,6 @@
         </div>
     </div>
 
+    @include('frontend.pages.frontpage.footer')
+
 @endsection

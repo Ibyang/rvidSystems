@@ -100,7 +100,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-auto p-0">
-                                        <div class="btn btn-primary surge-button">SURGE ALWAYS</div>
+                                        <div class="btn btn-primary surge-button bg-ff0000">SURGE ALWAYS</div>
                                     </div>
                                     <div class="col-md-auto line-height18 pr-0">Less than 24 hours <br>$15.00 per Video</div>
                                 </div>
@@ -112,13 +112,13 @@
                                         </div>
                                     </div>
                                     <div class="col-md-auto p-0">
-                                        <div class="btn btn-primary surge-button">RUSH ALWAYS</div>
+                                        <div class="btn btn-primary surge-button bg-ff0000">RUSH ALWAYS</div>
                                     </div>
                                     <div class="col-md-auto line-height18">Less than 2 hours <br>$45.00 per video</div>
                                 </div>
                         </div>
                         <div class="col-md-auto p-0">
-                            <button type="submit" class="btn btn-primary surge-button">APPLY</button>
+                            <button type="submit" class="btn btn-primary surge-button bg-009900">APPLY</button>
                         </div>
                     </div>
                     <div class="row">

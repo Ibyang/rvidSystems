@@ -11,7 +11,7 @@
         <div class="col-lg-8 my-account-form mb-5">
                 <h3 class="my-account-title mb-3">Explore Voice Overs</h3>
                 <h3>Music Preference</h3>
-                <b>You can select from 3 options</b>
+                <span class="font-t-ms"><b>You can select from 3 options</b></span>
                 <div class="row m-r-l">
                     <div class="col-md-auto text-center">
                         <div class="c0066ff font-weight-bold">1. RANDOM Music</div>
