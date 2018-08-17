@@ -46,7 +46,7 @@
 
             @if($temp != null)
 
-                <div class="col-sm-6 select-form">
+                <div class="col-sm-6 select-form" id="checkboxGroupMF">
                         <div class="header-title text-justify"><b>PICK YOUR VIDEO FRAME TEMPLATES <br></br>AND COLOURS</b></div>
                         <div class="my-4"><b>Main Frame</b><br>
                         Please select the one you would like to use below</div>
@@ -61,7 +61,7 @@
                                         </div>
                             </div>
                             <div class="col-sm">
-                                        <img class="img-fluid w-100" src="{{ asset('storage/register/main-frame-2b.jpg') }}"><br>
+                                        <img class="img-fluid w-100" src="{{ asset('storage/template_materials/' . $temp['folder_name'] . '/' . $temp['thumb_main_template_2']) }}"><br>
                                         <a href="" data-toggle="modal" data-target="#mainTemplateModal" data-dbid="{{ $temp['zoom_main_template_2'] }}" class="d-inline-block font12">< Click to Enlarge ></a>
                                         <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                           <input type="checkbox" class="custom-control-input" name="main_frame[]" id="mainframe2" value="main-frame-2"
@@ -72,7 +72,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-sm">
-                                        <img class="img-fluid w-100" src="{{ asset('storage/register/main-frame-3b.jpg') }}"><br>
+                                        <img class="img-fluid w-100" src="{{ asset('storage/template_materials/' . $temp['folder_name'] . '/' . $temp['thumb_main_template_3']) }}""><br>
                                         <a href="" data-toggle="modal" data-target="#mainTemplateModal" data-dbid="{{ $temp['zoom_main_template_3'] }}" class="d-inline-block font12">< Click to Enlarge ></a>
                                         <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                           <input type="checkbox" class="custom-control-input" name="main_frame[]" id="mainframe3" value="main-frame-3"
@@ -81,7 +81,7 @@
                                         </div>
                             </div>
                             <div class="col-sm">
-                                        <img class="img-fluid w-100" src="{{ asset('storage/register/main-frame-4b.jpg') }}"><br>
+                                        <img class="img-fluid w-100" src="{{ asset('storage/template_materials/' . $temp['folder_name'] . '/' . $temp['thumb_main_template_4']) }}"><br>
                                         <a href="" data-toggle="modal" data-target="#mainTemplateModal" data-dbid="{{ $temp['zoom_main_template_4'] }}" class="d-inline-block font12">< Click to Enlarge ></a>
                                         <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                           <input type="checkbox" class="custom-control-input" name="main_frame[]" id="mainframe4" value="main-frame-4"
@@ -94,7 +94,7 @@
 
             @else
             
-                 <div class="col-sm-6 select-form">
+                 <div class="col-sm-6 select-form" id="checkboxGroupMF">
                         <div class="header-title text-justify"><b>PICK YOUR VIDEO FRAME TEMPLATES <br></br>AND COLOURS</b></div>
                         <div class="my-4"><b>Main Frame</b><br>
                         Please select the one you would like to use below</div>
@@ -138,8 +138,8 @@
                                         </div>
                             </div>
                         </div>
-                </div>   
-
+                </div>  
+            @endif     
     </div> <!-- end row -->
 </div> <!--end border-bot pt-0 -->
 
@@ -187,14 +187,14 @@
 
                     @if($temp != null)
 
-                      <div class="col-sm-6 select-form">
+                      <div class="col-sm-6 select-form" id="checkboxGroupEF">
                           <div class="header-title mb-4"><b>End Frame</b><br>Please select the one you would like to use below</div>
                           <div class="row">
                               <div class="col-sm">
                                   <img class="img-fluid w-100" src="{{ asset('storage/template_materials/' . $temp['folder_name'] . '/' . $temp['thumb_end_template_1']) }}"><br>
                                   <a href="" data-toggle="modal" data-target="#endTemplateModal" data-dbid="{{ $temp['zoom_end_template_1'] }}" class="d-inline-block font12">< Click to Enlarge ></a>
                                   <div class="custom-control custom-checkbox premium d-inline-block float-r">
-                                    <input type="checkbox" class="custom-control-input" name="end_frame[]" id="endframe1" value="end-frame-1"
+                                    <input type="checkbox" class="custom-control-input" name="end_frame[]" id="endframe1" value="end-frame-1" 
                                                    {{{ (isset($endframe_list) && (in_array('end-frame-1', $endframe_list))) ? "checked" : ""}}}>
                                     <label class="custom-control-label font12" for="endframe1">Select</label>
                                   </div>
@@ -235,7 +235,7 @@
 
                   @else
 
-                      <div class="col-sm-6 select-form">
+                      <div class="col-sm-6 select-form" id="checkboxGroupEF">
                           <div class="header-title mb-4"><b>End Frame</b><br>Please select the one you would like to use below</div>
                           <div class="row">
                               <div class="col-sm">
@@ -278,7 +278,7 @@
                               </div>
                           </div>
                       </div>
-                    
+                  @endif  
 
 </div> <!-- row mt-3 -->
 

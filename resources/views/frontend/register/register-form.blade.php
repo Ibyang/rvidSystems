@@ -1,7 +1,7 @@
 <div class="container register-form border-bot3">
-    @if(isset($details))
-        <form class="register-info" method="POST" action="{{ route('processStep1') }}">
-             <h3>Add Your Details</h3>
+    @if(isset($details) && $details != null)
+        <form class="register-info" id="frmProcess1" method="POST" action="{{ route('processStep1') }}">
+            <h3 class="color-000">Add Your Details</h3>
              {{ csrf_field() }}
             <input name="_method" type="hidden" value="PATCH">
             <div class="row">
@@ -64,7 +64,7 @@
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" Placeholder="Repeat Password" required>
                     </div>
                     <div class="form-group">
-                        <h3 class="m-0 py-2">Agency Details</h3>
+                        <h3 class="m-0 py-2 font-t-ms">Agency Details</h3>
                     </div>
                     <div class="form-group{{ $errors->has('group') ? ' has-error' : '' }}">     
                         <select name="group" id="grouplist" class="form-control">
@@ -105,20 +105,20 @@
                     </div>
                 </div>
             </div>
-            
-            @if (Request::segment(1) == 'use-revid' || Request::segment(1) == 'how-system-works')
+        
+            @if (Request::segment(1) != 'pricing') 
                 @include('frontend.pages.pricing-data')
-            @endif
+            @endif    
 
             <input type="hidden" id="suburbValue" name="suburbValue" value=" {{ $details->suburb }} ">
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>" />
             <input type="hidden" name="modeAction" id="modeAction">
             <input type="hidden" name="agentID" id="agentID">
-            <input type="hidden" name="subscription" id="subscription">
+            <input type="hidden" name="plantype" id="plantype">
             
             <div class="form-group">
                         <div class="text-right my-4">
-                                <button type="submit" class="btn btn-primary font-weight-bold join-step-next">
+                                <button type="button" class="btn btn-primary font-weight-bold join-step-next" id="btnSubmit">
                                     NEXT: Your Template <i class="arrow-right"></i>
                                 </button>
                         </div>
@@ -127,8 +127,8 @@
 
     @else
     
-        <form class="register-info" method="POST" action="{{ route('processStep1') }}">
-             <h3>Add Your Details</h3>
+        <form class="register-info" id="frmProcess1" method="POST" action="{{ route('processStep1') }}">
+            <h3 class="color-000">Add Your Detail</h3>
              {{ csrf_field() }}
             <div class="row">
                 <div class="col-sm">
@@ -196,7 +196,7 @@
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" Placeholder="Repeat Password" value="{{{ $agent['agent_password'] or old('password_confirmation') }}}" required>
                     </div>
                     <div class="form-group">
-                        <h3 class="m-0 py-2">Agency Details</h3>
+                        <h3 class="m-0 py-2  font-t-ms">Agency Details</h3>
                     </div>
                     <div class="form-group{{ $errors->has('group') ? ' has-error' : '' }}">     
                         <!-- <select name="group" class="form-control">
@@ -249,17 +249,17 @@
                 </div>
             </div>
             
-            @if (Request::segment(1) == 'use-revid' || Request::segment(1) == 'how-system-works')
+            @if (Request::segment(1) != 'pricing') 
                 @include('frontend.pages.pricing-data')
-            @endif
+            @endif 
 
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>" />
             <input type="hidden" name="agentID" id="agentID">
-            <input type="hidden" name="subscription" id="subscription">
+            <input type="hidden" name="plantype" id="plantype">
             
             <div class="form-group">
                         <div class="text-right my-4">
-                                <button type="submit" class="btn btn-primary font-weight-bold join-step-next">
+                                <button type="button" class="btn btn-primary font-weight-bold join-step-next" id="btnSubmit">
                                     NEXT: Your Template <i class="arrow-right"></i>
                                 </button>
                         </div>

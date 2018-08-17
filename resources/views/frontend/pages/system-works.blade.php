@@ -26,3 +26,11 @@
     </div>
 
 @endsection
+
+
+{{-- page level scripts --}}
+@section('footer_scripts')
+
+    <script src="{{ asset('assets/js/pricing-register.js') }}" type="text/javascript"></script>
+
+@stop

@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="color-6600cc">Online Live Chat</h3>
+                <!-- <h3 class="color-6600cc">Online Live Chat</h3>
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} m-0">
                     <textarea id="name" type="text" row="15" class="form-control" name="" placeholder="" required autofocus></textarea>
                 </div>
@@ -63,7 +63,7 @@
                             <button type="submit" class="btn btn-primary btn-ff0033">SEND</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <h3 class="color-6600cc mt-4">Please telephone call me!</h3>
                 <form id="callmeEmail" class="form-horizontal" method="post" action=" {{ route('callmeEmail') }}">
                     <div class="d-flex flex-column">

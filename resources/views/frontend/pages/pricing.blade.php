@@ -27,51 +27,7 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
 
-    <script type="text/javascript">
-
-        $(document).ready(function() {
-
-            //script to select only one checkbox at a time
-            $('input[type="checkbox"]').on('change', function() {
-                $('input[name="' + this.name + '"]').not(this).prop('checked', false);
-            });
-
-
-            //script to pass value of selected subscription to the next page
-            $('#chkCasual').click(function() {
-                if ($(this).is(":checked"))
-
-                    $('#plantype').val("Casual");
-
-            });
-
-
-            $('#chkStandard').click(function() {
-                if ($(this).is(":checked"))
-
-                    $('#plantype').val("Standard");
-
-            });
-
-
-            $('#chkBasic').click(function() {
-                if ($(this).is(":checked"))
-
-                    $('#plantype').val("Basic");
-
-            });
-
-
-            $('#chkPremium').click(function() {
-                if ($(this).is(":checked"))
-
-                    $('#plantype').val("Premium");
-
-            });
-
-        });
-
-    </script>
+    <script src="{{ asset('assets/js/pricing-register.js') }}" type="text/javascript"></script>
 
 @stop
 

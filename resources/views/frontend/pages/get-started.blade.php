@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 
-    <link href="{{ asset('assets/vendors/selectize/css/selectize.css') }}" rel="stylesheet" type="text/css" />
+    <!-- <link href="{{ asset('assets/vendors/selectize/css/selectize.css') }}" rel="stylesheet" type="text/css" /> -->
 
 @extends('frontend.layouts.main')
 
@@ -14,8 +14,9 @@
            </div>
 
            <div class="col-sm line-height20">
-               <p class="text-justify m-0"><b>Online Membership</b> and Set-up is done in 4 Easy Steps. Once you have set-up your
-                preferences and made your selections – we are ready to make your Videos.</p>
+               <!-- <p class="text-justify m-0"><b>Online Membership</b> and Set-up is done in 4 Easy Steps. Once you have set-up your
+                preferences and made your selections – we are ready to make your Videos.</p> -->
+               <p class="text-justify m-0"><b>Online Membership and Set-up is done in 4 Easy Steps</b>. Once you have set-up your preferences and madeyour selections – we are ready to make your Videos</p> 
 
                 <div class="d-flex justify-content-between mt-3">
                     <div>
@@ -63,38 +64,91 @@
 @section('footer_scripts')
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
-    <script src="{{ asset('assets/vendors/selectize/js/standalone/selectize.js') }}" type="text/javascript"></script>
+    <!-- <script src="{{ asset('assets/vendors/selectize/js/standalone/selectize.js') }}" type="text/javascript"></script> -->
 
     <script type="text/javascript">
 
         $(document).ready(function() {
 
-            $('#grouplist').selectize({
-                create: true,
-                sortField: {
-                    field: 'text',
-                    direction: 'asc'
+            // $('#grouplist').selectize({
+            //     create: true,
+            //     sortField: {
+            //         field: 'text',
+            //         direction: 'asc'
+            //     }
+            // });
+
+            // $('#agencylist').selectize({
+            //     create: true,
+            //     sortField: {
+            //         field: 'text',
+            //         direction: 'asc'
+            //     }
+            // });
+
+            // function combo(grouplist, group)
+            // {
+            //     group = document.getElementById(group);
+            //     var idx = grouplist.selectedIndex;
+            //     var content = grouplist.options[idx].innerHTML;
+            //     group.value = content;
+            // }
+
+
+            //for clicking Submit button
+             $('#btnSubmit').click(function() {
+                var subscriptiontype = $('#plantype').val();
+                
+                if(subscriptiontype == '') {
+                    alert("Please select a plan.")
                 }
+                else{
+                    $('#frmProcess1').submit();
+                }
+                
             });
 
-            $('#agencylist').selectize({
-                create: true,
-                sortField: {
-                    field: 'text',
-                    direction: 'asc'
-                }
+
+            //script to select only one checkbox at a time
+            $('input[type="checkbox"]').on('change', function() {
+                $('input[name="' + this.name + '"]').not(this).prop('checked', false);
             });
 
-            function combo(grouplist, group)
-            {
-                group = document.getElementById(group);
-                var idx = grouplist.selectedIndex;
-                var content = grouplist.options[idx].innerHTML;
-                group.value = content;
-            }
 
+            //script to pass value of selected subscription to the next page
+            $('#chkCasual').click(function() {
+                if ($(this).is(":checked"))
+
+                    $('#plantype').val("Casual");
+                    $('#free_offer').hide();
+
+            });
+
+            $('#chkStandard').click(function() {
+                if ($(this).is(":checked"))
+
+                    $('#plantype').val("Standard");
+
+            });
+
+            $('#chkBasic').click(function() {
+                if ($(this).is(":checked"))
+
+                    $('#plantype').val("Basic");
+
+            });
+
+            $('#chkPremium').click(function() {
+                if ($(this).is(":checked"))
+
+                    $('#plantype').val("Premium");
+
+            });
+
+
+            //scripts used by the registration form
             var suburbValue = $('#suburbValue').val();
             if(suburbValue != '' && suburbValue != undefined){
                 $('select[name="suburb"]').append('<option value="'+ suburbValue +'">'+ suburbValue +'</option>');

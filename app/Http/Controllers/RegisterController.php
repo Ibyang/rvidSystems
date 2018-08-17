@@ -8,6 +8,7 @@ use App\User;
 use App\State;
 use App\Suburb;
 use App\FAQ;
+use App\SocialMedia;
 use App\AgentEmail;
 use App\AgentBroadcast;
 use App\AgentPreferences;
@@ -55,12 +56,12 @@ class RegisterController extends Controller
             $details = Agent::where('email', $email)->first();
         else
             $details = null;
-        //dd($details);
         $groups = Agent::distinct()->get(['group']);
         $agencies = Agent::distinct()->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
+        $social = SocialMedia::where('ID', 1)->first();
         $agent = $request->session()->get('agent_arr');
-        return view('frontend.pages.get-started', compact('email', 'details', 'states', 'groups', 'agencies', 'agent'));
+        return view('frontend.pages.get-started', compact('email', 'details', 'states', 'social', 'groups', 'agencies', 'agent'));
     }
 
     public function getStep1(Request $request)
@@ -85,9 +86,10 @@ class RegisterController extends Controller
     public function getStep2(Request $request)
     {
         //$agent = Session::get('agent_arr');
-        //$userId = Session::get('userId');
+        $username = preg_replace('/\s/', '', Session::get('fullname'));
 
-        //$path = '/storage/client_images/' . $userId . '/general_images/';
+        //for creating subfolder for a particular client
+        $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
 
 //        if($userId){
 //            $template = AgentTemplate::where('agent_ID', $userId)->get()->first();
@@ -112,7 +114,7 @@ class RegisterController extends Controller
 
         $temp = AgencyTemplate::where('agency_name', $agency)->first();
 
-        return view('frontend.register.register-step2', compact('agent', 'template', 'mainframe_list', 'middleframe_list', 'endframe_list', 'voice_list', 'music_list', 'temp'));
+        return view('frontend.register.register-step2', compact('agent', 'template', 'mainframe_list', 'middleframe_list', 'endframe_list', 'voice_list', 'music_list', 'temp', 'path'));
 
     }
 
@@ -156,6 +158,52 @@ class RegisterController extends Controller
         $details = Agent::where('email', $email)->first();
         $agent = Session::get('agent_arr');
         $subscription = Session::get('subscription');
+        $plantype = Session::get('plantype');
+        $content = Content::where('ID', 1)->get(['content_text'])->first();
+
+        //details for plan selection
+        if($plantype == 'Casual'){
+            $plan_arr = array(
+                'planName' => 'Casual',
+                'planAmt' => '0',
+                'automaticAmt' => '149',
+                'casualAmt' => '199',
+                'customAmt' => '399',
+                'freeMonths' => '0'
+            );
+        } 
+        elseif($plantype == 'Standard'){
+            $plan_arr = array(
+                'planName' => 'Standard',
+                'planAmt' => '66',
+                'automaticAmt' => '99',
+                'casualAmt' => '139',
+                'customAmt' => '399',
+                'freeMonths' => '2' 
+            );
+        }
+        elseif($plantype == 'Basic'){
+            $plan_arr = array(
+                'planName' => 'Basic',
+                'planAmt' => '0',
+                'automaticAmt' => '99',
+                'casualAmt' => '139',
+                'customAmt' => '399',
+                'freeMonths' => '3'
+            );
+        }
+        elseif($plantype == 'Casual'){
+            $plan_arr = array(
+                'planName' => 'Premium',
+                'planAmt' => '0',
+                'automaticAmt' => '99',
+                'casualAmt' => '139',
+                'customAmt' => '399',
+                'freeMonths' => '4'
+
+            );
+        }
+
 //        $user_id = Session::get('userId');
 //
 //        if($user_id){
@@ -163,7 +211,7 @@ class RegisterController extends Controller
 //        }
 
 //        return view('frontend.register.register-step4', compact('details', 'agent', 'user_id', 'payment'));
-        return view('frontend.register.register-step4', compact( 'agent', 'subscription', 'details'));
+        return view('frontend.register.register-step4', compact( 'agent', 'subscription', 'details', 'content', 'plantype', 'plan_arr'));
     }
 
     public function processStep1(Request $request)
@@ -195,7 +243,9 @@ class RegisterController extends Controller
             'postcode' => Input::get('postcode')
         );
 
+        $plantype = Input::get('plantype');
         Session::put('agent_arr', $agent_arr);
+        Session::put('plantype', $plantype);
 
         $fullname = Input::get('firstname') . ' ' . Input::get('lastname');
         $passwrd = bcrypt(Input::get('password'));
@@ -345,22 +395,22 @@ class RegisterController extends Controller
 
         $temp = $request->session()->get('template');
 
-        //for creating subfolder for a particular client
-//        $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
-//        if (!File::exists($path)) {
-//            File::makeDirectory($path, 0775, true);
-//        }
-//        //move to folder if there is file uploaded for Main Image
-//        if ($file = $request->hasFile('mainImage')) {
-//            //for Main Image
-//            $mainImage = $request->file('mainImage');
-//            $fnameMainImage = time() . '_' . $mainImage->getClientOriginalName();
-//
-//            $mainImage->move($path, $fnameMainImage);
-//        }
-//        else{
-//            $fnameMainImage = $temp['main_image'];
-//        }
+       //for creating subfolder for a particular client
+       $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
+       if (!File::exists($path)) {
+           File::makeDirectory($path, 0775, true);
+       }
+       //move to folder if there is file uploaded for Main Image
+       if ($file = $request->hasFile('mainImage')) {
+           //for Main Image
+           $mainImage = $request->file('mainImage');
+           $fnameMainImage = time() . '_' . $mainImage->getClientOriginalName();
+
+           $mainImage->move($path, $fnameMainImage);
+       }
+       else{
+           $fnameMainImage = $temp['main_image'];
+       }
 
         //move to folder if there is file uploaded for Main Image 2 (Optional)
 //        if ($file = $request->hasFile('mainImage2')) {
@@ -386,17 +436,17 @@ class RegisterController extends Controller
 //            $fnameMainImage3 = $temp['extra_image2'];
 //        }
 
-        //for uploading of logo
-//        if ($file = $request->hasFile('logoImage')) {
-//            //for Main Image 3 (Optional)
-//            $logoImage = $request->file('logoImage');
-//            $fnamelogoImage = 'logo_' . $logoImage->getClientOriginalName();
-//
-//            $logoImage->move($path, $fnamelogoImage);
-//        }
-//        else{
-//            $fnamelogoImage = $temp['logo'];
-//        }
+       // for uploading of logo
+       if ($file = $request->hasFile('logoImage')) {
+           //for Main Image 3 (Optional)
+           $logoImage = $request->file('logoImage');
+           $fnamelogoImage = 'logo_' . $logoImage->getClientOriginalName();
+
+           $logoImage->move($path, $fnamelogoImage);
+       }
+       else{
+           $fnamelogoImage = $temp['logo'];
+       }
 
         //for main frame template selection
         $mainFrameSelections = Input::get('main_frame');
@@ -459,8 +509,8 @@ class RegisterController extends Controller
             $musicboxes = '';
 
         $path2 = '/storage/client_images/' . $username . '/general_images/';
-        $fnameMainImage = Session::get('mainImageFile');
-        $fnamelogoImage = Session::get('logoImageFile');
+        // $fnameMainImage = Session::get('mainImageFile');
+        // $fnamelogoImage = Session::get('logoImageFile');
 
         $template = array(
             //'agent_ID' => $userId,
@@ -783,28 +833,42 @@ class RegisterController extends Controller
                 }
 
                 //Saving of Step 4 Details
-                $subscription1 = Input::get('subscription1');
+                // $subscription1 = Input::get('subscription1');
 
-                foreach ($subscription1 as $sub) {
-                    if ($sub === 'Casual') {
-                        $subscription_type = $sub;
-                        $storage_plan = '$11';
-                    } else if ($sub === 'Basic') {
-                        $subscription_type = $sub;
-                        $storage_plan = '$33';
-                    } else if ($sub === 'Standard') {
-                        $subscription_type = $sub;
-                        $storage_plan = '$66';
-                    } else if ($sub === 'Premium') {
-                        $subscription_type = $sub;
-                        $storage_plan = '$99';
-                    }
-                }
+                // foreach ($subscription1 as $sub) {
+                //     if ($sub === 'Casual') {
+                //         $subscription_type = $sub;
+                //         $storage_plan = '$11';
+                //     } else if ($sub === 'Basic') {
+                //         $subscription_type = $sub;
+                //         $storage_plan = '$33';
+                //     } else if ($sub === 'Standard') {
+                //         $subscription_type = $sub;
+                //         $storage_plan = '$66';
+                //     } else if ($sub === 'Premium') {
+                //         $subscription_type = $sub;
+                //         $storage_plan = '$99';
+                //     }
+                // }
+
+                // $payment_arr = array(
+                //     'agent_ID' => $userId,
+                //     'subscription_type' => $subscription_type,
+                //     'storage_plan' => $storage_plan,
+                //     'invoice_to' => Input::get('person_name'),
+                //     'address' => Input::get('invoice_address'),
+                //     'suburb' => Input::get('invoice_suburb'),
+                //     'state' => Input::get('postcode'),
+                //     'person_name' => Input::get('contact_name'),
+                //     'contact_num' => Input::get('mobile'),
+                //     'email' => Input::get('email'),
+                // );
+
 
                 $payment_arr = array(
                     'agent_ID' => $userId,
-                    'subscription_type' => $subscription_type,
-                    'storage_plan' => $storage_plan,
+                    'subscription_type' => Input::get('plantype'),
+                    'storage_plan' => Input::get('plan_month'),
                     'invoice_to' => Input::get('person_name'),
                     'address' => Input::get('invoice_address'),
                     'suburb' => Input::get('invoice_suburb'),
@@ -813,6 +877,7 @@ class RegisterController extends Controller
                     'contact_num' => Input::get('mobile'),
                     'email' => Input::get('email'),
                 );
+
 
                 AgentInvoice::create($payment_arr);
 

@@ -100,10 +100,48 @@
 
     <div class="d-flex flex-row-reverse">
         <div>
-            <button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="submit" id="btnAccept" name="action" value="accept">Finish</button>
+            <!-- <button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="submit" id="btnAccept" name="action" value="accept">Finish</button> -->
+            <a href="" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#TermsConditionsModal"><button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="button" id="btnAccept" name="action" value="accept">Finish</button></a>
         </div>
     </div>
 </div>
 <div class="d-flex justify-content-between join-step-next p-1">
-            <button class="btn btn-primary bg-333 btn-no-border px-4" type="submit" name="action" value="previousStep"><i class="arrow-left"></i> BACK</button>
+            <button class="btn btn-primary bg-333 btn-no-border px-4" type="button" name="action" value="previousStep"><i class="arrow-left"></i> BACK</button>
 </div>
+
+
+<!-- Video Modal for What is Revid -->
+<div class="modal fade" id="TermsConditionsModal"
+         tabindex="-1" role="dialog"
+         aria-labelledby="VideoModalLabel">
+        <div class="modal-dialog" role="document" style="max-width: 900px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Terms and Conditions</h4>
+                    <!-- <button type="button" class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button> -->
+                </div>
+                <div class="modal-body" style="height:500px; overflow:auto;">
+                    @if($content['content_text'] != null)
+                            {!! $content['content_text'] !!}
+                    @endif
+                    <div class="col-sm step-three-register">
+                        <div class="custom-control custom-checkbox termscondition">
+                            <input type="checkbox" class="custom-control-input" id="chkTermsConditions" name="chkTermsConditions">
+                            <label class="custom-control-label text-justify" for="chkTermsConditions">I have read and understand the REVid systems terms and conditions above</label>
+                        </div>
+                        <!-- <input type="checkbox" name="chkTermsConditions" id="chkTermsConditions" style=""> I have read and understand the REVid systems terms and conditions above -->
+                    </div>    
+                </div>
+                <div class="modal-footer" id="modal-close" style="display: none;">
+                    <button type="button"
+                            class="btn btn-default"
+                            data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+

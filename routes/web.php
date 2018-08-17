@@ -254,19 +254,35 @@ Route::group(['middleware' => 'guest'], function() {
     })->name('pricing');
 
     Route::get('/terms-condition', function () {
+        $social = SocialMedia::where('ID', 1)->first();
         $content = Content::where('ID', 1)->get(['content_text'])->first();
-        return view('frontend.pages.terms-condition', compact('content'));
+        return view('frontend.pages.terms-condition', compact('content', 'social'));
     })->name('terms-condition');
 
     Route::get('/copyright', function () {
+        $social = SocialMedia::where('ID', 1)->first();
         $content = Content::where('ID', 2)->get(['content_text'])->first();
-        return view('frontend.pages.copyright', compact('content'));
+        return view('frontend.pages.copyright', compact('content', 'social'));
     })->name('copyright');
 
     Route::get('/privacy-terms', function () {
+        $social = SocialMedia::where('ID', 1)->first();
         $content = Content::where('ID', 3)->get(['content_text'])->first();
-        return view('frontend.pages.privacy-terms', compact('content'));
+        return view('frontend.pages.privacy-terms', compact('content', 'social'));
     })->name('privacy-terms');
+
+
+    //for default login page
+    Route::get('/login-page', function () {
+        $social = SocialMedia::where('ID', 1)->first();
+        $content = Content::where('ID', 3)->get(['content_text'])->first();
+        return view('frontend.pages.privacy-terms', compact('content', 'social'));
+    })->name('login-page');
+
+
+    Route::get('/login-page', function () {
+        return view('auth.login');
+    })->name('login-page');
 
 
     //for direct upload
@@ -310,8 +326,8 @@ Route::group(['middleware' => 'guest'], function() {
     Route::post('account/help/callMe', 'MyHelpController@callmeHelp')->name('callmeHelp');
 
     //passing values from the Front End pages
-    Route::post('/get-started', 'RegisterController@index')->name('get-started');
-//    Route::post('/get-started', 'RegisterController@getStarted')->name('get-started');
+    // Route::post('/get-started', 'RegisterController@index')->name('get-started');
+    Route::post('/get-started', 'RegisterController@getStarted')->name('getStarted');
 
     //passing values via enter of Email field
     Route::post('/get-started/step1', 'RegisterController@getStep1')->name('get-started-step1');
@@ -386,13 +402,13 @@ Route::group(['middleware' => 'guest'], function() {
 
     Route::get('/account/premium-video','MyVideoController@PremiumVideoDetails')->name('account-premium-video');
 
-    Route::get('/account/explore-voice-overs','MyVideoController@VoiceOvers')->name('account-explore-voice-overs');
+    Route::get('/account/settings/explore-voice-overs','MyVideoController@VoiceOvers')->name('account-explore-voice-overs');
 
-    Route::get('/account/explore-music','MyVideoController@ExploreMusic')->name('account-explore-music');
+    Route::get('/account/settings/explore-music','MyVideoController@ExploreMusic')->name('account-explore-music');
 
-    Route::get('/account/explore-pictures','MyVideoController@ExplorePicture')->name('account-explore-pictures');
+    Route::get('/account/settings/explore-pictures','MyVideoController@ExplorePicture')->name('account-explore-pictures');
 
-    Route::get('/account/explore-templates','MyVideoController@ExploreTemplate')->name('account-explore-templates');
+    Route::get('/account/settings/explore-templates','MyVideoController@ExploreTemplate')->name('account-explore-templates');
 
     //module for editing templates (Explore Templates)
     Route::post('/account/explore-templates/editMainFrame', 'MyVideoController@editMainFrame')->name('editMainFrame');

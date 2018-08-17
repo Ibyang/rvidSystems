@@ -42,19 +42,19 @@
             <div class="border-ccc pt-2">
                 <div class="row">
                     <div class="col-4 pr-0 pl-2"><i class="link-icon2 li-v3-pc"></i></div>
-                    <div class="col-auto text-left line-height20 pl-0"><a href="{{ route('use-revid-corporate') }}"><b>Presentations <br>and Corporate</b></div>
+                    <div class="col-auto text-left line-height20 pl-0"><a href="{{ route('use-revid-corporate') }}"><b>Presentations <br>and Corporate</b></a>a</div>
                 </div>
             </div>
             <div class="border-ccc pt-2 my-2">
                 <div class="row">
                     <div class="col-4 p-0-30"><i class="link-icon2 li-v3-office"></i></div>
-                    <div class="col-auto text-left line-height20 pl-0"><a href="/"><b>Home Opens<br> Office Display</b></div>
+                    <div class="col-auto text-left line-height20 pl-0"><a href="/"><b>Home Opens<br> Office Display</b></a></div>
                 </div>
             </div>
             <div class="border-ccc pt-2">
                 <div class="row">
                     <div class="col-4 p-0-30"><i class="link-icon2 li-v3-marketing"></i></div>
-                    <div class="col-auto text-left line-height20 pl-0"><a href="{{ route('use-revid-marketing') }}"><b>Marketing Email <br>Promotions</b></div>
+                    <div class="col-auto text-left line-height20 pl-0"><a href="{{ route('use-revid-marketing') }}"><b>Marketing Email <br>Promotions</b></a></div>
                 </div>
             </div>
         </div>  
@@ -86,60 +86,62 @@
             </div>
         </div>
     </div>
-    <div class="fv-mobile p-0-35 mt-3">
-        <div class="row f-video-step">
-            <div class="col-sm px-0">
-                <a href="{{ route('make-video-automatic') }}"><h3 class="c-6600cc font-weight-bold mt-3">$99 Automatic <br>Video</h3></a>
-                <form class="f-g-v-form mt-2 mx-0">
-                    <div class="f-text-circle2">
-                        <div class="f-text2 font-weight-bold">
-                        MOST <br>POPULAR</div>
-                    </div>
-                    <div class="d-flex flex-row bd-highlight mb-3">
-                      <div><input type="email" class="form-control w-100 text-right" placeholder="URL here"></div>
-                      <div class="ml-2">
-                           <div class="d-flex flex-row-reverse">
-                               <button type="submit" class="btn btn-primary b-radius-7"><b>GO</b></button>
-                           </div>
-                      </div>
-                    </div>
-                    <div class="d-flex justify-content-between mt-4 font14">
-                           <div><b>Direct Upload</b><br>
-                            Click here to upload images<br>
-                            and property details</div>
-                            <div class="align-self-center ml-4"><button type="submit" class="btn btn-primary px-1 py-2 b-radius-7"><b>UPLOAD</b></button></div>
-                    </div>
-                </form>
-                <div class="row mt-3 mx-0">
-                    <div class="col pl-0">
-                        <p class="text-justify">We do it all, and make your Video using the images and information in your online property listing.</p>
-                    </div>
-                    <div class="col text-right pr-0">
-                        <img class="img-fluid" src={{ asset('storage/realty-sample.jpg') }} /><br>
-                        <span>SAMPLE</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm p-0">
-                <h3 class="c0066ff font-weight-bold mt-3">$139 Manual <br>Video</h3>
-                <img class="img-fluid" src={{ asset('storage/steps.png') }} />
-                <div class="row mt-3 mx-0">
-                    <div class="col pl-0">
-                        <p class="text-justify w-spacing">If you are happy to spend the time, you select and match images to voice over tracks and make the Video just like you want it.</p>
-                    </div>
-                    <div class="col text-right pr-0">
-                        <img class="img-fluid" src={{ asset('storage/realty-sample.jpg') }} /><br>
-                        <span>SAMPLE</span>
+    @if(Request::is('/'))  
+        <div class="fv-mobile p-0-35 mt-3">
+            <div class="row f-video-step">
+                <div class="col-sm px-0">
+                    <a href="{{ route('make-video-automatic') }}"><h3 class="c-6600cc font-weight-bold mt-3">$99 Automatic <br>Video</h3></a>
+                    <form class="f-g-v-form mt-2 mx-0">
+                        <div class="f-text-circle2">
+                            <div class="f-text2 font-weight-bold">
+                            MOST <br>POPULAR</div>
+                        </div>
+                        <div class="d-flex flex-row bd-highlight mb-3">
+                          <div><input type="email" class="form-control w-100 text-right" placeholder="URL here"></div>
+                          <div class="ml-2">
+                               <div class="d-flex flex-row-reverse">
+                                   <button type="submit" class="btn btn-primary b-radius-7"><b>GO</b></button>
+                               </div>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-4 font14">
+                               <div><b>Direct Upload</b><br>
+                                Click here to upload images<br>
+                                and property details</div>
+                                <div class="align-self-center ml-4"><button type="submit" class="btn btn-primary px-1 py-2 b-radius-7"><b>UPLOAD</b></button></div>
+                        </div>
+                    </form>
+                    <div class="row mt-3 mx-0">
+                        <div class="col pl-0">
+                            <p class="text-justify">We do it all, and make your Video using the images and information in your online property listing.</p>
+                        </div>
+                        <div class="col text-right pr-0">
+                            <img class="img-fluid" src={{ asset('storage/realty-sample.jpg') }} /><br>
+                            <span>SAMPLE</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>  
-    </div>
+                <div class="col-sm p-0">
+                    <h3 class="c0066ff font-weight-bold mt-3">$139 Manual <br>Video</h3>
+                    <img class="img-fluid" src={{ asset('storage/steps.png') }} />
+                    <div class="row mt-3 mx-0">
+                        <div class="col pl-0">
+                            <p class="text-justify w-spacing">If you are happy to spend the time, you select and match images to voice over tracks and make the Video just like you want it.</p>
+                        </div>
+                        <div class="col text-right pr-0">
+                            <img class="img-fluid" src={{ asset('storage/realty-sample.jpg') }} /><br>
+                            <span>SAMPLE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    @endif    
     <div class="row f-video-step mx-0 my-4 fv-web border-bot5 pb-4">
         <div class="col-sm">
             <div class="row mt-4">
                 <div class="col">
-                    <h3 class="c-6600cc font-weight-bold">$99 Automatic Video</h3>
+                    <a href="{{ route('make-video-automatic') }}"><h3 class="c-6600cc font-weight-bold">$99 Automatic Video</h3></a>
                     <p class="text-justify">We do it all, and make your Video using the images and information in your online property listing.</p>
                 </div>
                 <div class="col text-right">
@@ -152,11 +154,11 @@
                     <div class="f-text font-weight-bold">
                     MOST <br>POPULAR</div>
                 </div>
-                
+
                 <div class="d-flex flex-column bd-highlight">
                   <div>
                         <div class="d-flex flex-row">
-                            <div><input type="email" class="form-control text-right b-radius-0" placeholder="URL here"></div>
+                            <div><input type="text" name="url" id="url" class="form-control text-right b-radius-0" placeholder="URL here"></div>
                             <div><button type="submit" class="btn btn-primary b-radius-7"><b>GO</b></button></div>
                         </div>
                   </div>
@@ -165,7 +167,7 @@
                            <div class="f-g-v-direct"><b>Direct Upload</b><br>
                             Click here to upload images<br>
                             and property details</div>
-                            <div class="align-self-center"><button type="submit" class="btn btn-primary px-1 py-2 b-radius-7"><b>UPLOAD</b></button></div>
+                            <div class="align-self-center"><a href="{{ route('login-page') }}"><button type="button" class="btn btn-primary px-1 py-2 b-radius-7"><b>UPLOAD</b></button></a></div>
                         </div>
                   </div>
                 </div>

@@ -7,7 +7,7 @@
         @include('frontend.register.register-info')
         
         <div class="d-flex justify-content-between join-step-next p-1">
-                <button class="btn btn-primary bg-333 btn-no-border px-4"><i class="arrow-left"></i> BACK</button>
+                <button class="btn btn-primary bg-333 btn-no-border px-4" onclick="goBack()"><i class="arrow-left"></i> BACK</button>
         </div>
     </div>
     <div class="bg-eae step-two-register">
@@ -39,6 +39,11 @@
 @section('footer_scripts')
 
     <script type="text/javascript">
+
+        function goBack(){
+            window.history.back();
+        }
+
         $(document).ready(function() {
 
             //validation to check that at least one of the checkbox is checked
@@ -63,6 +68,26 @@
                     $("#invoice_apply").attr("checked", false);
                 }
             });
+
+
+            // $('#TermsConditionsModal').modal({
+            //     backdrop: 'static',
+            //     keyboard: false
+            // });
+
+
+            $('#TermsConditionsModal').on('shown.bs.modal', function () {
+                $('body').addClass('test');
+            });
+
+
+            // $('#TermsConditionsModal').on('hide.bs.modal', function (e) {
+            //     e.preventDefault();
+            //     e.stopPropagation();
+            //     return false;
+            // });
+
+
 
 
             //for selecting only one checkbox at a time

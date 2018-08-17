@@ -7,7 +7,7 @@
         <h3 class="header-border font-weight-bold color-424244">Privacy Policy</h3>
         <div class="row">
             <div class="col-2 align-self-center color-666">Version 1.1</div>
-            <div class="col-3 align-self-center color-666">Dated 1 Jan 2018</div>
+            <div class="col-3 align-self-center color-666">Dated 1 June 2018</div>
             <div class="col-2 align-self-center color-666"><a href="{{ url('account/getDocumentPDF/3') }}" style="color: #666666"><i class="dl-pdf"></i> Download PDF</a></div>
             <div class="col-sm align-self-center text-right">
                 {{--<div class="d-flex justify-content-end">--}}

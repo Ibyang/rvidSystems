@@ -27,31 +27,28 @@
                     </div>
                 </div>
                 <div class="color-404"><b>Select Music Style</b></div>
-
-                <form class="form-horizontal" method="POST" action="{{ route('account-update-music') }}">
-                  {{ csrf_field() }}
-
-                  <div class="row m-r-l">
-                      <div class="col-sm-8 select-form">
-                           <select name="state" class="col-11 form-control mt-2 mb-4">
-                                      <option>Random Music</option>
-                           </select>
-                      </div>
-                  </div>
-                  <div class="row m-r-l">
-
-                      <div class="col-sm">
-                              <div class="d-flex flex-column">
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-chill"></i></div>
-                                            <div class="align-self-center"><b>CHILLED AND AMBIENT</b></div>
-                                            <div class="align-self-center px-2">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Low-tempo, down-beat, light electronic music. Modern sounding, without the heavy, pounding beats&#0010; of dance music. Often lots of pads, strings, and light melodic sounds."><i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <div class="align-self-center text-center"><a class="color-0066ff" data-toggle="collapse" href="#collapseChilled" role="button" aria-expanded="false" aria-controls="collapseChilled"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapseChilled">
+                <div class="row m-r-l">
+                    <div class="col-sm-8 select-form">
+                         <select name="music_style" class="col-11 form-control mt-2 mb-4">
+                              <option value="Random Music(Standard)" {{ $music['music_style'] === 'Random Music' ? 'selected' : '' }}>Random Music</option>
+                              <option value="One Music" {{ $music['music_style'] === 'One Music' ? 'selected' : '' }}>One Music</option>
+                              <option value="Rotated Music" {{ $music['music_style'] === 'Rotated Music' ? 'selected' : '' }}>Rotated Music</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="row m-r-l">
+                    <div class="col-sm">
+                            <div class="d-flex flex-column">
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-chill"></i></div>
+                                          <div class="align-self-center"><b>CHILLED AND AMBIENT</b></div>
+                                          <div class="align-self-center px-2">
+                                            <a href="#" title="Low-tempo, down-beat, light electronic music. Modern sounding, without the heavy, pounding beats&#0010; of dance music. Often lots of pads, strings, and light melodic sounds."><i class="voice-icon v-i-info"></i></a>
+                                          </div>
+                                          <div class="align-self-center text-center"><a class="color-0066ff" data-toggle="collapse" href="#collapseChilled" role="button" aria-expanded="false" aria-controls="collapseChilled"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapseChilled">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioRoadTrip" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/OPUZZ_CP_08_Road_Trip.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="roadTrip"></i><b>Road Trip</b></div>
@@ -137,19 +134,19 @@
                                               </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-clc"></i></div>
-                                            <div class="align-self-center"><b>CLASSICAL</b></div>
-                                            <div class="align-self-center px-2">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Classical music creates a sense of quality, sophistication and class for your brand message and&#0010; products. These music tracks contain a mix of well-known orchestral pieces and symphonies, string&#0010; and piano-led pieces.">
-                                                <i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
-                                            <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseClassical" role="button" aria-expanded="false" aria-controls="collapseClassical"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapseClassical">
+                                  </div>
+
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-clc"></i></div>
+                                          <div class="align-self-center"><b>CLASSICAL</b></div>
+                                          <div class="align-self-center px-2">
+                                            <a href="#" title="Classical music creates a sense of quality, sophistication and class for your brand message and&#0010; products. These music tracks contain a mix of well-known orchestral pieces and symphonies, string&#0010; and piano-led pieces.">
+                                            <i class="voice-icon v-i-info"></i></a>
+                                          </div>
+                                          <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseClassical" role="button" aria-expanded="false" aria-controls="collapseClassical"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapseClassical">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioBizet" style="display:none;" src="{{ asset('storage/revid_music/Classical/CSS40_Light_02_BIZET_Entracte_to_Act3_Carmen.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="bizet"></i><b>Bizet</b></div>
@@ -235,19 +232,19 @@
                                               </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-cntry"></i></div>
-                                            <div class="align-self-center"><b>COUNTRY</b></div>
-                                            <div class="align-self-center px-2">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Country, Western, Country Rock, Country Blues and the like. Generally simple harmonies&#0010; accompanied mostly by banjos, electric & acoustic guitars, fiddles and harmonicas.">
-                                              <i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
-                                            <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseCountry" role="button" aria-expanded="false" aria-controls="collapseCountry"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapseCountry">
+                                  </div>
+
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-cntry"></i></div>
+                                          <div class="align-self-center"><b>COUNTRY</b></div>
+                                          <div class="align-self-center px-2">
+                                            <a href="#" title="Country, Western, Country Rock, Country Blues and the like. Generally simple harmonies&#0010; accompanied mostly by banjos, electric & acoustic guitars, fiddles and harmonicas.">
+                                            <i class="voice-icon v-i-info"></i></a>
+                                          </div>
+                                          <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseCountry" role="button" aria-expanded="false" aria-controls="collapseCountry"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapseCountry">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioSuburbanCowboy" style="display:none;" src="{{ asset('storage/revid_music/Country/COR2_C&W3_Suburban_Cowboy.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="suburbanCowboy"></i><b>Suburban Cowboy</b></div>
@@ -257,7 +254,7 @@
                                                                       @if(in_array('OPUZZ_CP_08_Road_Trip.mp3', $music_list))
                                                                               checked
                                                                       @endif>
-                                                                      <label class="custom-control-label" for="scowboy></label>
+                                                                      <label class="custom-control-label" for="scowboy"></label>
                                                               </div>
                                                   </div>
                                               </div>
@@ -333,19 +330,19 @@
                                               </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-dance"></i></div>
-                                            <div class="align-self-center"><b>DANCE AND CLUB</b></div>
-                                            <div class="align-self-center px-2">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Fast-paced, up-tempo electronic music, typically with a heavy 4/4 kick drum beat accompanied by&#0010; deep bass, synths, and keyboard leads.">
-                                              <i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
-                                            <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseDanceClub" role="button" aria-expanded="false" aria-controls="collapseDanceClub"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapseDanceClub">
+                                  </div>
+
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-dance"></i></div>
+                                          <div class="align-self-center"><b>DANCE AND CLUB</b></div>
+                                          <div class="align-self-center px-2">
+                                            <a href="#" title="Fast-paced, up-tempo electronic music, typically with a heavy 4/4 kick drum beat accompanied by&#0010; deep bass, synths, and keyboard leads.">
+                                            <i class="voice-icon v-i-info"></i></a>
+                                          </div>
+                                          <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseDanceClub" role="button" aria-expanded="false" aria-controls="collapseDanceClub"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapseDanceClub">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioClubMusic" style="display:none;" src="{{ asset('storage/revid_music/Dance_Club/AB_club-music-broadcast-bed.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="clubMusic"></i><b>Club Music Broadcast Bed</b></div>
@@ -431,19 +428,19 @@
                                               </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-easy"></i></div>
-                                            <div class="align-self-center"><b>EASY LISTENING</b></div>
-                                            <div class="align-self-center px-2">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Easy on the ears, these tracks are neither harsh and heavy, or slow and sleepy. Typically guitar or&#0010; piano driven with an array of influences, ">
-                                              <i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
-                                            <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseEasyListening" role="button" aria-expanded="false" aria-controls="collapseEasyListening"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapseEasyListening">
+                                  </div>
+
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-easy"></i></div>
+                                          <div class="align-self-center"><b>EASY LISTENING</b></div>
+                                          <div class="align-self-center px-2">
+                                            <a href="#" title="Easy on the ears, these tracks are neither harsh and heavy, or slow and sleepy. Typically guitar or&#0010; piano driven with an array of influences, ">
+                                            <i class="voice-icon v-i-info"></i></a>
+                                          </div>
+                                          <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseEasyListening" role="button" aria-expanded="false" aria-controls="collapseEasyListening"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapseEasyListening">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioFGUkulele" style="display:none;" src="{{ asset('storage/revid_music/Easy_Listening/AB_fun-guitar-and-ukulele.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="fGUkulele"></i><b>Fun Guitar and Ukulele</b></div>
@@ -529,19 +526,19 @@
                                               </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-funk"></i></div>
-                                            <div class="align-self-center"><b>FUNK AND SOUL</b></div>
-                                            <div class="align-self-center px-2">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Bass-popping, groovy Funk and smooth Soul, with jazzy rhythms. Electric guitar and bass with&#0010; wailing organs and a touch of brass. ‘Get On Up!’">
+                                  </div>
+
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-funk"></i></div>
+                                          <div class="align-self-center"><b>FUNK AND SOUL</b></div>
+                                          <div class="align-self-center px-2">
+                                            <a href="#" title="Bass-popping, groovy Funk and smooth Soul, with jazzy rhythms. Electric guitar and bass with&#0010; wailing organs and a touch of brass. ‘Get On Up!’">
                                               <i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
-                                            <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseFunkSoul" role="button" aria-expanded="false" aria-controls="collapseFunkSoul"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapseFunkSoul">
+                                          </div>
+                                          <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseFunkSoul" role="button" aria-expanded="false" aria-controls="collapseFunkSoul"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapseFunkSoul">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioSenorFunk" style="display:none;" src="{{ asset('storage/revid_music/Funk_Soul/Amber04_Senor_Funk.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="senorFunk"></i><b>Senor Funk</b></div>
@@ -627,23 +624,23 @@
                                               </div>
                                             </div>
                                         </div>
-                                    </div>
-                              </div>
-                      </div>
-                      <div class="col-sm">
-                              <div class="d-flex flex-column">
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-jazz"></i></div>
-                                            <div class="align-self-center"><b>JAZZ</b></div>
-                                            <div class="align-self-center px-2">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Comes in many flavours. Using elements of swing, syncopation and improvisation, Jazz brings the&#0010; style into the modern age with mid-tempo electro-styles, smooth bass and synth lines.">
-                                              <i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
-                                            <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseJazz" role="button" aria-expanded="false" aria-controls="collapseJazz"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapseJazz">
+                                  </div>
+
+                            </div>
+                    </div>
+                    <div class="col-sm">
+                            <div class="d-flex flex-column">
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-jazz"></i></div>
+                                          <div class="align-self-center"><b>JAZZ</b></div>
+                                          <div class="align-self-center px-2">
+                                            <a href="#" title="Comes in many flavours. Using elements of swing, syncopation and improvisation, Jazz brings the&#0010; style into the modern age with mid-tempo electro-styles, smooth bass and synth lines.">
+                                            <i class="voice-icon v-i-info"></i></a>
+                                          </div>
+                                          <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseJazz" role="button" aria-expanded="false" aria-controls="collapseJazz"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapseJazz">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioIntoPink" style="display:none;" src="{{ asset('storage/revid_music/Jazz/COR1_Pop5_Into_the_Pink.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="intoPink"></i><b>Into the Pink</b></div>
@@ -729,19 +726,19 @@
                                               </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-lounge"></i></div>
-                                            <div class="align-self-center"><b>LOUNGE AND GROOVES</b></div>
-                                            <div class="align-self-center px-1">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Electronic-styled, mid-tempo with soft synths, varied percussion and a cool groove. Can incorporate&#0010; elements from many styles, like jazz, electro, funk and dance.">
-                                              <i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
-                                            <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseLounge" role="button" aria-expanded="false" aria-controls="collapseLounge"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapseLounge">
+                                  </div>
+
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-lounge"></i></div>
+                                          <div class="align-self-center"><b>LOUNGE AND GROOVES</b></div>
+                                          <div class="align-self-center px-1">
+                                            <a href="#" title="Electronic-styled, mid-tempo with soft synths, varied percussion and a cool groove. Can incorporate&#0010; elements from many styles, like jazz, electro, funk and dance.">
+                                            <i class="voice-icon v-i-info"></i></a>
+                                          </div>
+                                          <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseLounge" role="button" aria-expanded="false" aria-controls="collapseLounge"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapseLounge">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioDeepChill" style="display:none;" src="{{ asset('storage/revid_music/Lounge_Grooves/AB_deep-chill.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="deepChill"></i><b>Deep Chill</b></div>
@@ -827,19 +824,19 @@
                                               </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-pop"></i></div>
-                                            <div class="align-self-center"><b>POP</b></div>
-                                            <div class="align-self-center px-2">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Modern & classic Pop. Upbeat, cheerful, easy to bop to. Incorporates a number of musical styles,&#0010; from rock to dance and everything in between.">
+                                  </div>
+
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-pop"></i></div>
+                                          <div class="align-self-center"><b>POP</b></div>
+                                          <div class="align-self-center px-2">
+                                            <a href="#" title="Modern & classic Pop. Upbeat, cheerful, easy to bop to. Incorporates a number of musical styles,&#0010; from rock to dance and everything in between.">
                                               <i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
-                                            <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapsePop" role="button" aria-expanded="false" aria-controls="collapsePop"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapsePop">
+                                          </div>
+                                          <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapsePop" role="button" aria-expanded="false" aria-controls="collapsePop"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapsePop">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioRefreshed" style="display:none;" src="{{ asset('storage/revid_music/Pop/OPUZZ_PM_01_Refreshed.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="refreshed"></i><b>Refreshed</b></div>
@@ -924,20 +921,20 @@
                                                   </div>
                                               </div>
                                             </div>
-                                           </div> 
-                                      </div>
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-rock"></i></div>
-                                            <div class="align-self-center"><b>ROCK</b></div>
-                                            <div class="align-self-center px-2">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Includes the sub-categories of Blues, Classic Rock, Heavy Rock and Pop Rock&#0010; Rock & Roll in all its guises. Guitar-driven with a solid bass line and strong back beat.">
+                                         </div>
+                                  </div>
+
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-rock"></i></div>
+                                          <div class="align-self-center"><b>ROCK</b></div>
+                                          <div class="align-self-center px-2">
+                                            <a href="#" title="Includes the sub-categories of Blues, Classic Rock, Heavy Rock and Pop Rock&#0010; Rock & Roll in all its guises. Guitar-driven with a solid bass line and strong back beat.">
                                               <i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
-                                            <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseRock" role="button" aria-expanded="false" aria-controls="collapseRock"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapseRock">
+                                          </div>
+                                          <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseRock" role="button" aria-expanded="false" aria-controls="collapseRock"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapseRock">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioToughTalking" style="display:none;" src="{{ asset('storage/revid_music/Rock/COR1_Rock3_ToughTalking.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="toughTalking"></i><b>Tough Talking</b></div>
@@ -1023,19 +1020,19 @@
                                               </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-upbeat"></i></div>
-                                            <div class="align-self-center"><b>UPBEAT</b></div>
-                                            <div class="align-self-center px-2">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Incorporating various genres from pop to rock, these tracks are easy listening with an up-tempo,&#0010; cheerful and positive vibe.">
-                                              <i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
-                                            <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseUpbeat" role="button" aria-expanded="false" aria-controls="collapseUpbeat"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapseUpbeat">
+                                  </div>
+
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-upbeat"></i></div>
+                                          <div class="align-self-center"><b>UPBEAT</b></div>
+                                          <div class="align-self-center px-2">
+                                            <a href="#" title="Incorporating various genres from pop to rock, these tracks are easy listening with an up-tempo,&#0010; cheerful and positive vibe.">
+                                            <i class="voice-icon v-i-info"></i></a>
+                                          </div>
+                                          <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseUpbeat" role="button" aria-expanded="false" aria-controls="collapseUpbeat"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapseUpbeat">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioAlmostSummer" style="display:none;" src="{{ asset('storage/revid_music/Upbeat/AB_almost-summer.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="almostSummer"></i><b>Almost Summer</b></div>
@@ -1121,19 +1118,19 @@
                                               </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                            <div><i class="music-icon m-i-hop"></i></div>
-                                            <div class="align-self-center"><b>URBAN AND HIP HOP</b></div>
-                                            <div class="align-self-center px-2">
-                                              <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Music from the streets – hip hop, rap, urban and grime, based on beefy beats and slick production,&#0010; with edgy samples and breaks.">
-                                              <i class="voice-icon v-i-info"></i></a>
-                                            </div>
-                                            <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
-                                            <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseUrban" role="button" aria-expanded="false" aria-controls="collapseUrban"><b>Click <br>to Select</b></a></div>
-                                        </div>
-                                        <div class="collapse msc-ctg-txt px-3 py-2" id="collapseUrban">
+                                  </div>
+
+                                  <div>
+                                      <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                          <div><i class="music-icon m-i-hop"></i></div>
+                                          <div class="align-self-center"><b>URBAN AND HIP HOP</b></div>
+                                          <div class="align-self-center px-2">
+                                            <a href="#" title="Music from the streets – hip hop, rap, urban and grime, based on beefy beats and slick production,&#0010; with edgy samples and breaks.">
+                                            <i class="voice-icon v-i-info"></i></a>
+                                          </div>
+                                          <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseUrban" role="button" aria-expanded="false" aria-controls="collapseUrban"><b>Click <br>to Select</b></a></div>
+                                      </div>
+                                      <div class="collapse msc-ctg-txt px-3 py-2" id="collapseUrban">
                                             <div class="d-flex justify-content-between">
                                               <audio id="audioNewWay" style="display:none;" src="{{ asset('storage/revid_music/Urban_Hip_Hop/OPUZZ_CP_09_NewWay.mp3') }}" controls controlsList="nodownload"></audio>
                                               <div class="align-self-center"><i class="voice-icon v-i-play" id="newWay"></i><b>New Way</b></div>
@@ -1219,23 +1216,27 @@
                                               </div>
                                             </div>
                                         </div>
-                                    </div>
-                              </div>
-                      </div>
+                                  </div>
 
-                      <div class="row">
-                            <div class="col-sm">
-                                <div class="form-group">
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-primary font-weight-bold">
-                                            Update Data
-                                        </button>
+                            </div>
+                        </div>
+
+                          
+
+              </div>
+              <br>
+              <div class="row">
+                                <div class="col-sm">
+                                    <div class="form-group">
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary font-weight-bold">
+                                                Update Data
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                      </div>      
-           </form>         
-
+                          </div>      
+                    </form>           
         </div>
     </div>
 </div>
@@ -1248,6 +1249,3 @@
   <script src="{{ asset('assets/js/music_selection.js') }}" type="text/javascript"></script>
 
 @stop
-
-
-

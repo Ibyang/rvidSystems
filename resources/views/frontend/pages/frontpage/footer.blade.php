@@ -2,7 +2,8 @@
     <div class="container">
         <div class="footer-con">
             <h6 class="text-center">Your First Real Estate Video is <span>FREE</span>, Try Today!</h6>
-            <form method="post" action="{{ route('get-started-step1') }}">
+            <form method="post" action="{{ route('getStarted') }}">
+                {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm-8"><input type="email" name="email" class="form-control" placeholder="Add Your Email Address" required></div>
                     <div class="col-sm-4 align-self-center"><button type="submit" class="btn btn-primary">TRY TODAY</button></div>
@@ -34,7 +35,7 @@
             <a href="{{ $social->youtube }}" target="_blank"><i class="social-icon ytb"></i></a>
             <a href="{{ $social->pinterest }}" target="_blank"><i class="social-icon pin"></i></a>
             <a href="{{ $social->googleplus }}" target="_blank"><i class="social-icon glg"></i></a>
-            <p class="my-2 text-center text-white">REVid Systems Pty Ltd 2018 - <br><a href="{{ route('terms-condition') }}" style="color: white">Terms and Conditions</a> - <a href="{{ route('copyright') }}" style="color: white">Copyright</a> - <br><a href="{{ route('privacy-terms') }}" style="color: white">Privacy Policy</a> - <a href="{{ route('contact') }}" style="color: white">Contact</a></p>
+            <p class="my-2 text-center text-white">REVid Systems Pty Ltd 2018 - <a href="{{ route('terms-condition') }}" style="color: white">Terms and Conditions</a> - <a href="{{ route('copyright') }}" style="color: white">Copyright</a> - <a href="{{ route('privacy-terms') }}" style="color: white">Privacy Policy</a> - <a href="{{ route('contact') }}" style="color: white">Contact</a></p>
         </div>
     </div>
 </footer>

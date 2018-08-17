@@ -7,7 +7,7 @@
         @include('frontend.register.register-info')
         
         <div class="d-flex justify-content-between join-step-next p-1">
-                <button class="btn btn-primary bg-333 btn-no-border px-4"><i class="arrow-left"></i> BACK</button>
+                <button class="btn btn-primary bg-333 btn-no-border px-4" onclick="goBack()"><i class="arrow-left"></i> BACK</button>
         </div>
     </div>
     <div class="bg-eae step-two-register">
@@ -37,6 +37,12 @@
 @section('footer_scripts')
 
     <script type="text/javascript">
+
+        function goBack(){
+            window.history.back();
+        }
+
+
         $(document).ready(function() {
 
             //for selecting only one checkbox at a time

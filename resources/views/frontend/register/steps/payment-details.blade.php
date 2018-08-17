@@ -10,8 +10,8 @@
             <div class="col-sm-2 align-self-center">Plan</div>
             <div class="col-8">
                 <div class="row">
-                  <div class="col-8"><input id="name" type="text" class="form-control" name="" required autofocus></div>
-                  <div class="col-4"><input id="name" type="text" class="form-control" name="" required autofocus></div>
+                  <div class="col-8"><input id="plantype" name="plantype" type="text" class="form-control" required autofocus style="text-align: right" value="{{ $plan_arr['planName'] }}"></div>
+                  <div class="col-4"><span class="input-dollar left"><input id="plan_month" name="plan_month" type="text" class="form-control" required autofocus style="text-align: right" value="{{ $plan_arr['planAmt'] }}"></span></div>
                 </div>
             </div>
             <div class="col-sm align-self-center p-0 text-center">per month</div>
@@ -22,7 +22,7 @@
             <div class="col-8">
                  <div class="row">
                   <div class="col-8">Generic</div>
-                  <div  class="col-4"><input id="name" type="text" class="form-control" name="" required autofocus></div>
+                  <div  class="col-4"><span class="input-dollar left"><input id="generic_cost" name="generic_cost" type="text" class="form-control" autofocus style="text-align: right" value="{{ $plan_arr['automaticAmt'] }}"></span></div>
                 </div>
             </div>
             <div class="col-sm"></div>
@@ -32,7 +32,7 @@
             <div class="col-8">
                  <div class="row">
                   <div class="col-8">Standard</div>
-                  <div  class="col-4"><input id="name" type="text" class="form-control" name="" required autofocus></div>
+                  <div  class="col-4"><span class="input-dollar left"><input id="standard_cost" name="standard_cost" type="text" class="form-control" autofocus style="text-align: right" value="{{ $plan_arr['casualAmt'] }}"></span></div>
                 </div>
             </div>
             <div class="col-sm"></div>
@@ -42,40 +42,48 @@
             <div class="col-8">
                  <div class="row">
                   <div class="col-8">Premium</div>
-                  <div  class="col-4"><input id="name" type="text" class="form-control" name="" required autofocus></div>
+                  <div  class="col-4"><span class="input-dollar left"><input id="premium_cost" name="premium_cost" type="text" class="form-control" autofocus style="text-align: right" value="{{ $plan_arr['customAmt'] }}"></span></div>
                 </div>
             </div>
             <div class="col-sm"></div>
         </div>
     </div>
     <div class="col-sm">
-        <div class="row mt-3">
-            <div class="col-md-auto align-self-center pr-0">Free Offer</div>
-            <div class="col-8">
-                <div class="row">
-                  <div class="col-8"><input id="name" type="text" class="form-control" name="" required autofocus></div>
-                  <div class="col-4"><input id="name" type="text" class="form-control" name="" required autofocus></div>
-                </div>
-            </div>
-            <div class="col-auto align-self-center p-0">FREE</div>
-        </div>
-        <div class="row my-3">
-            <div class="col-auto align-self-center">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </div>
-            <div class="col-8">
-                 <div class="row">
-                  <div class="col-8 text-right align-self-center">every</div>
-                  <div  class="col-4"><input id="name" type="text" class="form-control" name="" required autofocus></div>
-                </div>
-            </div>
-            <div class="col-sm align-self-center p-0 text-center">months</div>
-        </div>
+      @if($plan_arr['planName'] != 'Casual')
+        <div id="free_offer">
+          <div class="row mt-3">
+              <div class="col-md-auto align-self-center pr-0">Free Offer</div>
+              <div class="col-8">
+                  <div class="row">
+                    <div class="col-8"><input id="free_offer" name="free_offer" type="text" class="form-control" autofocus style="text-align: center" value="Video"></div>
+                    <div class="col-4"><span class="input-dollar left"><input id="free_amt" name="free_amt" type="text" class="form-control" autofocus style="text-align: right" value="0"></span></div>
+                  </div>
+              </div>
+              <div class="col-auto align-self-center p-0">FREE</div>
+          </div>
+          <div class="row my-3">
+              <div class="col-auto align-self-center">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </div>
+              <div class="col-8">
+                   <div class="row">
+                    <div class="col-8 text-right align-self-center">every</div>
+                    <div  class="col-4"><input id="num_months" name="num_months" type="text" class="form-control" autofocus style="text-align: right" value="{{ $plan_arr['freeMonths'] }}"></div>
+                  </div>
+              </div>
+              <div class="col-sm align-self-center p-0 text-center">months</div>
+          </div>
+        </div> <!-- end of free offer div -->
+      @endif  
+      
+      @if($plan_arr['planName'] == 'Casual')
+        <br><br>
+      @endif
         <div class="my-3">Selections Extras</div>
         <div class="row">
             <div class="col-auto align-self-center">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </div>
             <div class="col-8">
                  <div class="row">
                   <div class="col-8 align-self-center">Voice</div>
-                  <div  class="col-4"><input id="name" type="text" class="form-control" name="" required autofocus></div>
+                  <div  class="col-4"><span class="input-dollar left"><input id="amt_voice" name="amt_voice" type="text" class="form-control" autofocus style="text-align: right"></span></div>
                 </div>
             </div>
             <div class="col-sm"></div>
@@ -85,7 +93,7 @@
             <div class="col-8">
                  <div class="row">
                   <div class="col-8 align-self-center">Music</div>
-                  <div  class="col-4"><input id="name" type="text" class="form-control" name="" required autofocus></div>
+                  <div  class="col-4"><span class="input-dollar left"><input id="amt_music" name="amt_music" type="text" class="form-control" autofocus style="text-align: right"></span></div>
                 </div>
             </div>
             <div class="col-sm"></div>
@@ -95,7 +103,7 @@
             <div class="col-8">
                  <div class="row">
                   <div class="col-8 align-self-center">Surge Setting</div>
-                  <div  class="col-4"><input id="name" type="text" class="form-control" name="" required autofocus></div>
+                  <div  class="col-4"><span class="input-dollar left"><input id="amt_surge" name="amt_surge" type="text" class="form-control" autofocus style="text-align: right"></span></div>
                 </div>
             </div>
             <div class="col-sm"></div>
@@ -105,7 +113,7 @@
             <div class="col-8">
                  <div class="row">
                   <div class="col-8 align-self-center">Uploads Sites</div>
-                  <div  class="col-4"><input id="name" type="text" class="form-control" name="" required autofocus></div>
+                  <div  class="col-4"><span class="input-dollar left"><input id="amt_upload_sites" name="amt_upload_sites" type="text" class="form-control" autofocus style="text-align: right"></span></div>
                 </div>
             </div>
             <div class="col-sm"></div>
@@ -115,7 +123,7 @@
             <div class="col-8">
                  <div class="row">
                   <div class="col-8 align-self-center">Uploads Social</div>
-                  <div  class="col-4"><input id="name" type="text" class="form-control" name="" required autofocus></div>
+                  <div  class="col-4"><span class="input-dollar left"><input id="amt_upload_socials" name="amt_upload_socials" type="text" class="form-control" autofocus style="text-align: right"></span></div>
                 </div>
             </div>
             <div class="col-sm"></div>

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container pb-0" id="content">
-        <h3 class="header-border c-6600cc font-weight-bold">Let’s Get Started! Step 1</h3>
+        <!-- <h3 class="header-border c-6600cc font-weight-bold">Let’s Get Started! Step 1</h3>
 
         @include('frontend.pages.pricing-data')
 
@@ -13,7 +13,9 @@
                 <div class="color-6600cc">Login or <br>Let’s Get Started! Step 1</div>
                 <div class="align-self-center color-424244 ">4 Easy Steps (4 to Go!)</div>
             </div>
-        </h5>
+        </h5> -->
+        
+         @include('frontend.register.register-join-info') 
 
         @include('frontend.register.register-info')
     </div>
@@ -48,11 +50,7 @@
 
         $(document).ready(function() {
 
-
             //code to capture the pricing type selected
-
-
-
 
             $('#grouplist').selectize({
                 create: true,
