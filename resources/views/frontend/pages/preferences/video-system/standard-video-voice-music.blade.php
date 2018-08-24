@@ -14,7 +14,7 @@
             @include('frontend.pages.preferences.video-system.steps')
             
             <div class="d-flex justify-content-between join-step-next p-1 mb-3 border-bot pb-3">
-                    <button class="btn btn-primary bg-333 btn-no-border px-4"><i class="arrow-left"></i> BACK</button>
+                    <button class="btn btn-primary bg-333 btn-no-border px-4" type="button" onclick="goBack()"><i class="arrow-left"></i> BACK</button>
             </div>
 
             <form id="frmStep4" method="POST" action="{{ route('account-video-system-processStep4')}}">
@@ -42,7 +42,7 @@
                          <!-- <select name="" class="col-11 form-control mt-2 mb-4">
                                     <option>Random Voice</option>
                          </select> -->
-                         <select name="stateVoiceFormat" class="form-control col-8">
+                         <select name="stateVoiceFormat" class="col-11 form-control mt-2 mb-4">
                                     <option value="Random Voice" {{{ (isset($template['voice_format']) && $template['voice_format'] == 'Random Voice') ? "selected=\"selected\"" : "" }}}>Random Voice</option>
                                     <option value="One Voice" {{{ (isset($template['voice_format']) && $template['voice_format'] == 'One Voice') ? "selected=\"selected\"" : "" }}}>One Voice</option>
                                     <option value="Rotated Voice" {{{ (isset($template['voice_format']) && $template['voice_format'] == 'Rotated Voice') ? "selected=\"selected\"" : "" }}}>Rotated Voice</option>
@@ -61,7 +61,7 @@
                                                 <div class="col-sm-7 p-0">
                                                     <div class="d-flex justify-content-between my-2">
                                                             <div class="color-0066ff font12 pt-2 v-s-text"><b>GRANT</b></div>
-                                                            <div class="color-0066ff font12 pt-2"><a href="javascript:void(0)" onclick="document.getElementById('voiceGrant').play()"><i class="voice-icon v-i-play"></i></a><b>Play Sample</b></div>
+                                                            <div class="color-0066ff font12 pt-2"><i class="voice-icon v-i-play" id="grantVoice"></i><b>Play Sample</b></div>
                                                             <div>
                                                                 <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                     <div class="custom-control custom-checkbox standard ml-2">
@@ -70,7 +70,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <audio id="voiceGrant" src="{{ asset('storage/voice_over_files/grant.wav') }}"></audio>
+                                                            <audio id="audioGrant" src="{{ asset('storage/voice_over_files/grant.wav') }}"></audio>
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Professional, corporate, and "very now".</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseGrant" role="button" aria-expanded="false" aria-controls="collapseGrant"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -86,7 +86,7 @@
                                                 <div class="col-sm-7 p-0">
                                                     <div class="d-flex justify-content-between my-2">
                                                             <div class="color-0066ff font12 pt-2 v-s-text"><b>LUKE</b></div>
-                                                            <div class="color-0066ff font12 pt-2"><a href="javascript:void(0)" onclick="document.getElementById('voiceLuke').play()"><i class="voice-icon v-i-play"></i></a><b>Play Sample</b></div>
+                                                            <div class="color-0066ff font12 pt-2"><i class="voice-icon v-i-play" id="lukeVoice"></i><b>Play Sample</b></div>
                                                             <div>
                                                                 <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                     <div class="custom-control custom-checkbox standard ml-2">
@@ -95,7 +95,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <audio id="voiceLuke" src="{{ asset('storage/voice_over_files/luke.wav') }}"></audio>
+                                                            <audio id="audioLuke" src="{{ asset('storage/voice_over_files/luke.wav') }}"></audio>
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Young, fresh, and warm.</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseLuke" role="button" aria-expanded="false" aria-controls="collapseGrant"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -111,7 +111,7 @@
                                                 <div class="col-sm-7 p-0">
                                                     <div class="d-flex justify-content-between my-2">
                                                             <div class="color-0066ff font12 pt-2 v-s-text"><b>MARK</b></div>
-                                                            <div class="color-0066ff font12 pt-2"><a href="javascript:void(0)" onclick="document.getElementById('voiceMark').play()"><i class="voice-icon v-i-play"></i></a><b>Play Sample</b></div>
+                                                            <div class="color-0066ff font12 pt-2"><i class="voice-icon v-i-play" id="markVoice"></i><b>Play Sample</b></div>
                                                             <div>
                                                                 <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                     <div class="custom-control custom-checkbox standard ml-2">
@@ -120,7 +120,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <audio id="voiceMark" src="{{ asset('storage/voice_over_files/mark.wav') }}"></audio>
+                                                            <audio id="audioMark" src="{{ asset('storage/voice_over_files/mark.wav') }}"></audio>
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Friendly, mature, and smooth</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseMark" role="button" aria-expanded="false" aria-controls="collapseMark"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -142,7 +142,7 @@
                                                 <div class="col-sm-7 p-0">
                                                     <div class="d-flex justify-content-between my-2">
                                                             <div class="color-0066ff font12 pt-2 v-s-text"><b>KARIN</b></div>
-                                                            <div class="color-0066ff font12 pt-2"><i class="voice-icon v-i-play"></i><b>Play Sample</b></div>
+                                                            <div class="color-0066ff font12 pt-2"><i class="voice-icon v-i-play" id="karinVoice"></i><b>Play Sample</b></div>
                                                             <div>
                                                                 <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                     <div class="custom-control custom-checkbox standard ml-2">
@@ -151,6 +151,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <audio id="audioKarin" src="{{ asset('storage/voice_over_files/karin.wav') }}"></audio>
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Professional, corporate, and "very now".</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseKarin" role="button" aria-expanded="false" aria-controls="collapseKarin"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -166,7 +167,7 @@
                                                 <div class="col-sm-7 p-0">
                                                     <div class="d-flex justify-content-between my-2">
                                                             <div class="color-0066ff font12 pt-2 v-s-text"><b>ODETTE</b></div>
-                                                            <div class="color-0066ff font12 pt-2"><a href="javascript:void(0)" onclick="document.getElementById('voiceOddete').play()"><i class="voice-icon v-i-play mr-0"></i></a><b>Play Sample</b></div>
+                                                            <div class="color-0066ff font12 pt-2"><i class="voice-icon v-i-play mr-0" id="odetteVoice"></i><b>Play Sample</b></div>
                                                             <div>
                                                                 <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                     <div class="custom-control custom-checkbox standard ml-2">
@@ -175,7 +176,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <audio id="voiceOddete" src="{{ asset('storage/voice_over_files/odette.wav') }}"></audio>
+                                                            <audio id="audioOdette" src="{{ asset('storage/voice_over_files/odette.wav') }}"></audio>
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Warm, familiar nature and mature.</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseOdette" role="button" aria-expanded="false" aria-controls="collapseOdette"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -191,7 +192,7 @@
                                                 <div class="col-sm-7 p-0">
                                                     <div class="d-flex justify-content-between my-2">
                                                             <div class="color-0066ff font12 pt-2 v-s-text"><b>LUISA</b></div>
-                                                            <div class="color-0066ff font12 pt-2"><a href="javascript:void(0)" onclick="document.getElementById('voiceLouisa').play()"><i class="voice-icon v-i-play mr-0"></i></a><b>Play Sample</b></div>
+                                                            <div class="color-0066ff font12 pt-2"><i class="voice-icon v-i-play mr-0" id="luisaVoice"></i><b>Play Sample</b></div>
                                                             <div>
                                                                 <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                     <div class="custom-control custom-checkbox standard ml-2">
@@ -200,7 +201,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <audio id="voiceLouisa" src="{{ asset('storage/voice_over_files/louisa.wav') }}"></audio>
+                                                            <audio id="audioLuisa" src="{{ asset('storage/voice_over_files/louisa.wav') }}"></audio>
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Fresh, playful and energetic</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseLuisa" role="button" aria-expanded="false" aria-controls="collapseLuisa"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -227,19 +228,20 @@
                 </div>
                 <div class="row m-r-l">
 
-                        <div class="col-sm">
-                                <div class="d-flex flex-column">
-                                      <div>
-                                          <div class="d-flex flex-row msc-ctg py-2 px-2">
-                                              <div><i class="music-icon m-i-chill"></i></div>
-                                              <div class="align-self-center"><b>CHILLED AND AMBIENT</b></div>
-                                              <div class="align-self-center px-2">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Low-tempo, down-beat, light electronic music. Modern sounding, without the heavy, pounding beats&#0010; of dance music. Often lots of pads, strings, and light melodic sounds."><i class="voice-icon v-i-info"></i></a>
-                                              </div>
-                                              <div class="align-self-center text-center"><a class="color-0066ff" data-toggle="collapse" href="#collapseChilled" role="button" aria-expanded="false" aria-controls="collapseChilled"><b>Click <br>to Select</b></a></div>
-                                          </div>
-                                          <div class="collapse msc-ctg-txt px-3 py-2" id="collapseChilled">
-                                              <div class="d-flex justify-content-between">
+                    <div class="col-sm">
+                        <div class="d-flex flex-column">
+                              <div>
+                                  <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                      <div><i class="music-icon m-i-chill"></i></div>
+                                      <div class="align-self-center"><b>CHILLED AND AMBIENT</b></div>
+                                      <div class="align-self-center px-2">
+                                        <a href="#" title="Low-tempo, down-beat, light electronic music. Modern sounding, without the heavy, pounding beats&#0010; of dance music. Often lots of pads, strings, and light melodic sounds."><i class="voice-icon v-i-info"></i></a>
+                                      </div>
+                                      <div class="align-self-center text-center"><a class="color-0066ff" data-toggle="collapse" href="#collapseChilled" role="button" aria-expanded="false" aria-controls="collapseChilled"><b>Click <br>to Select</b></a></div>
+                                  </div>
+
+                                  <div class="collapse msc-ctg-txt px-3 py-2" id="collapseChilled">
+                                      <div class="d-flex justify-content-between">
                                                 <audio id="audioRoadTrip" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/OPUZZ_CP_08_Road_Trip.mp3') }}" controls controlsList="nodownload"></audio>
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="roadTrip"></i><b>Road Trip</b></div>
                                                 <div><div class="msc-chck align-self-center">
@@ -252,8 +254,9 @@
                                                                 </div>
                                                     </div>
                                                 </div>
-                                              </div>
-                                              <div class="d-flex justify-content-between my-2">
+                                       </div>
+
+                                      <div class="d-flex justify-content-between my-2">
                                                 <audio id="audioSilk" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/SCAC_03_Silk.mp3') }}" controls controlsList="nodownload"></audio>
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="silk"></i><b>Silk</b></div>
                                                 <div><div class="msc-chck align-self-center">
@@ -266,8 +269,9 @@
                                                                 </div>
                                                      </div>
                                                 </div>
-                                              </div>
-                                              <div class="d-flex justify-content-between">
+                                      </div>
+
+                                      <div class="d-flex justify-content-between">
                                                 <audio id="audioSunSpots" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/SCAC_05_Sun_Spots.mp3') }}" controls controlsList="nodownload"></audio>
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="sunSpots"></i><b>Sun Spots</b></div>
                                                 <div><div class="msc-chck align-self-center">
@@ -280,8 +284,9 @@
                                                                 </div>
                                                      </div>
                                                 </div>
-                                              </div>
-                                              <div class="d-flex justify-content-between my-2">
+                                      </div>
+
+                                      <div class="d-flex justify-content-between my-2">
                                                 <audio id="audioUltramarine" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/SCAC_08_Ultramarine.mp3') }}" controls controlsList="nodownload"></audio>
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="ultramarine"></i><b>Ultramarine</b></div>
                                                 <div><div class="msc-chck align-self-center">
@@ -294,22 +299,24 @@
                                                                 </div>
                                                     </div>
                                                 </div>
-                                              </div>
-                                              <div class="d-flex justify-content-between">
-                                                <audio id="audioWorldOnline" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/SCAC_10_World_Online.mp3') }}" controls controlsList="nodownload"></audio>
-                                                <div class="align-self-center"><i class="voice-icon v-i-play" id="worldOnline"></i><b>World Online</b></div>
+                                      </div>
+
+                                      <div class="d-flex justify-content-between my-2">
+                                                <audio id="audioUltramarine" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/SCAC_08_Ultramarine.mp3') }}" controls controlsList="nodownload"></audio>
+                                                <div class="align-self-center"><i class="voice-icon v-i-play" id="ultramarine"></i><b>Ultramarine</b></div>
                                                 <div><div class="msc-chck align-self-center">
                                                                 <div class="custom-control custom-checkbox standard ml-3">
-                                                                        <input type="checkbox" class="custom-control-input" id="world-online" name="musicSelection[]" value="SCAC_10_World_Online.mp3" 
-                                                                        @if(in_array('SCAC_10_World_Online.mp3', $music_list))
+                                                                        <input type="checkbox" class="custom-control-input" id="ultram" name="musicSelection[]" value="SCAC_08_Ultramarine.mp3" 
+                                                                        @if(in_array('SCAC_08_Ultramarine.mp3', $music_list))
                                                                                 checked
                                                                         @endif>
-                                                                        <label class="custom-control-label" for="world-online"></label>
+                                                                        <label class="custom-control-label" for="ultram"></label>
                                                                 </div>
                                                     </div>
                                                 </div>
-                                              </div>
-                                              <div class="d-flex justify-content-between my-2">
+                                       </div>
+
+                                      <div class="d-flex justify-content-between my-2">
                                                 <audio id="audioSolarGroove" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/SG08-Solar_Groove.mp3') }}" controls controlsList="nodownload"></audio>
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="solarGroove"></i><b>Solar Groove</b></div>
                                                 <div><div class="msc-chck align-self-center">
@@ -322,15 +329,17 @@
                                                                 </div>
                                                     </div>
                                                 </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                       </div>
+
+                                  </div>
+                              </div>
+
+                              <div>
+                                    <div class="d-flex flex-row msc-ctg py-2 px-2">
                                               <div><i class="music-icon m-i-clc"></i></div>
                                               <div class="align-self-center"><b>CLASSICAL</b></div>
                                               <div class="align-self-center px-2">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Classical music creates a sense of quality, sophistication and class for your brand message and&#0010; products. These music tracks contain a mix of well-known orchestral pieces and symphonies, string&#0010; and piano-led pieces.">
+                                                <a href="#" title="Classical music creates a sense of quality, sophistication and class for your brand message and&#0010; products. These music tracks contain a mix of well-known orchestral pieces and symphonies, string&#0010; and piano-led pieces.">
                                                   <i class="voice-icon v-i-info"></i></a>
                                               </div>
                                               <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
@@ -421,14 +430,15 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                    </div>
+                              </div>
+
+                              <div>
+                                    <div class="d-flex flex-row msc-ctg py-2 px-2">
                                               <div><i class="music-icon m-i-cntry"></i></div>
                                               <div class="align-self-center"><b>COUNTRY</b></div>
                                               <div class="align-self-center px-2">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Country, Western, Country Rock, Country Blues and the like. Generally simple harmonies&#0010; accompanied mostly by banjos, electric & acoustic guitars, fiddles and harmonicas.">
+                                                <a href="#" title="Country, Western, Country Rock, Country Blues and the like. Generally simple harmonies&#0010; accompanied mostly by banjos, electric & acoustic guitars, fiddles and harmonicas.">
                                                 <i class="voice-icon v-i-info"></i></a>
                                               </div>
                                               <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
@@ -444,11 +454,12 @@
                                                                         @if(in_array('OPUZZ_CP_08_Road_Trip.mp3', $music_list))
                                                                                 checked
                                                                         @endif>
-                                                                        <label class="custom-control-label" for="scowboy></label>
+                                                                        <label class="custom-control-label" for="scowboy"></label>
                                                                 </div>
                                                     </div>
                                                 </div>
                                               </div>
+
                                               <div class="d-flex justify-content-between my-2">
                                                 <audio id="audioMonOncle" style="display:none;" src="{{ asset('storage/revid_music/Country/COR2_C&W4_Mon_Oncle_Alfred.mp3') }}" controls controlsList="nodownload"></audio>
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="monOncle"></i><b>Mon Oncle Alfred</b></div>
@@ -519,14 +530,15 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                    </div>
+                              </div>
+
+                              <div>
+                                    <div class="d-flex flex-row msc-ctg py-2 px-2">
                                               <div><i class="music-icon m-i-dance"></i></div>
                                               <div class="align-self-center"><b>DANCE AND CLUB</b></div>
                                               <div class="align-self-center px-2">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Fast-paced, up-tempo electronic music, typically with a heavy 4/4 kick drum beat accompanied by&#0010; deep bass, synths, and keyboard leads.">
+                                                <a href="#" title="Fast-paced, up-tempo electronic music, typically with a heavy 4/4 kick drum beat accompanied by&#0010; deep bass, synths, and keyboard leads.">
                                                 <i class="voice-icon v-i-info"></i></a>
                                               </div>
                                               <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
@@ -617,14 +629,15 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                    </div>
+                              </div>
+
+                              <div>
+                                    <div class="d-flex flex-row msc-ctg py-2 px-2">
                                               <div><i class="music-icon m-i-easy"></i></div>
                                               <div class="align-self-center"><b>EASY LISTENING</b></div>
                                               <div class="align-self-center px-2">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Easy on the ears, these tracks are neither harsh and heavy, or slow and sleepy. Typically guitar or&#0010; piano driven with an array of influences, ">
+                                                <a href="#" title="Easy on the ears, these tracks are neither harsh and heavy, or slow and sleepy. Typically guitar or&#0010; piano driven with an array of influences, ">
                                                 <i class="voice-icon v-i-info"></i></a>
                                               </div>
                                               <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
@@ -715,14 +728,15 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                    </div>
+                              </div>
+
+                              <div>
+                                    <div class="d-flex flex-row msc-ctg py-2 px-2">
                                               <div><i class="music-icon m-i-funk"></i></div>
                                               <div class="align-self-center"><b>FUNK AND SOUL</b></div>
                                               <div class="align-self-center px-2">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Bass-popping, groovy Funk and smooth Soul, with jazzy rhythms. Electric guitar and bass with&#0010; wailing organs and a touch of brass. ‘Get On Up!’">
+                                                <a href="#" title="Bass-popping, groovy Funk and smooth Soul, with jazzy rhythms. Electric guitar and bass with&#0010; wailing organs and a touch of brass. ‘Get On Up!’">
                                                 <i class="voice-icon v-i-info"></i></a>
                                               </div>
                                               <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
@@ -813,18 +827,20 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                          </div>
-                                      </div>
+                                    </div>
                                 </div>
                         </div>
-                        <div class="col-sm">
-                                <div class="d-flex flex-column">
-                                      <div>
+                </div>
+
+                <div class="col-sm">
+                        <div class="d-flex flex-column">
+
+                              <div>
                                           <div class="d-flex flex-row msc-ctg py-2 px-2">
                                               <div><i class="music-icon m-i-jazz"></i></div>
                                               <div class="align-self-center"><b>JAZZ</b></div>
                                               <div class="align-self-center px-2">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Comes in many flavours. Using elements of swing, syncopation and improvisation, Jazz brings the&#0010; style into the modern age with mid-tempo electro-styles, smooth bass and synth lines.">
+                                                <a href="#" title="Comes in many flavours. Using elements of swing, syncopation and improvisation, Jazz brings the&#0010; style into the modern age with mid-tempo electro-styles, smooth bass and synth lines.">
                                                 <i class="voice-icon v-i-info"></i></a>
                                               </div>
                                               <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
@@ -915,20 +931,21 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                    </div>
+                              </div>
+
+                              <div>
+                                    <div class="d-flex flex-row msc-ctg py-2 px-2">
                                               <div><i class="music-icon m-i-lounge"></i></div>
                                               <div class="align-self-center"><b>LOUNGE AND GROOVES</b></div>
                                               <div class="align-self-center px-1">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Electronic-styled, mid-tempo with soft synths, varied percussion and a cool groove. Can incorporate&#0010; elements from many styles, like jazz, electro, funk and dance.">
+                                                <a href="#" title="Electronic-styled, mid-tempo with soft synths, varied percussion and a cool groove. Can incorporate&#0010; elements from many styles, like jazz, electro, funk and dance.">
                                                 <i class="voice-icon v-i-info"></i></a>
                                               </div>
                                               <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
                                               <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseLounge" role="button" aria-expanded="false" aria-controls="collapseLounge"><b>Click <br>to Select</b></a></div>
-                                          </div>
-                                          <div class="collapse msc-ctg-txt px-3 py-2" id="collapseLounge">
+                                    </div>
+                                    <div class="collapse msc-ctg-txt px-3 py-2" id="collapseLounge">
                                               <div class="d-flex justify-content-between">
                                                 <audio id="audioDeepChill" style="display:none;" src="{{ asset('storage/revid_music/Lounge_Grooves/AB_deep-chill.mp3') }}" controls controlsList="nodownload"></audio>
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="deepChill"></i><b>Deep Chill</b></div>
@@ -1013,20 +1030,21 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                    </div>
+                              </div>
+
+                              <div>
+                                    <div class="d-flex flex-row msc-ctg py-2 px-2">
                                               <div><i class="music-icon m-i-pop"></i></div>
                                               <div class="align-self-center"><b>POP</b></div>
                                               <div class="align-self-center px-2">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Modern & classic Pop. Upbeat, cheerful, easy to bop to. Incorporates a number of musical styles,&#0010; from rock to dance and everything in between.">
+                                                <a href="#" title="Modern & classic Pop. Upbeat, cheerful, easy to bop to. Incorporates a number of musical styles,&#0010; from rock to dance and everything in between.">
                                                 <i class="voice-icon v-i-info"></i></a>
                                               </div>
                                               <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
                                               <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapsePop" role="button" aria-expanded="false" aria-controls="collapsePop"><b>Click <br>to Select</b></a></div>
-                                          </div>
-                                          <div class="collapse msc-ctg-txt px-3 py-2" id="collapsePop">
+                                    </div>
+                                    <div class="collapse msc-ctg-txt px-3 py-2" id="collapsePop">
                                               <div class="d-flex justify-content-between">
                                                 <audio id="audioRefreshed" style="display:none;" src="{{ asset('storage/revid_music/Pop/OPUZZ_PM_01_Refreshed.mp3') }}" controls controlsList="nodownload"></audio>
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="refreshed"></i><b>Refreshed</b></div>
@@ -1111,20 +1129,21 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                             </div> 
-                                        </div>
-                                      <div>
-                                          <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                    </div> 
+                              </div>
+
+                              <div>
+                                    <div class="d-flex flex-row msc-ctg py-2 px-2">
                                               <div><i class="music-icon m-i-rock"></i></div>
                                               <div class="align-self-center"><b>ROCK</b></div>
                                               <div class="align-self-center px-2">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Includes the sub-categories of Blues, Classic Rock, Heavy Rock and Pop Rock&#0010; Rock & Roll in all its guises. Guitar-driven with a solid bass line and strong back beat.">
+                                                <a href="#" title="Includes the sub-categories of Blues, Classic Rock, Heavy Rock and Pop Rock&#0010; Rock & Roll in all its guises. Guitar-driven with a solid bass line and strong back beat.">
                                                 <i class="voice-icon v-i-info"></i></a>
                                               </div>
                                               <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
                                               <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseRock" role="button" aria-expanded="false" aria-controls="collapseRock"><b>Click <br>to Select</b></a></div>
-                                          </div>
-                                          <div class="collapse msc-ctg-txt px-3 py-2" id="collapseRock">
+                                    </div>
+                                    <div class="collapse msc-ctg-txt px-3 py-2" id="collapseRock">
                                               <div class="d-flex justify-content-between">
                                                 <audio id="audioToughTalking" style="display:none;" src="{{ asset('storage/revid_music/Rock/COR1_Rock3_ToughTalking.mp3') }}" controls controlsList="nodownload"></audio>
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="toughTalking"></i><b>Tough Talking</b></div>
@@ -1209,20 +1228,21 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                    </div>
+                              </div>
+
+                              <div>
+                                    <div class="d-flex flex-row msc-ctg py-2 px-2">
                                               <div><i class="music-icon m-i-upbeat"></i></div>
                                               <div class="align-self-center"><b>UPBEAT</b></div>
                                               <div class="align-self-center px-2">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Incorporating various genres from pop to rock, these tracks are easy listening with an up-tempo,&#0010; cheerful and positive vibe.">
+                                                <a href="#" title="Incorporating various genres from pop to rock, these tracks are easy listening with an up-tempo,&#0010; cheerful and positive vibe.">
                                                 <i class="voice-icon v-i-info"></i></a>
                                               </div>
                                               <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
                                               <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseUpbeat" role="button" aria-expanded="false" aria-controls="collapseUpbeat"><b>Click <br>to Select</b></a></div>
-                                          </div>
-                                          <div class="collapse msc-ctg-txt px-3 py-2" id="collapseUpbeat">
+                                    </div>
+                                    <div class="collapse msc-ctg-txt px-3 py-2" id="collapseUpbeat">
                                               <div class="d-flex justify-content-between">
                                                 <audio id="audioAlmostSummer" style="display:none;" src="{{ asset('storage/revid_music/Upbeat/AB_almost-summer.mp3') }}" controls controlsList="nodownload"></audio>
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="almostSummer"></i><b>Almost Summer</b></div>
@@ -1307,20 +1327,21 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                          </div>
-                                      </div>
-                                      <div>
-                                          <div class="d-flex flex-row msc-ctg py-2 px-2">
+                                    </div>
+                              </div>
+
+                              <div>
+                                    <div class="d-flex flex-row msc-ctg py-2 px-2">
                                               <div><i class="music-icon m-i-hop"></i></div>
                                               <div class="align-self-center"><b>URBAN AND HIP HOP</b></div>
                                               <div class="align-self-center px-2">
-                                                <a href="#" data-placement="auto" data-html="true" data-toggle="tooltip" title="Music from the streets – hip hop, rap, urban and grime, based on beefy beats and slick production,&#0010; with edgy samples and breaks.">
+                                                <a href="#" title="Music from the streets – hip hop, rap, urban and grime, based on beefy beats and slick production,&#0010; with edgy samples and breaks.">
                                                 <i class="voice-icon v-i-info"></i></a>
                                               </div>
                                               <!-- <div class="align-self-center text-center ml-auto"><a href="" class="color-0066ff"><b>Click <br>to Select</b></a></div> -->
                                               <div class="align-self-center text-center ml-auto"><a class="color-0066ff" data-toggle="collapse" href="#collapseUrban" role="button" aria-expanded="false" aria-controls="collapseUrban"><b>Click <br>to Select</b></a></div>
-                                          </div>
-                                          <div class="collapse msc-ctg-txt px-3 py-2" id="collapseUrban">
+                                    </div>
+                                    <div class="collapse msc-ctg-txt px-3 py-2" id="collapseUrban">
                                               <div class="d-flex justify-content-between">
                                                 <audio id="audioNewWay" style="display:none;" src="{{ asset('storage/revid_music/Urban_Hip_Hop/OPUZZ_CP_09_NewWay.mp3') }}" controls controlsList="nodownload"></audio>
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="newWay"></i><b>New Way</b></div>
@@ -1405,18 +1426,17 @@
                                                     </div>
                                                 </div>
                                               </div>
-                                          </div>
-                                      </div>
-                                </div>
+                                    </div>
+                            </div>
+
+
                         </div>
-
-
-
+                  </div>    
                 </div>
 
                  <div class="d-flex my-4 join-step-next">
-                    <div><button class="btn btn-primary bg-333 btn-no-border v-s-btn-t px-5"><i class="arrow-left"></i>BACK</button></div>
-                    <div class="ml-auto"><button class="btn btn-primary v-s-btn-t">SAVE : Next Step 5<i class="arrow-right"></i></button></div>
+                    <div><button class="btn btn-primary bg-333 btn-no-border v-s-btn-t px-5" type="button" onclick="goBack()"><i class="arrow-left"></i>BACK</button></div>
+                    <div class="ml-auto"><button class="btn btn-primary v-s-btn-t" type="submit">SAVE : Next Step 5<i class="arrow-right"></i></button></div>
                  </div>
                  
             </form> 
@@ -1429,7 +1449,17 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
 
+  <script src="{{ asset('assets/js/voice_selection.js') }}" type="text/javascript"></script>
   <script src="{{ asset('assets/js/music_selection.js') }}" type="text/javascript"></script>
+
+  <script type="text/javascript">
+
+        function goBack(){
+            window.history.back();
+        }
+
+  </script>      
+
 
 @stop
 

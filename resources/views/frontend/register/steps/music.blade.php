@@ -1096,58 +1096,144 @@
             <div class="modal-body">
                 <!-- First Template -->
                 <div id="firstMFTemplateModal" style="display: none">
-                  <div id="{{ $temp['folder_name'] }}"> 
-                    <div id="wrapper">
-                      <div id="sidebar" class="col-md-3 cont">
-                        <div class="col-md-12 cont">
-                          <div class="img-cont yellow"><img src="image/ray-white-logo.jpg" width="87" class="branding"></div>
-                        </div>
-                        <div class="col-md-12" style="padding-bottom:0;">
-                          <div class="img-cont"><img src="image/helen-yan.jpg" width="87"></div>
-                        </div>
-                        <div class="col-md-12 text-center">
-                          <h1 class="profile-name" style="margin-top:0; margin-bottom:0;">Helen Yan</h1>
-                          <h2>0404 078 588<br>
-                            (03) 8538 0588<br>
-                            <br>
-                            raywhite.com</h2>
-                        </div>
-                      </div>
-                      <div id="content" class="col-md-9 cont">
-                        <div class="col-md-6 info yellow content-header">
-                          <div class="col-md-2 col-md-offset-1 header-icon">
-                            <div><img src="image/bed.jpg" height=20><span class="ctr grey-txt">4</span></div>
+                  <div class="twb337">
+                    <div id="{{ $temp['folder_name'] }}-main-1" class="raywhite-main-popup-1"> 
+
+                        <div id="wrapper">
+                          <div id="sidebar" class="col-md-3 cont">
+                            <div class="col-md-12 cont">
+                              <div class="img-cont yellow"><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/1/image/' . $temp['agency_logo']) }}" width="87" class="branding"></div>
+                            </div>
+                            <div class="col-md-12" style="padding-bottom:0;">
+                              <div class="img-cont"><img src="image/helen-yan.jpg" width="87"></div>
+                            </div>
+                            <div class="col-md-12 text-center">
+                              <h1 class="profile-name" style="margin-top:0; margin-bottom:0;">Helen Yan</h1>
+                              <h2>0404 078 588<br>
+                                (03) 8538 0588<br>
+                                <br>
+                                raywhite.com</h2>
+                            </div>
                           </div>
-                          <div class="col-md-2 header-icon">
-                            <div><img src="image/shower.jpg" height=20><span class="ctr grey-txt">3</span></div>
+                          <div id="content" class="col-md-9 cont">
+                            <div class="col-md-6 info yellow content-header">
+                              <div class="col-md-2 col-md-offset-1 header-icon">
+                                <div><img src="{{ asset('storage/agency_css/' . $agent['group'] . '/mainframe/1/image/bed.jpg') }}" height=20><span class="ctr grey-txt">4</span></div>
+                              </div>
+                              <div class="col-md-2 header-icon">
+                                <div><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/1/image/shower.jpg') }}" height=20><span class="ctr grey-txt">3</span></div>
+                              </div>
+                              <div class="col-md-2 header-icon">
+                                <div><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/1/image/car.jpg') }}" height=20><span class="ctr grey-txt">3</span></div>
+                              </div>
+                              <div class="col-md-3 header-text">
+                                <div class="house grey-txt">House</div>
+                              </div>
+                            </div>
+                            <div class="col-md-6 add content-header">24 Townsend Street<br>
+                              Ivanhoe East VIC 3079
+                            </div>
+                            <div class="col-md-12 cont"><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/1/image/' . $temp['agency_main_pic']) }}" width="707" height="395"></div>
                           </div>
-                          <div class="col-md-2 header-icon">
-                            <div><img src="image/car.jpg" height=20><span class="ctr grey-txt">3</span></div>
-                          </div>
-                          <div class="col-md-3 header-text">
-                            <div class="house grey-txt">House</div>
-                          </div>
-                        </div>
-                        <div class="col-md-6 add content-header">24 Townsend Street<br>
-                          Ivanhoe East VIC 3079
-                        </div>
-                        <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="707" height="395"></div>
-                      </div>
+                        </div> <!-- end of wrapper -->
                     </div>
+                  </div> <!-- end of twb337 -->
+
                 </div>
 
                 <!-- Second Template -->
                 <div id="secondMFTemplateModal" style="display: none">
-                    <div id="wrapper">
-                      <!--div class="col-md-12 cont"-->
-                        <div id="sidebar" class="col-md-3 cont">
-                          <div class="col-md-12 cont img-cont"></div>
-                          <!--div>
-                           <div class="img-cont"><img src="image/helen-yan.jpg" width="266"></div>
-                          </div-->
 
+                  <div class="twb337">
+                    <div id="{{ $temp['folder_name'] }}-main-2" class="raywhite-main-popup-2"> 
+
+                      <div id="wrapper">
+                        <!--div class="col-md-12 cont"-->
+                          <div id="sidebar" class="col-md-3 cont">
+                            <div class="col-md-12 cont img-cont"></div>
+                            <!--div>
+                             <div class="img-cont"><img src="image/helen-yan.jpg" width="266"></div>
+                            </div-->
+
+                            <div class="col-md-12 text-center">
+                              <h1 class="profile-name">Helen Yan</h1>
+                              <h2>0404 078 588<br>
+                                (03) 8538 0588<br>
+                                <br>
+                                raywhite.com</h2>
+                            </div>
+                            <div class="branding-container">
+                              <div class="col-md-12 cont">
+                                <div class="img-logo-cont yellow"><img src="image/ray-white-logo.jpg" width="87" class="branding"></div>
+                              </div>
+                            </div>
+
+
+                            <!--div class="col-md-3 cont branding-container">
+                              <div class="img-logo-cont yellow"><img src="image/ray-white-logo.jpg" width="200" class="branding"></div>
+                            </div-->
+
+                          </div>
+
+                          <div id="content" class="col-md-9 cont">
+                            <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="707" height="395"></div>
+                            <div class="col-md-6 info yellow content-header">
+                              <div class="col-md-2 col-md-offset-1 header-icon">
+                                <div><img src="image/bed.jpg" height=20><span class="ctr grey-txt">4</span></div>
+                              </div>
+                              <div class="col-md-2 header-icon">
+                                <div><img src="image/shower.jpg" height=20><span class="ctr grey-txt">3</span></div>
+                              </div>
+                              <div class="col-md-2 header-icon">
+                                <div><img src="image/car.jpg" height=20><span class="ctr grey-txt">3</span></div>
+                              </div>
+                              <div class="col-md-3 header-text">
+                                <div class="house grey-txt">House</div>
+                              </div>
+                            </div>
+                            <div class="col-md-6 add content-header">24 Townsend Street<br>
+                              Ivanhoe East VIC 3079 </div>
+                             
+                          </div>
+                        <!--/div-->
+                      </div>  <!-- end of wrapper -->
+                     </div> 
+                   </div>
+
+                </div>
+
+                <!-- Third Template -->
+                <div id="thirdMFTemplateModal" style="display: none">
+
+                  <div class="twb337">
+                    <div id="{{ $temp['folder_name'] }}-main-3" class="raywhite-main-popup-3"> 
+
+                      <div id="wrapper">
+                        <div id="content" class="col-md-9 cont">
+                          <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="707" height="395"></div>
+                          <div class="col-md-6 info gray content-header">
+                            <div class="col-md-2 col-md-offset-1 header-icon">
+                              <div><img src="image/bed.jpg" height=20><span class="ctr white-txt">4</span></div>
+                            </div>
+                            <div class="col-md-2 header-icon">
+                              <div><img src="image/shower.jpg" height=20><span class="ctr white-txt">3</span></div>
+                            </div>
+                            <div class="col-md-2 header-icon">
+                              <div><img src="image/car.jpg" height=20><span class="ctr white-txt">3</span></div>
+                            </div>
+                            <div class="col-md-3 header-text">
+                              <div class="house white-txt">House</div>
+                            </div>
+                          </div>
+                          <div class="col-md-6 add yellow content-header">24 Townsend Street<br>
+                            Ivanhoe East VIC 3079 </div>
+                          <!----> 
+                        </div>
+
+                        <div id="sidebar" class="col-md-3 cont">
+                          <div class="col-md-12 profile-image text-center" style="padding-top:0; padding-bottom:0;"><img src="image/helen-yan.jpg" width="87"></div>
                           <div class="col-md-12 text-center">
-                            <h1 class="profile-name">Helen Yan</h1>
+                            <h1 class="profile-name" style="margin-top:0; margin-bottom:0;">Helen Yan</h1>
                             <h2>0404 078 588<br>
                               (03) 8538 0588<br>
                               <br>
@@ -1158,16 +1244,39 @@
                               <div class="img-logo-cont yellow"><img src="image/ray-white-logo.jpg" width="87" class="branding"></div>
                             </div>
                           </div>
-
-
-                          <!--div class="col-md-3 cont branding-container">
-                            <div class="img-logo-cont yellow"><img src="image/ray-white-logo.jpg" width="200" class="branding"></div>
-                          </div-->
-
                         </div>
 
+                    <!--/div-->
+                    </div> <!-- end of wrapper -->
+
+                   </div>
+                  </div>   
+                </div>
+
+                <!-- Fourth Template -->
+                <div id="fourthMFTemplateModal" style="display: none">
+
+                  <div class="twb337">
+                   <div id="{{ $temp['folder_name'] }}-main-4" class="raywhite-main-popup-4">
+
+                    <div id="wrapper">
+                      <!--div class="col-md-12 cont"-->
+                        <div id="sidebar" class="col-md-3 cont">
+                          <div class="branding-container">
+                            <div class="col-md-12 cont">
+                              <div class="img-logo-cont yellow"><img src="image/ray-white-logo.jpg" width="87" class="branding"></div>
+                            </div>
+                          </div>
+                          <div class="col-md-12 cont img-cont"></div>
+                          <div class="col-md-12 text-center">
+                            <h1 class="profile-name">Helen Yan</h1>
+                            <h2>0404 078 588<br>
+                              (03) 8538 0588<br>
+                              <br>
+                              raywhite.com</h2>
+                          </div>
+                        </div>
                         <div id="content" class="col-md-9 cont">
-                          <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="707" height="395"></div>
                           <div class="col-md-6 info yellow content-header">
                             <div class="col-md-2 col-md-offset-1 header-icon">
                               <div><img src="image/bed.jpg" height=20><span class="ctr grey-txt">4</span></div>
@@ -1184,101 +1293,16 @@
                           </div>
                           <div class="col-md-6 add content-header">24 Townsend Street<br>
                             Ivanhoe East VIC 3079 </div>
-                           
+                          <!---->
+                          <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="707" height="395"></div>
                         </div>
                       <!--/div-->
-                    </div>
+                      </div> <!-- end of wrapper -->
+                     </div> 
+                    </div> <!-- end of twb337 -->
                 </div>
 
-                <!-- Third Template -->
-                <div id="thirdMFTemplateModal" style="display: none">
-                    <div id="wrapper">
-                    <!--div class="col-md-12 cont"-->
-                      <div id="content" class="col-md-9 cont">
-                        <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="707" height="395"></div>
-                        <div class="col-md-6 info gray content-header">
-                          <div class="col-md-2 col-md-offset-1 header-icon">
-                            <div><img src="image/bed.jpg" height=20><span class="ctr white-txt">4</span></div>
-                          </div>
-                          <div class="col-md-2 header-icon">
-                            <div><img src="image/shower.jpg" height=20><span class="ctr white-txt">3</span></div>
-                          </div>
-                          <div class="col-md-2 header-icon">
-                            <div><img src="image/car.jpg" height=20><span class="ctr white-txt">3</span></div>
-                          </div>
-                          <div class="col-md-3 header-text">
-                            <div class="house white-txt">House</div>
-                          </div>
-                        </div>
-                        <div class="col-md-6 add yellow content-header">24 Townsend Street<br>
-                          Ivanhoe East VIC 3079 </div>
-                        <!----> 
-                      </div>
-
-                      <div id="sidebar" class="col-md-3 cont">
-                        <div class="col-md-12 profile-image text-center" style="padding-top:0; padding-bottom:0;"><img src="image/helen-yan.jpg" width="87"></div>
-                        <div class="col-md-12 text-center">
-                          <h1 class="profile-name" style="margin-top:0; margin-bottom:0;">Helen Yan</h1>
-                          <h2>0404 078 588<br>
-                            (03) 8538 0588<br>
-                            <br>
-                            raywhite.com</h2>
-                        </div>
-                        <div class="branding-container">
-                          <div class="col-md-12 cont">
-                            <div class="img-logo-cont yellow"><img src="image/ray-white-logo.jpg" width="87" class="branding"></div>
-                          </div>
-                        </div>
-                      </div>
-
-                    <!--/div-->
-                    </div>
-                </div>
-
-                <!-- Fourth Template -->
-                <div id="fourthMFTemplateModal" style="display: none">
-                    <div id="wrapper">
-                    <!--div class="col-md-12 cont"-->
-                      <div id="sidebar" class="col-md-3 cont">
-                        <div class="branding-container">
-                          <div class="col-md-12 cont">
-                            <div class="img-logo-cont yellow"><img src="image/ray-white-logo.jpg" width="87" class="branding"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12 cont img-cont"></div>
-                        <div class="col-md-12 text-center">
-                          <h1 class="profile-name">Helen Yan</h1>
-                          <h2>0404 078 588<br>
-                            (03) 8538 0588<br>
-                            <br>
-                            raywhite.com</h2>
-                        </div>
-                      </div>
-                      <div id="content" class="col-md-9 cont">
-                        <div class="col-md-6 info yellow content-header">
-                          <div class="col-md-2 col-md-offset-1 header-icon">
-                            <div><img src="image/bed.jpg" height=20><span class="ctr grey-txt">4</span></div>
-                          </div>
-                          <div class="col-md-2 header-icon">
-                            <div><img src="image/shower.jpg" height=20><span class="ctr grey-txt">3</span></div>
-                          </div>
-                          <div class="col-md-2 header-icon">
-                            <div><img src="image/car.jpg" height=20><span class="ctr grey-txt">3</span></div>
-                          </div>
-                          <div class="col-md-3 header-text">
-                            <div class="house grey-txt">House</div>
-                          </div>
-                        </div>
-                        <div class="col-md-6 add content-header">24 Townsend Street<br>
-                          Ivanhoe East VIC 3079 </div>
-                        <!---->
-                        <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="707" height="395"></div>
-                      </div>
-                    <!--/div-->
-                    </div>
-                </div>
-
-            </div>
+            </div> <!-- end of body modal -->
             <div class="modal-footer">
                 <button type="button"
                         class="btn btn-default"
@@ -1306,83 +1330,67 @@
             <div class="modal-body">
                 <!-- First Template -->
                 <div id="firstEFTemplateModal" style="display: none">
-                    <div id="wrapper">
-                      <div id="sidebar">
-                          <div class="col-md-12 cont profile-bg"></div>
-                      </div>
-                      <div id="content" class="col-md-8 cont">
-                        <div class="col-md-12 cont logo"><img src="image/ray-white-logo.jpg" width="150"></div>
-                        <div class="col-md-12 cont">
-                          <h1 class="profile">Helen Yan</h1>
-                        </div>
-                        <div class="col-md-12 cont">
-                          <h2 class="profile"> Contact Me Today!<br>
-                            <br>
-                            0404 078 588<br>
-                            helen.yan@raywhite.com<br>
-                          </h2>
-                        </div>
-                      </div>
+                  <div class="twb337">
+                    <div id="{{ $temp['folder_name'] }}-end-1" class="raywhite-end-popup-1">
+                        <div id="wrapper">
+                          <div id="sidebar">
+                              <div class="col-md-12 cont profile-bg"></div>
+                          </div>
+                          <div id="content" class="col-md-8 cont">
+                            <div class="col-md-12 cont logo"><img src="image/ray-white-logo.jpg" width="150"></div>
+                            <div class="col-md-12 cont">
+                              <h1 class="profile">Helen Yan</h1>
+                            </div>
+                            <div class="col-md-12 cont">
+                              <h2 class="profile"> Contact Me Today!<br>
+                                <br>
+                                0404 078 588<br>
+                                helen.yan@raywhite.com<br>
+                              </h2>
+                            </div>
+                          </div>
+                        </div> <!-- end of wrapper -->
                     </div>
+                  </div>        
+
                 </div>
 
                 <!-- Second Template -->
                 <div id="secondEFTemplateModal" style="display: none">
-                    <div id="wrapper">
-                      <div id="sidebar">
-                        <div class="col-md-12 cont profile-bg"></div>
-                      </div>
-                      <div id="content" class="col-md-8 cont">
-                        <div class="col-md-12 cont">
-                          <h1 class="profile">Helen Yan</h1>
+                  <div class="twb337">
+                    <div id="{{ $temp['folder_name'] }}-end-2" class="raywhite-main-popup-2">
+                      <div id="wrapper">
+                        <div id="sidebar">
+                          <div class="col-md-12 cont profile-bg"></div>
                         </div>
-                        <div class="col-md-12 cont logo"><img src="image/ray-white-logo.jpg" width="150"></div>
-                        <div class="col-md-12 cont">
-                          <h2 class="profile">
-                          Contact Me Today!<br>
-                          <br>
-                          0404 078 588<br>
-                          helen.yan@raywhite.com<br>
-                          </h2>
+                        <div id="content" class="col-md-8 cont">
+                          <div class="col-md-12 cont">
+                            <h1 class="profile">Helen Yan</h1>
+                          </div>
+                          <div class="col-md-12 cont logo"><img src="image/ray-white-logo.jpg" width="150"></div>
+                          <div class="col-md-12 cont">
+                            <h2 class="profile">
+                            Contact Me Today!<br>
+                            <br>
+                            0404 078 588<br>
+                            helen.yan@raywhite.com<br>
+                            </h2>
+                          </div>
                         </div>
                       </div>
                     </div>
+                  </div>    
                 </div>
 
                 <!-- Third Template -->
                 <div id="thirdEFTemplateModal" style="display: none">
-                    <div id="wrapper">
-                      <div id="sidebar">
-                        <div class="col-md-12 cont profile-bg"></div>
-                      </div>
-                      <div id="content" class="col-md-8 cont">
-                        <div class="col-md-12 cont">
-                          <h1 class="profile">Helen Yan</h1>
-                        </div>
-                        <div class="col-md-12 cont">
-                          <h2 class="profile"> Contact Me Today!<br>
-                            <br>
-                            0404 078 588<br>
-                            helen.yan@raywhite.com<br>
-                          </h2>
-                        </div>
-                        <div class="col-md-12 cont logo"><img src="image/ray-white-logo.jpg" width="112"></div>
-                      </div>
-                    </div>
-                </div>
-
-                <!-- Fourth Template -->
-                <div id="fourthEFTemplateModal" style="display: none">
-                    <div id="wrapper">
-                      <div class="col-md-12 cont">
+                  <div class="twb337">
+                    <div id="{{ $temp['folder_name'] }}-end-3" class="raywhite-main-popup-3">
+                      <div id="wrapper">
                         <div id="sidebar">
-                          <div class="col-md-3 cont">
-                            <div class="col-md-12 cont"><img class="img-profile" src="image/helen-yan.jpg" width="337">
-                          </div>
+                          <div class="col-md-12 cont profile-bg"></div>
                         </div>
-                          <div class="col-md-12 cont logo-cont"><img class="img-logo" src="image/ray-white-logo.jpg" width="112"></div>
-                        </div>
-                        <div id="content" class="col-md-9 cont">
+                        <div id="content" class="col-md-8 cont">
                           <div class="col-md-12 cont">
                             <h1 class="profile">Helen Yan</h1>
                           </div>
@@ -1393,12 +1401,44 @@
                               helen.yan@raywhite.com<br>
                             </h2>
                           </div>
-                          <div class="col-md-12 cont empty-cont"> </div>
+                          <div class="col-md-12 cont logo"><img src="image/ray-white-logo.jpg" width="112"></div>
                         </div>
                       </div>
-                    </div>
+                     </div>
+                    </div>    
                 </div>
 
+                <!-- Fourth Template -->
+                <div id="fourthEFTemplateModal" style="display: none">
+                  <div class="twb337">
+                    <div id="{{ $temp['folder_name'] }}-end-4" class="raywhite-main-popup-4">
+                        <div id="wrapper">
+                          <div class="col-md-12 cont">
+                            <div id="sidebar">
+                              <div class="col-md-3 cont">
+                                <div class="col-md-12 cont"><img class="img-profile" src="image/helen-yan.jpg" width="337">
+                              </div>
+                            </div>
+                              <div class="col-md-12 cont logo-cont"><img class="img-logo" src="image/ray-white-logo.jpg" width="112"></div>
+                            </div>
+                            <div id="content" class="col-md-9 cont">
+                              <div class="col-md-12 cont">
+                                <h1 class="profile">Helen Yan</h1>
+                              </div>
+                              <div class="col-md-12 cont">
+                                <h2 class="profile"> Contact Me Today!<br>
+                                  <br>
+                                  0404 078 588<br>
+                                  helen.yan@raywhite.com<br>
+                                </h2>
+                              </div>
+                              <div class="col-md-12 cont empty-cont"> </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>    
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button"

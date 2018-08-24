@@ -99,9 +99,13 @@
     </div>
 
     <div class="d-flex flex-row-reverse">
-        <div>
+        <div id="finishTerms">
             <!-- <button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="submit" id="btnAccept" name="action" value="accept">Finish</button> -->
-            <a href="" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#TermsConditionsModal"><button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="button" id="btnAccept" name="action" value="accept">Finish</button></a>
+            <a href="" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#TermsConditionsModal"><button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="button" id="btnAccept">Finish</button></a>
+        </div>
+        <div id="finishSubmit" style="display: none">
+            <!-- <button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="submit" id="btnAccept" name="action" value="accept">Finish</button> -->
+            <button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="submit" id="btnSubmit" name="action" value="accept">Finish</button>
         </div>
     </div>
 </div>
@@ -118,10 +122,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Terms and Conditions</h4>
-                    <!-- <button type="button" class="close"
+                    <button type="button" class="close"
                             data-dismiss="modal"
                             aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button> -->
+                        <span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body" style="height:500px; overflow:auto;">
                     @if($content['content_text'] != null)

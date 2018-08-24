@@ -13,7 +13,7 @@
             
             @include('frontend.pages.preferences.video-system.steps')
             <div class="d-flex justify-content-between join-step-next py-1 pb-3 mb-3 border-bot2">
-                    <button class="btn btn-primary bg-333 btn-no-border px-4"><i class="arrow-left"></i> BACK</button>
+                    <button class="btn btn-primary bg-333 btn-no-border px-4" type="button" onclick="goBack()"><i class="arrow-left"></i> BACK</button>
             </div>
             <h3>Template Preferences</h3>
             <div class="border-bot py-2">
@@ -133,7 +133,7 @@
             </form>
 
 
-            End Template (3)
+            End Template (2)
             <div class="row">
                 <div class="col p-0"><img src="{{ asset('storage/account/video-system-end-frame.jpg') }}" class="img-fluid"></div>
             </div>
@@ -249,8 +249,13 @@
                     </div>
                 </form>
             <div class="d-flex my-4">
-              <div><button class="btn btn-primary bg-333 btn-no-border v-s-btn-t pr-4"><i class="arrow-left"></i>BACK</button></div>
-              <div class="ml-auto"><button class="btn btn-primary v-s-btn-t">SAVE : Next Step 4<i class="arrow-right"></i></button></div>
+              <div><button class="btn btn-primary bg-333 btn-no-border v-s-btn-t pr-4" type="button" onclick="goBack()"><i class="arrow-left"></i>BACK</button></div>
+              <div class="ml-auto">
+                <form method="POST" action="{{ route('account-video-system-processStep3') }}">
+                    {{ csrf_field() }}
+                    <button class="btn btn-primary v-s-btn-t" type="submit">SAVE : Next Step 4<i class="arrow-right"></i></button>
+                </form>
+              </div>
             </div>
         </div>
     </div>
@@ -265,7 +270,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
 
-
+        function goBack(){
+            window.history.back();
+        }
 
         $(document).ready(function() {
 

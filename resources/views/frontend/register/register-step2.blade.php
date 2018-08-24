@@ -59,9 +59,9 @@
                     var height = img.clientHeight;
 
                     if(width > height)
-                        $('#image1').attr('width', "100%");
+                        $('#image1').attr('width', "70%");
                     else
-                        $('#image1').attr('height', "100%");
+                        $('#image1').attr('height', "70%");
 
                     // $('#image1').attr('style', "max-width=460px");
                     // $('#image1').attr('style', "max-height=234px");
@@ -73,36 +73,7 @@
             }
         }
 
-        //for Main Image 2
-        // function readURLMainImage2(input) {
-        //     if (input.files && input.files[0]) {
-        //         var reader = new FileReader();
-        //
-        //         reader.onload = function (e) {
-        //             $('#image2').attr('src', e.target.result);
-        //             $('#image2').attr('width', '460px');
-        //             $('#image2').attr('height', '234px');
-        //
-        //         }
-        //
-        //         reader.readAsDataURL(input.files[0]);
-        //     }
-        // }
-        //
-        // //for Main Image 3
-        // function readURLMainImage3(input) {
-        //     if (input.files && input.files[0]) {
-        //         var reader = new FileReader();
-        //
-        //         reader.onload = function (e) {
-        //             $('#image3').attr('src', e.target.result);
-        //             $('#image3').attr('width', '460px');
-        //             $('#image3').attr('height', '234px');
-        //         }
-        //
-        //         reader.readAsDataURL(input.files[0]);
-        //     }
-        // }
+        
 
         //for uploading logo Image
         function readURLLogoImage(input) {
@@ -118,12 +89,9 @@
                     var height = img.clientHeight;
 
                     if(width > height)
-                        $('#logo').attr('style', "width=100%");
+                        $('#logo').attr('width', "70%");
                     else
-                        $('#logo').attr('style', "height=100%");
-
-                    $('#logo').attr('style', "max-width=460px");
-                    $('#logo').attr('style', "max-height=234px");
+                        $('#logo').attr('height', "70%");
 
                 }
 

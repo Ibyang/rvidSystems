@@ -425,15 +425,15 @@ Route::group(['middleware' => 'guest'], function() {
     //Standard Video System Steps
 //    Route::get('/account/preferences/video-system/storePics/{file}','MyVideoController@storePics');
 
-    Route::get('/account/preferences/video-system/1','MyVideoController@VideoSystemPictures')->name('account-video-system-pictures');
+    Route::get('/account/make-video/video-system/1','MyVideoController@VideoSystemPictures')->name('account-video-system-pictures');
 
-    Route::get('/account/preferences/video-system/2','MyVideoController@VideoSystemScript')->name('account-video-system-script');
+    Route::get('/account/make-video/video-system/2','MyVideoController@VideoSystemScript')->name('account-video-system-script');
 
-    Route::get('/account/preferences/video-system/3','MyVideoController@VideoSystemTemplate')->name('account-video-system-template');
+    Route::get('/account/make-video/video-system/3','MyVideoController@VideoSystemTemplate')->name('account-video-system-template');
 
-    Route::get('/account/preferences/video-system/4','MyVideoController@VideoSystemVoice')->name('account-video-system-music');
+    Route::get('/account/make-video/video-system/4','MyVideoController@VideoSystemVoice')->name('account-video-system-music');
 
-    Route::get('/account/preferences/video-system/5','MyVideoController@VideoSystemFinish')->name('account-video-system-finish');
+    Route::get('/account/make-video/video-system/5','MyVideoController@VideoSystemFinish')->name('account-video-system-finish');
 
     Route::post('/account/video-system/processStep1', 'MyVideoController@VideoSystemProcessStep1')->name('account-video-system-processStep1');
 
@@ -547,6 +547,12 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/account/getDirectUpload', 'MyVideoController@getDirectUpload')->name('getDirectUpload');
 
     Route::post('/account/direct-upload/postdata', 'MyVideoController@postDirect')->name('direct-post-details');
+
+    //for uploading standard images in dropZone container
+    Route::post('/account/uploadDirectImage', 'MyVideoController@uploadDirectImage')->name('uploadDirectImage');
+
+    //for removing Images from DropBox container
+    Route::get('/deleteDirectImage/{simage}/{img}', 'MyVideoController@deleteDirectImage');
 
 
     Auth::routes();

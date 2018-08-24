@@ -70,6 +70,14 @@
             });
 
 
+            $("#chkTermsConditions").click(function() {
+                if($("#chkTermsConditions").is(':checked')){
+                    $('#finishTerms').hide();
+                    $('#finishSubmit').show();
+                }
+            });
+
+
             // $('#TermsConditionsModal').modal({
             //     backdrop: 'static',
             //     keyboard: false

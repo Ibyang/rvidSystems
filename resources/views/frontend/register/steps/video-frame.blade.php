@@ -4,9 +4,6 @@
             <div class="col-sm align-self-center">
                     <div class="color-404"><b>Select Main Frame</b></div>
 
-                    <select name="state" class="form-control mt-3 mb-5 col-10">
-                            <option>Use Only One as Selected</option>
-                    </select>
                     <select name="stateMainFrame" id="stateMainFrame" class="form-control mt-3 mb-3 col-10">
                         <option value="Use selected main frame template" {{{ (!empty($template['main_frame_template']) && $template['main_frame_template'] == 'Use selected main frame template') ? "selected=\"selected\"" : "" }}}>Use selected main frame template</option>
                         <option value="Please select main frame template for me" {{{ (!empty($template['main_frame_template']) && $template['main_frame_template'] == 'Please select main frame template for me') ? "selected=\"selected\"" : "" }}}>Please select main frame template for me</option>

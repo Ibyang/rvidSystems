@@ -27,20 +27,24 @@
                             <div class="d-flex justify-content-between col-12">
                                 <div class="align-self-center"><b>URL</b></div>
                                 <div>
-                                    <a href=" {{ route('getDirectUpload') }} "><button class="btn btn-primary py-1 b-radius-7 m-v-a-btn bg-009900">GO</button></a>
+                                    <button type="button" id="btnGeneric" class="btn btn-primary py-1 b-radius-7 m-v-a-btn bg-009900" onclick="event.preventDefault(); document.getElementById('frmGeneric').submit();">GO</button>
                                 </div>
                             </div>
-                            <form class="col-12">
-                                <input type="text" class="form-control my-2" placeholder="Enter Here">
+                            <div class="col-12">
+                                <form id="frmGeneric" action="{{ route('getGenericVideo') }}" method="POST">
+                                {{ csrf_field() }}
+                                    <input type="text" class="form-control my-2" placeholder="Enter Here" name="url_generic" id="url_generic" required>
+                                    <input type="hidden" name="user_id" id="user_id" value="{{  $userid }}">
+                                </form>
                                 <div class="d-flex justify-content-between">
                                    <div class="line-height20"><b>Direct Upload</b><br>
                                     Click here to upload images<br>
                                     and property details</div>
                                     <div class="align-self-end">
-                                        <a href=" {{ route('getDirectUpload') }} "><button class="btn btn-primary px-3 py-1 b-radius-7 bg-009900">UPLOAD</button></a>
+                                        <a href=" {{ route('getDirectUpload') }} "><button type="button" id="btnUpload" class="btn btn-primary px-3 py-1 b-radius-7 bg-009900">UPLOAD</button></a>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                 </div>
                 <div class="row make-my-video border-top-0066ff my-4">
@@ -125,17 +129,28 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            $('#url_generic').keypress(function(e){
-                if(e.which == 13){
-                    alert('You pressed enter after entering URL Address in Generic Option!');
-                }
-            });
 
-            $('#url_premium').keypress(function(e){
-                if(e.which == 13){
-                    alert('You pressed enter after entering URL Address in Premium Option!');
-                }
-            });
+            $('#url_generic').keyup(function(){
+
+                 if ($(this).val().length > 0) {
+                    $("#btnUpload").attr("disabled", true);
+                 } else if($(this).val().length == 0) {  
+                    $("#btnUpload").removeAttr("disabled");
+                 }
+
+            }); 
+
+            // $('#url_generic').keypress(function(e){
+            //     if(e.which == 13){
+            //         alert('You pressed enter after entering URL Address in Generic Option!');
+            //     }
+            // });
+
+            // $('#url_premium').keypress(function(e){
+            //     if(e.which == 13){
+            //         alert('You pressed enter after entering URL Address in Premium Option!');
+            //     }
+            // });
 
         });
 

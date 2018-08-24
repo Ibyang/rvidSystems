@@ -38,7 +38,7 @@
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>GRANT</b></div>
                                                 <div>
                                                     <div class="d-flex justify-content-end">
-                                                        <div class="color-0066ff font12 pt-2 px-4"><a href="javascript:void(0)" onclick="document.getElementById('voiceGrant').play()"><i class="voice-icon v-i-play"></i><b>Play Sample</b></a></div>
+                                                        <div class="color-0066ff font12 pt-2 px-4"><i class="voice-icon v-i-play" id="grantVoice"></i><b>Play Sample</b></div>
                                                         <div>
                                                             <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                 <div class="custom-control custom-checkbox standard ml-2">
@@ -49,7 +49,7 @@
                                                         </div>
                                                     </div> 
                                                 </div>
-                                                <audio id="voiceGrant" src="{{ asset('storage/voice_over_files/grant.wav') }}"></audio>
+                                                <audio id="audioGrant" src="{{ asset('storage/voice_over_files/grant.wav') }}"></audio>
                                     </div>
                                     <div class="font12">Professional, corporate, and "very now".</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseGrant" role="button" aria-expanded="false" aria-controls="collapseGrant"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -68,7 +68,7 @@
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>LUKE</b></div>
                                                 <div>
                                                     <div class="d-flex justify-content-end">
-                                                        <div class="color-0066ff font12 pt-2 px-4"><a href="javascript:void(0)" onclick="document.getElementById('voiceLuke').play()"><i class="voice-icon v-i-play"></i><b>Play Sample</b></a></div>
+                                                        <div class="color-0066ff font12 pt-2 px-4"><i class="voice-icon v-i-play" id="lukeVoice"></i><b>Play Sample</b></div>
                                                         <div>
                                                             <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                 <div class="custom-control custom-checkbox standard ml-2">
@@ -79,7 +79,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <audio id="voiceLuke" src="{{ asset('storage/voice_over_files/luke.wav') }}"></audio>
+                                                <audio id="audioLuke" src="{{ asset('storage/voice_over_files/luke.wav') }}"></audio>
                                     </div>
                                     <div class="font12">Young, fresh, and warm.</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseLuke" role="button" aria-expanded="false" aria-controls="collapseLuke"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -97,7 +97,7 @@
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>MARK</b></div>
                                                 <div>
                                                     <div class="d-flex justify-content-end">
-                                                        <div class="color-0066ff font12 pt-2 px-4"><a href="javascript:void(0)" onclick="document.getElementById('voiceMark').play()"><i class="voice-icon v-i-play"></i><b>Play Sample</b></a></div>
+                                                        <div class="color-0066ff font12 pt-2 px-4"><i class="voice-icon v-i-play" id="markVoice"></i><b>Play Sample</b></div>
                                                         <div>
                                                             <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                 <div class="custom-control custom-checkbox standard ml-2">
@@ -108,7 +108,7 @@
                                                         </div>
                                                     </div>   
                                                 </div>
-                                                <audio id="voiceMark" src="{{ asset('storage/voice_over_files/mark.wav') }}"></audio>
+                                                <audio id="audioMark" src="{{ asset('storage/voice_over_files/mark.wav') }}"></audio>
                                     </div>
                                     <div class="font12">Friendly, mature, and smooth</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseMark" role="button" aria-expanded="false" aria-controls="collapseMark"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -133,7 +133,7 @@
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>KARIN</b></div>
                                                 <div>
                                                     <div class="d-flex justify-content-end">
-                                                        <div class="color-0066ff font12 pt-2 px-4"><a href="javascript:void(0)" onclick="document.getElementById('voiceKarin').play()"><i class="voice-icon v-i-play"></i><b>Play Sample</b></a></div>
+                                                        <div class="color-0066ff font12 pt-2 px-4"><i class="voice-icon v-i-play" id="karinVoice"></i><b>Play Sample</b></div>
                                                         <div>
                                                             <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                 <div class="custom-control custom-checkbox standard ml-2">
@@ -144,7 +144,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <audio id="voiceKarin" src="{{ asset('storage/voice_over_files/karin.wav') }}"></audio>
+                                                <audio id="audioKarin" src="{{ asset('storage/voice_over_files/karin.wav') }}"></audio>
                                     </div>
                                     <div class="font12">Professional, corporate, and "very now".</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseKarin" role="button" aria-expanded="false" aria-controls="collapseKarin"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -164,7 +164,7 @@
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>ODETTE</b></div>
                                                 <div>
                                                     <div class="d-flex justify-content-end">
-                                                        <div class="color-0066ff font12 pt-2 px-4"><a href="javascript:void(0)" onclick="document.getElementById('voiceOddete').play()"><i class="voice-icon v-i-play"></i><b>Play Sample</b></a></div>
+                                                        <div class="color-0066ff font12 pt-2 px-4"><i class="voice-icon v-i-play" id="odetteVoice"></i><b>Play Sample</b></div>
                                                         <div>
                                                             <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                 <div class="custom-control custom-checkbox standard ml-2">
@@ -175,7 +175,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <audio id="voiceOddete" src="{{ asset('storage/voice_over_files/odette.wav') }}"></audio>
+                                                <audio id="audioOdette" src="{{ asset('storage/voice_over_files/odette.wav') }}"></audio>
                                     </div>
                                     <div class="font12">Warm, familiar nature and mature.</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseOdette" role="button" aria-expanded="false" aria-controls="collapseOdette"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -194,7 +194,7 @@
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>LUISA</b></div>
                                                 <div>
                                                     <div class="d-flex justify-content-end">
-                                                        <div class="color-0066ff font12 pt-2 px-4"><a href="javascript:void(0)" onclick="document.getElementById('voiceLouisa').play()"><i class="voice-icon v-i-play"></i><b>Play Sample</b></a></div>
+                                                        <div class="color-0066ff font12 pt-2 px-4"><i class="voice-icon v-i-play" id="luisaVoice"></i><b>Play Sample</b></div>
                                                         <div>
                                                             <div class="my-account-subcription step-three-register align-self-center v-s-width">
                                                                 <div class="custom-control custom-checkbox standard ml-2">
@@ -205,7 +205,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <audio id="voiceLouisa" src="{{ asset('storage/voice_over_files/louisa.wav') }}"></audio>
+                                                <audio id="audioLuisa" src="{{ asset('storage/voice_over_files/louisa.wav') }}"></audio>
                                     </div>
                                     <div class="font12">Fresh, playful and energetic.</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseLuisa" role="button" aria-expanded="false" aria-controls="collapseLuisa"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>

@@ -178,9 +178,9 @@
                          <input id="name" type="text" class="form-control" name="address2" placeholder="Address 2" value="{{{ $agent['address2'] or old('address2') }}}">
                     </div>
                     <div class="row">
-                                 <div class="col-sm l-g-m"><input type="text" class="form-control" name="suburb" placeholder="Suburb" value="{{{ $agent['suburb'] or old('suburb') }}}" required></div>
-                                 <div class="col-sm l-g-m"><input type="text" class="form-control" name="state" placeholder="State" value="{{{ $agent['state'] or old('state') }}}" required></div>
-                                 <div class="col-sm l-g-m"><input type="text" class="form-control" name="postcode" placeholder="Post Code" value="{{{ $agent['postcode'] or old('postcode') }}}" required></div>
+                                 <div class="col-sm l-g-m"><input type="text" class="form-control" name="suburb" placeholder="Suburb" value="{{{ $agent['suburb'] or old('suburb') }}}"></div>
+                                 <div class="col-sm l-g-m"><input type="text" class="form-control" name="state" placeholder="State" value="{{{ $agent['state'] or old('state') }}}"></div>
+                                 <div class="col-sm l-g-m"><input type="text" class="form-control" name="postcode" placeholder="Post Code" value="{{{ $agent['postcode'] or old('postcode') }}}"></div>
                     </div>
                 </div>
                 <div class="col-sm">

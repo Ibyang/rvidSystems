@@ -106,11 +106,10 @@ h3.c-414 { color:#414142; }
 ul.list { list-style-type:none; margin:0px; padding:0px; }
 ul.list li:before { content: "■"; color:#6600cc; font-size:20px; padding-right:30px; display: inline-block; width: 1em; margin-left: -1.6em; }
 ul.list li { margin-bottom:10px; }
-ul.list-about { list-style-type:none; margin:0px; padding-left:30px; }
-ul.list-about li:before { content: "■"; color:#ff0033; font-size:20px; padding-right:20px; display: inline-block; width: 1em; margin-left: -1.6em; }
-ul.list-about li { margin-bottom:10px; display:inline-block;  }
-ul.list-about li:not(:nth-child(3)) { width:223px; }
-ul.list-about li:nth-child(3) { width:265px; }
+ul.list-about,ul.list-option-about { list-style-type:none; margin:0px; padding-left:20px; }
+ul.list-about li:before { content: "■"; color:#ff0033; font-size:15px; padding-right:15px; display: inline-block; width: 1em; margin-left: -20px; }
+ul.list-about li { margin-bottom:10px; }
+ul.list-option-about li:before { content: "■"; color:#6600cc; font-size:15px; padding-right:20px; display: inline-block; width: 1em; margin-left: -20px; }
 .contact > .col-12,.contact > .col-lg-5 { font-size:19px;  padding-top:15px; }
 .contact .col-sm:nth-child(3) { border-left:1px solid #424244; padding-left:105px; }
 .contact p { margin-bottom:0px; }
@@ -123,6 +122,7 @@ ul.list-about li:nth-child(3) { width:265px; }
 .border-bot3 { border-bottom:1px solid #999999; padding-bottom:10px; margin-bottom:30px; }
 .border-bot4 { border-bottom:1px solid #ccc; padding-bottom:10px; margin-bottom:30px; }
 .border-bot5 { border-bottom:1px solid #ced4da; }
+.border-bot6 { border-bottom:1px solid #ccc; }
 .border-bot-top { border-bottom:1px solid #ced4da; border-top:1px solid #ced4da; padding:27px 0px; }
 .my-account-container { margin-top:-48px; }
 .my-account-container > .col-lg-8 { border-left:1px solid #999999; } 
@@ -304,6 +304,7 @@ button.per-month { background-color:#0066ff; color:#fff; font-weight:bold; width
 .font11 { font-size:11px; }
 .font12 { font-size:12px; }
 .font14 { font-size:14px; }
+.font16 { font-size:16px; }
 .reg-video-format h4 { color:#6600cc; font-size:14px; }
 .reg-video-format { list-style-type:none; padding:0px; margin-top:20px; }
 .reg-video-format .col-sm-9 { border-bottom:1px solid #424244; }
@@ -394,6 +395,7 @@ button.per-month { background-color:#0066ff; color:#fff; font-weight:bold; width
 .bg-ff0000 { background-color:#ff0000; }
 .bg-0066ff { background-color:#0066ff; }
 .bg-6600cc { background-color:#6600cc; }
+.bg-efefef { background-color:#efefef; }
 .bg-ccc { background-color:#cccccc; }
 .bg-333 { background-color:#333333; }
 .bg-fff { background-color:#ffffff; }
@@ -611,12 +613,26 @@ i.m-s-v-voice { background-position:-260px 0px; }
 i.m-s-v-voice-h { background-position:-699px 0px; }
 i.m-s-v-music { background-position:-345px 0px; }
 i.m-s-v-music-h { background-position:-784px 0px; }
+i.a-s-icons { background:url(backgrounds/social-icons-v3.png); height:60px; width:60px; display:inline-block; }
+i.a-s-icons-fb { background-position:0px 0px; }
+i.a-s-icons-i { background-position:-65px 0px; }
+i.a-s-icons-twtr { background-position:-131px 0px; }
+i.a-s-icons-g { background-position:-198px 0px; }
+i.a-s-icons-in { background-position:-266px 0px; }
+i.a-s-icons-rev { background-position:-334px 0px; }
+i.a-s-icons-yt { background-position:-399px 0px; }
+i.a-files { background:url(backgrounds/file.png); height:60px; width:50px; display:inline-block; }
+i.a-f-mwv { background-position:0px 0px; }
+i.a-f-mp4 { background-position:-52px 0px; }
+i.a-f-flv { background-position:-106px 0px; }
+i.a-f-avi { background-position:-161px 0px; }
+i.a-f-mov { background-position:-211px 0px; }
 /** end icons **/
 
 /**frontpage**/
 .h-col-2 { border:1px solid #999999; }
 .h-col-2 h2 { color:#363636; font-family:arial; border-top:1px solid #999999; margin:20px 0px 0px; padding-top:20px; font-size:49px; line-height:51px; }
-.h-col-1 h3,.h-col-2 h3,.h-col-3 h4 { color:#ff0033; font-size:20px; font-family: 'Titillium Web'; font-weight:bold; }
+.h-col-1 h3,.h-col-2 h3,.h-col-3 h4,.col-border h4 { color:#ff0033; font-size:20px; font-family: 'Titillium Web'; font-weight:bold; }
 .h-col-2 .col-bg { background:#eaeaea; }
 .h-col-3 { border:1px solid #ff0033; }
 .h-col-3 h3 {  background: linear-gradient(to right, #ff0169 , #ff1e05); color:#ffffff; margin-bottom:0px; font-family: 'tilium'; }
@@ -788,6 +804,11 @@ header .container .float-l:nth-child(2) { margin:15px 0px 20px; }
 .m-v-m-btn { margin-right:-13px; }
 .v-s-text[aria-expanded="true"] .v-i-down,.v-s-text[aria-expanded="false"] .v-i-up { display: none; }
 .font-t-ms { font-family:Trebuchet MS; }
+.col-border { border-top:1px solid #cccccc; border-bottom:1px solid #cccccc; }
+.col-border .col-sm:not(:last-child) { border-right:1px solid #cccccc; }
+.col-border .b-v-text { font-family:tilium; line-height:20px; line-height:20px; }
+.h-row-1 { height:130px; }
+.p-surge-btn .custom-control-label::before { background-color:#fff; border:1px solid #ccc; }
 @media (max-width:330px){
     .bg-primary { background-image:linear-gradient(180deg, #424244 50%, #eaeaea 30%); }
     .pricing-data label { font-size:14px; }

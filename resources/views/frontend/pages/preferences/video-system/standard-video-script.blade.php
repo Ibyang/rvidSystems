@@ -1,5 +1,15 @@
 @extends('frontend.layouts.main')
 
+    <style>
+        .sortable-placeholder {
+           margin:10px;
+           padding:10px;
+           background:yellow;
+           border:1px solid black;
+        }
+
+    </style>
+
 @section('content')
 <div class="container">
     <div class="row my-account-container">
@@ -14,7 +24,7 @@
             @include('frontend.pages.preferences.video-system.steps')
             
             <div class="d-flex justify-content-between join-step-next p-1 mb-3">
-                    <button class="btn btn-primary bg-333 btn-no-border px-4"><i class="arrow-left"></i> BACK</button>
+                    <button class="btn btn-primary bg-333 btn-no-border px-4" type="button" onclick="{{ route('account-video-system-pictures') }}"><i class="arrow-left"></i> BACK</button>
             </div>
 
             <form id="frmManualStep2" method="POST" action="{{ route('account-video-system-processStep2')}}" enctype="multipart/form-data">
@@ -54,7 +64,7 @@
                          <p class="mt-3"><span class="c-6600cc"><b>+</b></span><br>Picture 2</p> -->
 
                             <div class="script-container">
-                                     <div id="sortableContainer">
+                                <div id="sortableContainer" style="position: relative; z-index: 300">
                                          @foreach($pics as $pic)
                                              @if($pic['statement'] != NULL)
                                                 <div class="text-block" ondrop="drop(event)" ondragover="allowDrop(event)" id="text-block" style="height: 50px; background: #eeeeee; list-style: none">{{ $pic['statement'] }}</div>
@@ -72,7 +82,7 @@
                                                  {{--<img draggable="true" src={{ $path2 . $pic['new_filename'] }} class="w-100" style='border: 10px solid #ededed; opacity: 0.5; max-width:100%; height:auto'>--}}
                                              @else
                                                   <div id="{{ $pic['ID'] }}">
-                                                      <img src="{{ $path2 . $pic['old_filename'] }}" class="w-100" style='border: 10px solid #ededed; opacity: 0.5; max-width:100%; height:auto; cursor: move'>
+                                                      <img src="{{ $path2 . $pic['old_filename'] }}" class="w-100" style='border: 10px solid #ededed; opacity: 0.5; max-width:100%; max-height:50%; cursor: move'>
                                                   </div>
                                                          {{--@if( $ctr < $num_images )--}}
                                                             {{--<span class="text-container" style="margin-top: 10px">--}}
@@ -83,14 +93,15 @@
                                              <input type="hidden" name="imageID" value="{{ $pic['ID'] }}">
                                              <input type="hidden" name="filename[]" id="filename" ondrop="drop(event)" ondragover="allowDrop(event)">
                                          @endforeach
-                                    </div>
+                                </div>
 
-                                    @for($ctr=0; $ctr<$num_images; $ctr++)
-                                        {{--@if( $ctr < $num_images )--}}
-                                        <div style="margin-top:10px; padding:0; line-height: 10px">{{ $stats[$ctr] }}</div>
-                                        {{--@endif--}}
-                                    @endfor
-
+                                <div style="position: absolute; left:0; top:0;">
+                                        <ul>
+                                            @for($ctr=0; $ctr<$num_images; $ctr++)
+                                                <li style="line-height: 250px; z-index: 100; padding-left: 50px; font-weight: bolder;">{{ $stats[$ctr] }}</li>
+                                             @endfor    
+                                        </ul>    
+                                </div>  
                             </div>
                     </div>
 
@@ -101,44 +112,44 @@
                             <h3>Statements</h3>
                             <ul>
 
-                                <li ondragstart="dragStart(event)" draggable="true" id="No Voice Over"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is an ideal family home"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is perfect for a professional couple"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is your perfect start in life"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is your step onto the real estate ladder"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is stylish and aspirational"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is simply good value"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property exudes charm and character"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is close to public transport"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is close to shops and transport"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is in need of love and care"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is a renovator’s dream"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property will set you up for life"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property gives a taste of City living"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is beautifully presented"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property could change your life"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property sits within a well established suburb"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is sophisticated and elegant"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property has room for a caravan or boat"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property can grow with your family"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="This property is close to a playground and school"></li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="No Voice Over">No Voice Over</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is an ideal family home">This property is an ideal family home</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is perfect for a professional couple">This property is perfect for a professional couple</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is your perfect start in life">This property is your perfect start in life</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is your step onto the real estate ladder">This property is your step onto the real estate ladder</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is stylish and aspirational">This property is stylish and aspirational</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is simply good value">This property is simply good value</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property exudes charm and character">This property exudes charm and character</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is close to public transport">This property is close to public transport</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is close to shops and transport">This property is close to shops and transport</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is in need of love and care">This property is in need of love and care</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is a renovator’s dream">This property is a renovator’s dream</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property will set you up for life">This property will set you up for life</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property gives a taste of City living">This property gives a taste of City living</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is beautifully presented">This property is beautifully presented</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property could change your life">This property could change your life</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property sits within a well established suburb">This property sits within a well established suburb</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is sophisticated and elegant">This property is sophisticated and elegant</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property has room for a caravan or boat">This property has room for a caravan or boat</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property can grow with your family">This property can grow with your family</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="This property is close to a playground and school">This property is close to a playground and school</li>
                             </ul>
                             <h3>Extension Statements (optional)</h3>
                             <ul>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It is also stylish and aspirational"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It also exudes charm and character"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It is also close to shops and transport <br>But is in need of some love and care<br> And can grow with your family"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It is also simply good value"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It also gives a taste of City living"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It also has space for your caravan or boat And it is beautifully presented"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It is also an ideal family home"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It is also perfect for a professional couple"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It could also be your perfect start in life"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It could also be your step into the property market"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It is also close to play spaces and school"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It is also close to public transport"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It is also sophisticated and elegant And it sits within a well established suburb"></li>
-                                <li ondragstart="dragStart(event)" draggable="true" id="It is also an ideal family home <br>And it could change your life"></li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It is also stylish and aspirational">"It is also stylish and aspirational</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It also exudes charm and character">It also exudes charm and character</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It is also close to shops and transport <br>But is in need of some love and care<br> And can grow with your family">It is also close to shops and transport <br>But is in need of some love and care<br> And can grow with your family</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It is also simply good value">It is also simply good value</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It also gives a taste of City living">It also gives a taste of City living</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It also has space for your caravan or boat And it is beautifully presented">It also has space for your caravan or boat And it is beautifully presented</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It is also an ideal family home">It is also an ideal family home</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It is also perfect for a professional couple">It is also perfect for a professional couple</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It could also be your perfect start in life">It could also be your perfect start in life</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It could also be your step into the property market">It could also be your step into the property market</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It is also close to play spaces and school">It is also close to play spaces and school</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It is also close to public transport">It is also close to public transport</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It is also sophisticated and elegant And it sits within a well established suburb">It is also sophisticated and elegant And it sits within a well established suburb</li>
+                                <li ondragstart="dragStart(event)" draggable="true" id="It is also an ideal family home <br>And it could change your life">It is also an ideal family home <br>And it could change your life</li>
                             </ul>
                          </div>
                     </div>
@@ -147,8 +158,8 @@
                     <input type="hidden" name="sortOrder" id="sortOrder">
                     <input type="hidden" name="selectedStatements" id="selectedStatements">
                     <input type="hidden" name="pics" id="pics" value="{{ $pics }}">
-                    <div><a href="/account/preferences/video-system/1"><button class="btn btn-primary bg-333 btn-no-border v-s-btn-t px-5" type="button"><i class="arrow-left"></i>BACK</button></a></div>
-                    <div class="ml-auto"><button class="btn btn-primary v-s-btn-t">SAVE : Next Step 3<i class="arrow-right"></i></button></div>
+                    <div><a href="/account/preferences/video-system/1"><button class="btn btn-primary bg-333 btn-no-border v-s-btn-t px-5" type="button" onclick="{{ route('account-video-system-pictures') }}"><i class="arrow-left"></i>BACK</button></a></div>
+                    <div class="ml-auto"><button class="btn btn-primary v-s-btn-t" type="button" id="bntSaveScript">SAVE : Next Step 3<i class="arrow-right"></i></button></div>
                 </div>
             </form>
                 
@@ -170,6 +181,11 @@
 
             //function for draggable items
             var contents = [];
+
+            function goBack(){
+                window.history.back();
+            }
+
 
             function dragStart(event) {
                 event.dataTransfer.setData("Text", event.target.id);
@@ -239,8 +255,21 @@
 
             $(document).ready(function() {
 
+                //stat_arr = []; 
+                // var stat_arr = $('#stats').val();
+
+                // var num_images = 12;
+
+
                 // Initialize sortable
-                $("#sortableContainer").sortable();
+                $("#sortableContainer").sortable({
+                    placeholder: 'sortable-placeholder',
+                    opacity: 0.6,
+                    sort: function(event,ui){
+                        $(ui.placeholder).html('Drop me at position ' + Number($('#sortableContainer > div:visible').index(ui.placeholder)+1));
+
+                    }  
+                });
 
                 //functionality when Next Button is clicked
                 $("#bntSaveScript").click(function () {
@@ -263,7 +292,7 @@
                 $("li").click(function() {
                     $(this).siblings("li").css("backgroundColor", "");
                     $(this).animate({
-                        backgroundColor: '#ffff42'
+                        /*backgroundColor: '#ffff42'*/
                     }, 'fast');
                 });
 

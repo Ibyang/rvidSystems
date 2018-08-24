@@ -32,7 +32,7 @@
             <div class="col-8">
                  <div class="row">
                   <div class="col-8">Standard</div>
-                  <div  class="col-4"><span class="input-dollar left"><input id="standard_cost" name="standard_cost" type="text" class="form-control" autofocus style="text-align: right" value="{{ $plan_arr['casualAmt'] }}"></span></div>
+                  <div  class="col-4"><span class="input-dollar left"><input id="standard_cost" name="standard_cost" type="text" class="form-control" autofocus style="text-align: right" value="{{ $plan_arr['manualAmt'] }}"></span></div>
                 </div>
             </div>
             <div class="col-sm"></div>

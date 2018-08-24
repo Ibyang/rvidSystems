@@ -1,10 +1,10 @@
 @extends('frontend.layouts.main')
 
-    <style type="text/css">
+    <!-- <style type="text/css">
         .modal-backdrop, .modal-backdrop.fade.in{ opacity: 0 !important; }
         .modal { top:100px; right:-480px; }
         .surge-popup .modal-content { border-radius:0px; border:1px solid #6600cc; background:#ffffff; }
-    </style>
+    </style> -->
 
 @section('content')
 <div class="container ">
@@ -158,7 +158,7 @@
                     <form method="POST" action=" {{ route('account-update-surge-video') }}">
                             {{ csrf_field() }}
                           <div class="modal-body">
-                            <div class="btn btn-primary surge-button">SURGE ALWAYS</div>
+                            <div class="btn btn-primary bg-ff0000 btn-no-border">SURGE ALWAYS</div>
                             <div class="row">
                                 <div class="col-sm-3 pl-0">
                                     <b>#<span id="videoid"></span></b><br>
@@ -167,9 +167,9 @@
                                     Bassendean
                                     WA 6054 -->
                                 </div>
-                                <div class="col-sm step-three-register pr-0">
+                                <div class="col-sm pr-0">
                                     <div class="row">
-                                        <div class="col-md-auto">
+                                        <div class="col p-surge-btn">
                                             <div class="custom-control custom-checkbox basic">
                                               <input type="checkbox" class="custom-control-input" name="surgeoption[]" id="customCheck3" value="Less than 24 hours">
                                               <label class="custom-control-label" for="customCheck3"></label>
@@ -179,7 +179,7 @@
                                         <div class="col c-6600cc"><b>$xxx</b></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-auto">
+                                        <div class="col p-surge-btn">
                                             <div class="custom-control custom-checkbox basic">
                                               <input type="checkbox" class="custom-control-input" name="surgeoption[]" id="customCheck4" value="Less than 12 hours">
                                               <label class="custom-control-label" for="customCheck4"></label>
@@ -189,7 +189,7 @@
                                         <div class="col-md-auto c-6600cc"><b>$xxx</b></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-auto">
+                                        <div class="col p-surge-btn">
                                             <div class="custom-control custom-checkbox basic">
                                               <input type="checkbox" class="custom-control-input" name="surgeoption[]" id="customCheck5" value="Rush 2 hours">
                                               <label class="custom-control-label" for="customCheck5"></label>
@@ -202,7 +202,8 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-end">
                                 <div class="align-items-end"><a href=" {{ route('account-terms-condition') }}" target="_blank">Terms and Conditions</a></div>
-                                <div><button class="btn btn-primary bg-660">ACCEPT</button></div>
+                                <!-- <div><button class="btn btn-primary bg-660">ACCEPT</button></div> -->
+                                <div class="mx-3"><button class="btn btn-primary bg-660 btn-no-border bg-009900 b-radius-7 px-3"><b>ACCEPT</b></button></div>
                             </div>
                           </div>
                      </form>     

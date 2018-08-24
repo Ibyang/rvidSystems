@@ -344,7 +344,7 @@
                 <div class="d-flex justify-content-between mb-5">
                     <div class="align-self-center"><a href=" {{ route('account-terms-condition') }}" target="_blank">Terms and Conditions</a></div>
                     <div>
-                      <input type="text" name="directid" value="{{ $did }}">
+                      <input type="hidden" name="directid" value="{{ $did }}">
                       <input type="hidden" name="videotype" value="Generic">
                       <button type="submit" id="btnConfirm" class="btn btn-primary bg-009900 btn-no-border px-4"><b>CONFIRM</b></button>
                     </div>

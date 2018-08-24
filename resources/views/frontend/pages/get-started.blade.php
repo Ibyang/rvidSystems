@@ -97,7 +97,7 @@
             // }
 
 
-            //for clicking Submit button
+            //for clicking Submit button and validation that they should be able to select one plan to proceed
              $('#btnSubmit').click(function() {
                 var subscriptiontype = $('#plantype').val();
                 

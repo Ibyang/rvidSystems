@@ -167,7 +167,7 @@ class RegisterController extends Controller
                 'planName' => 'Casual',
                 'planAmt' => '0',
                 'automaticAmt' => '149',
-                'casualAmt' => '199',
+                'manualAmt' => '199',
                 'customAmt' => '399',
                 'freeMonths' => '0'
             );
@@ -177,7 +177,7 @@ class RegisterController extends Controller
                 'planName' => 'Standard',
                 'planAmt' => '66',
                 'automaticAmt' => '99',
-                'casualAmt' => '139',
+                'manualAmt' => '139',
                 'customAmt' => '399',
                 'freeMonths' => '2' 
             );
@@ -187,7 +187,7 @@ class RegisterController extends Controller
                 'planName' => 'Basic',
                 'planAmt' => '0',
                 'automaticAmt' => '99',
-                'casualAmt' => '139',
+                'manualAmt' => '139',
                 'customAmt' => '399',
                 'freeMonths' => '3'
             );
@@ -197,7 +197,7 @@ class RegisterController extends Controller
                 'planName' => 'Premium',
                 'planAmt' => '0',
                 'automaticAmt' => '99',
-                'casualAmt' => '139',
+                'manualAmt' => '139',
                 'customAmt' => '399',
                 'freeMonths' => '4'
 
