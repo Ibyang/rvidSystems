@@ -9,7 +9,6 @@
         </div>
         <div class="d-inline-block">
             <span><b>{{ Auth::user()->name }}</b></span><br>
-<<<<<<< HEAD
             <div class="account-position">{{ $agent->group }}</div>
             <div class="account-position">{{ $agent->name_agency }}</div> 
         </div>

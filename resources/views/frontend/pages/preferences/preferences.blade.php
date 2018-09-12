@@ -11,16 +11,6 @@
         <div class="col-lg-8 my-account-form">
             <h3 class="my-account-title mb-2">This is My Preferences</h3>
             <form class="step-three-register register-form">
-               
-               <!--  @include('frontend.register.steps.surge')
-
-                @include('frontend.register.steps.sites')
-
-                @include('frontend.register.steps.social')
-                    
-                @include('frontend.register.steps.email')
-                    
-                @include('frontend.register.steps.broadcast') -->
 
                 @include('frontend.pages.preferences.preferences.surge')
 
