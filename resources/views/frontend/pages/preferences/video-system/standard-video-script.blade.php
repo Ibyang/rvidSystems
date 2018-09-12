@@ -94,6 +94,7 @@
                                              <input type="hidden" name="filename[]" id="filename" ondrop="drop(event)" ondragover="allowDrop(event)">
                                          @endforeach
                                 </div>
+<<<<<<< HEAD
 
                                 <!-- commented this part -->
                                 <!-- <div style="position: absolute; left:0; top:0;">
@@ -103,7 +104,16 @@
                                              @endfor    
                                         </ul>    
                                 </div> -->  
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
+                                <div style="position: absolute; left:0; top:0;">
+                                        <ul>
+                                            @for($ctr=0; $ctr<$num_images; $ctr++)
+                                                <li style="line-height: 250px; z-index: 100; padding-left: 50px; font-weight: bolder;">{{ $stats[$ctr] }}</li>
+                                             @endfor    
+                                        </ul>    
+                                </div>  
                             </div>
                     </div>
 

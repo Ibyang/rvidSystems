@@ -35,7 +35,11 @@
                                  @endif
                             </div>
                             <div class="text-right">
+<<<<<<< HEAD
                                     <button type="submit" class="btn btn-primary bg-009900">GO</button>
+=======
+                                    <button type="submit" class="btn btn-primary">GO</button>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                             </div>
                 </form>
             </div>

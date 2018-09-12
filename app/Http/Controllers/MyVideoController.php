@@ -16,7 +16,10 @@ use App\premiumVideoPicture;
 use App\templateStatement;
 use App\AutomaticDirectUpload;
 use App\AutomaticDirectImages;
+<<<<<<< HEAD
 use App\AgencyTemplate;
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 use App\voiceFiles;
 use App\State;
 use Carbon\Carbon;
@@ -973,6 +976,11 @@ class MyVideoController extends Controller
 
         $numimages = Session::get('numimages');
 
+<<<<<<< HEAD
+=======
+        $numimages = Session::get('numimages');
+
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
         $pics = standardVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->orderBy('sort_order', 'asc')->get(['ID', 'video_ID', 'effect_style', 'sort_order', 'old_filename', 'new_filename']);
 //        Session::put('pics', $pics);
 
@@ -1023,10 +1031,13 @@ class MyVideoController extends Controller
         //for getting template Statements
         $num_images = (int)Input::get('num_images');
         Session::put('numimages', $num_images);
+<<<<<<< HEAD
 
         //for storing duration to session
         $duration = Input::get('duration');
         Session::put('duration', $duration);
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
         $statement = templateStatement::where('no_images', $num_images)->get(['statements'])->first();
         $stat = $statement->statements;
@@ -2013,9 +2024,15 @@ class MyVideoController extends Controller
             Session::put('direct_fname', $direct_filename);
 
         }
+<<<<<<< HEAD
 
         $directfname = Session::get('direct_fname');
 
+=======
+
+        $directfname = Session::get('direct_fname');
+
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
         $direct_arr = array(
                 'agent_ID' => $userid,
                 'address1' => Input::get('address1'),
@@ -2033,6 +2050,7 @@ class MyVideoController extends Controller
 
         $direct = AutomaticDirectUpload::create($direct_arr); 
         $directID = $direct->id;
+<<<<<<< HEAD
 
         Session::put('directid', $directID);
 
@@ -2044,6 +2062,19 @@ class MyVideoController extends Controller
     //for uploading images in Direct Upload
 
 
+=======
+
+        Session::put('directid', $directID);
+
+        return redirect()->route('getGenericVideo');
+
+    }
+
+
+    //for uploading images in Direct Upload
+
+
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
     public function uploadDirectImage(Request $request)
     {
 
@@ -2054,8 +2085,12 @@ class MyVideoController extends Controller
         $datetime = date('Ymd');
         
 
+<<<<<<< HEAD
         // $path = public_path('storage\app\public\client_images\\' . $fullname . '\\direct_pictures\\Direct' . $datetime . '\\');
         $path = 'storage/app/public/client_images/' . $fullname . '/direct_pictures/Direct' . $datetime . '/';
+=======
+        $path = public_path('storage\client_images\\' . $fullname . '\\direct_pictures\\Direct' . $datetime . '\\');
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
         if(!File::exists($path)){
             File::makeDirectory($path, 0775, true);
         }
@@ -2067,7 +2102,11 @@ class MyVideoController extends Controller
 //            $fname = date('Ym') . $videoid . '_' . $file->getClientOriginalName();
             $fname = $file->getClientOriginalName();
 
+<<<<<<< HEAD
             $directory = 'storage/app/public/client_images/' . $fullname . '/direct_pictures/Direct' . $datetime . '/';
+=======
+            $directory = 'storage/client_images/' . $fullname . '/direct_pictures/Direct' . $datetime . '/';
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
             $upload_success = $file->move($directory, $fname);
 
             if($upload_success)
@@ -2104,7 +2143,11 @@ class MyVideoController extends Controller
         if (!empty($uploaded_image)) {
 
             //remove from the Storage
+<<<<<<< HEAD
             $file = 'storage/app/public/client_images/' . $fullname . '/direct_pictures/Direct' . $datetime . '/' . $simage;
+=======
+            $file = 'storage/client_images/' . $fullname . '/direct_pictures/Direct' . $datetime . '/' . $simage;
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
             unlink($file);
 
             //remove from the DB

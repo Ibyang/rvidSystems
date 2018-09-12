@@ -134,8 +134,12 @@
                     <div class="col-sm step-three-register">
                         <div class="custom-control custom-checkbox termscondition">
                             <input type="checkbox" class="custom-control-input" id="chkTermsConditions" name="chkTermsConditions">
+<<<<<<< HEAD
                             <label class="custom-control-label text-justify" for="chkTermsConditions" style="padding-right: 200px">I have read and understand the REVid systems terms and conditions above</label>
                             <button class="btn btn-primary bg-009900 btn-no-border py-2 b-radius-7" type="button" id="btnIAccept" data-dismiss="modal" style="display: none">I Accept</button>
+=======
+                            <label class="custom-control-label text-justify" for="chkTermsConditions">I have read and understand the REVid systems terms and conditions above</label>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         </div>
                         <!-- <input type="checkbox" name="chkTermsConditions" id="chkTermsConditions" style=""> I have read and understand the REVid systems terms and conditions above -->
                     </div>    

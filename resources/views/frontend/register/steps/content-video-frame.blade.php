@@ -8,37 +8,61 @@
         <div class="col-sm">
                 <br><br><br><br><br>
                 <div class="color-404"><b>Required (Enter as you wish it to appear)</b></div>
+<<<<<<< HEAD
                 <input type="text" class="form-control mt-3 mb-3" name="videoName" id="videoName" required autofocus placeholder="Name" value="{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}">
                 <input type="text" class="form-control mt-3 mb-3" name="videoMobile" id="videoMobile" required autofocus placeholder="Mobile"  value="{{$agent['mobile']}}">
                 <input type="text" class="form-control mt-3 mb-3" name="videoEmailAdd" id="videoEmailAdd" required autofocus placeholder="Web or Email Address" value="{{$agent['email']}}">
                 <input type="text" class="form-control mt-3 mb-3" name="videoWebsite" id="videoWebsite" required placeholder="Website" value="{{ $agent_website['website'] }}">
                 <!-- <textarea placeholder="Agency Name and details (as required)" name="videoAgencyName" class="form-control mt-3 mb-3 textarea-txt">{{$agent['name_agency']}}</textarea>
                 <textarea placeholder="Content or Other or Address (Optional)" name="videoContent" class="form-control mt-3 mb-3 textarea-txt">{{$agent['address']}}&nbsp;{{$agent['suburb']}}&nbsp;{{$agent['state']}}</textarea> -->
+=======
+                <input type="text" class="form-control mt-3 mb-3" name="videoName" required autofocus placeholder="Name" value="{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}">
+                <input type="text" class="form-control mt-3 mb-3" name="videoMobile" required autofocus placeholder="Mobile"  value="{{$agent['mobile']}}">
+                <input type="text" class="form-control mt-3 mb-3" name="videoEmailAdd" required autofocus placeholder="Web or Email Address" value="{{$agent['email']}}">
+                <textarea placeholder="Agency Name and details (as required)" name="videoAgencyName" class="form-control mt-3 mb-3 textarea-txt">{{$agent['name_agency']}}</textarea>
+                <textarea placeholder="Content or Other or Address (Optional)" name="videoContent" class="form-control mt-3 mb-3 textarea-txt">{{$agent['address']}}&nbsp;{{$agent['suburb']}}&nbsp;{{$agent['state']}}</textarea>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
         </div>
         <div class="col-sm pl-4 select-form">
                 <b>ADD FRAME CONTACT DETAILS</b>
                 <p>Please enter your content as you wish it to
                 appear on your video templates.</p>
                 <b>Main Frame</b>
+<<<<<<< HEAD
                 <br> 
                 <div class="color-424244"><b>Preview</b></div> 
 
                 <div id="default_template_mf" style="display: none">
                     <img src="{{ asset('storage/app/public/register/example-frame.jpg') }}">
+=======
+                <br><br>
+                <b>Preview</b>
+
+                <div id="default_template_mf">
+                    <img src="{{ asset('storage/register/example-frame.jpg') }}">
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                 </div>
                 <!-- inline html template layout -->
 
                 <!-- start of the section for main frame DIV template -->
                 <!-- First Main Frame Template -->
                 <div id="first_template_mf" style="display: none">
+<<<<<<< HEAD
                     <h6>Second Template</h6>
 
                         <div class="twb337">
                             <div id="{{ $temp['folder_name'] }}-main-1" class="{{ $temp['folder_name'] }}-main-small-1">   
+=======
+                    <h6>First Template</h6>
+
+                        <div class="twb337">
+                            <div id="{{ $temp['folder_name'] }}-main-1" class="raywhite-main-small-1">   
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 <div id="wrapper">
 
                                     <div id="sidebar" class="col-md-3 cont">
                                         <div class="col-md-12 cont">
+<<<<<<< HEAD
                                             <div class="img-cont yellow"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_logo']) }}" width="55" class="branding"></div>
                                         </div>
                                         <div class="col-md-12">
@@ -55,12 +79,25 @@
                                                 <span id="vemail-small-main1"></span><br><br>
                                                 <span id="vwebsite-small-main1"></span>
                                             </h2> 
+=======
+                                            <div class="img-cont yellow"><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/2/image/' . $temp['agency_logo']) }}" width="55" class="branding"></div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="img-cont"><img src="image/helen-yan.jpg" width="55"></div>
+                                        </div>
+                                        <div class="col-md-12 text-center" style="padding-top:0;">
+                                            <h1 class="profile-name">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
+                                            <h2>{{$agent['mobile']}}<br>
+                                                <br>
+                                                 </h2> 
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                 <br><br>
                                         </div>
                                     </div>
                                     <div id="content" class="col-md-9 cont">
                                         <div class="col-md-6 info yellow content-header">
                                             <div class="col-md-2 col-md-offset-1 header-icon">
+<<<<<<< HEAD
                                                 <div><img src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/' . $temp['folder_name'] . '-bed-icon.png') }}" height=10><span class="ctr grey-txt">0</span></div>
                                             </div>
                                             <div class="col-md-2 header-icon">
@@ -80,11 +117,36 @@
                                             {{$agent['suburb']}}&nbsp;{{$agent['state']}}&nbsp;{{$agent['postcode']}} -->
                                         </div>
                                         <div class="col-md-12 cont"><img src="{{ asset('storage/app/public/template_materials/images/main-pic-container.jpg') }}" width="361" height="201"></div>
+=======
+                                                <div><img src="{{ asset('storage/agency_css/' . $agent['group'] . '/mainframe/1/image/bed.jpg') }}" height=10><span class="ctr grey-txt">4</span></div>
+                                            </div>
+                                            <div class="col-md-2 header-icon">
+                                                <div><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/1/image/shower.jpg') }}" height=10><span class="ctr grey-txt">3</span></div>
+                                            </div>
+                                            <div class="col-md-2 header-icon">
+                                                <div><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/1/image/car.jpg') }}" height=10><span class="ctr grey-txt">3</span></div>
+                                            </div>
+                                            <div class="col-md-3 header-text">
+                                                <div class="house grey-txt">House</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 add content-header">
+                                            <!-- 24 Townsend Street<br>
+                                            Ivanhoe East VIC 3079 -->
+                                            {{$agent['address']}}<br>
+                                            {{$agent['suburb']}}&nbsp;{{$agent['state']}}&nbsp;{{$agent['postcode']}}
+                                        </div>
+                                        <div class="col-md-12 cont"><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/1/image/' . $temp['agency_main_pic']) }}" width="361" height="202"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     </div>
                                 
                                 </div><!-- end wrapper -->
                             <!--/div--><!-- end raywhite-small -->
+<<<<<<< HEAD
                         </div>
+=======
+                        </div><!-- end twb337 -->
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
                         <div class="d-flex justify-content-between mt-2">
                             <div class="align-self-center">
@@ -99,16 +161,27 @@
                                 </div>
                             </div> -->
                         </div>
+<<<<<<< HEAD
                       </div><!-- end twb337 -->  
+=======
+                      </div>  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                 </div>
 
 
                 <!-- Second Main Frame Template -->
                 <div id="second_template_mf" style="display: none">
+<<<<<<< HEAD
                 <h6>Fourth Template</h6>
 
                  <div class="twb337">   
                   <div id="{{ $temp['folder_name'] }}-main-2" class="{{ $temp['folder_name'] }}-main-small-2">  
+=======
+                <h6>Second Template</h6>
+
+                 <div class="twb337">   
+                  <div id="{{ $temp['folder_name'] }}-main-2" class="raywhite-main-small-2">  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                     <div id="wrapper">
                         <!--div class="col-md-12 cont"-->
                         <div id="sidebar" class="col-md-3 cont">
@@ -118,11 +191,16 @@
                             </div-->
 
                             <div class="col-md-12 text-center" style="padding-top:0;">
+<<<<<<< HEAD
                                 <h1 class="profile-name" id="vname-small-main2"></h1>
+=======
+                                <h1 class="profile-name">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 <!-- <h2>0404 078 588<br>
                                     (03) 8538 0588<br>
                                     <br>
                                     raywhite.com</h2> -->
+<<<<<<< HEAD
                                 <h2><span id="vmobile-small-main2"></span><br>
                                     <span id="vemail-small-main2"></span><br><br>
                                     <span id="vwebsite-small-main2"></span></h2>
@@ -130,6 +208,17 @@
                             <div class="branding-container">
                                 <div class="col-md-12 cont">
                                     <div class="img-logo-cont yellow"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_logo']) }}" width="55" class="branding"></div>
+=======
+                                <h2>{{$agent['mobile']}}<br>
+                                    <br>
+                                    </h2> 
+                                    <br><br>    
+
+                            </div>
+                            <div class="branding-container">
+                                <div class="col-md-12 cont">
+                                    <div class="img-logo-cont yellow"><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/2/image/' . $temp['agency_logo']) }}" width="55" class="branding"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 </div>
                             </div>
 
@@ -140,6 +229,7 @@
                         </div>
 
                         <div id="content" class="col-md-9 cont">
+<<<<<<< HEAD
                             <div class="col-md-12 cont"><img src="{{ asset('storage/app/public/template_materials/images/main-pic-container.jpg') }}" width="361" height="201"></div>
                             <div class="col-md-6 info yellow content-header">
                                 <div class="col-md-2 col-md-offset-1 header-icon">                            
@@ -160,6 +250,26 @@
                                 Revidville AU 3333
                                 <!-- {{$agent['address']}}<br>
                                 {{$agent['suburb']}}&nbsp;{{$agent['state']}}&nbsp;{{$agent['postcode']}} -->
+=======
+                            <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="361" height="201"></div>
+                            <div class="col-md-6 info yellow content-header">
+                                <div class="col-md-2 col-md-offset-1 header-icon">
+                                    <div><img src="{{ asset('storage/agency_css/' . $agent['group'] . '/mainframe/2/image/bed.jpg') }}" height=10><span class="ctr grey-txt">4</span></div>
+                                </div>
+                                <div class="col-md-2 header-icon">
+                                    <div><img src="{{ asset('storage/agency_css/' . $agent['group'] . '/mainframe/2/image/shower.jpg') }}" height=10><span class="ctr grey-txt">3</span></div>
+                                </div>
+                                <div class="col-md-2 header-icon">
+                                    <div><img src="{{ asset('storage/agency_css/' . $agent['group'] . '/mainframe/2/image/car.jpg') }}" height=10><span class="ctr grey-txt">3</span></div>
+                                </div>
+                                <div class="col-md-3 header-text">
+                                    <div class="house grey-txt">House</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 add content-header">
+                                {{$agent['address']}}<br>
+                                {{$agent['suburb']}}&nbsp;{{$agent['state']}}&nbsp;{{$agent['postcode']}}
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                             </div>
                         </div>
                         <!--/div-->
@@ -188,6 +298,7 @@
                   <h6>Third Template</h6>
 
                   <div class="twb337">
+<<<<<<< HEAD
                       <div id="{{ $temp['folder_name'] }}-main-3" class="{{ $temp['folder_name'] }}-main-small-3">  
 
                             <div id="wrapper">
@@ -244,6 +355,58 @@
 
 
                           </div>  
+=======
+                      <div id="{{ $temp['folder_name'] }}-main-3" class="raywhite-main-small-3">  
+                        <div id="wrapper">
+                            <!--div class="col-md-12 cont"-->
+                            <div id="content" class="col-md-9 cont">
+                                <div class="col-md-12 cont"><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/1/image/' . $temp['agency_main_pic']) }}" width="361" height="201"></div>
+                                <div class="col-md-6 info gray content-header">
+                                    <div class="col-md-2 col-md-offset-1 header-icon">
+                                        <div><img src="{{ asset('storage/agency_css/' . $agent['group'] . '/mainframe/2/image/bed.jpg') }}" height=10><span class="ctr grey-txt">4</span></div>
+                                    </div>
+                                    <div class="col-md-2 header-icon">
+                                        <div><img src="{{ asset('storage/agency_css/' . $agent['group'] . '/mainframe/2/image/shower.jpg') }}" height=10><span class="ctr grey-txt">3</span></div>
+                                    </div>
+                                    <div class="col-md-2 header-icon">
+                                        <div><img src="{{ asset('storage/agency_css/' . $agent['group'] . '/mainframe/2/image/car.jpg') }}" height=10><span class="ctr grey-txt">3</span></div>
+                                    </div>
+                                    <div class="col-md-3 header-text">
+                                        <div class="house grey-txt">House</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 add yellow content-header">
+                                    <!-- 24 Townsend Street<br>
+                                    Ivanhoe East VIC 3079  -->
+                                    {{$agent['address']}}<br>
+                                    {{$agent['suburb']}}&nbsp;{{$agent['state']}}&nbsp;{{$agent['postcode']}}
+                                </div>
+                            </div>
+
+                            <div id="sidebar" class="col-md-3 cont">
+                                <div class="col-md-12 profile-image text-center" style="padding-top:0;"><img src="image/helen-yan.jpg" width="55"></div>
+                                <div class="col-md-12 text-center">
+                                    <h1 class="profile-name" style="margin-top:0; margin-bottom:0;">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
+                                    <!-- <h2>0404 078 588<br>
+                                        (03) 8538 0588<br>
+                                        <br>
+                                        raywhite.com</h2> -->
+                                     <h2>{{$agent['mobile']}}<br>
+                                        <br>
+                                         </h2> 
+                                        <br><br>                 
+                                </div>
+                                <div class="branding-container">
+                                    <div class="col-md-12 cont">
+                                        <div class="img-logo-cont yellow"><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/2/image/' . $temp['agency_logo']) }}" width="55" class="branding"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--/div-->
+                           </div> <!-- end of wrapper -->
+                         </div>  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                          <div style="clear: both;"></div>
                          <div class="d-flex justify-content-between mt-2">
                             <div class="align-self-center">
@@ -263,35 +426,59 @@
 
 
                 <!-- Fourth Main Frame Template -->
+<<<<<<< HEAD
                 <div id="fourth_template_mf">
                 <h6>First Template</h6>
 
                   <div class="twb337">
                       <div id="{{ $temp['folder_name'] }}-main-4" class="{{ $temp['folder_name'] }}-main-small-4">  
+=======
+                <div id="fourth_template_mf" style="display: none">
+                <h6>Fourth Template</h6>
+
+                  <div class="twb337">
+                      <div id="{{ $temp['folder_name'] }}-main-4" class="raywhite-main-small-4">  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         <div id="wrapper">
                             <!--div class="col-md-12 cont"-->
                             <div id="sidebar" class="col-md-3 cont">
                                 <div class="branding-container">
                                     <div class="col-md-12 cont">
+<<<<<<< HEAD
                                         <div class="img-logo-cont yellow"><img src="{{ asset('storage/app/public/agency_css/'. $agent['group'] . '/mainframe/2/image/' . $temp['agency_logo']) }}" width="55" class="branding"></div>
+=======
+                                        <div class="img-logo-cont yellow"><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/2/image/' . $temp['agency_logo']) }}" width="55" class="branding"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     </div>
                                 </div>
                                 <div class="col-md-12 cont img-cont"></div>
                                 <div class="col-md-12 text-center">
+<<<<<<< HEAD
                                     <h1 class="profile-name" id="vname-small-main4"></h1>
+=======
+                                    <h1 class="profile-name">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     <!-- <h2>0404 078 588<br>
                                         (03) 8538 0588<br>
                                         <br>
                                         raywhite.com</h2> -->
+<<<<<<< HEAD
                                      <h2><span id="vmobile-small-main4"></span><br>
                                         <span id="vemail-small-main4"></span><br><br>
                                         <span id="vwebsite-small-main4"></span>
                                          </h2>    
+=======
+                                     <h2>{{$agent['mobile']}}<br>
+                                        <br>
+                                         </h2>
+                                        <br><br>        
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 </div>
                             </div>
                             <div id="content" class="col-md-9 cont">
                                 <div class="col-md-6 info yellow content-header">
                                     <div class="col-md-2 col-md-offset-1 header-icon">
+<<<<<<< HEAD
                                         <div><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['folder_name'] . '-bed-icon.png') }}" height=10><span class="ctr grey-txt">0</span></div>
                                     </div>
                                     <div class="col-md-2 header-icon">
@@ -313,6 +500,27 @@
                                     {{$agent['suburb']}}&nbsp;{{$agent['state']}}&nbsp;{{$agent['postcode']}} -->
                                 </div>
                                 <div class="col-md-12 cont"><img src="{{ asset('storage/app/public/template_materials/images/main-pic-container.jpg') }}" width="361" height="201"></div>
+=======
+                                        <div><img src="{{ asset('storage/agency_css/' . $agent['group'] . '/mainframe/2/image/bed.jpg') }}" height=10><span class="ctr grey-txt">4</span></div>
+                                    </div>
+                                    <div class="col-md-2 header-icon">
+                                        <div><img src="{{ asset('storage/agency_css/' . $agent['group'] . '/mainframe/2/image/shower.jpg') }}" height=10><span class="ctr grey-txt">3</span></div>
+                                    </div>
+                                    <div class="col-md-2 header-icon">
+                                        <div><img src="{{ asset('storage/agency_css/' . $agent['group'] . '/mainframe/2/image/car.jpg') }}" height=10><span class="ctr grey-txt">3</span></div>
+                                    </div>
+                                    <div class="col-md-3 header-text">
+                                        <div class="house grey-txt">House</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 add content-header">
+                                    <!-- 24 Townsend Street<br>
+                                    Ivanhoe East VIC 3079  -->
+                                    {{$agent['address']}}<br>
+                                    {{$agent['suburb']}}&nbsp;{{$agent['state']}}&nbsp;{{$agent['postcode']}}
+                                </div>
+                                <div class="col-md-12 cont"><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/mainframe/1/image/' . $temp['agency_main_pic']) }}" height="201"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                             </div>
                             <!--/div-->
                         </div> <!-- end of wrapper -->
@@ -341,23 +549,36 @@
                     <b>End Frame</b><br><br>
                     Preview<br><br>
 
+<<<<<<< HEAD
                     <div id="default_template_ef" style="display: none">
+=======
+                    <div id="default_template_ef">
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         <img src="{{ asset('storage/register/end-frame2.jpg') }}">
                     </div>
                     <!-- inline html template layout -->
 
                     <!-- start of the section for main frame DIV template -->
                     <!-- First End Frame Template -->
+<<<<<<< HEAD
                     <div id="first_template_ef">
                     <h6>First Template</h6>
 
                         <div class="twb337">   
                           <div id="{{ $temp['folder_name'] }}-end-2" class="{{ $temp['folder_name'] }}-end-small-2"> 
+=======
+                    <div id="first_template_ef" style="display: none">
+                    <h6>First Template</h6>
+
+                        <div class="twb337">   
+                          <div id="{{ $temp['folder_name'] }}-end-2" class="raywhite-end-small-2"> 
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
                            <div id="wrapper">
                             <div id="sidebar">
                                 <div class="col-md-12 cont profile-bg"></div>
                             </div>
+<<<<<<< HEAD
                             <div id="content" class="col-md-8 cont" style="margin-top: 0">
                                 <div class="col-md-12 cont">
                                     <h1 class="profile" id="vname-small-end2"></h1>
@@ -368,6 +589,18 @@
                                         <br>
                                             <span id="vmobile-small-end2"></span><br>
                                             <span id="vemail-small-end2"></span><br>
+=======
+                            <div id="content" class="col-md-8 cont">
+                                <div class="col-md-12 cont">
+                                    <h1 class="profile">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
+                                </div>
+                                <div class="col-md-12 cont logo"><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/endframe/2/image/' . $temp['agency_logo']) }}" width="77"></div>
+                                <div class="col-md-12 cont">
+                                    <h2 class="profile"> Contact Me Today!<br>
+                                        <br>
+                                            {{$agent['mobile']}}<br>
+                                            {{$agent['email']}}<br>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     </h2>
                                 </div>
                             </div>
@@ -377,7 +610,11 @@
 
                             <div class="d-flex justify-content-between mt-2">
                                 <div class="align-self-center">
+<<<<<<< HEAD
                                     <a href="" data-toggle="modal" data-target="#expandEFTemplateModal" data-dbid="1" class="d-inline-block font12">< Click to Expand ></a>
+=======
+                                    <a href="" data-toggle="modal" data-target="#expandEFTemplateModal" data-dbid="4" class="d-inline-block font12">< Click to Expand ></a>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 </div>
                                 <!-- <div>
                                     <div class="d-inline-block pr-3">Change</div>
@@ -396,12 +633,17 @@
                         <h6>Second Template</h6>
 
                      <div class="twb337">
+<<<<<<< HEAD
                       <div id="{{ $temp['folder_name'] }}-end-1" class="{{ $temp['folder_name'] }}-end-small-1">
+=======
+                      <div id="{{ $temp['folder_name'] }}-end-1" class="raywhite-end-small-1">
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
                         <div id="wrapper">
                                 <div class="col-md-12 cont">
                                     <div id="sidebar">
                                         <div class="col-md-3 cont">
+<<<<<<< HEAD
                                             <div class="col-md-12 cont"><img class="img-profile" src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/endframe/1/image/helen-yan.jpg') }}" width="173">
                                             </div>
                                         </div>
@@ -410,12 +652,27 @@
                                     <div id="content" class="col-md-9 cont" style="margin-top: 0">
                                         <div class="col-md-12 cont">
                                             <h1 class="profile" id="vname-small-end1"></h1>
+=======
+                                            <div class="col-md-12 cont"><img class="img-profile" src="{{ asset('storage/template_materials/' . $temp['folder_name'] . '/endframe/1/image/helen-yan.jpg') }}" width="173">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 cont logo-cont"><img class="img-logo" src="{{ asset('storage/template_materials/' . $temp['folder_name'] . '/endframe/1/image/' . $temp['folder_name'] . '-logo.jpg') }}" width="60"></div>
+                                    </div>
+                                    <div id="content" class="col-md-9 cont" style="margin-top: 0">
+                                        <div class="col-md-12 cont">
+                                            <h1 class="profile">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                         </div>
                                         <div class="col-md-12 cont">
                                             <h2 class="profile"> Contact Me Today!<br>
                                                 <br>
+<<<<<<< HEAD
                                                     <span id="vmobile-small-end1"></span><br>
                                                     <span id="vemail-small-end1"></span><br>
+=======
+                                                    {{$agent['mobile']}}<br>
+                                                    {{$agent['email']}}<br>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                             </h2>
                                         </div>
                                         <div class="col-md-12 cont empty-cont"> </div>
@@ -445,7 +702,11 @@
                         <h6>Third Template</h6>
 
                      <div class="twb337">   
+<<<<<<< HEAD
                       <div id="{{ $temp['folder_name'] }}-end-3" class="{{ $temp['folder_name'] }}-end-small-3">  
+=======
+                      <div id="{{ $temp['folder_name'] }}-end-3" class="raywhite-end-small-3">  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         <div id="wrapper">
                             <div id="sidebar">
                                 <div class="col-md-12 cont profile-bg">
@@ -454,16 +715,28 @@
                             </div>
                             <div id="content" class="col-md-8 cont" style="margin-top: 0">
                                 <div class="col-md-12 cont">
+<<<<<<< HEAD
                                     <h1 class="profile" id="vname-small-end3"></h1>
+=======
+                                    <h1 class="profile">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 </div>
                                 <div class="col-md-12 cont">
                                     <h2 class="profile"> Contact Me Today!<br>
                                         <br>
+<<<<<<< HEAD
                                             <span id="vmobile-small-end3"></span><br>
                                             <span id="vemail-small-end3"></span><br>
                                     </h2>
                                 </div>
                                 <div class="col-md-12 cont logo"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_logo']) }}" width="60"></div>
+=======
+                                            {{$agent['mobile']}}<br>
+                                            {{$agent['email']}}<br>
+                                    </h2>
+                                </div>
+                                <div class="col-md-12 cont logo"><img src="image/ray-white-logo.jpg" width="60"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                             </div>
                         </div> <!-- end of wrapper -->
                        </div> 
@@ -488,21 +761,36 @@
                     <h6>Fourth Template</h6>
 
                     <div class="twb337">
+<<<<<<< HEAD
                       <div id="{{ $temp['folder_name'] }}-end-4" class="{{ $temp['folder_name'] }}-end-small-4">  
+=======
+                      <div id="{{ $temp['folder_name'] }}-end-4" class="raywhite-end-small-4">  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         <div id="wrapper">
                             <div id="sidebar">
                                 <div class="col-md-12 cont profile-bg"></div>
                             </div>
                             <div id="content" class="col-md-8 cont" style="margin-top: 0">
+<<<<<<< HEAD
                                 <div class="col-md-12 cont logo"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_logo']) }}" width="77"></div>
                                 <div class="col-md-12 cont">
                                     <h1 class="profile" id="vname-small-end4"></h1>
+=======
+                                <div class="col-md-12 cont logo"><img src="{{ asset('storage/agency_css/'. $agent['group'] . '/endframe/1/image/' . $temp['agency_logo']) }}" width="77"></div>
+                                <div class="col-md-12 cont">
+                                    <h1 class="profile">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 </div>
                                 <div class="col-md-12 cont">
                                     <h2 class="profile"> Contact Me Today!<br>
                                         <br>
+<<<<<<< HEAD
                                             <span id="vmobile-small-end4"></span><br>
                                             <span id="vemail-small-end4"></span><br>
+=======
+                                            {{$agent['mobile']}}<br>
+                                            {{$agent['email']}}<br>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     </h2>
                                 </div>
                             </div>
@@ -510,7 +798,11 @@
                        </div>  
                         <div class="d-flex justify-content-between mt-2">
                             <div class="align-self-center">
+<<<<<<< HEAD
                                 <a href="" data-toggle="modal" data-target="#expandEFTemplateModal" data-dbid="4" class="d-inline-block">< Click to Expand ></a>
+=======
+                                <a href="" data-toggle="modal" data-target="#expandEFTemplateModal" data-dbid="1" class="d-inline-block">< Click to Expand ></a>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                             </div>
                             <!-- <div>
                                 <div class="d-inline-block pr-3">Change</div>
@@ -528,3 +820,5 @@
                 </div>
         </div>
 </div>
+
+

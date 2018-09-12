@@ -114,7 +114,11 @@
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>" />
             <input type="hidden" name="modeAction" id="modeAction">
             <input type="hidden" name="agentID" id="agentID">
+<<<<<<< HEAD
             <input type="hidden" name="plantype" id="plantype" value="{{{ (isset($plantype)) ? $plantype : '' }}}">
+=======
+            <input type="hidden" name="plantype" id="plantype">
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
             
             <div class="form-group">
                         <div class="text-right my-4">
@@ -178,9 +182,15 @@
                          <input id="address2" type="text" class="form-control" name="address2" placeholder="Address 2" value="{{{ $agent['address2'] or old('address2') }}}">
                     </div>
                     <div class="row">
+<<<<<<< HEAD
                                  <div class="col-sm l-g-m"><input type="text" class="form-control" name="suburb" id="suburbText" placeholder="Suburb" value="{{{ $agent['suburb'] or old('suburb') }}}"></div>
                                  <div class="col-sm l-g-m"><input type="text" class="form-control" name="state" id="stateText" placeholder="State" value="{{{ $agent['state'] or old('state') }}}"></div>
                                  <div class="col-sm l-g-m"><input type="text" class="form-control" name="postcode" id="postcode" placeholder="Post Code" value="{{{ $agent['postcode'] or old('postcode') }}}"></div>
+=======
+                                 <div class="col-sm l-g-m"><input type="text" class="form-control" name="suburb" placeholder="Suburb" value="{{{ $agent['suburb'] or old('suburb') }}}"></div>
+                                 <div class="col-sm l-g-m"><input type="text" class="form-control" name="state" placeholder="State" value="{{{ $agent['state'] or old('state') }}}"></div>
+                                 <div class="col-sm l-g-m"><input type="text" class="form-control" name="postcode" placeholder="Post Code" value="{{{ $agent['postcode'] or old('postcode') }}}"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                     </div>
                 </div>
                 <div class="col-sm">
@@ -255,7 +265,11 @@
 
             <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>" />
             <input type="hidden" name="agentID" id="agentID">
+<<<<<<< HEAD
             <input type="hidden" name="plantype" id="plantype" value=" {{{ (isset($plantype)) ? $plantype : '' }}}">
+=======
+            <input type="hidden" name="plantype" id="plantype">
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
             
             <div class="form-group">
                         <div class="text-right my-4">

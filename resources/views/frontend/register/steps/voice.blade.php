@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h3>
     <div class="d-flex flex-row">
         <div class="register-icon r-i-voice mb-2"></div>
@@ -24,6 +25,25 @@
     </div>
 </div>
 <div class="color-404 mt-4"><b>Select</b></div>
+=======
+<h3><div class="register-icon r-i-voice mb-2"></div><span class="pl-1">Voice</span></h3>
+<h5 class="font-weight-bold my-4">You can Select from 3 options</h5>            
+<div class="row">
+    <div class="col-sm text-center">
+        <div class="c0066ff font-weight-bold">1. RANDOM VOICE (Standard)</div>
+        <div>We Pick Random Voices for <br>Your Videos</div>
+    </div>
+    <div class="col-sm text-center">
+        <div class="c0066ff font-weight-bold">2. ONE VOICE</div>
+        <div>You use the same Voice for all <br>Your Videos</div>
+    </div>
+    <div class="col-sm text-center">
+        <div class="c0066ff font-weight-bold">3. ROTATION VOICE</div>
+        <div>You pick many voices and they are <br>rotated for each new individual video</div>
+    </div>
+</div>
+<div class="color-404 mt-4"><b>Voice</b></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 <div class="row mb-4">
     <div class="col-sm-6">
         <select name="stateVoiceFormat" class="col-11 form-control mt-2 mb-4">
@@ -41,7 +61,11 @@
                 </div>
                 <div class="border-bot2 pb-3">
                         <div class="row">
+<<<<<<< HEAD
                                 <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/app/public/account/voice/grant.jpg') }}"></div>
+=======
+                                <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/account/voice/grant.jpg') }}"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 <div class="col-sm">
                                     <div class="d-flex justify-content-between my-2">
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>GRANT</b></div>
@@ -58,7 +82,11 @@
                                                         </div>
                                                     </div> 
                                                 </div>
+<<<<<<< HEAD
                                                 <audio id="audioGrant" src="{{ asset('storage/app/public/voice_over_files/grant.wav') }}"></audio>
+=======
+                                                <audio id="audioGrant" src="{{ asset('storage/voice_over_files/grant.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     </div>
                                     <div class="font12">Professional, corporate, and "very now".</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseGrant" role="button" aria-expanded="false" aria-controls="collapseGrant"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -71,7 +99,11 @@
                 </div>
                 <div class="border-bot2 pb-3">
                         <div class="row">
+<<<<<<< HEAD
                                 <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/app/public/account/voice/luke.jpg') }}"></div>
+=======
+                                <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/account/voice/luke.jpg') }}"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 <div class="col-sm">
                                    <div class="d-flex justify-content-between my-2">
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>LUKE</b></div>
@@ -88,7 +120,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
+<<<<<<< HEAD
                                                 <audio id="audioLuke" src="{{ asset('storage/app/public/voice_over_files/luke.mp3') }}"></audio>
+=======
+                                                <audio id="audioLuke" src="{{ asset('storage/voice_over_files/luke.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     </div>
                                     <div class="font12">Young, fresh, and warm.</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseLuke" role="button" aria-expanded="false" aria-controls="collapseLuke"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -100,7 +136,11 @@
                 </div>
                 <div class="border-bot2 pb-3">
                         <div class="row">
+<<<<<<< HEAD
                                 <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/app/public/account/voice/mark.jpg') }}"></div>
+=======
+                                <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/account/voice/mark.jpg') }}"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 <div class="col-sm">
                                     <div class="d-flex justify-content-between my-2">
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>MARK</b></div>
@@ -117,7 +157,11 @@
                                                         </div>
                                                     </div>   
                                                 </div>
+<<<<<<< HEAD
                                                 <audio id="audioMark" src="{{ asset('storage/app/public/voice_over_files/mark.wav') }}"></audio>
+=======
+                                                <audio id="audioMark" src="{{ asset('storage/voice_over_files/mark.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     </div>
                                     <div class="font12">Friendly, mature, and smooth</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseMark" role="button" aria-expanded="false" aria-controls="collapseMark"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -136,7 +180,11 @@
                 </div>  
                 <div class="border-bot2 pb-3">
                         <div class="row">
+<<<<<<< HEAD
                                 <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/app/public/account/voice/karin.jpg') }}"></div>
+=======
+                                <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/account/voice/karin.jpg') }}"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 <div class="col-sm">
                                     <div class="d-flex justify-content-between my-2">
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>KARIN</b></div>
@@ -153,7 +201,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
+<<<<<<< HEAD
                                                 <audio id="audioKarin" src="{{ asset('storage/app/public/voice_over_files/karin.wav') }}"></audio>
+=======
+                                                <audio id="audioKarin" src="{{ asset('storage/voice_over_files/karin.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     </div>
                                     <div class="font12">Professional, corporate, and "very now".</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseKarin" role="button" aria-expanded="false" aria-controls="collapseKarin"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -167,7 +219,11 @@
                 </div>
                 <div class="border-bot2 pb-3">
                         <div class="row">
+<<<<<<< HEAD
                                 <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/app/public/account/voice/odette.jpg') }}"></div>
+=======
+                                <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/account/voice/odette.jpg') }}"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 <div class="col-sm">
                                     <div class="d-flex justify-content-between my-2">
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>ODETTE</b></div>
@@ -184,7 +240,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
+<<<<<<< HEAD
                                                 <audio id="audioOdette" src="{{ asset('storage/app/public/voice_over_files/odette.mp3') }}"></audio>
+=======
+                                                <audio id="audioOdette" src="{{ asset('storage/voice_over_files/odette.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     </div>
                                     <div class="font12">Warm, familiar nature and mature.</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseOdette" role="button" aria-expanded="false" aria-controls="collapseOdette"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -197,10 +257,17 @@
                 </div>
                 <div class="border-bot2 pb-3">
                         <div class="row">
+<<<<<<< HEAD
                                 <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/app/public/account/voice/luisa.jpg') }}"></div>
                                 <div class="col-sm">
                                     <div class="d-flex justify-content-between my-2">
                                                 <div class="color-0066ff font12 pt-2 v-s-text"><b>LOUISA</b></div>
+=======
+                                <div class="col-md-auto text-center"><img class="img-fluid" src="{{ asset('storage/account/voice/luisa.jpg') }}"></div>
+                                <div class="col-sm">
+                                    <div class="d-flex justify-content-between my-2">
+                                                <div class="color-0066ff font12 pt-2 v-s-text"><b>LUISA</b></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                 <div>
                                                     <div class="d-flex justify-content-end">
                                                         <div class="color-0066ff font12 pt-2 px-4"><i class="voice-icon v-i-play" id="luisaVoice"></i><b>Play Sample</b></div>
@@ -214,7 +281,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
+<<<<<<< HEAD
                                                 <audio id="audioLuisa" src="{{ asset('storage/app/public/voice_over_files/louisa.mp3') }}"></audio>
+=======
+                                                <audio id="audioLuisa" src="{{ asset('storage/voice_over_files/louisa.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     </div>
                                     <div class="font12">Fresh, playful and energetic.</div>
                                     <a class="font11 v-s-text" data-toggle="collapse" href="#collapseLuisa" role="button" aria-expanded="false" aria-controls="collapseLuisa"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>

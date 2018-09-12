@@ -38,7 +38,10 @@
                                 <div class="story-board-block" style="width: 585px; height: auto; font-size: 16px;">
 
                                     <form method="GET" action="{{ route('account-video-system-script') }}" id="frmStoryBoard">
+<<<<<<< HEAD
                                          <ipput type="hidden" name="duration">
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                          <input type="hidden" name="num_images" id="num_images">
                                          <input type="hidden" name="userid" id="userid" value="{{ $userid }}">
                                      </form>
@@ -64,7 +67,10 @@
                                 <div class="story-board-block" style="width: 585px; height: auto; font-size: 16px;">
 
                                     <form method="GET" action="{{ route('account-video-system-script') }}" id="frmStoryBoard">
+<<<<<<< HEAD
                                          <ipput type="hidden" name="duration">
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                          <input type="hidden" name="num_images" id="num_images">
                                          <input type="hidden" name="userid" id="userid" value="{{ $userid }}">
                                      </form>
@@ -149,7 +155,11 @@
 
                 if(picfname) {
                     $.ajax({
+<<<<<<< HEAD
                         url: './deleteStandardImage/' + picfname + '/1',
+=======
+                        url: '/deleteStandardImage/' + picfname + '/1',
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         type: "GET",
                         //dataType: "JSON",
                         success:function(result) {

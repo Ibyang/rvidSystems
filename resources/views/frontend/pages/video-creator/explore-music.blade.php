@@ -27,7 +27,11 @@
                         <div>You pick <b>Many</b> Music Tracks and they are <b>Rotated</b> for each New Video</div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="color-404"><b>Select</b></div>
+=======
+                <div class="color-404"><b>Select Music Style</b></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                 <div class="row m-r-l">
                     <div class="col-sm-8 select-form">
                          <select name="music_style" class="col-11 form-control mt-2 mb-4">

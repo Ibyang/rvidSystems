@@ -50,11 +50,13 @@
 
         $(document).ready(function() {
 
-
             //code to capture the pricing type selected
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
             $('#grouplist').selectize({
                 create: true,
                 sortField: {

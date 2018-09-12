@@ -2,6 +2,7 @@
             <div class="col-sm">
                 <div class="pricing-data border-666666 pd-1">
                     <div class="d-flex justify-content-between">
+<<<<<<< HEAD
                         <div class="align-self-center">
                             <div class="custom-control custom-checkbox casual">
                               <input type="checkbox" class="custom-control-input" id="customCheck1">
@@ -12,6 +13,19 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-7">
+=======
+                        <!-- <div class="p-2 align-self-center"><b>Select Casual</b></div> -->
+                        <div class="align-self-center"> 
+                            <div class="custom-control custom-checkbox casual m-c"> 
+                              <input type="checkbox" class="custom-control-input" id="customCheck1"> 
+                              <label class="custom-control-label font-weight-bold" for="customCheck1">Select Casual</label> 
+                            </div> 
+                        </div> 
+                        <div class="p-2 px-4 mr-3 bg-666">$0/month</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                               <div class="row my-2 mx-0 pricing-content">
                                     <div class="col-sm-5">
                                         <b>Storage <br>Plan</b>
@@ -45,8 +59,13 @@
                                     </div>
                              </div>
                         </div>
+<<<<<<< HEAD
                         <div class="col-sm mr-3">
                             <div class="casual-info mt-2 ml-3 px-1 py-3 col-11 text-justify"> Video will be active for 6 months from date of production and archived for a further 1 month.</div>
+=======
+                        <div class="col-sm">
+                            <div class="casual-info mt-2 px-1 py-3 text-justify"> Video will be active for 6 months from date of production and archived for a further 1 month.</div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         </div>
                     </div>
                 </div>
@@ -54,6 +73,7 @@
             <div class="col-sm">
                 <div class="pricing-data border-006 pd-2">
                     <div class="d-flex justify-content-between">
+<<<<<<< HEAD
                         <div class="align-self-center">
                             <div class="custom-control custom-checkbox casual">
                               <input type="checkbox" class="custom-control-input" id="customCheck2">
@@ -61,6 +81,17 @@
                             </div>
                         </div>
                         <div class="py-2 pr-4 pl-3 mr-3 bg-006">$66/month</div>
+=======
+                        <!-- <div class="p-2 align-self-center"><b>Standard</b></div>
+                        <div class="p-2 px-4 m-r-13 bg-006 w-145">$66/month</div> -->
+                        <div class="align-self-center"> 
+                            <div class="custom-control custom-checkbox casual"> 
+                              <input type="checkbox" class="custom-control-input" id="customCheck2"> 
+                              <label class="custom-control-label font-weight-bold" for="customCheck2">Select Standard</label> 
+                            </div> 
+                        </div> 
+                        <div class="p-2 px-4 mr-3 bg-006">$66/month</div>   
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                     </div>
                     <div class="row my-2 mx-0 pricing-content">
                         <div class="col-sm-3">
@@ -93,7 +124,11 @@
                             </div>
                         </div>
                         <div class="col-md-auto bg-eae p-0 text-center mr-0 align-self-center">
+<<<<<<< HEAD
                              <img class="img-fluid" src={{ asset('storage/app/public/pricing-revid.png') }} />
+=======
+                             <img class="img-fluid" src={{ asset('storage/pricing-revid.png') }} />
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         </div>
                     </div>
                 </div>
@@ -104,6 +139,7 @@
                 <div class="pricing-box border-660 pd-3">
                    <div class="pricing-data">
                         <div class="d-flex justify-content-between">
+<<<<<<< HEAD
                             <div class="align-self-center">
                                 <div class="custom-control custom-checkbox casual">
                                   <input type="checkbox" class="custom-control-input" id="customCheck3">
@@ -111,6 +147,17 @@
                                 </div>
                             </div>
                             <div class="py-2 pr-4 pl-3 mr-3 bg-660">$33/month</div>
+=======
+                            <!-- <div class="p-2 align-self-center"><b>Basic</b></div>
+                            <div class="p-2 px-4 m-r-13 bg-009 w-145">$33/month</div> -->
+                            <div class="align-self-center"> 
+                                <div class="custom-control custom-checkbox casual m-c"> 
+                                  <input type="checkbox" class="custom-control-input" id="customCheck3"> 
+                                  <label class="custom-control-label font-weight-bold" for="customCheck3">Select Basic</label> 
+                                </div> 
+                            </div> 
+                            <div class="p-2 px-4 mr-3 bg-660">$33/month</div> 
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         </div>
                         <div class="row my-2 mx-0 pricing-content">
                             <div class="col-sm-3">
@@ -137,13 +184,21 @@
                                      <div class="d-inline-block c-6600cc font-t-ms"><b>$139</b></div>
                                   </div>
                                   <div>
+<<<<<<< HEAD
                                      <div class="d-inline-block col-7 pl-0">Custom</div>
+=======
+                                     <div class="d-inline-block col-7 pl-0">Premium</div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                      <div class="d-inline-block c-6600cc font-t-ms"><b>$399</b></div>
                                   </div>
                                 </div>
                             </div>
                             <div class="col-md-auto bg-eae p-0 text-center mr-0 align-self-center">
+<<<<<<< HEAD
                                 <img class="img-fluid" src={{ asset('storage/app/public/pricing-revid.png') }} />
+=======
+                                <img class="img-fluid" src={{ asset('storage/pricing-revid.png') }} />
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                             </div>
                         </div>
                     </div>
@@ -152,6 +207,7 @@
             <div class="col-sm">
                 <div class="pricing-data border-ff0033 pd-4">
                     <div class="d-flex justify-content-between">
+<<<<<<< HEAD
                         <div class="align-self-center">
                             <div class="custom-control custom-checkbox casual">
                               <input type="checkbox" class="custom-control-input" id="customCheck4">
@@ -159,6 +215,17 @@
                             </div>
                         </div>
                         <div class="py-2 pr-4 pl-3 mr-3 bg-ff0033">$99/month</div>
+=======
+                        <!-- <div class="p-2 align-self-center"><b>Premium</b></div>
+                        <div class="p-2 px-4 m-r-13 bg-ff0033 w-145">$99/month</div> -->
+                        <div class="align-self-center"> 
+                            <div class="custom-control custom-checkbox casual m-c"> 
+                              <input type="checkbox" class="custom-control-input" id="customCheck4"> 
+                              <label class="custom-control-label font-weight-bold" for="customCheck4">Select Premium</label> 
+                            </div> 
+                        </div> 
+                        <div class="p-2 px-4 mr-3 bg-ff0033">$99/month</div> 
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                     </div>
                     <div class="row my-2 mx-0 pricing-content">
                         <div class="col-sm-3">
@@ -172,7 +239,10 @@
                         </div>
                         <div class="col-sm bg-009 font-weight-bold align-self-center px-2">FREE VIDEO <br>Every Month</div>
                     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                     <div class="row mt-1 mb-2 mx-0 pricing-content">
                         <div class="col-sm-3"><b>Video <br>Production <br>Costs</b></div>
                         <div class="col-sm-5 border-left-ff0">
@@ -192,7 +262,11 @@
                             </div>
                         </div>
                         <div class="col-md-auto bg-eae p-0 text-center mr-0 align-self-center">
+<<<<<<< HEAD
                              <img class="img-fluid" src={{ asset('storage/app/public/pricing-revid.png') }} />
+=======
+                             <img class="img-fluid" src={{ asset('storage/pricing-revid.png') }} />
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,10 @@
 @extends('frontend.layouts.main')
 
-    <style type="text/css">
+    <!-- <style type="text/css">
         .modal-backdrop, .modal-backdrop.fade.in{ opacity: 0 !important; }
         .modal { top:100px; right:-480px; }
         .surge-popup .modal-content { border-radius:0px; border:1px solid #6600cc; background:#ffffff; }
-    </style>
+    </style> -->
 
 @section('content')
 <div class="container ">

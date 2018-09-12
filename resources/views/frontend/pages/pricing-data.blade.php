@@ -1,6 +1,18 @@
+<<<<<<< HEAD
         <h2 class="header-border font-weight-bold">Select Your Plan</h2>
         <p class="text-justify">
             You have 4 plans to pick from. Please  <span class="h4">&#9745;</span> Select your plan below. Subscription plans are on a month-by-month basis and cover your video storage and access services. Extra to your plan is the per Video cost to produce.
+=======
+        <h2 class="header-border font-weight-bold"> 
+            @if (Request::segment(1) == 'pricing') 
+                What Does REVid Cost? 
+            @else  
+                Select Your Plan 
+            @endif 
+        </h2> 
+        <p class="text-justify">
+            You have 4 plans to pick from. Please  <span class="h4">&#9745;</span> Select your plan below. Subscription plans are on a month-by-month basis and cover your video storage and access services. Extra to your plan is the per Video cost to produce. 
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
         </p>
         <div class="row">
             <div class="col-sm">
@@ -12,11 +24,19 @@
                               <label class="custom-control-label font-weight-bold" for="chkCasual">Select Casual</label>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="py-2 p-30 mr-3 bg-666">$0/month</div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-7">
+=======
+                        <div class="p-2 px-4 mr-3 bg-666">$0/month</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-8">
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                               <div class="row my-2 mx-0 pricing-content">
                                     <div class="col-sm-5">
                                         <b>Storage <br>Plan</b>
@@ -57,8 +77,13 @@
                              </div>
                         </div>
 
+<<<<<<< HEAD
                         <div class="col-sm mr-3"> 
                             <div class="casual-info mt-2 ml-3 px-1 py-3 col-11 text-justify">Video will be active for 6 months from date of production and archived for a further 1 month.</div> 
+=======
+                        <div class="col-sm">
+                            <div class="casual-info mt-2 px-1 py-3 text-justify"> Video will be active for 6 months from date of production and archived for a further 1 month.</div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         </div>
                     </div>
                 </div>
@@ -113,7 +138,11 @@
                         </div>
 
                         <div class="col-sm bg-eae p-0 text-center align-self-center">
+<<<<<<< HEAD
                              <img src={{ asset('storage/app/public/pricing-revid.png') }} />
+=======
+                             <img src={{ asset('storage/pricing-revid.png') }} />
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         </div>
                     </div>
                 </div>
@@ -170,7 +199,11 @@
                             </div>
 
                             <div class="col-sm bg-eae p-0 text-center align-self-center">
+<<<<<<< HEAD
                                  <img src={{ asset('storage/app/public/pricing-revid.png') }} />
+=======
+                                 <img src={{ asset('storage/pricing-revid.png') }} />
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                             </div>
                         </div>
                     </div>
@@ -181,7 +214,7 @@
                 <div class="pricing-data border-ff0033 pd-4">
                     <div class="d-flex justify-content-between">
                         <div class="align-self-center">
-                            <div class="custom-control custom-checkbox casual">
+                            <div class="custom-control custom-checkbox casual m-c">
                               <input type="checkbox" class="custom-control-input" id="chkPremium" name="plan_type[]" value="Premium">
                               <label class="custom-control-label font-weight-bold" for="chkPremium">Select Custom</label>
                             </div>
@@ -226,16 +259,27 @@
                         </div>
 
                         <div class="col-sm bg-eae p-0 text-center align-self-center">
+<<<<<<< HEAD
                              <img src={{ asset('storage/app/public/pricing-revid.png') }} />
+=======
+                             <img src={{ asset('storage/pricing-revid.png') }} />
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+<<<<<<< HEAD
          <p class="text-justify font14 mt-4">
             <span class="color-ff0033">(1)</span> $99 (including GST) Video refers to an Automatic Video on either Basic, Standard or Premium Plan. <span class="color-ff0033">(2)</span> Pricing and offers valid until 31 Dec 2018. <br>
 
             <span class="color-ff0033">(3)</span> Quoted pricing includes GST. <span class="color-ff0033">(4)</span> Subscription is on a month-by-month basis with 30-days notice to cancel. <span class="color-ff0033">(5)</span> See <a href="/terms-condition" class="color-ff0033"><b>Terms and Conditions</b></a>.
+=======
+        <p class="text-justify font15 mt-4">
+            <span class="color-ff0033">(1)</span> $99 (including GST) Video refers to an Automatic Video on either Basic, Standard or Premium Plan. <span class="color-ff0033">(2)</span> Pricing and offers valid until 31 January 2019.
+
+            <span class="color-ff0033">(3)</span> Quoted pricing includes GST <span class="color-ff0033">(4)</span> Subscription is on a month-by-month basis with 30-days notice to cancel. <span class="color-ff0033">(5)</span> <a href="/terms-condition" class="color-ff0033"><b>Terms and Conditions</b></a>.
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
         </p>
 

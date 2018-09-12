@@ -1,0 +1,100 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background-color: #dddcdc !important;
+}
+
+div.cont {
+	padding: 0 !important;
+}
+
+div.info {
+	min-height: 150px !important;
+	padding-top: 43px;
+}
+
+div.add {
+	background-color: #585959 !important;
+	min-height: 150px !important;
+}
+
+[class*="col-"] {
+	border: 0 !important;
+	background: none !important;
+}
+
+.grey-txt {
+	color: #585959 !important;
+}
+
+h1 {
+	font-size: 28px !important;
+    font-weight: 700 !important;
+}
+
+h2 {
+	font-size: 26px !important;
+    font-weight: 400 !important;
+}
+
+h1, h2 {
+	font-family: Arial, Helvetica, sans-serif !important;
+	color: #585959 !important;
+}
+
+.yellow {
+	min-height: 200px;
+	background-color: #fbe54d !important;
+}
+
+.bedroom-icon {
+	width: 80%;	
+}
+
+.house {
+	font-size: 20px;
+    padding: 2px 0 2px 10px !important;
+    border-left: 2px solid #585959 !important;
+	text-align: center;
+}
+
+span.ctr {
+	font-size: 20px;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+.header-icon {
+	padding-right: 7px;
+	padding-left: 7px;
+}
+
+.img-cont {
+	padding-top: 23px;
+    width: 200px;
+    min-height: 150px !important;
+    margin: 2px auto;
+    position:relative;
+}
+
+.branding{
+	position: absolute;
+	bottom: 0;
+}
+
+.profile-name {
+	line-height: 10px;
+}
+
+div.add {
+	font-size: 21px !important;
+	color: #fbe54d !important;
+    line-height: 30px !important;
+    font-weight: 700 !important;
+    text-align: right !important;
+    padding: 20px !important;
+    padding-top: 45px !important;
+
+}

@@ -40,20 +40,35 @@
             </div>
             <div class="border-ccc pt-2">
                 <div class="row">
+<<<<<<< HEAD
                     <a href="{{ route('use-revid-corporate') }}"><div class="col-4 pr-0 pl-2"><i class="link-icon2 li-v3-pc"></i></div>
                     <div class="col-auto text-left line-height20 pl-0"><b>Presentations <br>and Corporate</b></div></a>
+=======
+                    <div class="col-4 pr-0 pl-2"><i class="link-icon2 li-v3-pc"></i></div>
+                    <div class="col-auto text-left line-height20 pl-0"><a href="{{ route('use-revid-corporate') }}"><b>Presentations <br>and Corporate</b></a>a</div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                 </div>
             </div>
             <div class="border-ccc pt-2 my-2">
                 <div class="row">
+<<<<<<< HEAD
                     <a href="/"><div class="col-4 p-0-30"><i class="link-icon2 li-v3-office"></i></div>
                     <div class="col-auto text-left line-height20 pl-0"><b>Home Opens<br> Office Display</b></div></a>
+=======
+                    <div class="col-4 p-0-30"><i class="link-icon2 li-v3-office"></i></div>
+                    <div class="col-auto text-left line-height20 pl-0"><a href="/"><b>Home Opens<br> Office Display</b></a></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                 </div>
             </div>
             <div class="border-ccc pt-2">
                 <div class="row">
+<<<<<<< HEAD
                     <a href="{{ route('use-revid-marketing') }}"><div class="col-4 p-0-30"><i class="link-icon2 li-v3-marketing"></i></div>
                     <div class="col-auto text-left line-height20 pl-0"><b>Marketing Email <br>Promotions</b></div></a>
+=======
+                    <div class="col-4 p-0-30"><i class="link-icon2 li-v3-marketing"></i></div>
+                    <div class="col-auto text-left line-height20 pl-0"><a href="{{ route('use-revid-marketing') }}"><b>Marketing Email <br>Promotions</b></a></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                 </div>
             </div>
         </div>  
@@ -85,13 +100,21 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     @if(Request::is('home'))  
+=======
+    @if(Request::is('/'))  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
         <div class="fv-mobile p-0-35 mt-3">
             <div class="row f-video-step">
                 <div class="col-sm px-0">
                     <a href="{{ route('make-video-automatic') }}"><h3 class="c-6600cc font-weight-bold mt-3">$99 Automatic <br>Video</h3></a>
+<<<<<<< HEAD
                     <form class="f-g-v-form mt-2 mx-0" action="{{ route('generic-login') }}" method="POST">
                         {{ csrf_field() }}
+=======
+                    <form class="f-g-v-form mt-2 mx-0">
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         <div class="f-text-circle2">
                             <div class="f-text2 font-weight-bold">
                             MOST <br>POPULAR</div>
@@ -104,19 +127,32 @@
                                </div>
                           </div>
                         </div>
+<<<<<<< HEAD
                     </form>    
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         <div class="d-flex justify-content-between mt-4 font14">
                                <div><b>Direct Upload</b><br>
                                 Click here to upload images<br>
                                 and property details</div>
                                 <div class="align-self-center ml-4"><button type="submit" class="btn btn-primary px-1 py-2 b-radius-7"><b>UPLOAD</b></button></div>
                         </div>
+<<<<<<< HEAD
                         <div class="row mt-3 mx-0">
                         <div class="col pl-0">
                             <p class="text-justify">We do it all, and make your Video using the images and information in your online property listing.</p>
                         </div>
                         <div class="col text-right pr-4">
                             <img class="img-fluid" src={{ asset('storage/app/public/realty-sample.jpg') }} /><br>
+=======
+                    </form>
+                    <div class="row mt-3 mx-0">
+                        <div class="col pl-0">
+                            <p class="text-justify">We do it all, and make your Video using the images and information in your online property listing.</p>
+                        </div>
+                        <div class="col text-right pr-0">
+                            <img class="img-fluid" src={{ asset('storage/realty-sample.jpg') }} /><br>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                             <span>SAMPLE</span>
                         </div>
                     </div>
@@ -129,7 +165,11 @@
                             <p class="text-justify w-spacing">If you are happy to spend the time, you select and match images to voice over tracks and make the Video just like you want it.</p>
                         </div>
                         <div class="col text-right pr-0">
+<<<<<<< HEAD
                             <img class="img-fluid" src={{ asset('storage/app/public/realty-sample.jpg') }} /><br>
+=======
+                            <img class="img-fluid" src={{ asset('storage/realty-sample.jpg') }} /><br>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                             <span>SAMPLE</span>
                         </div>
                     </div>
@@ -155,6 +195,10 @@
                     <div class="f-text font-weight-bold">
                     MOST <br>POPULAR</div>
                 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                 <div class="d-flex flex-column bd-highlight">
                   <div>
                         <div class="d-flex flex-row">

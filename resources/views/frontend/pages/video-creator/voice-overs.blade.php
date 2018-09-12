@@ -63,7 +63,11 @@
                                                                                 <label class="custom-control-label" for="customCheck6"></label>
                                                                             </div>
                                                                         </div>
+<<<<<<< HEAD
                                                                         <audio id="audioGrant" src="{{ asset('storage/app/public/voice_over_files/grant.wav') }}"></audio>
+=======
+                                                                        <audio id="audioGrant" src="{{ asset('storage/voice_over_files/grant.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                                     </div>
                                                             </div>
                                                             <div class="font14 my-2 v-s-text">Professional, corporate, and "very now".</div>
@@ -89,7 +93,11 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+<<<<<<< HEAD
                                                                     <audio id="audioLuke" src="{{ asset('storage/app/public/voice_over_files/luke.wav') }}"></audio>
+=======
+                                                                    <audio id="audioLuke" src="{{ asset('storage/voice_over_files/luke.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                             </div>
                                                             <div class="font14 my-2 v-s-text">Young, fresh, and warm.</div>
                                                             <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseLuke" role="button" aria-expanded="false" aria-controls="collapseGrant"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -114,7 +122,11 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+<<<<<<< HEAD
                                                                     <audio id="audioMark" src="{{ asset('storage/app/public/voice_over_files/mark.wav') }}"></audio>
+=======
+                                                                    <audio id="audioMark" src="{{ asset('storage/voice_over_files/mark.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                             </div>
                                                             <div class="font14 my-2 v-s-text">Friendly, mature, and smooth</div>
                                                             <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseMark" role="button" aria-expanded="false" aria-controls="collapseMark"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -145,7 +157,11 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+<<<<<<< HEAD
                                                                     <audio id="audioKarin" src="{{ asset('storage/app/public/voice_over_files/karin.wav') }}"></audio>
+=======
+                                                                    <audio id="audioKarin" src="{{ asset('storage/voice_over_files/karin.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                             </div>
                                                             <div class="font14 my-2 v-s-text">Professional, corporate, and "very now".</div>
                                                             <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseKarin" role="button" aria-expanded="false" aria-controls="collapseKarin"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -172,7 +188,11 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+<<<<<<< HEAD
                                                                     <audio id="audioOdette" src="{{ asset('storage/app/public/voice_over_files/odette.wav') }}"></audio>
+=======
+                                                                    <audio id="audioOdette" src="{{ asset('storage/voice_over_files/odette.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                             </div>
                                                             <div class="font14 my-2 v-s-text">Warm, familiar nature and mature.</div>
                                                             <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseOdette" role="button" aria-expanded="false" aria-controls="collapseOdette"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -197,7 +217,11 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+<<<<<<< HEAD
                                                                     <audio id="audioLuisa" src="{{ asset('storage/app/public/voice_over_files/louisa.wav') }}"></audio>
+=======
+                                                                    <audio id="audioLuisa" src="{{ asset('storage/voice_over_files/louisa.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                             </div>
                                                             <div class="font14 my-2 v-s-text">Fresh, playful and energetic</div>
                                                             <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseLuisa" role="button" aria-expanded="false" aria-controls="collapseLuisa"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -231,7 +255,12 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
 
+<<<<<<< HEAD
     <script src="{{ asset('assets/js/voice_selection.js') }}" type="text/javascript"></script>
 
+=======
+  <script src="{{ asset('assets/js/voice_selection.js') }}" type="text/javascript"></script>
+  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 @stop
 

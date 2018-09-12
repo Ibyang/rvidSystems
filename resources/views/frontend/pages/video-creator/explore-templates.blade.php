@@ -24,6 +24,7 @@
                                     <div id="first_template_mf" style="display: none">
                                       
                                           <div class="twb337">
+<<<<<<< HEAD
                                               <div id="{{ $temp['folder_name'] }}-main-1" class="{{ $temp['folder_name'] }}-main-medium-1">
                                                   <div id="wrapper">
                                                     <div id="sidebar" class="col-md-3 cont">
@@ -39,11 +40,29 @@
                                                           <!-- (03) 8538 0588<br> -->
                                                           <br>
                                                           {{$agent['website']}}</h2>
+=======
+                                              <div id="{{ $temp['folder_name'] }}-main-1" class="raywhite-main-small-1">   
+                                                  <div id="wrapper">
+                                                    <div id="sidebar" class="col-md-3 cont">
+                                                      <div class="col-md-12 cont">
+                                                        <div class="img-cont yellow"><img src="image/ray-white-logo.jpg" width="87" class="branding"></div>
+                                                      </div>
+                                                      <div class="col-md-12" style="padding-bottom:0;">
+                                                        <div class="img-cont"><img src="image/helen-yan.jpg" width="87"></div>
+                                                      </div>
+                                                      <div class="col-md-12 text-center">
+                                                        <h1 class="profile-name" style="margin-top:0; margin-bottom:0;">Helen Yan</h1>
+                                                        <h2>0404 078 588<br>
+                                                          (03) 8538 0588<br>
+                                                          <br>
+                                                          raywhite.com</h2>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                       </div>
                                                     </div>
                                                     <div id="content" class="col-md-9 cont">
                                                       <div class="col-md-6 info yellow content-header">
                                                         <div class="col-md-3 col-md-offset-0 header-icon">
+<<<<<<< HEAD
                                                           <div><img src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/' . $temp['folder_name'] . '-bed-icon.jpg') }}" height=20><span class="ctr grey-txt">4</span></div>
                                                         </div>
                                                         <div class="col-md-3 header-icon">
@@ -51,11 +70,21 @@
                                                         </div>
                                                         <div class="col-md-3 header-icon">
                                                           <div><img src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/' . $temp['folder_name'] . '-car-icon.jpg') }}" height=20><span class="ctr grey-txt">3</span></div>
+=======
+                                                          <div><img src="image/bed.jpg" height=20><span class="ctr grey-txt">4</span></div>
+                                                        </div>
+                                                        <div class="col-md-3 header-icon">
+                                                          <div><img src="image/shower.jpg" height=20><span class="ctr grey-txt">3</span></div>
+                                                        </div>
+                                                        <div class="col-md-3 header-icon">
+                                                          <div><img src="image/car.jpg" height=20><span class="ctr grey-txt">3</span></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                         </div>
                                                         <div class="col-md-3 header-text">
                                                           <div class="house grey-txt">House</div>
                                                         </div>
                                                       </div>
+<<<<<<< HEAD
                                                       <div class="col-md-6 add content-header">
                                                         {{$agent['address']}}<br>
                                                         {{$agent['suburb']}}&nbsp;{{$agent['state']}}&nbsp;{{$agent['postcode']}}
@@ -67,13 +96,29 @@
                                           </div>
                                         </div><!-- end twb337 -->  
                                   </div> <!-- end of first template -->
+=======
+                                                      <div class="col-md-6 add content-header">24 Townsend Street<br>
+                                                        Ivanhoe East VIC 3079
+                                                      </div>
+                                                      <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="573" height="320"></div>
+                                                    </div>
+                                                  </div><!-- end wrapper -->
+                                              <!--/div--><!-- end raywhite-small -->
+                                          </div><!-- end twb337 -->
+                                        </div>  
+                                  </div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
 
                                   <!-- Second Main Frame Template -->
                                   <div id="second_template_mf" style="display: none">
                                   
                                    <div class="twb337">   
+<<<<<<< HEAD
                                     <div id="{{ $temp['folder_name'] }}-main-2" class="{{ $temp['folder_name'] }}-main-medium-2">
+=======
+                                    <div id="{{ $temp['folder_name'] }}-main-2" class="raywhite-main-small-2">  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
                                       <div id="wrapper">
                                             <!--div class="col-md-12 cont"-->
@@ -84,6 +129,7 @@
                                                 </div-->
 
                                                 <div class="col-md-12 text-center">
+<<<<<<< HEAD
                                                   <h1 class="profile-name">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
                                                   <h2>{{$agent['mobile']}}<br>
                                                     <!-- (03) 8538 0588<br> -->
@@ -93,6 +139,17 @@
                                                 <div class="branding-container">
                                                   <div class="col-md-12 cont">
                                                     <div class="img-logo-cont yellow"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_logo']) }}" width="87" class="branding"></div>
+=======
+                                                  <h1 class="profile-name">Helen Yan</h1>
+                                                  <h2>0404 078 588<br>
+                                                    (03) 8538 0588<br>
+                                                    <br>
+                                                    raywhite.com</h2>
+                                                </div>
+                                                <div class="branding-container">
+                                                  <div class="col-md-12 cont">
+                                                    <div class="img-logo-cont yellow"><img src="image/ray-white-logo.jpg" width="87" class="branding"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                   </div>
                                                 </div>
 
@@ -104,6 +161,7 @@
                                               </div>
 
                                               <div id="content" class="col-md-9 cont">
+<<<<<<< HEAD
                                                 <div class="col-md-12 cont"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_main_pic']) }}" width="573" height="320"></div>
                                                 <div class="col-md-6 info yellow content-header">
                                                   <div class="col-md-3 col-md-offset-0 header-icon">
@@ -114,11 +172,24 @@
                                                   </div>
                                                   <div class="col-md-3 header-icon">
                                                     <div><img src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/' . $temp['folder_name'] . '-car-icon.jpg') }}" height=20><span class="ctr grey-txt">3</span></div>
+=======
+                                                <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="573" height="320"></div>
+                                                <div class="col-md-6 info yellow content-header">
+                                                  <div class="col-md-3 col-md-offset-0 header-icon">
+                                                    <div><img src="image/bed.jpg" height=20><span class="ctr grey-txt">4</span></div>
+                                                  </div>
+                                                  <div class="col-md-3 header-icon">
+                                                    <div><img src="image/shower.jpg" height=20><span class="ctr grey-txt">3</span></div>
+                                                  </div>
+                                                  <div class="col-md-3 header-icon">
+                                                    <div><img src="image/car.jpg" height=20><span class="ctr grey-txt">3</span></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                   </div>
                                                   <div class="col-md-3 header-text">
                                                     <div class="house grey-txt">House</div>
                                                   </div>
                                                 </div>
+<<<<<<< HEAD
                                                 <div class="col-md-6 add content-header">
                                                   {{$agent['address']}}<br>
                                                   {{$agent['suburb']}}&nbsp;{{$agent['state']}}&nbsp;{{$agent['postcode']}} 
@@ -130,17 +201,34 @@
                                       </div>  
                                     </div>  <!-- end of twb337 -->
                                   </div> <!-- end of second template -->
+=======
+                                                <div class="col-md-6 add content-header">24 Townsend Street<br>
+                                                  Ivanhoe East VIC 3079 </div>
+                                                 
+                                              </div>
+                                            <!--/div-->
+                                          <div> <!-- end of wrapper -->
+
+                                      </div>  
+                                    </div>  
+                                  </div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
 
                                   <!-- Third Main Frame Template -->
                                   <div id="third_template_mf" style="display: none">
                           
                                     <div class="twb337">
+<<<<<<< HEAD
                                         <div id="{{ $temp['folder_name'] }}-main-3" class="{{ $temp['folder_name'] }}-main-medium-3">
+=======
+                                        <div id="{{ $temp['folder_name'] }}-main-3" class="raywhite-main-small-3">  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
                                           <div id="wrapper">
                                               <!--div class="col-md-12 cont"-->
                                                 <div id="content" class="col-md-9 cont">
+<<<<<<< HEAD
                                                   <div class="col-md-12 cont"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_main_pic']) }}" width="573" height="320"></div>
                                                   <div class="col-md-6 info gray content-header">
                                                     <div class="col-md-3 col-md-offset-0 header-icon">
@@ -151,19 +239,37 @@
                                                     </div>
                                                     <div class="col-md-3 header-icon">
                                                       <div><img src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/' . $temp['folder_name'] . '-car-icon.jpg') }}" height=20><span class="ctr white-txt">3</span></div>
+=======
+                                                  <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="573" height="320"></div>
+                                                  <div class="col-md-6 info gray content-header">
+                                                    <div class="col-md-3 col-md-offset-0 header-icon">
+                                                      <div><img src="image/bed.jpg" height=20><span class="ctr white-txt">4</span></div>
+                                                    </div>
+                                                    <div class="col-md-3 header-icon">
+                                                      <div><img src="image/shower.jpg" height=20><span class="ctr white-txt">3</span></div>
+                                                    </div>
+                                                    <div class="col-md-3 header-icon">
+                                                      <div><img src="image/car.jpg" height=20><span class="ctr white-txt">3</span></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                     </div>
                                                     <div class="col-md-3 header-text">
                                                       <div class="house white-txt">House</div>
                                                     </div>
                                                   </div>
+<<<<<<< HEAD
                                                   <div class="col-md-6 add yellow content-header">
                                                     {{$agent['address']}}<br>
                                                     {{$agent['suburb']}}&nbsp;{{$agent['state']}}&nbsp;{{$agent['postcode']}} 
                                                   </div>
+=======
+                                                  <div class="col-md-6 add yellow content-header">24 Townsend Street<br>
+                                                    Ivanhoe East VIC 3079 </div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                   <!----> 
                                                 </div>
 
                                                 <div id="sidebar" class="col-md-3 cont">
+<<<<<<< HEAD
                                                   <div class="col-md-12 profile-image text-center" style="padding-top:0; padding-bottom:0;"><img src="{{ asset('storage/app/public/agency_css/'. $agent['group'] . '/mainframe/2/image/helen-yan.jpg') }}" width="87"></div>
                                                   <div class="col-md-12 text-center">
                                                     <h1 class="profile-name" style="margin-top:0; margin-bottom:0;">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
@@ -175,6 +281,19 @@
                                                   <div class="branding-container">
                                                     <div class="col-md-12 cont">
                                                       <div class="img-logo-cont yellow"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_logo']) }}" width="87" class="branding"></div>
+=======
+                                                  <div class="col-md-12 profile-image text-center" style="padding-top:0; padding-bottom:0;"><img src="image/helen-yan.jpg" width="87"></div>
+                                                  <div class="col-md-12 text-center">
+                                                    <h1 class="profile-name" style="margin-top:0; margin-bottom:0;">Helen Yan</h1>
+                                                    <h2>0404 078 588<br>
+                                                      (03) 8538 0588<br>
+                                                      <br>
+                                                      raywhite.com</h2>
+                                                  </div>
+                                                  <div class="branding-container">
+                                                    <div class="col-md-12 cont">
+                                                      <div class="img-logo-cont yellow"><img src="image/ray-white-logo.jpg" width="87" class="branding"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                     </div>
                                                   </div>
                                                 </div>
@@ -191,28 +310,45 @@
                                   <div id="fourth_template_mf" style="display: none">
                                   
                                     <div class="twb337">
+<<<<<<< HEAD
                                         <div id="{{ $temp['folder_name'] }}-main-4" class="{{ $temp['folder_name'] }}-main-medium-4">
+=======
+                                        <div id="{{ $temp['folder_name'] }}-main-4" class="raywhite-main-small-4">  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
                                           <div id="wrapper">
                                           <!--div class="col-md-12 cont"-->
                                             <div id="sidebar" class="col-md-3 cont">
                                               <div class="branding-container">
                                                 <div class="col-md-12 cont">
+<<<<<<< HEAD
                                                   <div class="img-logo-cont yellow"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_logo']) }}" width="87" class="branding"></div>
+=======
+                                                  <div class="img-logo-cont yellow"><img src="image/ray-white-logo.jpg" width="87" class="branding"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                 </div>
                                               </div>
                                               <div class="col-md-12 cont img-cont"></div>
                                               <div class="col-md-12 text-center">
+<<<<<<< HEAD
                                                 <h1 class="profile-name">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
                                                 <h2>{{$agent['mobile']}}<br>
                                                   <!-- (03) 8538 0588<br> -->
                                                   <br>
                                                   {{$agent['website']}}</h2>
+=======
+                                                <h1 class="profile-name">Helen Yan</h1>
+                                                <h2>0404 078 588<br>
+                                                  (03) 8538 0588<br>
+                                                  <br>
+                                                  raywhite.com</h2>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                               </div>
                                             </div>
                                             <div id="content" class="col-md-9 cont">
                                               <div class="col-md-6 info yellow content-header">
                                                 <div class="col-md-3 col-md-offset-0 header-icon">
+<<<<<<< HEAD
                                                   <div><img src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/' . $temp['folder_name'] . '-bed-icon.jpg') }}" height=20><span class="ctr grey-txt">4</span></div>
                                                 </div>
                                                 <div class="col-md-3 header-icon">
@@ -220,17 +356,33 @@
                                                 </div>
                                                 <div class="col-md-3 header-icon">
                                                   <div><img src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/' . $temp['folder_name'] . '-car-icon.jpg') }}" height=20><span class="ctr grey-txt">3</span></div>
+=======
+                                                  <div><img src="image/bed.jpg" height=20><span class="ctr grey-txt">4</span></div>
+                                                </div>
+                                                <div class="col-md-3 header-icon">
+                                                  <div><img src="image/shower.jpg" height=20><span class="ctr grey-txt">3</span></div>
+                                                </div>
+                                                <div class="col-md-3 header-icon">
+                                                  <div><img src="image/car.jpg" height=20><span class="ctr grey-txt">3</span></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                 </div>
                                                 <div class="col-md-3 header-text">
                                                   <div class="house grey-txt">House</div>
                                                 </div>
                                               </div>
+<<<<<<< HEAD
                                               <div class="col-md-6 add content-header">
                                                 {{$agent['address']}}<br>
                                                 {{$agent['suburb']}}&nbsp;{{$agent['state']}}&nbsp;{{$agent['postcode']}}
                                               </div>
                                               <!---->
                                               <div class="col-md-12 cont"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_main_pic']) }}" width="573" height="320"></div>
+=======
+                                              <div class="col-md-6 add content-header">24 Townsend Street<br>
+                                                Ivanhoe East VIC 3079 </div>
+                                              <!---->
+                                              <div class="col-md-12 cont"><img src="image/revid-house.jpg" width="573" height="320"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                             </div>
                                           <!--/div-->
                                           </div> <!-- end of wrapper -->
@@ -241,9 +393,14 @@
                                   </div> <!-- end of template -->
                                 </div> <!-- end of div Main Template -->  
 
+<<<<<<< HEAD
                                 </div> <!-- end of div class col -->
                            </div> <!-- end of  div class row -->
 
+=======
+                                </div>
+                           </div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                            <div class="d-flex flex-row-reverse">
                               <div class="p-2"><a data-toggle="collapse" href="#ExpandedMF" role="button" aria-expanded="false" aria-controls="collapseExample" class="color-ff0033">Change</a></div>
                            </div>
@@ -370,6 +527,7 @@
                                   <div>  
                                     <div id="first_template_ef" style="display: none">
                                     
+<<<<<<< HEAD
                                           <div class="twb337">
                                             <div id="{{ $temp['folder_name'] }}-end-2" class="{{ $temp['folder_name'] }}-end-medium-2">
 
@@ -402,11 +560,16 @@
 
                                         <div class="twb337">   
                                           <div id="{{ $temp['folder_name'] }}-end-1" class="{{ $temp['folder_name'] }}-end-medium-1">
+=======
+                                        <div class="twb337">   
+                                          <div id="{{ $temp['folder_name'] }}-end-2" class="raywhite-end-small-2"> 
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
                                            <div id="wrapper">
                                               <div class="col-md-12 cont">
                                                 <div id="sidebar">
                                                   <div class="col-md-3 cont">
+<<<<<<< HEAD
                                                     <div class="col-md-12 cont"><img class="img-profile" src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/endframe/1/image/helen-yan.jpg') }}" width="273">
                                                   </div>
                                                 </div>
@@ -415,12 +578,27 @@
                                                 <div id="content" class="col-md-9 cont" style="margin-top: 0">
                                                   <div class="col-md-12 cont">
                                                     <h1 class="profile">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
+=======
+                                                    <div class="col-md-12 cont"><img class="img-profile" src="image/helen-yan.jpg" width="273">
+                                                  </div>
+                                                </div>
+                                                  <div class="col-md-12 cont logo-cont"><img class="img-logo" src="image/ray-white-logo.jpg" width="92"></div>
+                                                </div>
+                                                <div id="content" class="col-md-9 cont">
+                                                  <div class="col-md-12 cont">
+                                                    <h1 class="profile">Helen Yan</h1>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                   </div>
                                                   <div class="col-md-12 cont">
                                                     <h2 class="profile"> Contact Me Today!<br>
                                                       <br>
+<<<<<<< HEAD
                                                           {{$agent['mobile']}}<br>
                                                           {{$agent['email']}}<br>
+=======
+                                                      0404 078 588<br>
+                                                      helen.yan@raywhite.com<br>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                     </h2>
                                                   </div>
                                                   <div class="col-md-12 cont empty-cont"> </div>
@@ -429,8 +607,42 @@
                                             </div>  <!-- end of wrapper -->
 
                                            </div> 
+<<<<<<< HEAD
                                           </div> 
                                      
+=======
+                                          </div>  
+                                    </div>
+
+                                    <!-- Second End Frame Template -->
+                                    <div id="second_template_ef" style="display: none">
+
+                                     <div class="twb337">
+                                      <div id="{{ $temp['folder_name'] }}-end-1" class="raywhite-end-small-1">
+
+                                        <div id="wrapper">
+                                            <div id="sidebar">
+                                              <div class="col-md-12 cont profile-bg"></div>
+                                            </div>
+                                            <div id="content" class="col-md-8 cont">
+                                              <div class="col-md-12 cont">
+                                                <h1 class="profile">Helen Yan</h1>
+                                              </div>
+                                              <div class="col-md-12 cont logo"><img src="image/ray-white-logo.jpg" width="125"></div>
+                                              <div class="col-md-12 cont">
+                                                <h2 class="profile">
+                                                Contact Me Today!<br>
+                                                <br>
+                                                0404 078 588<br>
+                                                helen.yan@raywhite.com<br>
+                                                </h2>
+                                              </div>
+                                            </div>
+                                          </div> <!-- end of wrapper -->
+
+                                       </div> 
+                                      </div>  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     </div>
 
                                     <!-- Third End Frame Template -->
@@ -443,6 +655,7 @@
                                             <div id="sidebar">
                                               <div class="col-md-12 cont profile-bg"></div>
                                             </div>
+<<<<<<< HEAD
                                             <div id="content" class="col-md-8 cont" style="margin-top: 0">
                                               <div class="col-md-12 cont">
                                                 <h1 class="profile">{{$agent['firstname']}}&nbsp;{{$agent['lastname']}}</h1>
@@ -455,6 +668,20 @@
                                                 </h2>
                                               </div>
                                               <div class="col-md-12 cont logo"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_logo']) }}" width="92"></div>
+=======
+                                            <div id="content" class="col-md-8 cont">
+                                              <div class="col-md-12 cont">
+                                                <h1 class="profile">Helen Yan</h1>
+                                              </div>
+                                              <div class="col-md-12 cont">
+                                                <h2 class="profile"> Contact Me Today!<br>
+                                                  <br>
+                                                  0404 078 588<br>
+                                                  helen.yan@raywhite.com<br>
+                                                </h2>
+                                              </div>
+                                              <div class="col-md-12 cont logo"><img src="image/ray-white-logo.jpg" width="92"></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                             </div>
                                           </div> <!-- end of wrapper -->
                                        </div> 
@@ -466,11 +693,16 @@
                                     <div id="fourth_template_ef" style="display: none">
 
                                       <div class="twb337">
+<<<<<<< HEAD
                                         <div id="{{ $temp['folder_name'] }}-end-4" class="{{ $temp['folder_name'] }}-end-medium-4">
+=======
+                                        <div id="{{ $temp['folder_name'] }}-end-4" class="raywhite-end-small-4">  
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                           <div id="wrapper">
                                               <div id="sidebar">
                                                   <div class="col-md-12 cont profile-bg"></div>
                                               </div>
+<<<<<<< HEAD
                                               <div id="content" class="col-md-8 cont" style="margin-top: 0">
                                                 <div class="col-md-12 cont logo"><img src="{{ asset('storage/app/public/template_materials/'. $temp['folder_name'] . '/' . $temp['agency_logo']) }}" width="125"></div>
                                                 <div class="col-md-12 cont">
@@ -481,6 +713,18 @@
                                                       <br>
                                                           {{$agent['mobile']}}<br>
                                                           {{$agent['email']}}<br>
+=======
+                                              <div id="content" class="col-md-8 cont">
+                                                <div class="col-md-12 cont logo"><img src="image/ray-white-logo.jpg" width="125"></div>
+                                                <div class="col-md-12 cont">
+                                                  <h1 class="profile">Helen Yan</h1>
+                                                </div>
+                                                <div class="col-md-12 cont">
+                                                  <h2 class="profile"> Contact Me Today!<br>
+                                                    <br>
+                                                    0404 078 588<br>
+                                                    helen.yan@raywhite.com<br>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                   </h2>
                                                 </div>
                                               </div>

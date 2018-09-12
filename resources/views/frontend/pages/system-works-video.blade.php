@@ -152,6 +152,7 @@
             });
 
 
+<<<<<<< HEAD
             //for clicking Submit button and validation that they should be able to select one plan to proceed
             $('#btnSubmit').click(function() {
                 var subscriptiontype = $('#plantype').val();
@@ -166,6 +167,8 @@
             });
 
 
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
             //script to select only one checkbox at a time
             $('input[type="checkbox"]').on('change', function() {
                 $('input[name="' + this.name + '"]').not(this).prop('checked', false);
@@ -212,6 +215,7 @@
                 $('select[name="suburb"]').append('<option value="">Suburb</option>');
             }
 
+<<<<<<< HEAD
 
             //for dynamic populating name of agency when group is selected
             $('select[name="group"]').on('change', function() {
@@ -235,12 +239,18 @@
             });
 
 
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
             //for dynamic populating suburb dropdown when state is selected
             $('select[name="state"]').on('change', function() {
                 var stateCode = $(this).val();
                 if(stateCode) {
                     $.ajax({
+<<<<<<< HEAD
                         url: './stateAjaxUser/' + stateCode,
+=======
+                        url: '/stateAjaxUser/' + stateCode,
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         type: "GET",
                         dataType: "json",
                         success:function(data) {
@@ -264,7 +274,11 @@
 
                 if(email){
                     $.ajax({
+<<<<<<< HEAD
                         url: './getEmailAjax/' + email,
+=======
+                        url: '/getEmailAjax/' + email,
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         type: "GET",
                         dataType: "json",
                         async: true,
@@ -281,6 +295,7 @@
                                 $('#lastname').val(data.lastname);
                                 $('#mobile').val(data.mobile);
                                 $('#group').val(data.group);
+<<<<<<< HEAD
                                 $('#agency').val(data.name_agency);
                                 $('#address').val(data.address);
                                 $('#suburbText').val(data.suburb);
@@ -304,6 +319,28 @@
                                     $('#state').prop('selectedIndex', 7);
                                 else if(state_val === 'WA')
                                     $('#state').prop('selectedIndex', 8);
+=======
+                                $('#name_agency').val(data.name_agency);
+                                $('#address').val(data.address);
+
+                                var state_val = data.state;
+                                if(state_val === 'QLD')
+                                    $('#state').prop('selectedIndex', 3);
+                                else if(state_val === 'ACT')
+                                    $('#state').prop('selectedIndex', 0);
+                                else if(state_val === 'NSW')
+                                    $('#state').prop('selectedIndex', 1);
+                                else if(state_val === 'NT')
+                                    $('#state').prop('selectedIndex', 2);
+                                else if(state_val === 'SA')
+                                    $('#state').prop('selectedIndex', 4);
+                                else if(state_val === 'TAS')
+                                    $('#state').prop('selectedIndex', 5);
+                                else if(state_val === 'VIC')
+                                    $('#state').prop('selectedIndex', 6);
+                                else if(state_val === 'WA')
+                                    $('#state').prop('selectedIndex', 7);
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
                                 var suburb_val = data.suburb;
                                 if(suburb_val != '' && suburb_val != undefined){

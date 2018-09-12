@@ -74,11 +74,15 @@
             });
 
 
+<<<<<<< HEAD
             //script for the I Accept for the Terms and Conditions Page PopUp
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
             $("#chkTermsConditions").click(function() {
                 if($("#chkTermsConditions").is(':checked')){
                     $('#finishTerms').hide();
                     $('#finishSubmit').show();
+<<<<<<< HEAD
                     // $('#btnIAccept').prop('disabled', false);
                     $('#btnIAccept').show();
                 }
@@ -94,6 +98,9 @@
             //script if I Accept button is clicked from the Terms and Conditions Page
             $("#btnIAccept").click(function() {
                 $('#TermsConditionsModal').modal('hide');
+=======
+                }
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
             });
 
 

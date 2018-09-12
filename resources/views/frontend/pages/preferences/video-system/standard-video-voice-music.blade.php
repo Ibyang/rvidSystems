@@ -43,9 +43,15 @@
                                     <option>Random Voice</option>
                          </select> -->
                          <select name="stateVoiceFormat" class="col-11 form-control mt-2 mb-4">
+<<<<<<< HEAD
                                     <option value="Random Voice" {{{ (isset($voice['voice_format']) && $voice['voice_format'] == 'Random Voice') ? "selected=\"selected\"" : "" }}}>Random Voice</option>
                                     <option value="One Voice" {{{ (isset($voice['voice_format']) && $voice['voice_format'] == 'One Voice') ? "selected=\"selected\"" : "" }}}>One Voice</option>
                                     <option value="Rotated Voice" {{{ (isset($voice['voice_format']) && $voice['voice_format'] == 'Rotated Voice') ? "selected=\"selected\"" : "" }}}>Rotated Voice</option>
+=======
+                                    <option value="Random Voice" {{{ (isset($template['voice_format']) && $template['voice_format'] == 'Random Voice') ? "selected=\"selected\"" : "" }}}>Random Voice</option>
+                                    <option value="One Voice" {{{ (isset($template['voice_format']) && $template['voice_format'] == 'One Voice') ? "selected=\"selected\"" : "" }}}>One Voice</option>
+                                    <option value="Rotated Voice" {{{ (isset($template['voice_format']) && $template['voice_format'] == 'Rotated Voice') ? "selected=\"selected\"" : "" }}}>Rotated Voice</option>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                          </select>
                     </div>
                 </div>
@@ -70,7 +76,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+<<<<<<< HEAD
                                                             <audio id="audioGrant" src="{{ asset('storage/app/public/voice_over_files/grant.wav') }}"></audio>
+=======
+                                                            <audio id="audioGrant" src="{{ asset('storage/voice_over_files/grant.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Professional, corporate, and "very now".</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseGrant" role="button" aria-expanded="false" aria-controls="collapseGrant"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -95,7 +105,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+<<<<<<< HEAD
                                                             <audio id="audioLuke" src="{{ asset('storage/app/public/voice_over_files/luke.wav') }}"></audio>
+=======
+                                                            <audio id="audioLuke" src="{{ asset('storage/voice_over_files/luke.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Young, fresh, and warm.</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseLuke" role="button" aria-expanded="false" aria-controls="collapseGrant"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -120,7 +134,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+<<<<<<< HEAD
                                                             <audio id="audioMark" src="{{ asset('storage/app/public/voice_over_files/mark.wav') }}"></audio>
+=======
+                                                            <audio id="audioMark" src="{{ asset('storage/voice_over_files/mark.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Friendly, mature, and smooth</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseMark" role="button" aria-expanded="false" aria-controls="collapseMark"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -151,7 +169,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+<<<<<<< HEAD
                                                             <audio id="audioKarin" src="{{ asset('storage/app/public/voice_over_files/karin.wav') }}"></audio>
+=======
+                                                            <audio id="audioKarin" src="{{ asset('storage/voice_over_files/karin.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Professional, corporate, and "very now".</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseKarin" role="button" aria-expanded="false" aria-controls="collapseKarin"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -176,7 +198,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+<<<<<<< HEAD
                                                             <audio id="audioOdette" src="{{ asset('storage/app/public/voice_over_files/odette.wav') }}"></audio>
+=======
+                                                            <audio id="audioOdette" src="{{ asset('storage/voice_over_files/odette.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Warm, familiar nature and mature.</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseOdette" role="button" aria-expanded="false" aria-controls="collapseOdette"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -201,7 +227,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+<<<<<<< HEAD
                                                             <audio id="audioLuisa" src="{{ asset('storage/app/public/voice_over_files/louisa.wav') }}"></audio>
+=======
+                                                            <audio id="audioLuisa" src="{{ asset('storage/voice_over_files/louisa.wav') }}"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                     </div>
                                                     <div class="font14 my-2 v-s-text">Fresh, playful and energetic</div>
                                                     <a class="font12 color-0066ff v-s-text" data-toggle="collapse" href="#collapseLuisa" role="button" aria-expanded="false" aria-controls="collapseLuisa"><i class="voice-icon v-i-info"></i><b>More Information</b><i class="v-i-down"></i><i class="v-i-up"></i></a>
@@ -242,7 +272,11 @@
 
                                   <div class="collapse msc-ctg-txt px-3 py-2" id="collapseChilled">
                                       <div class="d-flex justify-content-between">
+<<<<<<< HEAD
                                                 <audio id="audioRoadTrip" style="display:none;" src="{{ asset('storage/app/public/revid_music/Chilled_Ambient/OPUZZ_CP_08_Road_Trip.mp3') }}" controls controlsList="nodownload"></audio>
+=======
+                                                <audio id="audioRoadTrip" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/OPUZZ_CP_08_Road_Trip.mp3') }}" controls controlsList="nodownload"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="roadTrip"></i><b>Road Trip</b></div>
                                                 <div><div class="msc-chck align-self-center">
                                                                 <div class="custom-control custom-checkbox standard">
@@ -257,7 +291,11 @@
                                        </div>
 
                                       <div class="d-flex justify-content-between my-2">
+<<<<<<< HEAD
                                                 <audio id="audioSilk" style="display:none;" src="{{ asset('storage/app/public/revid_music/Chilled_Ambient/SCAC_03_Silk.mp3') }}" controls controlsList="nodownload"></audio>
+=======
+                                                <audio id="audioSilk" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/SCAC_03_Silk.mp3') }}" controls controlsList="nodownload"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="silk"></i><b>Silk</b></div>
                                                 <div><div class="msc-chck align-self-center">
                                                                 <div class="custom-control custom-checkbox standard ml-3">
@@ -272,7 +310,11 @@
                                       </div>
 
                                       <div class="d-flex justify-content-between">
+<<<<<<< HEAD
                                                 <audio id="audioSunSpots" style="display:none;" src="{{ asset('storage/app/public/revid_music/Chilled_Ambient/SCAC_05_Sun_Spots.mp3') }}" controls controlsList="nodownload"></audio>
+=======
+                                                <audio id="audioSunSpots" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/SCAC_05_Sun_Spots.mp3') }}" controls controlsList="nodownload"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="sunSpots"></i><b>Sun Spots</b></div>
                                                 <div><div class="msc-chck align-self-center">
                                                                 <div class="custom-control custom-checkbox standard ml-3">
@@ -287,7 +329,11 @@
                                       </div>
 
                                       <div class="d-flex justify-content-between my-2">
+<<<<<<< HEAD
                                                 <audio id="audioUltramarine" style="display:none;" src="{{ asset('storage/app/public/revid_music/Chilled_Ambient/SCAC_08_Ultramarine.mp3') }}" controls controlsList="nodownload"></audio>
+=======
+                                                <audio id="audioUltramarine" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/SCAC_08_Ultramarine.mp3') }}" controls controlsList="nodownload"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="ultramarine"></i><b>Ultramarine</b></div>
                                                 <div><div class="msc-chck align-self-center">
                                                                 <div class="custom-control custom-checkbox standard ml-3">
@@ -302,7 +348,11 @@
                                       </div>
 
                                       <div class="d-flex justify-content-between my-2">
+<<<<<<< HEAD
                                                 <audio id="audioUltramarine" style="display:none;" src="{{ asset('storage/app/public/revid_music/Chilled_Ambient/SCAC_08_Ultramarine.mp3') }}" controls controlsList="nodownload"></audio>
+=======
+                                                <audio id="audioUltramarine" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/SCAC_08_Ultramarine.mp3') }}" controls controlsList="nodownload"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="ultramarine"></i><b>Ultramarine</b></div>
                                                 <div><div class="msc-chck align-self-center">
                                                                 <div class="custom-control custom-checkbox standard ml-3">
@@ -317,7 +367,11 @@
                                        </div>
 
                                       <div class="d-flex justify-content-between my-2">
+<<<<<<< HEAD
                                                 <audio id="audioSolarGroove" style="display:none;" src="{{ asset('storage/app/public/revid_music/Chilled_Ambient/SG08-Solar_Groove.mp3') }}" controls controlsList="nodownload"></audio>
+=======
+                                                <audio id="audioSolarGroove" style="display:none;" src="{{ asset('storage/revid_music/Chilled_Ambient/SG08-Solar_Groove.mp3') }}" controls controlsList="nodownload"></audio>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                                 <div class="align-self-center"><i class="voice-icon v-i-play" id="solarGroove"></i><b>Solar Groove</b></div>
                                                 <div><div class="msc-chck align-self-center">
                                                                 <div class="custom-control custom-checkbox standard ml-3">

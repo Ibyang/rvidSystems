@@ -92,7 +92,11 @@
                                         </div>
                             </div>
                             <div class="col-sm">
+<<<<<<< HEAD
                                         <img class="img-fluid w-100" src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/' . $temp['zoom_main_template_2']) }}" width="210px" height="110px"><br>
+=======
+                                        <img class="img-fluid w-100" src="{{ asset('storage/template_materials/' . $temp['folder_name'] . '/' . $temp['thumb_main_template_2']) }}"><br>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                         <a href="" data-toggle="modal" data-target="#mainTemplateModal" data-dbid="{{ $temp['zoom_main_template_2'] }}" class="d-inline-block font12">< Click to Enlarge ></a>
                                         <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                           <input type="checkbox" class="custom-control-input" name="main_frame[]" id="mainframe2" value="main-frame-2"
@@ -103,7 +107,11 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-sm">
+<<<<<<< HEAD
                                         <img class="img-fluid w-100" src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/' . $temp['zoom_main_template_3']) }}" width="210px" height="110px"><br>
+=======
+                                        <img class="img-fluid w-100" src="{{ asset('storage/template_materials/' . $temp['folder_name'] . '/' . $temp['thumb_main_template_3']) }}""><br>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                         <a href="" data-toggle="modal" data-target="#mainTemplateModal" data-dbid="{{ $temp['zoom_main_template_3'] }}" class="d-inline-block font12">< Click to Enlarge ></a>
                                         <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                           <input type="checkbox" class="custom-control-input" name="main_frame[]" id="mainframe3" value="main-frame-3"
@@ -112,7 +120,11 @@
                                         </div>
                             </div>
                             <div class="col-sm">
+<<<<<<< HEAD
                                         <img class="img-fluid w-100" src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/' . $temp['zoom_main_template_4']) }}" width="210px" height="110px"><br>
+=======
+                                        <img class="img-fluid w-100" src="{{ asset('storage/template_materials/' . $temp['folder_name'] . '/' . $temp['thumb_main_template_4']) }}"><br>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                         <a href="" data-toggle="modal" data-target="#mainTemplateModal" data-dbid="{{ $temp['zoom_main_template_4'] }}" class="d-inline-block font12">< Click to Enlarge ></a>
                                         <div class="custom-control custom-checkbox premium d-inline-block float-r">
                                           <input type="checkbox" class="custom-control-input" name="main_frame[]" id="mainframe4" value="main-frame-4"
@@ -242,7 +254,12 @@
                                   <img class="img-fluid w-100" src="{{ asset('storage/app/public/template_materials/' . $temp['folder_name'] . '/' . $temp['zoom_end_template_1']) }}" width="210px" height="110px"><br>
                                   <a href="" data-toggle="modal" data-target="#endTemplateModal" data-dbid="{{ $temp['zoom_end_template_1'] }}" class="d-inline-block font12">< Click to Enlarge ></a>
                                   <div class="custom-control custom-checkbox premium d-inline-block float-r">
+<<<<<<< HEAD
                                     <input type="checkbox" class="custom-control-input" name="end_frame[]" id="endframe1" value="end-frame-1"           {{{ ($template['end_frame_template_format'] === 'end-frame-1') ? "checked" : ""}}}>
+=======
+                                    <input type="checkbox" class="custom-control-input" name="end_frame[]" id="endframe1" value="end-frame-1" 
+                                                   {{{ (isset($endframe_list) && (in_array('end-frame-1', $endframe_list))) ? "checked" : ""}}}>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                     <label class="custom-control-label font12" for="endframe1">Select</label>
                                   </div>
                               </div>

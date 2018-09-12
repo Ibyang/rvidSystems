@@ -31,7 +31,11 @@
 }
 .twb337 .col-xs-1, .twb337 .col-sm-1, .twb337 .col-md-1, .twb337 .col-lg-1, .twb337 .col-xs-2, .twb337 .col-sm-2, .twb337 .col-md-2, .twb337 .col-lg-2, .twb337 .col-xs-3, .twb337 .col-sm-3, .twb337 .col-md-3, .twb337 .col-lg-3, .twb337 .col-xs-4, .twb337 .col-sm-4, .twb337 .col-md-4, .twb337 .col-lg-4, .twb337 .col-xs-5, .twb337 .col-sm-5, .twb337 .col-md-5, .twb337 .col-lg-5, .twb337 .col-xs-6, .twb337 .col-sm-6, .twb337 .col-md-6, .twb337 .col-lg-6, .twb337 .col-xs-7, .twb337 .col-sm-7, .twb337 .col-md-7, .twb337 .col-lg-7, .twb337 .col-xs-8, .twb337 .col-sm-8, .twb337 .col-md-8, .twb337 .col-lg-8, .twb337 .col-xs-9, .twb337 .col-sm-9, .twb337 .col-md-9, .twb337 .col-lg-9, .twb337 .col-xs-10, .twb337 .col-sm-10, .twb337 .col-md-10, .twb337 .col-lg-10, .twb337 .col-xs-11, .twb337 .col-sm-11, .twb337 .col-md-11, .twb337 .col-lg-11, .twb337 .col-xs-12, .twb337 .col-sm-12, .twb337 .col-md-12, .twb337 .col-lg-12 {
   position: relative;
+<<<<<<< HEAD
   /*min-height: 1px;*/
+=======
+  min-height: 1px;
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
   padding-right: 15px;
   padding-left: 15px;
 }

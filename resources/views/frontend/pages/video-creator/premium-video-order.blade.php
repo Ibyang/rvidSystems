@@ -163,6 +163,16 @@
                 <div class="d-flex justify-content-between mb-5">
                     <div><a href=" {{ route('account-terms-condition') }}" target="_blank">Terms and Conditions</a></div>
                     <div>
+<<<<<<< HEAD
+=======
+                        <div class="border-ccc p-3 mb-4 line-height20">Custom Video<br>
+                            Productions<br>
+                            are <b>NOT CHARGED</b><br>
+                            to your ACCOUNT<br>
+                            UNTIL COMPLETION<br>
+                        </div>
+                        <input type="hidden" name="videotype" value="Premium">
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                         <button type="submit" id="btnConfirm" class="btn btn-primary bg-009900 btn-no-border px-4 w-100"><b>CONFIRM</b></button>
                     </div>
                 </div>

@@ -95,7 +95,11 @@
                
                <link href="{{ asset('assets/vendors/dropzone/css/dropzone3.css') }}" rel="stylesheet" type="text/css" />
 
+<<<<<<< HEAD
                 <h5 class="color-414142 my-3 font-t-ms"><b>Upload Your Pictures</b></h5> 
+=======
+               <h5 class="color-414142 my-3"><b>Upload Your Pictures</b></h5>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                <div class="direct-upload-4">
                     <div class="d-flex align-items-start mx-3 my-2">
                         <div class="p-2 d-u-width"><button class="btn btn-primary b-radius-0 w-100 py-2"><i class="standard-video sv-browse"></i> Browse</button></div>
@@ -240,7 +244,11 @@
                             $.ajax({
                                 headers:{ 'X-CSRF-Token':$('input[name="_token"]').val()}, //passes the current token of the page to image url
                                 type: 'GET',
+<<<<<<< HEAD
                                 url: './rvidSystems/deleteDirectImage/' + name1 + '/1',
+=======
+                                url: '/deleteDirectImage/' + name1 + '/1',
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                                 dataType: 'json',
 
                                 success: function(result){

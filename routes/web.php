@@ -277,6 +277,7 @@ Route::group(['middleware' => 'guest'], function() {
 
     //for default login page
     Route::get('/login-page', function () {
+<<<<<<< HEAD
         $groups = Agent::distinct()->orderBy('group', 'ASC')->get(['group']);
         $agencies = Agent::distinct()->orderBy('name_agency', 'ASC')->get(['name_agency']);
         $states = State::get(['state_code', 'state_name']);
@@ -289,6 +290,17 @@ Route::group(['middleware' => 'guest'], function() {
     // Route::get('/login-page', function () {
     //     return view('auth.login');
     // })->name('login-page');
+=======
+        $social = SocialMedia::where('ID', 1)->first();
+        $content = Content::where('ID', 3)->get(['content_text'])->first();
+        return view('frontend.pages.privacy-terms', compact('content', 'social'));
+    })->name('login-page');
+
+
+    Route::get('/login-page', function () {
+        return view('auth.login');
+    })->name('login-page');
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
 
     //for direct upload

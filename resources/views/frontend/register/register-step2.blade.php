@@ -1,9 +1,12 @@
 @extends('frontend.layouts.main')
 
+<<<<<<< HEAD
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/css/bootstrap-colorpicker.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src=" {{ asset('assets/vendors/dropzone/js/dropzone.js') }}"></script>
 
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 <div id="css_container"></div>
 
 @section('content')
@@ -13,19 +16,32 @@
         @include('frontend.register.register-info')
         
         <div class="d-flex justify-content-between join-step-next p-1">
+<<<<<<< HEAD
                 <button class="btn btn-primary bg-333 btn-no-border px-3" onclick="goBack()"><i class="arrow-left"></i> BACK</button>
+=======
+                <button class="btn btn-primary bg-333 btn-no-border px-4" onclick="goBack()"><i class="arrow-left"></i> BACK</button>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
         </div>
     </div>
     <div class="bg-eae step-two-register">
          <div class="container color-000" id="content">
+<<<<<<< HEAD
                
+=======
+                <form class="register-form" action="{{ route('processStep2') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}    
+
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                     @include('frontend.register.steps.pictures')
 
                     @include('frontend.register.steps.logo')
 
+<<<<<<< HEAD
             <form class="register-form" action="{{ route('processStep2') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}        
 
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                     @include('frontend.register.steps.video-frame')
 
                     @include('frontend.register.steps.content-video-frame')
@@ -43,6 +59,7 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
 
+<<<<<<< HEAD
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.3.3/js/bootstrap-colorpicker.min.js"></script>
     
     <script>
@@ -213,6 +230,9 @@
 
     </script>
 
+=======
+    
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
     <script type="text/javascript">
 
         function goBack(){

@@ -139,9 +139,13 @@ class RegisterController extends Controller
 
         $temp = AgencyTemplate::where('agency_name', $agency)->first();
 
+<<<<<<< HEAD
         $agencylist = topAgencies::where('agency_name', $agencyname)->get();
 
         return view('frontend.register.register-step2', compact('agent', 'agent_website', 'template', 'mainframe_list', 'middleframe_list', 'endframe_list', 'voice_list', 'music_list', 'temp', 'path', 'agencylist'));
+=======
+        return view('frontend.register.register-step2', compact('agent', 'template', 'mainframe_list', 'middleframe_list', 'endframe_list', 'voice_list', 'music_list', 'temp', 'path'));
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
     }
 
@@ -425,6 +429,7 @@ class RegisterController extends Controller
         $temp = $request->session()->get('template');
 
        //for creating subfolder for a particular client
+<<<<<<< HEAD
        // $path = public_path('storage\app\public\client_images\\' . $username . '\\general_images\\');
        // $path = 'storage/app/public/client_images/' . $username . '/general_images/'; 
        // if (!File::exists($path)) {
@@ -441,6 +446,23 @@ class RegisterController extends Controller
        // else{
        //     $fnameMainImage = $temp['main_image'];
        // }
+=======
+       $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
+       if (!File::exists($path)) {
+           File::makeDirectory($path, 0775, true);
+       }
+       //move to folder if there is file uploaded for Main Image
+       if ($file = $request->hasFile('mainImage')) {
+           //for Main Image
+           $mainImage = $request->file('mainImage');
+           $fnameMainImage = time() . '_' . $mainImage->getClientOriginalName();
+
+           $mainImage->move($path, $fnameMainImage);
+       }
+       else{
+           $fnameMainImage = $temp['main_image'];
+       }
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
         //move to folder if there is file uploaded for Main Image 2 (Optional)
 //        if ($file = $request->hasFile('mainImage2')) {
@@ -467,6 +489,7 @@ class RegisterController extends Controller
 //        }
 
        // for uploading of logo
+<<<<<<< HEAD
        // if ($file = $request->hasFile('logoImage')) {
        //     //for Main Image 3 (Optional)
        //     $logoImage = $request->file('logoImage');
@@ -477,6 +500,18 @@ class RegisterController extends Controller
        // else{
        //     $fnamelogoImage = $temp['logo'];
        // }
+=======
+       if ($file = $request->hasFile('logoImage')) {
+           //for Main Image 3 (Optional)
+           $logoImage = $request->file('logoImage');
+           $fnamelogoImage = 'logo_' . $logoImage->getClientOriginalName();
+
+           $logoImage->move($path, $fnamelogoImage);
+       }
+       else{
+           $fnamelogoImage = $temp['logo'];
+       }
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
         //for main frame template selection
         $MainFboxes = Input::get('main_frame');
@@ -536,6 +571,7 @@ class RegisterController extends Controller
             //for picking a random voice over to be used on the video
             $musicboxes = 'OPUZZ_CP_08_Road_Trip.mp3';
 
+<<<<<<< HEAD
         }
         else{
             //for voice format selection
@@ -549,6 +585,11 @@ class RegisterController extends Controller
         $path2 = '/storage/app/public/client_images/' . $username . '/general_images/';
         $fnameMainImage = Session::get('mainImageFile');
         $fnamelogoImage = Session::get('logoImageFile');
+=======
+        $path2 = '/storage/client_images/' . $username . '/general_images/';
+        // $fnameMainImage = Session::get('mainImageFile');
+        // $fnamelogoImage = Session::get('logoImageFile');
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
         $template = array(
             //'agent_ID' => $userId,

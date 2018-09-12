@@ -16,26 +16,46 @@
             </div>
             <div class="border-ccc pt-2">
                 <div class="row">
+<<<<<<< HEAD
                     <a href="{{ route('use-revid-easy') }}"><div class="col-4 pr-0"><i class="link-icon2 easy2"></i></div>
                     <div class="col-auto p-0 align-self-center line-height20"><b>Easy to Use</b></div></a>
+=======
+                    <div class="col-4 pr-0"><i class="link-icon2 easy2"></i></div>
+                    <div class="col-auto p-0 align-self-center line-height20"><a href="{{ route('use-revid-easy') }}"><b>Easy to Use</b></a></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                 </div>
             </div>
             <div class="border-ccc pt-2 my-2">
                 <div class="row">
+<<<<<<< HEAD
                     <a href="{{ route('use-revid-buyers') }}"><div class="col-4 m-0-23"><i class="link-icon2 buyers2"></i></div>
                     <div class="col-auto p-0 align-self-center line-height20 pl-2"><b>Engages Buyers</b></div></a>
+=======
+                    <div class="col-4 m-0-23"><i class="link-icon2 buyers2"></i></div>
+                    <div class="col-auto p-0 align-self-center line-height20 pl-2"><a href="{{ route('use-revid-buyers') }}"><b>Engages Buyers</b></a></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                 </div>
             </div>
             <div class="border-ccc pt-2">
                 <div class="row">
+<<<<<<< HEAD
                     <a href="{{ route('use-revid-helps-sell') }}"><div class="col-4 m-0-23"><i class="link-icon2 sell2"></i></div>
                     <div class="col-auto p-0 align-self-center line-height20 pl-2"><b>Helps List Sell</b></div></a>
+=======
+                    <div class="col-4 m-0-23"><i class="link-icon2 sell2"></i></div>
+                    <div class="col-auto p-0 align-self-center line-height20 pl-2"><a href="{{ route('use-revid-helps-sell') }}"><b>Helps List Sell</b></a></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                 </div>
             </div>
             <div class="border-ccc pt-2 my-2">
                 <div class="row">
+<<<<<<< HEAD
                     <a href="{{ route('use-revid-marketing') }}"><div class="col-4 m-0-23"><i class="link-icon2 brand2"></i></div>
                     <div class="col-auto p-0 align-self-center line-height20 pl-2"><b>Promotes Your Brand</b></div></a>
+=======
+                    <div class="col-4 m-0-23"><i class="link-icon2 brand2"></i></div>
+                    <div class="col-auto p-0 align-self-center line-height20 pl-2"><a href="/"><b>Promotes Your Brand</b></a></div>
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
                 </div>
             </div>
             <div class="my-3">

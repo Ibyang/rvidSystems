@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+@extends('frontend.layouts.main')
+
+    <!-- <link href="{{ asset('assets/vendors/selectize/css/selectize.css') }}" rel="stylesheet" type="text/css" /> -->
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
 
 @extends('frontend.layouts.main')
 
@@ -64,35 +70,35 @@
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
-    <script src="{{ asset('assets/vendors/selectize/js/standalone/selectize.js') }}" type="text/javascript"></script>
+    <!-- <script src="{{ asset('assets/vendors/selectize/js/standalone/selectize.js') }}" type="text/javascript"></script> -->
 
     <script type="text/javascript">
 
         $(document).ready(function() {
 
-            $('#grouplist').selectize({
-                create: true,
-                sortField: {
-                    field: 'text',
-                    direction: 'asc'
-                }
-            });
+            // $('#grouplist').selectize({
+            //     create: true,
+            //     sortField: {
+            //         field: 'text',
+            //         direction: 'asc'
+            //     }
+            // });
 
-            $('#agencylist').selectize({
-                create: true,
-                sortField: {
-                    field: 'text',
-                    direction: 'asc'
-                }
-            });
+            // $('#agencylist').selectize({
+            //     create: true,
+            //     sortField: {
+            //         field: 'text',
+            //         direction: 'asc'
+            //     }
+            // });
 
-            function combo(grouplist, group)
-            {
-                group = document.getElementById(group);
-                var idx = grouplist.selectedIndex;
-                var content = grouplist.options[idx].innerHTML;
-                group.value = content;
-            }
+            // function combo(grouplist, group)
+            // {
+            //     group = document.getElementById(group);
+            //     var idx = grouplist.selectedIndex;
+            //     var content = grouplist.options[idx].innerHTML;
+            //     group.value = content;
+            // }
 
 
             //for clicking Submit button and validation that they should be able to select one plan to proceed
@@ -146,6 +152,61 @@
             });
 
 
+<<<<<<< HEAD
+
+            //for clicking Submit button and validation that they should be able to select one plan to proceed
+             $('#btnSubmit').click(function() {
+                var subscriptiontype = $('#plantype').val();
+                
+                if(subscriptiontype == '') {
+                    alert("Please select a plan.")
+                }
+                else{
+                    $('#frmProcess1').submit();
+                }
+                
+            });
+
+
+            //script to select only one checkbox at a time
+            $('input[type="checkbox"]').on('change', function() {
+                $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+            });
+
+
+            //script to pass value of selected subscription to the next page
+            $('#chkCasual').click(function() {
+                if ($(this).is(":checked"))
+
+                    $('#plantype').val("Casual");
+                    $('#free_offer').hide();
+
+            });
+
+            $('#chkStandard').click(function() {
+                if ($(this).is(":checked"))
+
+                    $('#plantype').val("Standard");
+
+            });
+
+            $('#chkBasic').click(function() {
+                if ($(this).is(":checked"))
+
+                    $('#plantype').val("Basic");
+
+            });
+
+            $('#chkPremium').click(function() {
+                if ($(this).is(":checked"))
+
+                    $('#plantype').val("Premium");
+
+            });
+
+
+=======
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
             //scripts used by the registration form
             var suburbValue = $('#suburbValue').val();
             if(suburbValue != '' && suburbValue != undefined){

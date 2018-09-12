@@ -42,7 +42,11 @@
             window.history.back();
         }
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> ffde0e72edfff07fd2a730d34e80d0599d0c4754
         $(document).ready(function() {
 
             //fix to scroll the page to top
