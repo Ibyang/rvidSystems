@@ -39,7 +39,7 @@ class MyAccountController extends Controller
 
         //path for logo pic
         $username = Auth::user()->name;
-        $path = '/storage/client_images/' . $username . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
         //clear all session data
@@ -148,7 +148,7 @@ class MyAccountController extends Controller
         //path for logo pic
         $uname = Auth::user()->name;
         $username = preg_replace('/\s/', '', $uname);
-        $path = '/storage/client_images/' . $username . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
         //for generic billing
@@ -173,7 +173,7 @@ class MyAccountController extends Controller
         //path for logo pic
         $uname = Auth::user()->name;
         $username = preg_replace('/\s/', '', $uname);
-        $path = '/storage/client_images/' . $username . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -192,7 +192,7 @@ class MyAccountController extends Controller
         //path for logo pic
         $uname = Auth::user()->name;
         $username = preg_replace('/\s/', '', $uname);
-        $path = '/storage/client_images/' . $username . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -212,7 +212,7 @@ class MyAccountController extends Controller
         //path for logo pic
         $uname = Auth::user()->name;
         $username = preg_replace('/\s/', '', $uname);
-        $path = '/storage/client_images/' . $username . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -232,7 +232,7 @@ class MyAccountController extends Controller
         //path for logo pic
         $uname = Auth::user()->name;
         $username = preg_replace('/\s/', '', $uname);
-        $path = '/storage/client_images/' . $username . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -319,7 +319,7 @@ class MyAccountController extends Controller
         //path for logo pic
 //        $username = Auth::user()->name;
         $username = preg_replace('/\s/', '', Session::get('fullname'));
-        $path = '/storage/client_images/' . $username . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $username . '/general_images/';
         $logo_pic = $path . $logo;
 
         $invoice = AgentInvoiceList::where('agent_ID', $userid)->where('video_ID', $video_id)->get()->first();

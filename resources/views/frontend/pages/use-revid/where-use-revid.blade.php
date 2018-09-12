@@ -5,7 +5,7 @@
     <div class="container" id="content">
         <h1 class="c-6600cc">Where do I use REVid?</h1>
         <div class="row">
-           <div class="col-12 col-md-auto"><a href=""><img src={{ asset('storage/where-use-revid-media.jpg') }} /></a></div>
+           <div class="col-12 col-md-auto"><a href=""><img src={{ asset('storage/app/public/where-use-revid-media.jpg') }} /></a></div>
            <div class="col col-lg-2">
             <ul class="list">
                 <li>Social Media</li>   

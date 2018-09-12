@@ -10,72 +10,80 @@
         <title>REVid Systems</title>
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/twb337.css') }}" rel="stylesheet">
 
         <link href="{{ asset('assets/tooltipster/dist/css/tooltipster.bundle.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/vendors/selectize/css/selectize.css') }}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-        {{--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>--}}
-        {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>--}}
-        {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>--}}
-        {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>--}}
-
-
         <!-- embed ZOHO SalesIQ Code -->
         <script type="text/javascript"> var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"6f90467a55e8bcc608507f98c193aa302ea2173b1f0a472164107003e49e3fb7", values:{},ready:function(){}}; var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true; s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);d.write("<div id='zsiqwidget'></div>"); </script>
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-W85D2QD');</script>
+        <!-- End Google Tag Manager -->
 
     </head>
     <body>
 
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W85D2QD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <header class="@guest {{'bg-primary'}}  @else {{'bg-primary-account'}} @endif">
 
         <div class="container">
             <div class="float-l">
                 @guest
-                    <a href="/"><img class="img-fluid" src={{ asset('storage/revid-icon.png') }} /></a>
+                    <a href="{{ route('home') }}"><img class="img-fluid" src={{ asset('storage/app/public/revid-icon.png') }} /></a>
                 @else
-                    <img class="img-fluid" src={{ asset('storage/revid-icon-v4.png') }} />
+                    <img class="img-fluid" src={{ asset('storage/app/public/revid-icon-v4.png') }} />
                 @endguest
             </div>
             <div class="float-l">
                 @guest
                     <div class="guest-menu text-center d-flex flex-row">
                         <div>
-                            <i class="menu-icon about"></i><br>
-                            <a href="{{ route('about') }}">About</a>
-                        </div>
-                        <div class="px-3">
-                            <i class="menu-icon join"></i><br>
+                            <a href="{{ route('about') }}"><i class="menu-icon about"></i><br>
+                            About
+                        </div></a>
+                        <div>
+                            <a href="{{ route('get-started') }}"><i class="menu-icon join"></i><br>
                             {{--<a href="/how-to-join">Join Today</a>--}}
-                            <a href="{{ route('get-started') }}">Join Today</a>
+                            Join Today</a>
                         </div>
                         <div>
-                            <i class="menu-icon pricing"></i><br>
-                            <a href="{{ route('pricing') }}">Pricing</a>
+                            <a href="{{ route('pricing') }}"><i class="menu-icon pricing"></i><br>
+                            Pricing</a>
                         </div>
-                        <div class="px-3">
-                            <i class="menu-icon make-videos"></i><br>
-                            <a href="{{ route('get-started') }}">Make Video</a>
+                        <div>
+                            <a href="{{ route('get-started') }}"><i class="menu-icon make-videos"></i><br>
+                            Make Video</a>
                         </div>
                     </div>
                 @else
                     <div class="hdr-i-col @if(Auth::check()) account-menu @endif d-flex flex-row">
-                        <div>
+                        <a href="{{ route('account-help') }}"><div>
                             <i class="menu-icon help"></i><br>
-                            <p><a href="{{ route('account-help') }}">Need Help?</a></p>
-                        </div>
-                        <div>
+                            <p>Need Help?</p>
+                        </div></a>
+                        <a href="{{ route('account-billing-history') }}"><div>
                             <i class="menu-icon billing"></i>
-                            <p><a href="{{ route('account-billing-history') }}">My Billing</a></p>
-                        </div>
-                        <div>
+                            <p>My Billing</p>
+                        </div></a>
+                        <a href="{{ route('userLogout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><div>
                             <i class="menu-icon logout"></i>
-                            <p><a href="{{ route('userLogout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
+                            <p>Log Out
                             <form id="logout-form" action="{{ route('userLogout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form></p>
-                        </div>
+                        </div></a>
                         <div class="text-left">
                             <b>All your videos<br> are uploaded<br> to DriveBy</b>
                         </div>
@@ -88,8 +96,8 @@
                     <div class="col">
                         <form class="form-header" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
-                            <div class="row col p-0">
-                                <div class="col-sm">
+                            <div class="row p-0">
+                                <div class="col-md">
                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" Placeholder="Login" required autofocus>
 
@@ -100,7 +108,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-sm">
+                                <div class="col-md">
                                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
                                         <input id="password" type="password" class="form-control" name="password" Placeholder="Password"  required>
@@ -141,9 +149,10 @@
     <!-- global js -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-        <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script>
+        <!-- <script src="{{ asset('assets/js/app.js') }}" type="text/javascript"></script> -->
     <!-- end of global js -->
 
     <!-- begin page level js -->

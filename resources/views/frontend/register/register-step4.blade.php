@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="container p-0" id="content">
-        <h1 class="c-6600cc">Let’s Get Started! Step 4</h1>
+        <h1 class="c-6600cc border-bot4">Let’s Get Started! Step 4</h1>
         
         @include('frontend.register.register-info')
         
         <div class="d-flex justify-content-between join-step-next p-1">
-                <button class="btn btn-primary bg-333 btn-no-border px-4"><i class="arrow-left"></i> BACK</button>
+                <button class="btn btn-primary bg-333 btn-no-border px-4" onclick="goBack()"><i class="arrow-left"></i> BACK</button>
         </div>
     </div>
     <div class="bg-eae step-two-register">
@@ -39,12 +39,21 @@
 @section('footer_scripts')
 
     <script type="text/javascript">
+
+        function goBack(){
+            window.history.back();
+        }
+
         $(document).ready(function() {
 
             //validation to check that at least one of the checkbox is checked
             //$("input[type='checkbox'][name='subscription1']").change(function() {
 
             //})
+
+            //fix to scroll the page to top
+            $(this).scrollTop(0);
+            
 
             if($("#accept_terms").is(':checked')){
                 $("#btnAccept").attr("disabled", !this.checked);
@@ -63,6 +72,49 @@
                     $("#invoice_apply").attr("checked", false);
                 }
             });
+
+
+            //script for the I Accept for the Terms and Conditions Page PopUp
+            $("#chkTermsConditions").click(function() {
+                if($("#chkTermsConditions").is(':checked')){
+                    $('#finishTerms').hide();
+                    $('#finishSubmit').show();
+                    // $('#btnIAccept').prop('disabled', false);
+                    $('#btnIAccept').show();
+                }
+                else{
+                    $('#finishTerms').show();
+                    $('#finishSubmit').hide();
+                    $('#btnIAccept').hide();
+                    // $('#btnIAccept').prop('disabled', true);
+                }
+            });
+
+
+            //script if I Accept button is clicked from the Terms and Conditions Page
+            $("#btnIAccept").click(function() {
+                $('#TermsConditionsModal').modal('hide');
+            });
+
+
+            // $('#TermsConditionsModal').modal({
+            //     backdrop: 'static',
+            //     keyboard: false
+            // });
+
+
+            $('#TermsConditionsModal').on('shown.bs.modal', function () {
+                $('body').addClass('test');
+            });
+
+
+            // $('#TermsConditionsModal').on('hide.bs.modal', function (e) {
+            //     e.preventDefault();
+            //     e.stopPropagation();
+            //     return false;
+            // });
+
+
 
 
             //for selecting only one checkbox at a time

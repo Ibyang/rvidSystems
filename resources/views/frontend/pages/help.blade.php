@@ -19,7 +19,7 @@
                         <div class="col-sm">
                             <div class="text-right">
                                 <!-- <button type="submit" class="btn btn-primary btn-ff0033" > -->
-                                <button type="button" id="btnFAQ" class="btn btn-primary btn-ff0033" data-toggle="modal" data-target="#FAQModal">    
+                                <button type="button" id="btnFAQ" class="btn btn-primary bg-009900 p-0-28 btn-no-border b-radius-7" data-toggle="modal" data-target="#FAQModal">    
                                     GO
                                 </button>
                             </div>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="color-6600cc">Online Live Chat</h3>
+                <!-- <h3 class="color-6600cc">Online Live Chat</h3>
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} m-0">
                     <textarea id="name" type="text" row="15" class="form-control" name="" placeholder="" required autofocus></textarea>
                 </div>
@@ -63,7 +63,7 @@
                             <button type="submit" class="btn btn-primary btn-ff0033">SEND</button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <h3 class="color-6600cc mt-4">Please telephone call me!</h3>
                 <form id="callmeEmail" class="form-horizontal" method="post" action=" {{ route('callmeEmail') }}">
                     <div class="d-flex flex-column">
@@ -212,7 +212,7 @@
                     console.log("the value of question is ", question);
                     if(question) {
                         $.ajax({
-                            url: '/getFAQAjax/' + question,
+                            url: './getFAQAjax/' + question,
                             type: "GET",
                             dataType: "json",
                             success:function(data) {

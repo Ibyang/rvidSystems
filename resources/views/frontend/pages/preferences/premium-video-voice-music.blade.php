@@ -9,9 +9,9 @@
         @endauth
         </div>
         <div class="col-lg-8 my-account-form pb-5">
-            <h3 class="my-account-title">Premium Video Update Voice + Music</h3>
+            <h3 class="my-account-title">Custom Video Update Voice + Music</h3>
             <table class="table-action mb-4" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
+                <tr class="bg-ccc font-weight-bold"> 
                     <td>Video #</td>
                     <td>Address</td>
                 </tr>
@@ -30,7 +30,7 @@
             {{ csrf_field() }}
 
                 <h3 class="mt-5 mb-3">Voice Preference</h3>
-                <b>You can select from 3 options</b>
+                <span class="font-t-ms color-404"><b>You can select from 3 options</b></span> 
                 <div class="row m-r-l">
                     <div class="col-md-auto text-center">
                         <div class="c0066ff font-weight-bold">1. RANDOM VOICE</div>
@@ -41,7 +41,7 @@
                         <div>You use the same Voice <br>for all Your Videos</div>
                     </div>
                     <div class="col-md-auto text-center p-0">
-                        <div class="c0066ff font-weight-bold">3. ROTATION VOICE</div>
+                        <div class="c0066ff font-weight-bold">3. ROTATED VOICE</div>
                         <div>You pick many voices and they are <br>rotated for each new individual video</div>
                     </div>
                 </div>

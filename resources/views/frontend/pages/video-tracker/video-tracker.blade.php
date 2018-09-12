@@ -152,13 +152,21 @@
                     </div>
             </form>
 
-            <div class="modal surge-popup" id="surgeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
+            <div class="modal fade surge-popup" id="surgeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
+                   <div class="d-flex flex-row-reverse"> 
+                    <div class="p-3"> 
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span> 
+                        </button> 
+                    </div> 
+                   </div>  
+
                     <form method="POST" action=" {{ route('account-update-surge-video') }}">
                             {{ csrf_field() }}
                           <div class="modal-body">
-                            <div class="btn btn-primary surge-button">SURGE ALWAYS</div>
+                            <div class="btn btn-primary bg-ff0000 btn-no-border">SURGE ALWAYS</div>
                             <div class="row">
                                 <div class="col-sm-3 pl-0">
                                     <b>#<span id="videoid"></span></b><br>
@@ -167,9 +175,9 @@
                                     Bassendean
                                     WA 6054 -->
                                 </div>
-                                <div class="col-sm step-three-register pr-0">
+                                <div class="col-sm pr-0">
                                     <div class="row">
-                                        <div class="col-md-auto">
+                                        <div class="col p-surge-btn">
                                             <div class="custom-control custom-checkbox basic">
                                               <input type="checkbox" class="custom-control-input" name="surgeoption[]" id="customCheck3" value="Less than 24 hours">
                                               <label class="custom-control-label" for="customCheck3"></label>
@@ -179,7 +187,7 @@
                                         <div class="col c-6600cc"><b>$xxx</b></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-auto">
+                                        <div class="col p-surge-btn">
                                             <div class="custom-control custom-checkbox basic">
                                               <input type="checkbox" class="custom-control-input" name="surgeoption[]" id="customCheck4" value="Less than 12 hours">
                                               <label class="custom-control-label" for="customCheck4"></label>
@@ -189,7 +197,7 @@
                                         <div class="col-md-auto c-6600cc"><b>$xxx</b></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-auto">
+                                        <div class="col p-surge-btn">
                                             <div class="custom-control custom-checkbox basic">
                                               <input type="checkbox" class="custom-control-input" name="surgeoption[]" id="customCheck5" value="Rush 2 hours">
                                               <label class="custom-control-label" for="customCheck5"></label>
@@ -202,7 +210,8 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-end">
                                 <div class="align-items-end"><a href=" {{ route('account-terms-condition') }}" target="_blank">Terms and Conditions</a></div>
-                                <div><button class="btn btn-primary bg-660">ACCEPT</button></div>
+                                <!-- <div><button class="btn btn-primary bg-660">ACCEPT</button></div> -->
+                                <div class="mx-3"><button class="btn btn-primary bg-660 btn-no-border bg-009900 b-radius-7 px-3"><b>ACCEPT</b></button></div>
                             </div>
                           </div>
                      </form>     
@@ -220,6 +229,9 @@
 @section('footer_scripts')
 
     <script type="text/javascript">
+
+        var APP_URL = {!! json_encode(url('/')) !!}
+        
         $(document).ready(function() {
 
             //for selecting only one checkbox at a time
@@ -239,7 +251,7 @@
                 if(vidid) {
                     var stateSurge = '';
                     $.ajax({
-                        url: '/getSurgeDetails/' + vidid,
+                        url: APP_URL + 'rvidSystems/getSurgeDetails/' + vidid,
                         type: "GET",
                         dataType: "JSON",
                         success:function(data) {

@@ -8,7 +8,7 @@
     <div>
 
         <div>
-            <img src='storage/account/revid-billing-icon.png'/>
+            <img src='storage/app/public/account/revid-billing-icon.png'/>
         </div>
         <br>
         @if($content['ID'] == 1)

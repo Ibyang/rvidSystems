@@ -17,7 +17,7 @@
                         <span class="tooltip" title="Casual Subscription at $11/month">Some Text</span>
                         <div class="row">
                             <div class="col pl-2">Casual</div>
-                            <div class="col">$11/month</div>
+                            <div class="col font-t-ms">$11/month</div>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         <span class="tooltip" title="Basic Subscription at $33/month">Some Text</span>
                         <div class="row">
                             <div class="col pl-2">Basic</div>
-                            <div class="col">$33/month</div>
+                            <div class="col font-t-ms">$33/month</div>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                         <span class="tooltip" title="Standard Subscription at $66/month">Some Text</span>
                         <div class="row">
                             <div class="col pl-2">Standard</div>
-                            <div class="col">$66/month</div>
+                            <div class="col font-t-ms">$66/month</div>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                         <span class="tooltip" title="Premium Subscription at $99/month">Some Text</span>
                         <div class="row">
                             <div class="col pl-2">Premium</div>
-                            <div class="col">$99/month</div>
+                            <div class="col font-t-ms">$99/month</div>
                         </div>
                     </div>
                 </div>

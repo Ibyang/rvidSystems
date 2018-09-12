@@ -10,14 +10,15 @@
                         <div class="d-inline-block"><i class="first-video-icon f-v-low"></i></div>
                         <div class="d-inline-block">
                             <h4 class="m-0">Low Cost</h4>
-                            <span>$99<sup>(1)</sup></span>
+                            <span>$99<sup class="font12">(1)</sup></span>
                         </div>
                   </div>
+
                   <div class="p-2">
                         <div class="d-inline-block"><i class="first-video-icon f-v-easy"></i></div>
                         <div class="d-inline-block">
                             <h4 class="m-0">Easy</h4>
-                            <span>One-click Ordering</span>
+                            <span>One-Click Ordering</span>
                         </div>
                   </div>
 </div>

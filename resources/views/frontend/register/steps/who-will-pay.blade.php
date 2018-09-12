@@ -75,7 +75,7 @@
     </div>
     <div class="row">
         <div class="col-sm">
-            <textarea class="textarea-txt h-t-70" name="address" id="address" placeholder="Address">{{$agent['address']}}</textarea>
+            <textarea class="form-control" name="address" id="address" placeholder="Address">{{$agent['address']}}</textarea>
         </div>
         <div class="col-sm">
             <input id="name" type="email" class="form-control" name="email" id="email" placeholder="Email for Invoice" value="{{$agent['email']}}">
@@ -99,11 +99,54 @@
     </div>
 
     <div class="d-flex flex-row-reverse">
-        <div>
-            <button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="submit" id="btnAccept" name="action" value="accept">Finish</button>
+        <div id="finishTerms">
+            <!-- <button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="submit" id="btnAccept" name="action" value="accept">Finish</button> -->
+            <a href="" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#TermsConditionsModal"><button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="button" id="btnAccept">Finish</button></a>
+        </div>
+        <div id="finishSubmit" style="display: none">
+            <!-- <button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="submit" id="btnAccept" name="action" value="accept">Finish</button> -->
+            <button class="btn btn-primary bg-009900 btn-no-border px-5 py-2 b-radius-7" type="submit" id="btnSubmit" name="action" value="accept">Finish</button>
         </div>
     </div>
 </div>
 <div class="d-flex justify-content-between join-step-next p-1">
-            <button class="btn btn-primary bg-333 btn-no-border px-4" type="submit" name="action" value="previousStep"><i class="arrow-left"></i> BACK</button>
+            <button class="btn btn-primary bg-333 btn-no-border px-4" type="button" name="action" value="previousStep"><i class="arrow-left"></i> BACK</button>
 </div>
+
+
+<!-- Video Modal for What is Revid -->
+<div class="modal fade" id="TermsConditionsModal"
+         tabindex="-1" role="dialog"
+         aria-labelledby="VideoModalLabel">
+        <div class="modal-dialog" role="document" style="max-width: 900px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Terms and Conditions</h4>
+                    <button type="button" class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body" style="height:500px; overflow:auto;">
+                    @if($content['content_text'] != null)
+                            {!! $content['content_text'] !!}
+                    @endif
+                    <div class="col-sm step-three-register">
+                        <div class="custom-control custom-checkbox termscondition">
+                            <input type="checkbox" class="custom-control-input" id="chkTermsConditions" name="chkTermsConditions">
+                            <label class="custom-control-label text-justify" for="chkTermsConditions" style="padding-right: 200px">I have read and understand the REVid systems terms and conditions above</label>
+                            <button class="btn btn-primary bg-009900 btn-no-border py-2 b-radius-7" type="button" id="btnIAccept" data-dismiss="modal" style="display: none">I Accept</button>
+                        </div>
+                        <!-- <input type="checkbox" name="chkTermsConditions" id="chkTermsConditions" style=""> I have read and understand the REVid systems terms and conditions above -->
+                    </div>    
+                </div>
+                <div class="modal-footer" id="modal-close" style="display: none;">
+                    <button type="button"
+                            class="btn btn-default"
+                            data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+

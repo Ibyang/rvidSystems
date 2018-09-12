@@ -8,10 +8,10 @@
             @include('frontend.layouts.parts.sidebar')
         @endauth
         </div>
-        <div class="col-lg-8 my-account-form">
-            <h3 class="my-account-title">Premium Video System</h3>
+        <div class="col-lg-8 my-account-form pb-5"> 
+            <h3 class="my-account-title">Custom Video System</h3> 
             <table class="table-action" cellpadding="0" cellspacing="0" width="100%">
-                <tr class="font-weight-bold">
+                <tr class="font-weight-bold bg-ccc"> 
                     <td width="170">Video #</td>
                     <td width="200">Address</td>
                     <td>Progress</td>
@@ -55,7 +55,7 @@
             <div class="bg-ccc py-2 px-3"><b>Action Station</b></div>
             <table class="table-action" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                    <td width="170"><i class="make-video-step v-pictures"></i><div class="d-inline-block align-top pl-2">Pictures</div></td>
+                    <td width="170"><i class="make-video-step v-pictures"></i><div class="d-inline-block align-top p-2">Pictures</div></td>
                     <td width="170">
                         <div class="d-flex justify-content-between">
                             <div>
@@ -71,7 +71,7 @@
                     <td>We will obtain your pictures either directly or through <a href=" {{ route('account-premium-video-system-pictures') }} ">Picture Tool</a>.</td>
                 </tr>
                 <tr>
-                    <td><i class="make-video-step v-script"></i><div class="d-inline-block align-top pl-2">Script</div></td>
+                    <td><i class="make-video-step v-script"></i><div class="d-inline-block align-top p-2">Script</div></td> 
                     <td>
                         <div class="d-flex justify-content-between">
                             <div>
@@ -87,7 +87,7 @@
                     <td>We will work with you to write your script <a href=" {{ route('account-premium-video-system-script') }} ">Script Tool</a>.</td>
                 </tr>
                 <tr>
-                    <td><i class="make-video-step v-template"></i><div class="d-inline-block align-top pl-2">Template</div></td>
+                    <td><i class="make-video-step v-template"></i><div class="d-inline-block align-top p-2">Template</div></td> 
                     <td>
                         <div class="d-flex justify-content-between">
                             <div>
@@ -103,7 +103,7 @@
                     <td>We will apply your preferences or <a href=" {{ route('account-premium-video-system-template') }} ">Update Template</a>.</td>
                 </tr>
                 <tr>
-                    <td><i class="make-video-step v-voice"></i><div class="d-inline-block align-top pl-2">Voice + Music</div></td>
+                    <td><i class="make-video-step v-voice"></i><div class="d-inline-block align-top pl-2 py-2">Voice + Music</div></td>
                     <td>
                         <div class="d-flex justify-content-between">
                             <div>
@@ -119,7 +119,7 @@
                     <td>We will apply your preferences or <a href="">Update Voice + Music</a></td>
                 </tr>
                 <tr>
-                    <td><i class="make-video-step v-finish"></i><div class="d-inline-block align-middle pl-2">Finish</div></td>
+                    <td><i class="make-video-step v-finish"></i><div class="d-inline-block align-top p-2">Finish</div></td>
                     <td><div class="d-flex justify-content-between">
                             <div>
                                 @if($premium_progress['edits'] < 40)
@@ -145,7 +145,7 @@
                                 </div>
                             </div>
                             <div class="col-md-auto">
-                                <button type="submit" class="btn btn-primary bg-ff0033 btn-no-border p-2"><b>APPROVED</b></button>
+                                <button type="submit" class="btn btn-primary btn-no-border px-3  b-radius-7 bg-009900 mt-1"><b>APPROVED</b></button>
                             </div>
                         </div>
                     </td>

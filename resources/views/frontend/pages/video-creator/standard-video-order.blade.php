@@ -10,46 +10,52 @@
         </div>
         <div class="col-lg-8 my-account-form">
             <h3 class="my-account-title">Manual Video Order</h3>
-            <form method="POST" action="{{ route('postVideoOrder') }}">
+            <form method="POST" action="{{ route('postVideoOrder') }}" class="a-v-order">
                 {{ csrf_field() }}
-                <div class="row">
-                    <div class="col-sm-3 pl-0 pt-2">Property Address #</div>
-                    <div class="col-sm-9 pl-0">
-                         <input type="text" class="form-control" name="address" required autofocus value=" {{ $agent->address }} ">
-                         <div class="row mt-3">
-                                <div class="col-sm p-0"><input  type="text" class="form-control" name="suburb" required autofocus value=" {{ $agent->suburb }} "></div>
-                                <div class="col-sm p-0"><input  type="text" class="form-control" name="state" required autofocus value=" {{ $agent->state }} "></div>
-                                <div class="col-sm p-0"><input  type="text" class="form-control" name="postcode" required autofocus value=" {{ $agent->postcode }} "></div>
-                         </div>
+                
+                <div class="row m-r-l">
+                    <div class="col-sm-3">Property Address #</div>
+                    <div class="col-sm-9">
+                        <div class="d-flex flex-column mb-3 p-0">
+                            <div><input type="text" class="form-control" placeholder="Address 1" name="address" required autofocus value=" {{ $agent->address }} "></div>
+                            <div class="my-3"><input type="text" class="form-control" placeholder="Address 2" name="address2" value=" {{ $agent->address }} "></div>
+                            <div class="row m-0">
+                                    <div class="col-sm p-0"><input type="text" placeholder="Suburb" class="form-control" name="suburb" required autofocus value=" {{ $agent->suburb }} "></div>
+                                    <div class="col-sm p-0"><input type="text" placeholder="State" class="form-control" name="state" required autofocus value=" {{ $agent->state }} "></div>
+                                    <div class="col-sm p-0"><input type="text" placeholder="Post Code" class="form-control" name="postcode" required autofocus value=" {{ $agent->postcode }} "></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <!-- <div class="row">
                     <div class="col-sm-3 pl-0 align-self-center">URL Reference</div>
                     <div class="col-sm-9 pl-0">
                          <input type="text" class="form-control" name="url" required autofocus placeholder="www...">
                     </div>
                 </div> -->
-                <div class="row my-3">
-                    <div class="col-sm-3 pl-0">Action Receipt #</div>
-                    <div class="col-sm-9 pl-0">
+                <div class="row m-r-l my-3">
+                    <div class="col-sm-3">Action Receipt #</div>
+                    <div class="col-sm-9">
                          Your Video Number is<br>
-                         <!-- <div class="form-control b-radius-0">XXXX</div> -->
-                         <input  type="text" class="form-control b-radius-0" name="videonumber" required autofocus value="{{ $vidid }}" style="text-align: right" readonly>
+                         <input  type="text" class="form-control b-radius-0 text-right mt-3" name="videonumber" required autofocus value="{{ $vidid }}" style="text-align: right" readonly>
+                         <!-- <div class="form-control b-radius-0 text-right mt-3">XXXX</div> -->
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3 pl-0">Video Production</div>
-                    <div class="col-sm-9 pl-0">
+
+                <div class="row m-r-l">
+                    <div class="col-sm-3">Video Production</div>
+                    <div class="col-sm-9">
                         <div class="row m-0">
-                            <div class="col-sm-9 pl-0">
+                            <div class="col-sm-8 pl-0">
                                  <b>Manual Video</b>
                                  <div class="my-2">Estimated completion time is</div>
                             </div>
-                            <div class="col-sm-3 align-self-center">
+                            <div class="col-sm-4 align-self-center">
                                 <div class="row m-0">
-                                    <div class="col-sm align-self-center text-center p-0">$105</div>
+                                    <div class="col-sm align-self-center p-0"><div class="form-control b-radius-0">$</div></div>
                                     <div class="col-sm-5 my-account-subcription pr-0">
-                                          <div class="custom-control custom-checkbox basic a-v-box">
+                                          <div class="custom-control custom-checkbox basic">
                                               <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
                                               <label class="custom-control-label" for="customCheck2"></label>
                                           </div>
@@ -58,10 +64,13 @@
                             </div>
                          </div>
                          <div class="row">
-                                <!-- <div class="col-sm p-0"><div class="form-control b-radius-0">## hours</div></div>
-                                <div class="col-sm p-0"><div class="form-control b-radius-0">Date Due</div></div> -->
-                                <div class="col-sm p-0"><input  type="text" class="form-control" name="hours" value="{{ $due_arr['num_hrs'] }}"></div>
-                                <div class="col-sm p-0"><input  type="text" class="form-control" name="due_date" value="{{ $due_arr['due_date'] }}"></div>
+                                <div class="col-sm p-0">
+                                  <input  type="text" class="form-control b-radius-0" name="hours" value="{{ $due_arr['num_hrs'] }}"></div>
+                                <!-- <div class="form-control b-radius-0">## hours</div> -->
+                                <div class="col-sm p-0">
+                                  <input  type="text" class="form-control b-radius-0" name="due_date" value="{{ $due_arr['due_date'] }}">
+                                  <!-- <div class="form-control b-radius-0">Date Due</div> -->
+                                </div>
                          </div>
                     </div>
                 </div>
@@ -105,153 +114,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3 pl-0">Your Preferences <br>Settings are</div>
-                    <div class="col-sm-9 pl-0">
-                        <!-- <div class="row m-0">
-                            <div class="col-sm pl-0">Company Website</div>
-                            <div class="col-sm">
-                                 <div class="form-control b-radius-0">Sometimes</div>
-                            </div>
-                            <div class="col-sm">
-                                  <div class="row mt-2">
-                                    <div class="col-sm align-self-center text-right p-0">$5</div>
-                                    <div class="col-sm-5 my-account-subcription pr-0">
-                                          <div class="custom-control custom-checkbox basic a-v-box2">
-                                              <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                              <label class="custom-control-label" for="customCheck5"></label>
-                                          </div>
-                                    </div>
-                                  </div>
-                            </div>
-                        </div>
+                <div class="row m-r-l">
+                    <div class="col-sm-3">Your Preferences <br>Settings are</div>
+                    <div class="col-sm-9">
+                        <div class="mb-4"><b>Email Distribution</b></div>
                         <div class="row">
-                            <div class="col-sm pl-0">External Site #1</div>
-                            <div class="col-sm"><div class="form-control text-center b-radius-0 px-1">Realestate.com</div></div>
+                            <div class="col-sm pl-0 align-self-center">People on <br>Email List</div>
                             <div class="col-sm">
-                                   <div class="row mt-2">
-                                        <div class="col-sm align-self-center text-right p-0">$5</div>
-                                        <div class="col-sm-5 my-account-subcription pr-0">
-                                              <div class="custom-control custom-checkbox basic a-v-box2">
-                                                  <input type="checkbox" class="custom-control-input" id="customCheck6">
-                                                  <label class="custom-control-label" for="customCheck6"></label>
-                                              </div>
-                                        </div>
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm pl-0">External Site #2</div>
-                            <div class="col-sm">
-                                 <div class="form-control b-radius-0">Sometimes</div>
-                            </div>
-                            <div class="col-sm">
-                                  <div class="row mt-2">
-                                        <div class="col-sm align-self-center text-right p-0">$5</div>
-                                        <div class="col-sm-5 my-account-subcription pr-0">
-                                              <div class="custom-control custom-checkbox basic a-v-box2">
-                                                  <input type="checkbox" class="custom-control-input" id="customCheck7">
-                                                  <label class="custom-control-label" for="customCheck7"></label>
-                                              </div>
-                                        </div>
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm pl-0">Facebook</div>
-                            <div class="col-sm">
-                                  <div class="form-control b-radius-0">Sometimes</div>
-                            </div>
-                            <div class="col-sm">
-                                 <div class="row mt-2">
-                                        <div class="col-sm align-self-center text-right p-0">$5</div>
-                                        <div class="col-sm-5 my-account-subcription pr-0">
-                                              <div class="custom-control custom-checkbox basic a-v-box2">
-                                                  <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                                  <label class="custom-control-label" for="customCheck8"></label>
-                                              </div>
-                                        </div>
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm pl-0">Youtube</div>
-                            <div class="col-sm">
-                                  <div class="form-control b-radius-0">Sometimes</div>
-                            </div>
-                            <div class="col-sm">
-                                 <div class="row mt-2">
-                                        <div class="col-sm align-self-center text-right p-0">$5</div>
-                                        <div class="col-sm-5 my-account-subcription pr-0">
-                                              <div class="custom-control custom-checkbox basic a-v-box2">
-                                                  <input type="checkbox" class="custom-control-input" id="customCheck9">
-                                                  <label class="custom-control-label" for="customCheck9"></label>
-                                              </div>
-                                        </div>
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm pl-0">LinkedIn</div>
-                            <div class="col-sm">
-                                  <div class="form-control b-radius-0">Sometimes</div>
-                            </div>
-                            <div class="col-sm">
-                                  <div class="row mt-2">
-                                        <div class="col-sm align-self-center text-right p-0">$5</div>
-                                        <div class="col-sm-5 my-account-subcription pr-0">
-                                              <div class="custom-control custom-checkbox basic a-v-box2">
-                                                  <input type="checkbox" class="custom-control-input" id="customCheck10">
-                                                  <label class="custom-control-label" for="customCheck10"></label>
-                                              </div>
-                                        </div>
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm pl-0">Twitter</div>
-                            <div class="col-sm">
-                                  <div class="form-control b-radius-0">Sometimes</div>
-                            </div>
-                            <div class="col-sm">
-                                  <div class="row mt-2">
-                                        <div class="col-sm align-self-center text-right p-0">$5</div>
-                                        <div class="col-sm-5 my-account-subcription pr-0">
-                                              <div class="custom-control custom-checkbox basic a-v-box2">
-                                                  <input type="checkbox" class="custom-control-input" id="customCheck11">
-                                                  <label class="custom-control-label" for="customCheck11"></label>
-                                              </div>
-                                        </div>
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm pl-0">Googple Plus</div>
-                            <div class="col-sm">
-                                  <div class="form-control b-radius-0">Sometimes</div>
-                            </div>
-                            <div class="col-sm">
-                                  <div class="row mt-2">
-                                        <div class="col-sm align-self-center text-right p-0">$5</div>
-                                        <div class="col-sm-5 my-account-subcription pr-0">
-                                              <div class="custom-control custom-checkbox basic a-v-box2">
-                                                  <input type="checkbox" class="custom-control-input" id="customCheck12">
-                                                  <label class="custom-control-label" for="customCheck12"></label>
-                                              </div>
-                                        </div>
-                                  </div>
-                            </div>
-                        </div> -->
-                        <div class="my-4"><b>Email Distribution (on completion)</b></div>
-                        <div class="row">
-                            <div class="col-sm pl-0 align-self-center">Your Email List</div>
-                            <div class="col-sm">
-                                  <!-- <div class="form-control b-radius-0">Sometimes</div> -->
+                                  <!-- <div class="form-control b-radius-0">On</div> -->
                                   <input  type="text" class="form-control b-radius-0" name="emailist" required autofocus value="{{ $preference->email_distribution  == 1 ? 'On' : 'Off' }}">
                             </div>
                             <div class="col-sm">
                                   <div class="row mt-2">
-                                        <div class="col-sm align-self-center text-right p-0">$5</div>
+                                        <div class="col-sm align-self-center text-right p-0">$0</div>
                                         <div class="col-sm-5 my-account-subcription pr-0">
                                               <div class="custom-control custom-checkbox basic a-v-box2">
                                                   <input type="checkbox" class="custom-control-input" name="chkEmailList" id="chkEmailList"  {{ $preference->email_distribution  == 1 ? 'checked' : '' }}>
@@ -261,13 +136,16 @@
                                   </div>
                             </div>
                         </div>
-                        <div class="my-4"><b>Broadcast Distribution</b></div>
+                        <div class="my-4"><b>Broadcast Distribution (When Available)</b></div>
                         <div class="row">
-                            <div class="col-sm pl-0">Agents in <br>Your Suburbs</div>
-                            <div class="col-sm"><div class="form-control b-radius-0">On</div></div>
+                            <div class="col-sm pl-0">Agents in <br>Selected Suburbs</div>
+                            <div class="col-sm">
+                              <!-- <div class="form-control b-radius-0">On</div> -->
+                              <input  type="text" class="form-control b-radius-0" name="broadcast" id="broadcast" required autofocus value="{{ $preference->broadcast_agent  === "1" ? 'On' : 'Off' }}">
+                            </div>
                             <div class="col-sm">
                                   <div class="row mt-2">
-                                        <div class="col-sm align-self-center text-right p-0">$5</div>
+                                        <div class="col-sm align-self-center text-right p-0">$0</div>
                                         <div class="col-sm-5 my-account-subcription pr-0">
                                               <div class="custom-control custom-checkbox basic a-v-box2">
                                                   <input type="checkbox" class="custom-control-input" name="chkBroadcast" id="chkBroadcast" {{ $preference->broadcast_agent  === "1" ? 'checked' : '' }}>
@@ -279,12 +157,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="row border-bot3">
-                    <div class="col-sm-3 pl-0 pt-3">Extra's</div>
-                    <div class="col-sm-9 pl-0">
+                <div class="row border-bot3 m-r-l">
+                    <div class="col-sm-3 align-self-center">Extra's</div>
+                    <div class="col-sm-9">
                         <div class="row">
                             <div class="col-sm pl-0 align-self-center"><b>DriveBy</b></div>
-                            <div class="col-sm"><button type="button" class="btn btn-primary w-100"><b>FREE</b></button></div>
+                            <div class="col-sm"><button type="button" class="btn btn-primary w-100 b-radius-7"><b>FREE</b></button></div>
                             <div class="col-sm">
                                 <div class="row mt-2">
                                         <div class="col-sm align-self-center text-right p-0">$0</div>
@@ -292,21 +170,6 @@
                                               <div class="custom-control custom-checkbox basic a-v-box2">
                                                   <input type="checkbox" class="custom-control-input" name="apply_driveby" value="1" id="customCheck15" checked>
                                                   <label class="custom-control-label" for="customCheck15"></label>
-                                              </div>
-                                        </div>
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm pl-0 align-self-center"><b>LookFirst</b></div>
-                            <div class="col-sm"><button type="button" class="btn btn-primary w-100"><b>FREE</b></button></div>
-                            <div class="col-sm">
-                                <div class="row mt-2">
-                                        <div class="col-sm align-self-center text-right p-0">$0</div>
-                                        <div class="col-sm-5 my-account-subcription pr-0">
-                                              <div class="custom-control custom-checkbox basic a-v-box2">
-                                                  <input type="checkbox" class="custom-control-input" name="apply_lookfirst" value="1" id="customCheck16" checked>
-                                                  <label class="custom-control-label" for="customCheck16"></label>
                                               </div>
                                         </div>
                                   </div>
@@ -320,46 +183,39 @@
                         <div class="row">
                             <div class="col-sm-3 pl-0 align-self-center">Video</div>
                             <div class="col-sm-9 px-0">
-                                 <!-- <input type="text" class="form-control cost-summary" name="" value="$75.00" disabled> -->
-                                 <input type="text" class="form-control cost-summary" id="cost_standard_video" name="cost_standard_video" required autofocus value="{{ number_format($cost_standard_video, 2) }}" style="text-align: right">
+                                 <input type="text" class="form-control cost-summary" id="cost_standard_video" name="cost_standard_video" required autofocus value="{{ number_format($cost_standard_video, 2) }}" style="text-align: right" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0 align-self-center">Surge</div>
                             <div class="col-sm-9 px-0">
-                                 <!-- <input type="text" class="form-control cost-summary" name="" value="$75.00" disabled> -->
-                                 <input type="text" class="form-control cost-summary" id="cost_surge" name="cost_surge" required autofocus value="{{ number_format($cost_surge,2) }}" style="text-align: right">
+                                 <input type="text" class="form-control cost-summary" id="cost_surge" name="cost_surge" required autofocus value="{{ number_format($cost_surge,2) }}" style="text-align: right" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0 align-self-center">Preferences</div>
                             <div class="col-sm-9 px-0">
-                                 <!-- <input type="text" class="form-control cost-summary" name="" value="$25.00" disabled> -->
-                                 <input type="text" class="form-control cost-summary" id="cost_preferences" name="cost_preferences" required autofocus value="{{ number_format($cost_total_preference,2) }}" style="text-align: right">
+                                 <input type="text" class="form-control cost-summary" id="cost_preferences" name="cost_preferences" required autofocus value="{{ number_format($cost_total_preference,2) }}" style="text-align: right" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0 align-self-center">Extra's</div>
                             <div class="col-sm-9 px-0">
-                                 <!-- <input type="text" class="form-control cost-summary" name="" disabled value="$0.00"> -->
-                                  <input type="text" class="form-control cost-summary" id="cost_extra" name="cost_extra" required autofocus value="{{ number_format($cost_extra, 2) }}" style="text-align: right">
+                                 <input type="text" class="form-control cost-summary" id="cost_extra" name="cost_extra" required autofocus value="{{ number_format($cost_extra, 2) }}" style="text-align: right" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-3 pl-0 align-self-center"><b>Total</b></div>
                             <div class="col-sm-9 px-0">
-                                 <!-- <input type="text" class="form-control cost-summary cost-total" name="" value="$175.00" disabled> -->
-                                 <input type="text" class="form-control cost-summary cost-total" id="total_cost" name="total_cost" required autofocus value="{{ number_format($total_cost,2) }}" style="text-align: right">
+                                 <input type="text" class="form-control cost-summary cost-total" id="total_cost" name="total_cost" required autofocus value="{{ number_format($total_cost,2) }}" style="text-align: right" readonly>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between mb-5">
-                    <div class="align-self-center"><a href=" {{ route('account-terms-condition') }}" target="_blank">Terms and Conditions</a></div>
-                    <div>
-                      <input type="hidden" name="videotype" value="Standard">
-                      <button type="submit" id="btnConfirm" class="btn btn-primary bg-009900 btn-no-border px-4"><b>CONFIRM</b></button>
-                    </div>
+                    <div class="align-self-center"><a href="/terms-condition">Terms and Conditions</a></div>
+                    <input type="hidden" name="videotype" value="Standard">
+                    <div><button type="submit" class="btn btn-primary bg-009900 btn-no-border px-4 b-radius-7"><b>CONFIRM</b></button></div>
                 </div>
             </form>
         </div>

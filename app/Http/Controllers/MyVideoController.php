@@ -15,6 +15,9 @@ use App\standardVideoPicture;
 use App\premiumVideoPicture;
 use App\templateStatement;
 use App\AutomaticDirectUpload;
+use App\AutomaticDirectImages;
+use App\AgencyTemplate;
+use App\voiceFiles;
 use App\State;
 use Carbon\Carbon;
 use phpDocumentor\Reflection\Types\Integer;
@@ -42,7 +45,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $emails = AgentEmail::where('agent_ID', $userid)->get();
@@ -94,7 +97,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $awaiting_videos = videoProgress::where('videotype', 'Premium')->where('agent_ID', $userId)->get();
@@ -130,7 +133,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $voice = AgentTemplate::where('agent_ID', $userid)->get(['voice_format', 'voice_file_selection'])->first();
@@ -150,7 +153,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $music = AgentTemplate::where('agent_ID', $userid)->get(['music_style', 'music_file_format'])->first();
@@ -170,7 +173,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $pic = AgentTemplate::where('agent_ID', $userid)->get(['main_image', 'extra_image1', 'extra_image2', 'logo'])->first();
@@ -189,21 +192,24 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
-        $path2 = '/storage/register/';
+        $path2 = './../storage/app/public/register/';
 
-        $template = AgentTemplate::where('agent_ID', $userid)->get(['main_frame_template', 'main_frame_template_format', 'main_frame_colours', 'main_frame_colours_sub',
-                                                                    'middle_frame_template', 'middle_frame_template_format', 'middle_frame_colours', 'middle_frame_colours_sub',
-                                                                    'end_frame_template', 'end_frame_template_format', 'end_frame_colours', 'end_frame_colours_sub'])->first();
+        $template = AgentTemplate::where('agent_ID', $userid)->get(['main_frame_template', 'main_frame_template_format', 'main_frame_colours', 'main_frame_colours_sub', 'end_frame_template', 'end_frame_template_format', 'end_frame_colours', 'end_frame_colours_sub'])->first();
 
-        $mainframe_list = explode(',', $template['main_frame_template_format']);
-        $middleframe_list = explode(',', $template['middle_frame_template_format']);
-        $endframe_list = explode(',', $template['end_frame_template_format']);
+        // $mainframe_list = explode(',', $template['main_frame_template_format']);
+        // $middleframe_list = explode(',', $template['middle_frame_template_format']);
+        // $endframe_list = explode(',', $template['end_frame_template_format']);
 
-        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.video-creator.explore-templates', compact('fullname', 'passwd', 'agent', 'logo_pic', 'mainframe_list', 'middleframe_list', 'endframe_list', 'template', 'path2'));
+        $agent = Agent::where('email', $email)->get(['role_title','firstname','lastname','name_agency','group','email','address','suburb','postcode','state','mobile', 'website'])->first();
+
+        $agency = $agent['group'];
+
+        $temp = AgencyTemplate::where('agency_name', $agency)->first();
+
+        return view('frontend.pages.video-creator.explore-templates', compact('fullname', 'passwd', 'agent', 'logo_pic', 'template', 'path2', 'temp'));
     }
 
 
@@ -216,7 +222,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -233,7 +239,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -250,7 +256,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -261,8 +267,11 @@ class MyVideoController extends Controller
     public function getGenericVideo()
     {
         $user_id = Auth::user()->id;
-        // $url_generic = Input::get('url_generic');
-        $url_generic = 'SELECTED MANUALLY';
+        $url_generic = Input::get('url_generic');
+        if($url_generic != '' || $url_generic != null)
+            $url_generic = Input::get('url_generic');
+        else
+            $url_generic = 'SELECTED MANUALLY';
 
         $did = Session::get('directid');
 
@@ -323,7 +332,7 @@ class MyVideoController extends Controller
 
         //path for logo pic
         $logo_pic = Auth::user()->logo_user;
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo_pic;
 
 
@@ -392,7 +401,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         return view('frontend.pages.video-creator.standard-video-order', compact('fullname',  'agent', 'due_arr', 'vidid', 'preference',
@@ -457,7 +466,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         return view('frontend.pages.video-creator.premium-video-order', compact('fullname',  'agent', 'url_premium', 'vidid', 'preference',
@@ -521,6 +530,12 @@ class MyVideoController extends Controller
 
             //for updating the videoID for automatic direct upload table
             AutomaticDirectUpload::where('ID', $directid)->update([
+                'video_ID' => $videoid
+            ]);
+
+
+            //for updating the videoID for automatic direct image table
+            AutomaticDirectImages::where('video_ID', null)->update([
                 'video_ID' => $videoid
             ]);
 
@@ -701,7 +716,7 @@ class MyVideoController extends Controller
         else if($videotype === 'Standard')
             return redirect()->route('account-video-system-pictures');
         else if($videotype === 'Premium')
-            return redirect()->route('account-premium-video');
+            return redirect()->route('getPremiumVideoSystem', ['videoid' => $videoid]);
 
     }
 
@@ -712,7 +727,8 @@ class MyVideoController extends Controller
 
         $uname = Auth::user()->name;
         $username = preg_replace('/\s/', '', $uname);
-        $path = public_path('storage\client_images\\' . $username . '\\general_images\\');
+        // $path = public_path('storage\app\public\client_images\\' . $username . '\\general_images\\');
+        $path = 'storage/app/public/client_images/' . $username . '/general_images/';
 
         //move to folder if there is file uploaded for Main Image
         if($file = $request->hasFile('mainImage'))
@@ -728,7 +744,8 @@ class MyVideoController extends Controller
 
             //delete old file
             $oldFileMainImage = Input::get('oldFileMainImage');
-            $filename = public_path().'/storage/client_images/' . $username . '/general_images/'. $oldFileMainImage;
+            // $filename = public_path().'/storage/app/public/client_images/' . $username . '/general_images/'. $oldFileMainImage;
+            $filename = 'storage/app/public/client_images/' . $username . '/general_images/'. $oldFileMainImage;
             \File::delete($filename);
 
         }
@@ -789,7 +806,9 @@ class MyVideoController extends Controller
 
             //delete old file
             $oldLogoImage = Input::get('oldLogoImage');
-            $filename = public_path().'/storage/client_images/' . $username . '/general_images/' . $oldLogoImage;
+            // $filename = public_path().'/storage/app/public/client_images/' . $username . '/general_images/' . $oldLogoImage;
+            // $filename = './storage/app/public/client_images/' . $username . '/general_images/' . $oldLogoImage;
+            $filename = 'storage/app/public/client_images/' . $username . '/general_images/' . $oldLogoImage;
             \File::delete($filename);
 
             //return redirect()->route('account-explore-pictures');
@@ -809,7 +828,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
@@ -829,7 +848,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $premium = AgentVideoOrders::where('ID', $videoid)->get()->first();
@@ -946,30 +965,36 @@ class MyVideoController extends Controller
         $videoid = Session::get('videoID');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
+        $path2 = './../storage/app/public/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
 
-//        $pics = standardVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->orderBy('sort_order', 'asc')->get(['ID', 'video_ID', 'effect_style', 'sort_order', 'old_filename', 'new_filename']);
+        $numimages = Session::get('numimages');
+
+        $pics = standardVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->orderBy('sort_order', 'asc')->get(['ID', 'video_ID', 'effect_style', 'sort_order', 'old_filename', 'new_filename']);
 //        Session::put('pics', $pics);
 
         //capturing images uploaded in dropzone
-        $img1 = $request->session()->get('img1');
-        $img2 = $request->session()->get('img2');
-        $img3 = $request->session()->get('img3');
-        $img4 = $request->session()->get('img4');
-        $img5 = $request->session()->get('img5');
-        $img6 = $request->session()->get('img6');
-        $img7 = $request->session()->get('img7');
-        $img8 = $request->session()->get('img8');
-        $img9 = $request->session()->get('img9');
-        $img10 = $request->session()->get('img10');
+        // $img1 = $request->session()->get('img1');
+        // $img2 = $request->session()->get('img2');
+        // $img3 = $request->session()->get('img3');
+        // $img4 = $request->session()->get('img4');
+        // $img5 = $request->session()->get('img5');
+        // $img6 = $request->session()->get('img6');
+        // $img7 = $request->session()->get('img7');
+        // $img8 = $request->session()->get('img8');
+        // $img9 = $request->session()->get('img9');
+        // $img10 = $request->session()->get('img10');
+
+        // $pics_arr = $request->session()->get('pics_arr');
+
 
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.preferences.video-system.standard-video-pictures', compact('fullname', 'agent', 'logo_pic', 'path2', 'userid', 'img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img6', 'img7', 'img8', 'img9', 'img10'));
+        return view('frontend.pages.preferences.video-system.standard-video-pictures', compact('fullname', 'agent', 'logo_pic', 'path2', 'userid', 'pics', 'numimages'));
+        // return view('frontend.pages.preferences.video-system.standard-video-pictures', compact('fullname', 'agent', 'logo_pic', 'path2', 'userid', 'img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img6', 'img7', 'img8', 'img9', 'img10'));
 //        return view('frontend.pages.preferences.video-system.standard-video-pictures', compact('fullname', 'agent', 'logo_pic', 'pics', 'path2', 'userid'));
     }
 
@@ -986,17 +1011,22 @@ class MyVideoController extends Controller
         $videoid = Session::get('videoID');  //retrieving value from session enable this once doing the testing
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
+        $path2 = './../storage/app/public/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
 
         $pics = standardVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->get(['ID', 'video_ID', 'old_filename', 'new_filename', 'statement']);
         Session::put('pics', $pics);
 
         //for getting template Statements
         $num_images = (int)Input::get('num_images');
+        Session::put('numimages', $num_images);
+
+        //for storing duration to session
+        $duration = Input::get('duration');
+        Session::put('duration', $duration);
 
         $statement = templateStatement::where('no_images', $num_images)->get(['statements'])->first();
         $stat = $statement->statements;
@@ -1017,21 +1047,26 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
-        $path2 = '/storage/register/';
+        $path2 = './../storage/app/public/register/';
 
         $template = AgentTemplate::where('agent_ID', $userid)->get(['main_frame_template', 'main_frame_template_format', 'main_frame_colours', 'main_frame_colours_sub',
             'middle_frame_template', 'middle_frame_template_format', 'middle_frame_colours', 'middle_frame_colours_sub',
             'end_frame_template', 'end_frame_template_format', 'end_frame_colours', 'end_frame_colours_sub'])->first();
 
-        $mainframe_list = explode(',', $template['main_frame_template_format']);
-        $middleframe_list = explode(',', $template['middle_frame_template_format']);
-        $endframe_list = explode(',', $template['end_frame_template_format']);
+        // $mainframe_list = explode(',', $template['main_frame_template_format']);
+        // $middleframe_list = explode(',', $template['middle_frame_template_format']);
+        // $endframe_list = explode(',', $template['end_frame_template_format']);
 
-        $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.preferences.video-system.standard-video-template', compact('fullname', 'agent', 'logo_pic', 'path2', 'template', 'mainframe_list', 'middleframe_list', 'endframe_list'));
+        $agent = Agent::where('email', $email)->get(['role_title', 'firstname', 'lastname', 'name_agency','group','email','address','mobile'])->first();
+
+        $agency = $agent['group'];
+
+        $temp = AgencyTemplate::where('agency_name', $agency)->first();
+
+        return view('frontend.pages.preferences.video-system.standard-video-template', compact('fullname', 'agent', 'logo_pic', 'path2', 'template', 'temp'));
     }
 
     public function VideoSystemVoice()
@@ -1044,7 +1079,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //for music
@@ -1070,18 +1105,21 @@ class MyVideoController extends Controller
         $videoid = Session::get('videoID');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
+        $path2 = './../storage/app/public/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
         $pics = standardVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->orderBy('sort_order', 'asc')->get();
 
         $cnt_pics = count($pics);
+        $duration = Session::get('duration');
+
+        $template = AgentTemplate::where('agent_ID', $userid)->get(['main_frame_template_format', 'voice_file_selection', 'music_file_format'])->first();
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();
-        return view('frontend.pages.preferences.video-system.standard-video-finish', compact('fullname', 'agent', 'logo_pic', 'path2', 'pics', 'cnt_pics'));
+        return view('frontend.pages.preferences.video-system.standard-video-finish', compact('fullname', 'agent', 'logo_pic', 'path2', 'pics', 'cnt_pics', 'duration', 'template'));
     }
 
     //process for uploading Image
@@ -1110,7 +1148,8 @@ class MyVideoController extends Controller
 
 
 
-        $path = public_path('storage\client_images\\' . $fullname . '\\standard_pictures\\Video' . $videoid . '\\');
+        // $path = public_path('storage\app\public\client_images\\' . $fullname . '\\standard_pictures\\Video' . $videoid . '\\');
+        $path = 'storage/app/public/client_images/' . $fullname . '/standard_pictures/Video/' . $videoid . '/';
         if(!File::exists($path)){
             File::makeDirectory($path, 0775, true);
         }
@@ -1122,7 +1161,7 @@ class MyVideoController extends Controller
 //            $fname = date('Ym') . $videoid . '_' . $file->getClientOriginalName();
             $fname = $file->getClientOriginalName();
 
-            $directory = 'storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
+            $directory = 'storage/app/public/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/';
             $upload_success = $file->move($directory, $fname);
 
             if($upload_success)
@@ -1136,6 +1175,9 @@ class MyVideoController extends Controller
                     'duration' => $duration
                 );
                 standardVideoPicture::create($picdetails_arr);
+
+                //push values to the session 
+                $request->session()->push('pics_arr', $picdetails_arr);
 
                 if($sortorder == 1)
                     Session::put('img1', $fname);
@@ -1181,7 +1223,7 @@ class MyVideoController extends Controller
         if (!empty($uploaded_image)) {
 
             //remove from the Storage
-            $file = 'storage/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/' . $simage;
+            $file = 'storage/app/public/client_images/' . $fullname . '/standard_pictures/Video' . $videoid . '/' . $simage;
             unlink($file);
 
             //remove from the DB
@@ -1234,7 +1276,8 @@ class MyVideoController extends Controller
             foreach($request->file('image_files') as $image)
             {
                 if(!empty($image) && ($ctr < count($arr_images))){
-                    $path = public_path('storage\client_images\\' . $username . '\\standard_pictures\\Video' . $videoid . '\\');
+                    // $path = public_path('storage\client_images\\' . $username . '\\standard_pictures\\Video' . $videoid . '\\');
+                    $path = 'storage/app/public/client_images/' . $username . '/standard_pictures/Video' . $videoid . '/';
                     if(!File::exists($path)){
                         File::makeDirectory($path, 0775, true);
                     }
@@ -1385,8 +1428,9 @@ class MyVideoController extends Controller
             else if($position == 25)
                 $fname = 'Y';
 
-            $path2 = '../public/storage/client_images/' . $username . '/standard_pictures/Video' . $videoid . '/';
-            $path = public_path('storage\client_images\\' . $username . '\\standard_pictures\\Video' . $videoid . '\\');
+            // $path2 = '../storage/app/public/client_images/' . $username . '/standard_pictures/Video' . $videoid . '/';
+            // $path = public_path('storage\app\public\client_images\\' . $username . '\\standard_pictures\\Video' . $videoid . '\\');
+            $path = 'storage/app/public/client_images/' . $username . '/standard_pictures/Video' . $videoid . '/';
 
             $image_oldname = standardVideoPicture::where('ID', $arr_sortimages[$ctr])->first();
             $old_fname = $image_oldname["old_filename"];
@@ -1394,8 +1438,8 @@ class MyVideoController extends Controller
             $extension = File::extension($old_fname);
             $new_fname = $fname . '.' . $extension;
 
-            $oldimagePath = $path2 . $old_fname;
-            $newimagePath = $path2 . $new_fname;
+            $oldimagePath = $path . $old_fname;
+            $newimagePath = $path . $new_fname;
 
             rename($oldimagePath, $newimagePath);
 
@@ -1450,6 +1494,8 @@ class MyVideoController extends Controller
         $musicSelection = Input::get('musicSelection');
         if ($musicSelection != null)
             $musicboxes = implode(',', $musicSelection);
+        else
+            $musicboxes = '';
 
         $voice_music_data = AgentTemplate::where('agent_ID', $userid)->get()->first();
 //        dd($voice_music_data);
@@ -1542,11 +1588,11 @@ class MyVideoController extends Controller
         $videoAddress = Session::get('videoAddress');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $fullname . '/premium_pictures/Video' . $videoid . '/';
+        $path2 = './../storage/app/public/client_images/' . $fullname . '/premium_pictures/Video' . $videoid . '/';
 
         $pics = premiumVideoPicture::where('agent_iD', $userid)->where('video_ID', $videoid)->get(['ID', 'video_ID', 'effect_style', 'old_filename', 'new_filename']);
         Session::put('pics', $pics);
@@ -1569,11 +1615,11 @@ class MyVideoController extends Controller
         $videoAddress = Session::get('videoAddress');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $fullname . '/premium_pictures/Video' . $videoid . '/';
+        $path2 = './../storage/app/public/client_images/' . $fullname . '/premium_pictures/Video' . $videoid . '/';
 
         $pics = premiumVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get(['ID', 'video_ID', 'old_filename', 'new_filename', 'statement']);
         Session::put('pics', $pics);
@@ -1597,10 +1643,10 @@ class MyVideoController extends Controller
         $videoAddress = Session::get('videoAddress');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
-        $path2 = '/storage/register/';
+        $path2 = './../storage/app/public/register/';
 
         $template = AgentTemplate::where('agent_ID', $userid)->get(['main_frame_template', 'main_frame_template_format', 'main_frame_colours', 'main_frame_colours_sub',
             'middle_frame_template', 'middle_frame_template_format', 'middle_frame_colours', 'middle_frame_colours_sub',
@@ -1628,7 +1674,7 @@ class MyVideoController extends Controller
         $videoAddress = Session::get('videoAddress');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //for music
@@ -1658,11 +1704,11 @@ class MyVideoController extends Controller
         $videoAddress = Session::get('videoAddress');
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         //path for uploaded images
-        $path2 = '/storage/client_images/' . $fullname . '/premium_pictures/Video' . $videoid . '/';
+        $path2 = './../storage/app/public/client_images/' . $fullname . '/premium_pictures/Video' . $videoid . '/';
         $pics = premiumVideoPicture::where('agent_ID', $userid)->where('video_ID', $videoid)->get();
 
         $cnt_pics = count($pics);
@@ -1934,7 +1980,7 @@ class MyVideoController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $fullname . '/general_images/';
+        $path = './../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $states = State::get(['state_code', 'state_name']);
@@ -1955,7 +2001,8 @@ class MyVideoController extends Controller
 
         if($file = $request->file('property_attach')) {
 
-            $path = public_path('storage\client_images\\' . $username . '\\automatic_property_attachments\\');
+            // $path = public_path('storage\app\public\client_images\\' . $username . '\\automatic_property_attachments\\');
+            $path = 'storage/app/public/client_images/' . $username . '/automatic_property_attachments/';
                     if(!File::exists($path)){
                         File::makeDirectory($path, 0775, true);
                     }
@@ -1963,8 +2010,13 @@ class MyVideoController extends Controller
             $direct_filename = $file->getClientOriginalName();
             $file->move($path, $direct_filename);       
 
+            Session::put('direct_fname', $direct_filename);
 
-            $direct_arr = array(
+        }
+
+        $directfname = Session::get('direct_fname');
+
+        $direct_arr = array(
                 'agent_ID' => $userid,
                 'address1' => Input::get('address1'),
                 'address2' => Input::get('address2'),
@@ -1976,17 +2028,88 @@ class MyVideoController extends Controller
                 'num_bathrooms' => Input::get('num_bathrooms'),
                 'num_cars' => Input::get('num_cars'),
                 'property_type' => Input::get('property_type'),
-                'property_description_file' => $direct_filename,
+                'property_description_file' => $directfname,
             );
 
-            $direct = AutomaticDirectUpload::create($direct_arr); 
-            $directID = $direct->id;
+        $direct = AutomaticDirectUpload::create($direct_arr); 
+        $directID = $direct->id;
 
-            Session::put('directid', $directID);
+        Session::put('directid', $directID);
+
+        return redirect()->route('getGenericVideo');
+
+    }
+
+
+    //for uploading images in Direct Upload
+
+
+    public function uploadDirectImage(Request $request)
+    {
+
+        $userid = Auth::user()->id;
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
+
+        $datetime = date('Ymd');
+        
+
+        // $path = public_path('storage\app\public\client_images\\' . $fullname . '\\direct_pictures\\Direct' . $datetime . '\\');
+        $path = 'storage/app/public/client_images/' . $fullname . '/direct_pictures/Direct' . $datetime . '/';
+        if(!File::exists($path)){
+            File::makeDirectory($path, 0775, true);
+        }
+
+        //for Standard Images upload using dropZone.js
+        if($file = $request->hasFile('file')) {
+
+            $file = $request->file('file');
+//            $fname = date('Ym') . $videoid . '_' . $file->getClientOriginalName();
+            $fname = $file->getClientOriginalName();
+
+            $directory = 'storage/app/public/client_images/' . $fullname . '/direct_pictures/Direct' . $datetime . '/';
+            $upload_success = $file->move($directory, $fname);
+
+            if($upload_success)
+            {
+                //create record to store to the database
+                $directpics_arr = array(
+                    'agent_ID' => $userid,
+                    'image_file' => $fname
+                );
+                AutomaticDirectImages::create($directpics_arr);
+
+                //return response()->json($upload_success, 200);
+            }
+            else
+            {
+                //return response()->json('error', 400);
+            }
 
         }
 
-        return redirect()->route('getGenericVideo');
+    }
+
+
+    public function deleteDirectImage($simage, $img)
+    {
+
+        $fname = Auth::user()->name;
+        $fullname = preg_replace('/\s/', '', $fname);
+
+        $datetime = date('Ymd');
+        
+        $uploaded_image = AutomaticDirectImages::where('image_file', $simage)->first();
+
+        if (!empty($uploaded_image)) {
+
+            //remove from the Storage
+            $file = 'storage/app/public/client_images/' . $fullname . '/direct_pictures/Direct' . $datetime . '/' . $simage;
+            unlink($file);
+
+            //remove from the DB
+            $file_image = AutomaticDirectImages::where('ID', $uploaded_image->ID)->delete();
+        }
 
     }
 

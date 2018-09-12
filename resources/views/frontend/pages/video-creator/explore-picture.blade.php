@@ -2,35 +2,43 @@
 
 @section('content')
 <div class="container ">
+
     <div class="row my-account-container">
       <div class="col-lg-4">
         @auth
             @include('frontend.layouts.parts.sidebar')
         @endauth
         </div>
+
         <div class="col-lg-8 my-account-form explore-pictures">
-            
            <h3 class="my-account-title">Explore Pictures</h3>
-           <div class="border-bot4">Profile  Photo</div>
-           <div class="row">
+           <div class="border-bot4"><b>Profile Photo</b></div>
+           <div class="row m-r-l">
+
                 <div class="col-sm reg-step-link">
-                          <!-- <img class="img-fluid" src="{{ asset('storage/register/step-needed.jpg') }}"> -->
+
                            @if($pic['main_image'] != null || !empty($pic['main_image']))
-                                <img id="image1" src="{{ $path . $pic['main_image'] }}">
+                                <img id="image1" src="{{ $path . $pic['main_image'] }}" class="img-fluid" style="max-width: 100%; ">
                             @else
                                 <div class="img-block" id="image1"></div>
                             @endif
                           
-                            <form class="register-form" id="postMainImage" action=" {{ route('account-explore-picture-postImages') }} " method="POST" enctype="multipart/form-data">
-                                {{ csrf_field() }}
-                                <div class="text-right py-2">
-                                    <input type="hidden" name="oldFileMainImage" value="{{ $pic['main_image'] }}">
-                                    <input type='file' id="mainImage" name="mainImage" class="FileUpload" accept=".jpg,.jpeg,.png,.gif"/>
-                                    <div class="uploadOverlay">Add/Change</div>
-                                    <!-- <a href="" class="font14">Add/Change <span>+</span></a> -->
-                                </div>
-                            </form>
+                            <div class="text-right py-2">
+                                <form id="postMainImage" action=" {{ route('account-explore-picture-postImages') }} " method="POST" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                        <a href="" class="font14">Add/Change <span>+</span></a>
+                                        <input type="hidden" name="oldFileMainImage" value="{{ $pic['main_image'] }}">
+                                        <input type='file' id="mainImage" name="mainImage" class="FileUpload" accept=".jpg,.jpeg,.png,.gif" style/>
+                                </form>
+                            </div>
+
+
+                          <!-- <img class="img-fluid" src="{{ asset('storage/register/step-needed.jpg') }}">
+                          <div class="text-right py-2">
+                              <a href="" class="font14"><b>Add/Change <span>+</span></b></a>
+                          </div> -->
                 </div>
+
                 <div class="col-sm text-justify">
                            <b>ADD YOUR PROFILE PHOTO</b>
                            <p class="mt-0">Please upload your promotional head shot portrait
@@ -41,41 +49,45 @@
                             or .png (Minimum 576 px width x 864 px height)</p>
                 </div>
             </div>
-            <div class="border-bot4">Logo</div>
-            <div class="row">
+
+            <div class="border-bot4"><b>Logo</b></div>
+
+            <div class="row m-r-l">
                 <div class="col-sm reg-step-link">
 
-                        @if($pic['extra_image1'] != null || !empty($pic['extra_image1']))
-                            <!-- <img id="image2" src="{{ $path . $pic['extra_image1'] }}" width="545" height="195"> -->
-                            <img class="img-fluid" id="image2" src="{{ $path . $pic['extra_image1'] }}" >
+                        @if($pic['logo'] != null || !empty($pic['logo']))
+                            <img id="logo" src="{{ $path . $pic['logo'] }}" class="img-fluid" style="max-width: 100%;">
                         @else
-                            <div id="image2" class="img-block"></div>
+                            <div id="logo" class="img-block2"></div>
                         @endif
-                        {{--<p class="text-right"><a href="">Change</a></p>--}}
-                        <form class="register-form" id="postMainImage2" action=" {{ route('account-explore-picture-postImages') }} " method="POST" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                            <div class="text-right py-2">
-                                    <input type="hidden" name="oldFileMainImage2" value="{{ $pic['extra_image1'] }}">
-                                    <input type='file' id="mainImage2" name="mainImage2" class="FileUpload" accept=".jpg,.jpeg,.png,.gif"/>
-                                    <div class="uploadOverlay2">Add/Change <span>+</span></div>
-                            </div>
-                        </form>
+                          
+                        <div class="text-right py-2">
+                            <form id="postMainImage" action=" {{ route('account-explore-picture-postImages') }} " method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                                <a href="" class="font14">Add/Change <span>+</span></a>
+                                <input type="hidden" name="oldLogoImage" value="{{ $pic['logo'] }}">
+                                <input type='file' id="logoImage" name="logoImage" class="FileUpload" accept=".jpg,.jpeg,.png,.gif"/>
+                            </form>
+                        </div>
 
                         <!-- <img class="img-fluid" src="{{ asset('storage/register/step-blank.jpg') }}">
                         <div class="text-right py-2">
-                            <a href="" class="font14">Add/Change <span>+</span></a>
+                            <a href=""><b>Add/Change <span>+</span></b></a>
                         </div> -->
+
                 </div>
+
                 <div class="col-sm-6">
                         <b>ADD YOUR AGENCY LOGO</b>
-                        <p class="mt-0">Recommended - 2000 px width <br>Minimum 1000 px)</p>
-
+                        <p class="mt-0">Recommended - 2000 px width <br>(Minimum 1000 px)</p>
                         <p>Maximum 2mb upload file size</p>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
 
 

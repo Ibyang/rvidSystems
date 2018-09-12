@@ -9,7 +9,7 @@
         @endauth
         </div>
         <div class="col-lg-8 my-account-form">
-            <h3 class="my-account-title">Premium Video Script Tool</h3>
+            <h3 class="my-account-title">Custom Video Script Tool</h3>
             <table class="table-action mb-4" cellpadding="0" cellspacing="0" width="100%">
                  <tbody>
                         <tr class="bg-eae">

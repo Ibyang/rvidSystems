@@ -60,7 +60,7 @@
                     
                     <div class="row col-8 pl-0 mt-2 mb-2">
                         <div class="col-sm-6">
-                            <input type="text" name="other" placeholder="other" class="form-control">
+                            <input type="text" name="other" placeholder="Other" class="form-control">
                         </div>
                         <div class="col-md-auto reg-step-link align-self-center"><a href=""><span>Set Rules</span></a></div>
                     </div>

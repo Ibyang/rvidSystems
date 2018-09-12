@@ -8,7 +8,7 @@
             @include('frontend.layouts.parts.sidebar')
         @endauth
         </div>
-        <div class="col-lg-8 my-account-form">
+        <div class="col-lg-8 my-account-form pb-5">
             <h3 class="my-account-title">Billing History</h3>
             <div class="d-flex justify-content-between">
                 <div class="align-self-center"><h3>Statement Details</h3></div>
@@ -89,16 +89,20 @@
                                                 <h3>TAX INVOICE</h3>
                                                 <h3>#XXXX</h3>
                                             </div>
+                                            <div class="col-sm text-center"> 
+                                                <b>Revid Systems Pty Ltd</b> 
+                                                <div>ABN 94 111 076 254</div> 
+                                            </div> 
                                             <div class="col-sm pr-0">
                                                 <div class="text-right">
-                                                    <img src={{ asset('storage/account/revid-billing-icon.png') }} />
+                                                    <img src={{ asset('storage/app/public/account/revid-billing-icon.png') }} />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row mt-4">
                                             <div class="col-sm pl-0">
                                                  <div class="pb-1">Date: {{ \Carbon\Carbon::parse($billing_details['billing_date'])->format('F d Y')}}</div>
-                                                <div class="row mt-0">
+                                                <div class="row mt-2">
                                                     <div class="col-md-auto pl-0 pr-0">To:</div>
                                                     <div class="col-md-auto pl-2">
                                                          <div id="client_company"></div>
@@ -108,19 +112,34 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-auto pr-0">
-                                                <div class="billing-border">
+                                                Suite 90 City West<br> 
+                                                102 Railway St<br> 
+                                                West Perth WA 6005 
+                                                <div class="mt-3">accounts@revid.com.au</div> 
+                                                <!-- <div class="billing-border"> -->
                                                     <!-- Video #XXXX<br>
                                                     33 South Rd<br>
                                                     Bassendean WA 6054 -->
-                                                    Video #{{ $billing_details['video_ID'] }}<br>
+                                                    <!-- Video #{{ $billing_details['video_ID'] }}<br>
                                                     <span id="client_address"></span><br>
-                                                    <span id="client_suburb"></span>&nbsp;<span id="client_state"></span>&nbsp;<span id="client_postcode"></span>
-                                                </div>
+                                                    <span id="client_suburb"></span>&nbsp;<span id="client_state"></span>&nbsp;<span id="client_postcode"></span> -->
+                                                <!-- </div> -->
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-between bg-e8e8e8 billing-table p-2"> 
+                                        <div class="pl-4"> 
+                                            Agent: Name Here<br>
+                                            Agency: Agency Name Here 
+                                        </div> 
+                                        <div> 
+                                            Video #XXXX<br> 
+                                            33 South Rd<br> 
+                                            Bassendean WA 6054 
+                                        </div> 
+                                    </div> 
                                     
-                                    DETAILS
+                                    <div class="my-3"><b>DETAILS</b></div> 
                                     <table class="billing-table mt-2" id="invoiceDetailsTable" cellpadding="0" cellspacing="0" width="100%">
                                         <!-- <tr>
                                             <td>1</td>
@@ -163,18 +182,29 @@
                                             <td>$110.00</td>
                                         </tr> -->
                                     </table>
-                                    <div class="mt-3 mb-2">PAYMENT/RECEIPT</div>
+                                    <div class="mt-3 mb-2"><b>PAYMENT/RECEIPT</b></div>
                                     <div class="row">
                                         <div class="col-sm-2 text-right">Paid</div>
-                                        <div class="col-sm-8">Credit Card XXX-0004</div>
-                                        <div class="col-sm-2">Balance</div>
+                                        <div class="col-sm-5">Credit Card XXX-0004</div>
+                                        <div class="col-sm-5 pr-0">
+                                            <div class="d-flex justify-content-between">
+                                                <div>Amount Paid</div>
+                                                <div class="billing-a border-l-r-666 text-right">$0.00</div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-2 text-right">Date</div>
-                                        <div class="col-sm-8">November 6 2017</div>
-                                        <div class="col-sm-2">$0.00</div>
+                                        <div class="col-sm-5">November 6 2017</div>
+                                        <div class="col-sm-5 pr-0">
+                                            <div class="d-flex justify-content-between">
+                                                <div>Balance</div>
+                                                <div class="billing-a border-l-r-666 text-right">$0.00</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="d-flex justify-content-end">
+
+                                    <div class="d-flex justify-content-end mt-3">
                                         <div>
                                             <div class="billing-button text-right">
                                                 <div class="d-inline-block">
@@ -260,6 +290,8 @@
 
     <script type="text/javascript">
 
+        var APP_URL = {!! json_encode(url('/')) !!}
+
         $(document).ready(function() {
 
             $('#InvoiceModal').on('show.bs.modal', function(e) {
@@ -286,7 +318,7 @@
 
                 if(vidid) {
                     $.ajax({
-                        url: '/getInvoiceDetails/' + vidid,
+                        url: 'http://revid.com.au/rvidSystems/getInvoiceDetails/' + vidid,
                         type: "GET",
                         dataType: "JSON",
                         success:function(data) {

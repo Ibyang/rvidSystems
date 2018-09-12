@@ -11,9 +11,9 @@
             <div class="col-lg-8 my-account-form">
                 @include ('frontend.pages.my-account.details')
 
-                @include ('frontend.pages.my-account.subscription')
+                @include ('frontend.pages.my-account.agency') 
 
-                @include ('frontend.pages.my-account.billing')
+                @include ('frontend.pages.my-account.subscription')
 
                 @include ('frontend.pages.my-account.invoice')
 

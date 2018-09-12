@@ -9,7 +9,7 @@
         @endauth
         </div>
         <div class="col-lg-8 my-account-form">
-            <h3 class="my-account-title">Premium Video - Storyboard</h3>
+            <h3 class="my-account-title">Custom Video - Storyboard</h3>
             <table class="table-action mb-4" cellpadding="0" cellspacing="0" width="100%">
                 <tr class="bg-eae">
                     <td><b>Video #</b></td>
@@ -38,14 +38,14 @@
                 <div class="col-sm"></div>
             </div>
             <div class="d-flex border-bot py-3 mb-4">
-              <div class="mr-auto p-0">Ready to<br>Produce, proceed</div>
-              <div class="px-3 my-account-subcription">
+              <div class="my-account-subcription mr-3"> 
                     <div class="custom-control custom-checkbox basic">
                           <input type="checkbox" class="custom-control-input" id="customCheck2">
                           <label class="custom-control-label ml-1" for="customCheck2"></label>
                     </div>
               </div>
-              <div><button class="btn btn-primary">APPROVED</button></div>
+              <div class="mr-auto p-0 align-self-center">Ready to proceed, please commence building my video</div> 
+              <div><button class="btn btn-primary btn-no-border b-radius-7 bg-009900 px-3"><b>GO</b></button></div> 
             </div>
             <div class="video-system-con p-3">
 

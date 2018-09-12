@@ -14,7 +14,7 @@
             @include('frontend.pages.preferences.video-system.steps')
             
             <div class="d-flex justify-content-between join-step-next p-1 mb-3 border-bot pb-3">
-                    <button class="btn btn-primary bg-333 btn-no-border px-4"><i class="arrow-left"></i> BACK</button>
+                    <button class="btn btn-primary bg-333 btn-no-border px-4" type="button" onclick="goBack()"><i class="arrow-left"></i> BACK</button>
             </div>
 
             <form id="frmStep5" method="POST" action="{{ route('account-video-system-processStep5')}}">
@@ -24,7 +24,7 @@
                 
                 <div class="row">
                     <div class="col-sm pl-0">Pictures # {{ $cnt_pics }}</div>
-                    <div class="col-sm">Duration XX</div>
+                    <div class="col-sm">Duration {{ $duration }}</div>
                 </div>
                 <div class="row">
                     <div class="col-sm pl-0">Voice XXXXXXXXXX</div>
@@ -49,7 +49,7 @@
 
                     @if(count($pics) > 0)
                         @foreach($pics as $pic)
-                            {{ $num_words = str_word_count($pic['statement']); }}
+                            <?php $num_words = str_word_count($pic['statement']); ?>
                             <div class="row video-system-5 m-0">
                                 <div class="col-sm py-3 pr-2">
                                     <div class="bg-fff h-100">
@@ -73,14 +73,14 @@
                                         <p><br>{{ $pic['statement'] }}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div><br>
                         @endforeach
                     @endif    
 
                 </div>
 
                 <div class="d-flex flex-row my-4">
-                  <div><button class="btn btn-primary bg-333 btn-no-border v-s-btn-t px-3"><i class="arrow-left"></i>BACK</button></div>
+                  <div><button class="btn btn-primary bg-333 btn-no-border v-s-btn-t px-3" type="button" onclick="goBack()"><i class="arrow-left"></i>BACK</button></div>
                   <div class="px-3">
                         <div class="my-account-subcription">
                             <div class="custom-control custom-checkbox basic">
@@ -103,6 +103,11 @@
 
 
     <script type="text/javascript">
+
+        function goBack(){
+            window.history.back();
+        }
+
         $(document).ready(function() {
 
             // var checker = document.getElementById('check2');

@@ -1,38 +1,32 @@
-<div class="row standard-video-system">
-                <div class="col">
-                    <i class="video-system vs-pictures"></i>
-                    <span>STEP 1 <br><b>Pictures</b></span>
+<div class="row m-0">
+                <div class="col p-0">
+                    <div class="icon-list text-center pt-2 b-radius-7 @if (Request::segment(5) == 1 ) bg-006 @else bg-eae @endif">
+                        <i class="m-step-video @if (Request::segment(5) == 1 ) m-s-v-pictures-h @else m-s-v-pictures @endif"></i><br>
+                        <p class="@if (Request::segment(5) == 1 ) color-ffffff @else color-414142 @endif"><b>STEP 1</b> <br>Pictures</p>
+                    </div>
                 </div>
-                <div class="col-md-auto">
-                    <div class="d-inline-block">Click <br>Next</div>
-                    <i class="arrow-small"></i>
+                <div class="col px-1">
+                    <div class="icon-list text-center pt-2 b-radius-7 @if (Request::segment(5) == 2 ) bg-006 @else bg-eae @endif">
+                        <i class="m-step-video @if (Request::segment(5) == 2 ) m-s-v-script-h @else m-s-v-script @endif"></i><br>
+                        <p class="@if (Request::segment(5) == 2 ) color-ffffff @else color-414142 @endif"><b>STEP 2</b> <br>Script</p>
+                    </div>
                 </div>
-                <div class="col">
-                    <i class="video-system vs-script"></i>
-                    <span>STEP 2 <br><b>Script</b></span>
+                <div class="col p-0">
+                    <div class="icon-list text-center pt-2 b-radius-7 @if (Request::segment(5) == 3 ) bg-006 @else bg-eae @endif">
+                        <i class="m-step-video @if (Request::segment(5) == 3 ) m-s-v-template-h @else m-s-v-template @endif"></i><br>
+                        <p class="@if (Request::segment(5) == 3 ) color-ffffff @else color-414142 @endif"><b>STEP 3</b> <br>Template</p>
+                    </div>
                 </div>
-                <div class="col-md-auto">
-                    <div class="d-inline-block">Click <br>Next</div>
-                    <i class="arrow-small"></i>
+                <div class="col px-1">
+                    <div class="icon-list text-center pt-2 b-radius-7 @if (Request::segment(5) == 4 ) bg-006 @else bg-eae @endif">
+                        <i class="m-step-video @if (Request::segment(5) == 4 ) m-s-v-voice-h @else m-s-v-voice @endif"></i><br>
+                        <p class="@if (Request::segment(5) == 4 ) color-ffffff @else color-414142 @endif"><b>STEP 4</b> <br>Voice and Music</p>
+                    </div>
                 </div>
-                <div class="col">
-                    <i class="video-system vs-template"></i>
-                    <span>STEP 3 <br><b>Template</b></span>
-                </div>
-               <div class="col-md-auto">
-                    <div class="d-inline-block">Click <br>Next</div>
-                    <i class="arrow-small"></i>
-                </div>
-                <div class="col-md-auto pl-0 pr-0">
-                    <i class="video-system vs-voice-music"></i><br>
-                    <span>STEP 4 <br><b>Voice and Music</b></span>
-                </div>
-                <div class="col-md-auto">
-                    <div class="d-inline-block">Click <br>Next</div>
-                    <i class="arrow-small"></i>
-                </div>
-                <div class="col">
-                    <i class="video-system vs-finish"></i>
-                    <span>STEP 5 <br><b>Finish</b></span>
+                <div class="col p-0">
+                    <div class="icon-list text-center pt-2 b-radius-7 @if (Request::segment(5) == 5 ) bg-006 @else bg-eae @endif">
+                        <i class="m-step-video @if (Request::segment(5) == 5 ) m-s-v-music-h @else m-s-v-music @endif "></i><br>
+                        <p class="@if (Request::segment(5) == 5 ) color-ffffff @else color-414142 @endif"><b>STEP 5</b> <br>Finish</p>
+                    </div>
                 </div>
 </div>

@@ -60,10 +60,12 @@
                         <li>Your Video is delivered.</li>
                     </ol>
         </div>
-        <div class="d-flex justify-content-between step-1-title py-2 mt-2 mb-4">
+        <!-- <div class="d-flex justify-content-between step-1-title py-2 mt-2 mb-4">
             <div><h4 class="color-6600cc font-weight-bold">Login or <br>Let’s Get Started! Step 1</h4></div>
             <div class="align-self-center"><h5 class="font-weight-bold">4 Easy Steps (4 to GO!)</h5></div>
-        </div>
+        </div> -->
+
+        @include('frontend.register.register-join-info')
         
         @include('frontend.register.register-info') 
         
@@ -74,3 +76,11 @@
 
         @include('frontend.pages.frontpage.footer')
 @endsection
+
+
+{{-- page level scripts --}}
+@section('footer_scripts')
+
+    <script src="{{ asset('assets/js/pricing-register.js') }}" type="text/javascript"></script>
+
+@stop

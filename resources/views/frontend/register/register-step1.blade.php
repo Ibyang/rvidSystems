@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container pb-0" id="content">
-        <h3 class="header-border c-6600cc font-weight-bold">Let’s Get Started! Step 1</h3>
+        <!-- <h3 class="header-border c-6600cc font-weight-bold">Let’s Get Started! Step 1</h3>
 
         @include('frontend.pages.pricing-data')
 
@@ -13,7 +13,9 @@
                 <div class="color-6600cc">Login or <br>Let’s Get Started! Step 1</div>
                 <div class="align-self-center color-424244 ">4 Easy Steps (4 to Go!)</div>
             </div>
-        </h5>
+        </h5> -->
+        
+         @include('frontend.register.register-join-info') 
 
         @include('frontend.register.register-info')
     </div>
@@ -53,7 +55,6 @@
 
 
 
-
             $('#grouplist').selectize({
                 create: true,
                 sortField: {
@@ -80,12 +81,35 @@
                 $('select[name="suburb"]').append('<option value="">Suburb</option>');
             }
 
+
+            //for dynamic populating name of agency when group is selected
+            $('select[name="group"]').on('change', function() {
+                var group = $(this).val();
+                if(group) {
+                    $.ajax({
+                        url: './groupAgencyAjax/' + group,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+                            console.log("the return data is ", data);
+                            $('select[name="name_agency"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="name_agency"]').append('<option value="'+ value +'">'+ value +'</option>');
+                            });
+                        }
+                    });
+                }else{
+                    // $('select[name="name_agency"]').empty();
+                }
+            });
+
+
             //for dynamic populating suburb dropdown when state is selected
             $('select[name="state"]').on('change', function() {
                 var stateCode = $(this).val();
                 if(stateCode) {
                     $.ajax({
-                        url: '/stateAjaxUser/' + stateCode,
+                        url: './stateAjaxUser/' + stateCode,
                         type: "GET",
                         dataType: "json",
                         success:function(data) {
@@ -109,7 +133,7 @@
 
                 if(email){
                     $.ajax({
-                        url: '/getEmailAjax/' + email,
+                        url: './getEmailAjax/' + email,
                         type: "GET",
                         dataType: "json",
                         async: true,
@@ -126,9 +150,13 @@
                                 $('#lastname').val(data.lastname);
                                 $('#mobile').val(data.mobile);
                                 $('#group').val(data.group);
-                                $('#name_agency').val(data.name_agency);
+                                $('#agency').val(data.name_agency);
                                 $('#address').val(data.address);
+                                $('#suburbText').val(data.suburb);
+                                $('#stateText').val(data.state);
+                                $('#postcode').val(data.postcode);
 
+                                
                                 var state_val = data.state;
                                 if(state_val === 'QLD')
                                     $('#state').prop('selectedIndex', 3);

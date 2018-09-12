@@ -25,7 +25,7 @@ class MyHelpController extends Controller
         $logo = Auth::user()->logo_user;
 
         //path for logo pic
-        $path = '/storage/client_images/' . $userid . '/general_images/';
+        $path = '../../storage/app/public/client_images/' . $fullname . '/general_images/';
         $logo_pic = $path . $logo;
 
         $agent = Agent::where('email', $email)->get(['role_title','name_agency','group','email','address','mobile'])->first();

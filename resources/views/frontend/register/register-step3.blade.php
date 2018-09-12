@@ -2,15 +2,15 @@
 
 @section('content')
     <div class="container p-0" id="content">
-        <h1 class="c-6600cc">Let’s Get Started! Step 3</h1>
+        <h1 class="c-6600cc border-bot4">Let’s Get Started! Step 3</h1>
         
         @include('frontend.register.register-info')
         
         <div class="d-flex justify-content-between join-step-next p-1">
-                <button class="btn btn-primary bg-333 btn-no-border px-4"><i class="arrow-left"></i> BACK</button>
+                <button class="btn btn-primary bg-333 btn-no-border px-4" onclick="goBack()"><i class="arrow-left"></i> BACK</button>
         </div>
     </div>
-    <div class="bg-eae step-two-register">
+    <div class="bg-eae step-two-register mt4">
          <div class="container" id="content">
                 <form class="step-three-register register-form" method="POST" action="{{ route('processStep3') }}">
                 {{ csrf_field() }}
@@ -37,7 +37,16 @@
 @section('footer_scripts')
 
     <script type="text/javascript">
+
+        function goBack(){
+            window.history.back();
+        }
+
+        
         $(document).ready(function() {
+
+            //fix to scroll the page to top
+            $(this).scrollTop(0);
 
             //for selecting only one checkbox at a time
             $('input[type="checkbox"]').on('change', function() {

@@ -74,7 +74,7 @@
                                <div class="row">
                                     <div class="col-sm-9 pl-0"><input class="form-control" type="text" name="email" id="email" style="width: 225px"></div>
                                     <div class="col-sm-3 p-0">
-                                         <button type="button" id="btnAdd" class="btn btn-primary w-100">ADD</button>
+                                         <button type="button" id="btnAdd" class="btn btn-primary w-100"><b>ADD</b></button>
                                     </div>
                                </div>
                                <div>
@@ -83,7 +83,7 @@
                                <div class="row mb-0">
                                     <div class="col-sm-9 pl-0"><a href="" id="removeEmail">Remove -</a></div>
                                     <div class="col-sm-3 p-0">
-                                        <button type="button" id="btnAdd" class="btn btn-primary w-100">SEND</button>
+                                        <button type="button" id="btnAdd" class="btn btn-primary w-100 bg-6600cc btn-no-border py-2">SEND</button>
                                     </div>
                                </div>
                             </div>
@@ -107,7 +107,7 @@
                                </form>    
                                <div class="row mb-0">
                                     <div class="col-sm-9 pl-0"></div>
-                                    <div class="col-sm-3 p-0"><button class="btn btn-primary w-100">ADD</button></button></div>
+                                    <div class="col-sm-3 p-0"><button class="btn btn-primary w-100"><b>ADD</b></button></div>
                                </div>
                             </div>
                        </div>
